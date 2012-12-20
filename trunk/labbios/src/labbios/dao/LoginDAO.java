@@ -39,9 +39,9 @@ public class LoginDAO extends DatabaseUtil{
 		return retorno;
 	}
 	
-	public Login loginPorID(int loginID) throws SQLException, ClassNotFoundException
+	public Login buscarLoginPorID(int loginID) throws SQLException, ClassNotFoundException
 	{
-		ResultSet rs = getStatement().executeQuery("Select * from LOGIN where LOGIN_ID=?");
+		ResultSet rs = getStatement().executeQuery("Select * from LOGIN where LOGIN_ID=?"+loginID);
 		Login retornoLogin = null;
 		
 		if(rs.next())

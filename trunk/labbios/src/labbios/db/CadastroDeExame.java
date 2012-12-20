@@ -10,7 +10,7 @@ public class CadastroDeExame {
 	private TipoLaboratorio TIPO_LABORATORIO;
 	private String CAD_EXAME_DIAS_ENTREGA;
 	private String CAD_EXAME_COD_SUS;
-	private String CAD_EXAME_GRUPO_ETIQUETA;
+	private int CAD_EXAME_GRUPO_ETIQUETA;
 	private char CAD_EXAME_TIPO_ENTRADA;
 	
 	public int getCAD_EXAME_ID() {
@@ -61,10 +61,10 @@ public class CadastroDeExame {
 	public void setCAD_EXAME_COD_SUS(String cAD_EXAME_COD_SUS) {
 		CAD_EXAME_COD_SUS = cAD_EXAME_COD_SUS;
 	}
-	public String getCAD_EXAME_GRUPO_ETIQUETA() {
+	public int getCAD_EXAME_GRUPO_ETIQUETA() {
 		return CAD_EXAME_GRUPO_ETIQUETA;
 	}
-	public void setCAD_EXAME_GRUPO_ETIQUETA(String cAD_EXAME_GRUPO_ETIQUETA) {
+	public void setCAD_EXAME_GRUPO_ETIQUETA(int cAD_EXAME_GRUPO_ETIQUETA) {
 		CAD_EXAME_GRUPO_ETIQUETA = cAD_EXAME_GRUPO_ETIQUETA;
 	}
 	public char getCAD_EXAME_TIPO_ENTRADA() {
