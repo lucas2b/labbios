@@ -9,7 +9,7 @@
 </head>
 <body>
 <f:view>
-	<h1><h:outputText value="Teste de projeto"></h:outputText></h1>
+<h1>Usuario ou senhas incorretos, acesso negado</h1>
 
 </f:view>
 </body>

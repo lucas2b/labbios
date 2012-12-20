@@ -17,7 +17,7 @@ public class DatabaseUtil {
 		if(connection == null)
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sygmasof_labbios", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/labbios", "root", "root");
 		}
 		
 		return connection;
