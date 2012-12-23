@@ -10,12 +10,33 @@
 		<managed-bean-class>labbios.beans.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>grupoExameBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.grupoExameBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>validarUsuario</display-name>
 		<from-view-id>/validarUsuario.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>acessoPermitido</from-outcome>
 			<to-view-id>/entradaPrincipal.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>grupoDeExames</display-name>
+		<from-view-id>/grupoDeExames.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>editarGrupoDeExames</from-outcome>
+			<to-view-id>/editarGrupoDeExames.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>editarGrupoDeExames</display-name>
+		<from-view-id>/editarGrupoDeExames.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>grupoDeExames</from-outcome>
+			<to-view-id>/grupoDeExames.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

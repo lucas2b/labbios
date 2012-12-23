@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13560046165240" configfile="/labbios/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="validarUsuario" x="144" y="117" id="pf13560089409672" outlinks="pf13560089409673" path="/validarUsuario.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="entradaPrincipal" x="408" y="120" id="pf13560089409651" inlinks="pf13560089409673" path="/entradaPrincipal.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="validarUsuario" x="144" y="117" id="pf13560089409672" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13560089409673" path="/validarUsuario.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="entradaPrincipal" x="408" y="120" id="pf13560089409651" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13560089409673" path="/entradaPrincipal.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="grupoDeExames" x="205" y="298" id="pf13562367930330" outlinks="pf13562369890922" inlinks="pf13562369890923" path="/grupoDeExames.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="editarGrupoDeExames" x="480" y="298" id="pf13562367930331" outlinks="pf13562369890923" inlinks="pf13562369890922" path="/editarGrupoDeExames.jsp"/>
   <links id="pf13560089409673" target="pf13560089409651" source="pf13560089409672" outcome="acessoPermitido"/>
+  <links id="pf13562369890922" target="pf13562367930331" source="pf13562367930330" outcome="editarGrupoDeExames"/>
+  <links id="pf13562369890923" target="pf13562367930330" source="pf13562367930331" outcome="grupoDeExames">
+    <bendPoints d1Width="2" d1Height="-64" d2Width="293" d2Height="-64"/>
+    <bendPoints d1Width="-293" d1Height="-65" d2Width="-2" d2Height="-65"/>
+  </links>
 </pageflow:Pageflow>
