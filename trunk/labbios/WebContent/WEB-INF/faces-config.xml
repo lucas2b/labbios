@@ -15,6 +15,11 @@
 		<managed-bean-class>labbios.beans.grupoExameBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tipoLaboratorioBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.tipoLaboratorioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>validarUsuario</display-name>
 		<from-view-id>/validarUsuario.jsp</from-view-id>
@@ -37,6 +42,22 @@
 		<navigation-case>
 			<from-outcome>grupoDeExames</from-outcome>
 			<to-view-id>/grupoDeExames.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>tipoLaboratorio</display-name>
+		<from-view-id>/tipoLaboratorio.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>editarTipoLaboratorio</from-outcome>
+			<to-view-id>/editarTipoDeLaboratorio.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>editarTipoDeLaboratorio</display-name>
+		<from-view-id>/editarTipoDeLaboratorio.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>listarTiposDeLaboratorio</from-outcome>
+			<to-view-id>/tipoLaboratorio.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
