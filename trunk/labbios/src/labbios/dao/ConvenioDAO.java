@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import labbios.db.Convenio;
 import labbios.db.DatabaseUtil;
+import labbios.dto.Convenio;
 
 public class ConvenioDAO extends DatabaseUtil{
 	

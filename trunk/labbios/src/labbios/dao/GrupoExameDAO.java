@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import labbios.db.DatabaseUtil;
-import labbios.db.GrupoExame;
+import labbios.dto.GrupoExame;
 
 public class GrupoExameDAO extends DatabaseUtil{
 	

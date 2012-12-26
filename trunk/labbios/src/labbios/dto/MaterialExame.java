@@ -1,4 +1,4 @@
-package labbios.db;
+package labbios.dto;
 
 public class MaterialExame {
 	

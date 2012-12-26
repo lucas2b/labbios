@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import labbios.db.DatabaseUtil;
-import labbios.db.Login;
+import labbios.dto.Login;
 
 public class LoginDAO extends DatabaseUtil{
 	

@@ -3,8 +3,8 @@ package labbios.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import labbios.db.CadastroDeExame;
 import labbios.db.DatabaseUtil;
+import labbios.dto.CadastroDeExame;
 
 public class CadastroDeExameDAO extends DatabaseUtil{
 	

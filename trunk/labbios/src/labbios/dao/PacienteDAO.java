@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 
 import labbios.db.DatabaseUtil;
-import labbios.db.Paciente;
+import labbios.dto.Paciente;
 
 public class PacienteDAO extends DatabaseUtil {
 	

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import labbios.dao.ConvenioDAO;
-import labbios.db.Convenio;
+import labbios.dto.Convenio;
 
 public class convenioBean {
 	

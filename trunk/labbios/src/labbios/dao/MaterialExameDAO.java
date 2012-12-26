@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import labbios.db.DatabaseUtil;
-import labbios.db.MaterialExame;
+import labbios.dto.MaterialExame;
 
 public class MaterialExameDAO extends DatabaseUtil{
 	

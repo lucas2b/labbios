@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import labbios.dao.TipoLaboratorioDAO;
-import labbios.db.TipoLaboratorio;
+import labbios.dto.TipoLaboratorio;
 
 public class tipoLaboratorioBean {
 	

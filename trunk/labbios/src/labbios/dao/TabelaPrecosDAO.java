@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import labbios.db.DatabaseUtil;
-import labbios.db.TabelaPrecos;
+import labbios.dto.TabelaPrecos;
 
 public class TabelaPrecosDAO extends DatabaseUtil{
 	

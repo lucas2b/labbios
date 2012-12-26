@@ -3,7 +3,7 @@ package labbios.beans;
 import java.sql.SQLException;
 
 import labbios.dao.LoginDAO;
-import labbios.db.Login;
+import labbios.dto.Login;
 
 public class LoginBean {
 	

@@ -1,4 +1,4 @@
-package labbios.db;
+package labbios.dto;
 
 public class GrupoExame {
 	private int GRUPO_EXAME_ID;

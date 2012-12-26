@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import labbios.dao.GrupoExameDAO;
-import labbios.db.GrupoExame;
+import labbios.dto.GrupoExame;
 
 public class grupoExameBean {
 	
