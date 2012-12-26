@@ -14,8 +14,10 @@ public class ConvenioDAO extends DatabaseUtil{
 	public boolean adicionarConvenio(Convenio convenio) throws ClassNotFoundException, SQLException
 	{
 		boolean retorno = false;
-		retorno = getStatement().execute("Insert into CONVENIO set CONVENIO_NOME="+convenio.getCONVENIO_ID());
-		getStatement().close();
+		PreparedStatement ps = getPreparedStatement("Insert into CONVENIO set CONVENIO_NOME=?");
+		ps.setString(1, convenio.getCONVENIO_NOME());
+		retorno = ps.execute();
+		ps.close();
 		return retorno;
 	}
 	

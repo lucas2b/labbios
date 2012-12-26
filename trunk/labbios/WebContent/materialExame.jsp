@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Página de manunteção de Material de Exame</title>
 </head>
 <body>
 <f:view>
+	Nome: <h:inputText ></h:inputText>
+	Abreviatura: <h:inputText> </h:inputText>
 
 </f:view>
 </body>

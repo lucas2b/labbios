@@ -5,10 +5,33 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Manutenção de Convenios</title>
 </head>
 <body>
 <f:view>
+	<h:form>
+	<h1><h:outputText value="Adicionar Novo Convênio"></h:outputText></h1>
+	Nome: <h:inputText value="#{convenioBean.nome}"></h:inputText><br>
+	<h:commandButton value="Adicionar" action="#{convenioBean.adicionarConvenio}"></h:commandButton>
+	<br>
+	<br>
+	<br>
+	<h1><h:outputText value="Listagem de Convênios"></h:outputText></h1>
+	<h:dataTable border="1" value="#{convenioBean.convenios}" var="item">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="ID"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{item.CONVENIO_ID}"></h:outputText>
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Nome"></h:outputText>
+			</f:facet>
+			<h:outputText value="#{item.CONVENIO_NOME}"></h:outputText>
+		</h:column>
+	</h:dataTable>
+	</h:form>
 
 </f:view>
 </body>

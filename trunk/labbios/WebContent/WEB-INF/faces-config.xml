@@ -20,6 +20,11 @@
 		<managed-bean-class>labbios.beans.tipoLaboratorioBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>convenioBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.convenioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>validarUsuario</display-name>
 		<from-view-id>/validarUsuario.jsp</from-view-id>

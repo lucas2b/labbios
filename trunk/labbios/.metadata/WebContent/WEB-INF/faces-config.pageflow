@@ -4,8 +4,8 @@
   <nodes xsi:type="pageflow:PFPage" name="entradaPrincipal" x="480" y="144" id="pf13560089409651" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13560089409673" path="/entradaPrincipal.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="grupoDeExames" x="205" y="298" id="pf13562367930330" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13562369890922" inlinks="pf13562369890923" path="/grupoDeExames.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="editarGrupoDeExames" x="480" y="298" id="pf13562367930331" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13562369890923" inlinks="pf13562369890922" path="/editarGrupoDeExames.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="tipoLaboratorio" x="245" y="59" id="pf13563884593950" outlinks="pf13563884593951" inlinks="pf13563884593952" path="/tipoLaboratorio.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="editarTipoDeLaboratorio" x="554" y="76" id="pf13563884593963" outlinks="pf13563884593952" inlinks="pf13563884593951" path="/editarTipoDeLaboratorio.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="tipoLaboratorio" x="245" y="59" id="pf13563884593950" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf13563884593951" inlinks="pf13563884593952" path="/tipoLaboratorio.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="editarTipoDeLaboratorio" x="554" y="76" id="pf13563884593963" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf13563884593952" inlinks="pf13563884593951" path="/editarTipoDeLaboratorio.jsp"/>
   <links id="pf13560089409673" target="pf13560089409651" source="pf13560089409672" outcome="acessoPermitido"/>
   <links id="pf13562369890922" target="pf13562367930331" source="pf13562367930330" outcome="editarGrupoDeExames"/>
   <links id="pf13562369890923" target="pf13562367930330" source="pf13562367930331" outcome="grupoDeExames">
