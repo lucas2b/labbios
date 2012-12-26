@@ -1,5 +1,6 @@
 package labbios.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -22,6 +23,35 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		}
 		
 		return cadastroDeExameRetorno;
+	}
+	
+	public boolean adicionarNovoExame(CadastroDeExame cadastroDeExame) throws ClassNotFoundException, SQLException
+	{
+		boolean retorno = false;
+		
+		PreparedStatement ps = getPreparedStatement("Insert into CADASTRO_EXAMES set CAD_EXAME_ABREVIATURA=?," +
+																					" CAD_EXAME_NOME=?," +
+																					" GRUPO_EXAME_ID=?," +
+																					" MATERIAL_EXAME_ID=?," +
+																					" TIPO_LABORATORIO_ID=?," +
+																					" CAD_EXAME_DIAS_ENTREGA=?," +
+																					" CAD_EXAME_COD_SUS=?," +
+																					" CAD_EXAME_GRUPO_ETIQUETA=?," +
+																					" CAD_EXAME_TIPO_ENTRADA=?");
+		ps.setString(1, cadastroDeExame.getCAD_EXAME_ABREVIATURA());
+		ps.setString(2, cadastroDeExame.getCAD_EXAME_NOME());
+		ps.setInt(3, cadastroDeExame.getGRUPO_EXAME().getGRUPO_EXAME_ID());
+		ps.setInt(4, cadastroDeExame.getTIPO_LABORATORIO().getTIPO_LABORATORIO_ID());
+		ps.setString(5, cadastroDeExame.getCAD_EXAME_DIAS_ENTREGA());
+		ps.setString(6, cadastroDeExame.getCAD_EXAME_COD_SUS());
+		ps.setInt(7, cadastroDeExame.getCAD_EXAME_GRUPO_ETIQUETA());
+		ps.setString(8, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
+		
+		retorno = ps.execute();
+		ps.close();
+		
+		return retorno;
+		
 	}
 
 	private CadastroDeExame popularCadastroDeExame(ResultSet rs) throws SQLException, ClassNotFoundException {
