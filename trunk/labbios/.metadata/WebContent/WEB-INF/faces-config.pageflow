@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13560046165240" configfile="/labbios/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="validarUsuario" x="216" y="141" id="pf13560089409672" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13560089409673" path="/validarUsuario.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="entradaPrincipal" x="480" y="144" id="pf13560089409651" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13560089409673" path="/entradaPrincipal.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="grupoDeExames" x="205" y="298" id="pf13562367930330" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13562369890922" inlinks="pf13562369890923" path="/grupoDeExames.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="editarGrupoDeExames" x="480" y="298" id="pf13562367930331" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13562369890923" inlinks="pf13562369890922" path="/editarGrupoDeExames.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="tipoLaboratorio" x="245" y="59" id="pf13563884593950" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf13563884593951" inlinks="pf13563884593952" path="/tipoLaboratorio.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="editarTipoDeLaboratorio" x="554" y="76" id="pf13563884593963" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf13563884593952" inlinks="pf13563884593951" path="/editarTipoDeLaboratorio.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="validarUsuario" x="51" y="261" id="pf13560089409672" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13560089409673" path="/validarUsuario.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="entradaPrincipal" x="315" y="261" id="pf13560089409651" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13560089409673" path="/entradaPrincipal.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="grupoDeExames" x="25" y="408" id="pf13562367930330" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13562369890922" inlinks="pf13562369890923" path="/grupoDeExames.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="editarGrupoDeExames" x="300" y="408" id="pf13562367930331" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13562369890923" inlinks="pf13562369890922" path="/editarGrupoDeExames.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="tipoLaboratorio" x="39" y="151" id="pf13563884593950" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf13563884593951" inlinks="pf13563884593952" path="/tipoLaboratorio.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="editarTipoDeLaboratorio" x="348" y="151" id="pf13563884593963" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf13563884593952" inlinks="pf13563884593951" path="/editarTipoDeLaboratorio.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="materiaisDeExames/materialExame" x="504" y="144" id="pf13565520759346" outlinks="pf13565520759347" inlinks="pf13565520759348" path="/materiaisDeExames/materialExame.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="materiaisDeExames/editarMaterialExame" x="756" y="144" id="pf13565520759349" outlinks="pf13565520759348" inlinks="pf13565520759347" path="/materiaisDeExames/editarMaterialExame.jsp"/>
   <links id="pf13560089409673" target="pf13560089409651" source="pf13560089409672" outcome="acessoPermitido"/>
   <links id="pf13562369890922" target="pf13562367930331" source="pf13562367930330" outcome="editarGrupoDeExames"/>
   <links id="pf13562369890923" target="pf13562367930330" source="pf13562367930331" outcome="grupoDeExames">
-    <bendPoints d1Width="2" d1Height="-64" d2Width="293" d2Height="-64"/>
+    <bendPoints d1Height="-64" d2Width="291" d2Height="-64"/>
     <bendPoints d1Width="-293" d1Height="-65" d2Width="-2" d2Height="-65"/>
   </links>
   <links id="pf13563884593951" target="pf13563884593963" source="pf13563884593950" outcome="editarTipoLaboratorio"/>
   <links id="pf13563884593952" target="pf13563884593950" source="pf13563884593963" outcome="listarTiposDeLaboratorio">
-    <bendPoints d1Width="3" d1Height="-61" d2Width="335" d2Height="-44"/>
-    <bendPoints d1Width="-325" d1Height="-75" d2Width="7" d2Height="-58"/>
+    <bendPoints d1Width="-2" d1Height="-64" d2Width="330" d2Height="-64"/>
+    <bendPoints d1Width="-332" d1Height="-64" d2Height="-64"/>
+  </links>
+  <links id="pf13565520759347" target="pf13565520759349" source="pf13565520759346" outcome="editarMaterialDeExame"/>
+  <links id="pf13565520759348" target="pf13565520759346" source="pf13565520759349" outcome="listarMateriaisDeExame">
+    <bendPoints d1Width="-1" d1Height="-77" d2Width="266" d2Height="-77"/>
+    <bendPoints d1Width="-267" d1Height="-76" d2Height="-76"/>
   </links>
 </pageflow:Pageflow>

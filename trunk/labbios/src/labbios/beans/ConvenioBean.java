@@ -6,7 +6,7 @@ import java.util.List;
 import labbios.dao.ConvenioDAO;
 import labbios.dto.Convenio;
 
-public class convenioBean {
+public class ConvenioBean {
 	
 	private ConvenioDAO convenioDAO = new ConvenioDAO(); 
 	private String nome;

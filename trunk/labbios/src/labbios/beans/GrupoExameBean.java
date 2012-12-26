@@ -6,7 +6,7 @@ import java.util.List;
 import labbios.dao.GrupoExameDAO;
 import labbios.dto.GrupoExame;
 
-public class grupoExameBean {
+public class GrupoExameBean {
 	
 	GrupoExameDAO grupoExameDAO = new GrupoExameDAO();
 	

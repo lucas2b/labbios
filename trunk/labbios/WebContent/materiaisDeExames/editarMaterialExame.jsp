@@ -5,12 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Página de manunteção de Material de Exame</title>
+<title>Edição de Material de Exames</title>
 </head>
 <body>
 <f:view>
-	Nome: <h:inputText ></h:inputText>
-	Abreviatura: <h:inputText> </h:inputText>
+	<h:form>
+	<h1>Edição de Material de Exames</h1>
+	Nome: <h:inputText value="#{materialExameBean.materialExameSelecionado.MATERIAL_EXAME_NOME}"></h:inputText><br>
+	Abreviatura: <h:inputText value="#{materialExameBean.materialExameSelecionado.MATERIAL_EXAME_ABREV}"></h:inputText><br>
+	<br>
+	<br>
+	<h:commandButton action="#{materialExameBean.finishEditarMaterialExame}" value="Atualizar"></h:commandButton>
+	</h:form>
 
 </f:view>
 </body>

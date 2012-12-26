@@ -6,7 +6,7 @@ import java.util.List;
 import labbios.dao.TipoLaboratorioDAO;
 import labbios.dto.TipoLaboratorio;
 
-public class tipoLaboratorioBean {
+public class TipoLaboratorioBean {
 	
 	TipoLaboratorioDAO tipoLaboratorioDAO = new TipoLaboratorioDAO();
 	private String nome;
