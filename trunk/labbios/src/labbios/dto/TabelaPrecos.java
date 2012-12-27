@@ -5,7 +5,7 @@ public class TabelaPrecos {
 	private int TAB_PRECOS_ID;
 	private double TAB_PRECOS_VALOR;
 	private Convenio CONVENIO;
-	private Exame EXAME;
+	private CadastroDeExame EXAME;
 	private char TAB_PRECOS_CAT_IPE;
 	
 	
@@ -27,10 +27,10 @@ public class TabelaPrecos {
 	public void setCONVENIO(Convenio cONVENIO) {
 		CONVENIO = cONVENIO;
 	}
-	public Exame getEXAME() {
+	public CadastroDeExame getEXAME() {
 		return EXAME;
 	}
-	public void setEXAME(Exame eXAME) {
+	public void setEXAME(CadastroDeExame eXAME) {
 		EXAME = eXAME;
 	}
 	public char getTAB_PRECOS_CAT_IPE() {

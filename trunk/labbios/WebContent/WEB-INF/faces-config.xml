@@ -30,6 +30,21 @@
 		<managed-bean-class>labbios.beans.TipoLaboratorioBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>growlBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.growlBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>cadastroDeExameBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.CadastroDeExameBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tabelaDePrecosBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.tabelaDePrecosBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>validarUsuario</display-name>
 		<from-view-id>/validarUsuario.jsp</from-view-id>
@@ -84,6 +99,14 @@
 		<navigation-case>
 			<from-outcome>listarMateriaisDeExame</from-outcome>
 			<to-view-id>/materiaisDeExames/materialExame.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>testePrimeFaces.xhtml</display-name>
+		<from-view-id>/testePrimeFaces.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>atualizar</from-outcome>
+			<to-view-id>/testePrimeFaces.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

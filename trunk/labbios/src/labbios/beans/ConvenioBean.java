@@ -23,6 +23,11 @@ public class ConvenioBean {
 	{
 		return convenioDAO.listarConvenios();
 	}
+	
+	public String atualizar()
+	{
+		return "refresh";
+	}
 
 	public String getNome() {
 		return nome;
