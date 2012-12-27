@@ -6,28 +6,28 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
 	<managed-bean>
+		<managed-bean-name>grupoExameBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.GrupoExameBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>convenioBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.ConvenioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>loginBean</managed-bean-name>
 		<managed-bean-class>labbios.beans.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>grupoExameBean</managed-bean-name>
-		<managed-bean-class>labbios.beans.grupoExameBean</managed-bean-class>
+		<managed-bean-name>materialExameBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.MaterialExameBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>tipoLaboratorioBean</managed-bean-name>
-		<managed-bean-class>labbios.beans.tipoLaboratorioBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>convenioBean</managed-bean-name>
-		<managed-bean-class>labbios.beans.convenioBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>materialExameBean</managed-bean-name>
-		<managed-bean-class>labbios.beans.MaterialExameBean</managed-bean-class>
+		<managed-bean-class>labbios.beans.TipoLaboratorioBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
