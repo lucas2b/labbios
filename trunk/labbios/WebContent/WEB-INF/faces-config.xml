@@ -45,6 +45,19 @@
 		<managed-bean-class>labbios.beans.tabelaDePrecosBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<converter>
+		<converter-id>ConversorGrupoExame</converter-id>
+		<converter-class>labbios.conversores.ConversorGrupoExame</converter-class>
+	</converter>
+	<converter>
+		<converter-id>ConversorMaterialExame</converter-id>
+		<converter-class>labbios.conversores.ConversorMaterialExame</converter-class>
+	</converter>
+	<converter>
+		<converter-id>ConversorTipoLaboratorio</converter-id>
+		<converter-class>labbios.conversores.ConversorTipoLaboratorio</converter-class>
+	</converter>
+	
 	<navigation-rule>
 		<display-name>validarUsuario</display-name>
 		<from-view-id>/validarUsuario.jsp</from-view-id>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Manutenção de cadastro de Exames</title>
+</h:head>
+<h:body>
+<h:form>
+
+<h1>Manutenção de cadastro de Exames</h1><br></br>
+Nome: <h:inputText value="#{cadastroDeExameBean.nome}"></h:inputText><br></br>
+Abreviatura: <h:inputText value="#{cadastroDeExameBean.abreviatura}"></h:inputText><br></br>
+Grupo (ID): 
+<h:inputText value="#{cadastroDeExameBean.grupoExame}">
+<f:converter converterId="ConversorGrupoExame"></f:converter>
+</h:inputText><br></br>
+Material (ID):
+<h:inputText value="#{cadastroDeExameBean.materialExame}">
+<f:converter converterId="ConversorMaterialExame"></f:converter>
+</h:inputText><br></br>
+Tipo Laboratório (ID):
+<h:inputText value="#{cadastroDeExameBean.tipoLaboratorio}">
+<f:converter converterId="ConversorTipoLaboratorio"></f:converter>
+</h:inputText><br></br>
+Dias Para entrega: <h:inputText value="#{cadastroDeExameBean.diasDeEntrega}"></h:inputText><br></br>
+Código SUS: <h:inputText value="#{cadastroDeExameBean.codigoSUS}"></h:inputText><br></br>
+Grupo De Etiquetas: 
+<h:inputText value="#{cadastroDeExameBean.grupoEtiqueta}">
+<f:convertNumber type="number"></f:convertNumber>
+</h:inputText><br></br>
+Tipo De entrada (G/T): 
+<h:inputText value="#{cadastroDeExameBean.tipoDeEntrada}">
+</h:inputText>
+<br></br>
+<h:commandButton value="Adicionar" action="#{cadastroDeExameBean.adicionarNovoTipoDeExame}"></h:commandButton>
+
+
+</h:form>
+</h:body>
+</html>
