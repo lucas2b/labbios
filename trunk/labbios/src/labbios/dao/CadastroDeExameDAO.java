@@ -76,12 +76,13 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		ps.setString(1, cadastroDeExame.getCAD_EXAME_ABREVIATURA());
 		ps.setString(2, cadastroDeExame.getCAD_EXAME_NOME());
 		ps.setInt(3, cadastroDeExame.getGRUPO_EXAME().getGRUPO_EXAME_ID());
-		ps.setInt(4, cadastroDeExame.getTIPO_LABORATORIO().getTIPO_LABORATORIO_ID());
-		ps.setString(5, cadastroDeExame.getCAD_EXAME_DIAS_ENTREGA());
-		ps.setString(6, cadastroDeExame.getCAD_EXAME_COD_SUS());
-		ps.setInt(7, cadastroDeExame.getCAD_EXAME_GRUPO_ETIQUETA());
-		ps.setString(8, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
-		ps.setInt(9, cadastroDeExame.getCAD_EXAME_ID());
+		ps.setInt(4, cadastroDeExame.getMATERIAL_EXAME().getMATERIAL_EXAME_ID());
+		ps.setInt(5, cadastroDeExame.getTIPO_LABORATORIO().getTIPO_LABORATORIO_ID());
+		ps.setString(6, cadastroDeExame.getCAD_EXAME_DIAS_ENTREGA());
+		ps.setString(7, cadastroDeExame.getCAD_EXAME_COD_SUS());
+		ps.setInt(8, cadastroDeExame.getCAD_EXAME_GRUPO_ETIQUETA());
+		ps.setString(9, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
+		ps.setInt(10, cadastroDeExame.getCAD_EXAME_ID());
 		
 		retorno = ps.execute();
 		ps.close();

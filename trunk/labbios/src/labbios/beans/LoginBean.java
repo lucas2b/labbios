@@ -2,6 +2,8 @@ package labbios.beans;
 
 import java.sql.SQLException;
 
+import javax.faces.context.FacesContext;
+
 import labbios.dao.LoginDAO;
 import labbios.dto.Login;
 
@@ -47,6 +49,7 @@ public class LoginBean {
 		
 		if(loginDAO.validarLogin(login))
 		{
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", "yes");
 			return "acessoPermitido";
 		}
 		else

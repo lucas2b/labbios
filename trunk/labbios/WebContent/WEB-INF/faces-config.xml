@@ -115,11 +115,19 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>testePrimeFaces.xhtml</display-name>
-		<from-view-id>/testePrimeFaces.xhtml</from-view-id>
+		<display-name>cadastroDeExames.xhtml</display-name>
+		<from-view-id>/cadastroDeExames.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>atualizar</from-outcome>
-			<to-view-id>/testePrimeFaces.xhtml</to-view-id>
+			<from-outcome>editarTipoDeExame</from-outcome>
+			<to-view-id>/editarCadastroDeExame.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>editarCadastroDeExame.xhtml</display-name>
+		<from-view-id>/editarCadastroDeExame.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listarTiposDeExames</from-outcome>
+			<to-view-id>/cadastroDeExames.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

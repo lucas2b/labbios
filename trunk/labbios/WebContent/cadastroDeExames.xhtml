@@ -121,7 +121,9 @@ Tipo De entrada (G/T):
 		</f:facet>
 		<h:commandLink value="Entrar com Dados do Exame"></h:commandLink><br></br>
 		<h:commandLink  value="Associar Valor ao Exame"></h:commandLink><br></br>
-		<h:commandLink  value="Editar Exame"></h:commandLink>
+		<h:commandLink  value="Editar Exame" action="#{cadastroDeExameBean.startEditarTipoDeExame}">
+			<f:setPropertyActionListener target="#{cadastroDeExameBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>
+		</h:commandLink>
 	</h:column>
 </h:dataTable>
 </h:form>
