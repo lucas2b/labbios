@@ -10,7 +10,9 @@
 <body>
 <f:view>
 <h1>Entrada principal do Sistema</h1>
-
+<h:form>
+<h:commandLink value="Cadastro De Exames" action="listarTiposDeExames"></h:commandLink>
+</h:form>
 
 </f:view>
 </body>

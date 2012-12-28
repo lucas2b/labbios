@@ -63,24 +63,21 @@ Tipo De entrada (G/T):
 		<f:facet name="header">
 			<h:outputText value="Grupo Exame"></h:outputText>
 		</f:facet>
-		<h:outputText value="#{item.GRUPO_EXAME}">
-			<f:converter converterId="ConversorGrupoExame"></f:converter>
+		<h:outputText value="#{item.GRUPO_EXAME.GRUPO_EXAME_NOME}">
 		</h:outputText>
 	</h:column>
 	<h:column>
 		<f:facet name="header">
 			<h:outputText value="Material Exame"></h:outputText>
 		</f:facet>
-		<h:outputText value="#{item.MATERIAL_EXAME}">
-			<f:converter converterId="ConversorMaterialExame"></f:converter>
+		<h:outputText value="#{item.MATERIAL_EXAME.MATERIAL_EXAME_NOME}">
 		</h:outputText>
 	</h:column>
 	<h:column>
 		<f:facet name="header">
 			<h:outputText value="Tipo Laboratorio"></h:outputText>
 		</f:facet>
-		<h:outputText value="#{item.TIPO_LABORATORIO}">
-			<f:converter converterId="ConversorTipoLaboratorio"></f:converter>
+		<h:outputText value="#{item.TIPO_LABORATORIO.TIPO_LABORATORIO_NOME}">
 		</h:outputText>
 	</h:column>
 	<h:column>

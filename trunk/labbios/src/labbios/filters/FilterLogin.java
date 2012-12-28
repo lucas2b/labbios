@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class FilterLogin implements Filter {
-	private String logado;
+	private boolean logado;
 
 	@Override
 	public void destroy() {
@@ -30,20 +30,15 @@ public class FilterLogin implements Filter {
 		
 		Object logged = req.getSession().getAttribute("userlogged");
 		
-		if(logged != null)
-		{
-			logado = logged.toString();			
-		}
 		
-		
-		if(url.contains("validar"))
+		if(url.contains("validarUsuario"))
 		{	
 			chain.doFilter(request, response);
 		}
 		else			
 		{
 			
-			if(logado != "yes")
+			if(logged == null)
 			{
 				resp.sendRedirect("/labbios/faces/validarUsuario.jsp");				
 			}
@@ -52,6 +47,7 @@ public class FilterLogin implements Filter {
 				chain.doFilter(request, response);
 			}
 		}
+
 		
 		
 	}

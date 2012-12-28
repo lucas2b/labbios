@@ -49,7 +49,7 @@ public class LoginBean {
 		
 		if(loginDAO.validarLogin(login))
 		{
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", "yes");
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userlogged", true);
 			return "acessoPermitido";
 		}
 		else

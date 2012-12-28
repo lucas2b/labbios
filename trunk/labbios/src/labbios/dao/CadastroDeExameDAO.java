@@ -62,7 +62,7 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 	{
 		boolean retorno = false;
 		
-		PreparedStatement ps = getPreparedStatement("Update CADASTRO_EXAMES set CAD_EXAME_ABREVIATURA=?," +
+		PreparedStatement ps = getPreparedStatement("Update CADASTRO_DE_EXAME set CAD_EXAME_ABREVIATURA=?," +
 																					" CAD_EXAME_NOME=?," +
 																					" GRUPO_EXAME_ID=?," +
 																					" MATERIAL_EXAME_ID=?," +
