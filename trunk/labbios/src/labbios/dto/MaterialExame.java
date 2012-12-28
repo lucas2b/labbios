@@ -2,6 +2,26 @@ package labbios.dto;
 
 public class MaterialExame {
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + MATERIAL_EXAME_ID;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MaterialExame other = (MaterialExame) obj;
+		if (MATERIAL_EXAME_ID != other.MATERIAL_EXAME_ID)
+			return false;
+		return true;
+	}
 	private int MATERIAL_EXAME_ID;
 	private String MATERIAL_EXAME_ABREV;
 	private String MATERIAL_EXAME_NOME;

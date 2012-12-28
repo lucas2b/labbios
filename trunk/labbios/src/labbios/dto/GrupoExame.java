@@ -1,6 +1,26 @@
 package labbios.dto;
 
 public class GrupoExame {
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + GRUPO_EXAME_ID;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GrupoExame other = (GrupoExame) obj;
+		if (GRUPO_EXAME_ID != other.GRUPO_EXAME_ID)
+			return false;
+		return true;
+	}
 	private int GRUPO_EXAME_ID;
 	private String GRUPO_EXAME_ABREV;
 	private String GRUPO_EXAME_NOME;
