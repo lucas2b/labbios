@@ -10,21 +10,21 @@
 </h:head>
 <h:body>
 <h:form>
-
+<h:messages></h:messages>
 <h1>Manutenção de cadastro de Exames</h1><br></br>
 Nome: <h:inputText value="#{cadastroDeExameBean.nome}"></h:inputText><br></br>
 Abreviatura: <h:inputText value="#{cadastroDeExameBean.abreviatura}"></h:inputText><br></br>
-Grupo (ID):
+Grupo:
 <h:selectOneMenu id="grupo" value="#{cadastroDeExameBean.grupoExame}">
 	<f:selectItems value="#{cadastroDeExameBean.grupos}"></f:selectItems>
 	<f:converter converterId="ConversorGrupoExame"></f:converter>
 </h:selectOneMenu><br></br>
-Material (ID):
+Material:
 <h:selectOneMenu id="materiais" value="#{cadastroDeExameBean.materialExame}">
 	<f:selectItems value="#{cadastroDeExameBean.materiais}"></f:selectItems>
 	<f:converter converterId="ConversorMaterialExame"></f:converter>
 </h:selectOneMenu><br></br>
-Tipo Laboratório (ID):
+Tipo Laboratório:
 <h:selectOneMenu id="laboratorios" value="#{cadastroDeExameBean.tipoLaboratorio}">
 	<f:selectItems value="#{cadastroDeExameBean.tiposDeLaboratorio}"></f:selectItems>
 	<f:converter converterId="ConversorTipoLaboratorio"></f:converter>
@@ -44,6 +44,7 @@ Tipo De entrada (G/T):
 <br></br>
 <br></br>
 <h1></h1>
+</h:form>
 <h1><h:outputText value="Listagem de Exames Cadastrados"></h:outputText></h1><br></br>
 <h:dataTable border="1" value="#{cadastroDeExameBean.tiposDeExames}" var="item">
 	<h:column>
@@ -122,6 +123,6 @@ Tipo De entrada (G/T):
 		<h:commandLink  value="Editar Exame"></h:commandLink>
 	</h:column>
 </h:dataTable>
-</h:form>
+
 </h:body>
 </html>

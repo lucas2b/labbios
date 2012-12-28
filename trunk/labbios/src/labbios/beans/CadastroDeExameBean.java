@@ -37,7 +37,7 @@ public class CadastroDeExameBean {
 	private char tipoDeEntrada;
 	
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
-	{
+	{	
 		CadastroDeExame cadastroDeExame = new CadastroDeExame();
 		cadastroDeExame.setCAD_EXAME_ABREVIATURA(abreviatura);
 		cadastroDeExame.setCAD_EXAME_NOME(nome);

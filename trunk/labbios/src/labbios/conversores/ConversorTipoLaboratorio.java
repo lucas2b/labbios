@@ -26,7 +26,7 @@ public class ConversorTipoLaboratorio implements Converter{
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
 		TipoLaboratorio tipoLaboratorio = (TipoLaboratorio)arg2;
-		return tipoLaboratorio.getTIPO_LABORATORIO_NOME();
+		return String.valueOf(tipoLaboratorio.getTIPO_LABORATORIO_ID());
 	}
 
 }
