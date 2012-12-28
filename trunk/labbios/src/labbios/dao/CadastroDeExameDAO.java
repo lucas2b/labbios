@@ -123,7 +123,7 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		cadastroDeExameRetorno.setCAD_EXAME_DIAS_ENTREGA(rs.getString("CAD_EXAME_DIAS_ENTREGA"));
 		cadastroDeExameRetorno.setCAD_EXAME_COD_SUS(rs.getString("CAD_EXAME_COD_SUS"));
 		cadastroDeExameRetorno.setCAD_EXAME_GRUPO_ETIQUETA(rs.getInt("CAD_EXAME_GRUPO_ETIQUETA"));
-		cadastroDeExameRetorno.setCAD_EXAME_TIPO_ENTRADA(rs.getString("EXAME_TIPO_ENTRADA").charAt(0));
+		cadastroDeExameRetorno.setCAD_EXAME_TIPO_ENTRADA(rs.getString("CAD_EXAME_TIPO_ENTRADA").charAt(0));
 		return cadastroDeExameRetorno;
 		
 		

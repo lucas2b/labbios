@@ -26,7 +26,8 @@ public class ConversorGrupoExame implements Converter{
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {		
-		return null;
+		GrupoExame grupoExame = (GrupoExame) arg2;
+		return grupoExame.getGRUPO_EXAME_NOME();
 	}
 
 }

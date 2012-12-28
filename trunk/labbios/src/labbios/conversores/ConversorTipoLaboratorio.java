@@ -25,8 +25,8 @@ public class ConversorTipoLaboratorio implements Converter{
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		// TODO Auto-generated method stub
-		return null;
+		TipoLaboratorio tipoLaboratorio = (TipoLaboratorio)arg2;
+		return tipoLaboratorio.getTIPO_LABORATORIO_NOME();
 	}
 
 }

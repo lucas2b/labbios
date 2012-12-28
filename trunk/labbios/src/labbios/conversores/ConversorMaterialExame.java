@@ -26,8 +26,8 @@ public class ConversorMaterialExame implements Converter{
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		// TODO Auto-generated method stub
-		return null;
+		MaterialExame materialExame = (MaterialExame) arg2;
+		return materialExame.getMATERIAL_EXAME_NOME();
 	}
 
 }

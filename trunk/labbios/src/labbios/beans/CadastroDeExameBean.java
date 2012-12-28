@@ -1,10 +1,16 @@
 package labbios.beans;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
+
+import javax.faces.model.SelectItem;
 
 import labbios.dao.CadastroDeExameDAO;
 import labbios.dao.ConvenioDAO;
+import labbios.dao.GrupoExameDAO;
+import labbios.dao.MaterialExameDAO;
+import labbios.dao.TipoLaboratorioDAO;
 import labbios.dto.CadastroDeExame;
 import labbios.dto.Convenio;
 import labbios.dto.GrupoExame;
@@ -14,6 +20,9 @@ import labbios.dto.TipoLaboratorio;
 public class CadastroDeExameBean {
 	CadastroDeExameDAO cadastroDeExameDAO = new CadastroDeExameDAO();
 	ConvenioDAO convenioDAO = new ConvenioDAO();
+	GrupoExameDAO grupoExameDAO = new GrupoExameDAO();
+	MaterialExameDAO materialExameDAO = new MaterialExameDAO();
+	TipoLaboratorioDAO tipoLaboratorioDAO = new TipoLaboratorioDAO();
 	
 	CadastroDeExame cadastroDeExameSelecionado = new CadastroDeExame();
 	
@@ -66,6 +75,41 @@ public class CadastroDeExameBean {
 		return cadastroDeExameDAO.listarCadastroDeExames();
 	}
 
+	public List<SelectItem> getGrupos() throws ClassNotFoundException, SQLException
+	{
+		List<SelectItem> toReturn = new LinkedList<SelectItem>();
+		for(GrupoExame grupo : grupoExameDAO.listarGrupoExames())
+		{
+			toReturn.add(new SelectItem(grupo, grupo.getGRUPO_EXAME_NOME()));
+			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
+		}
+		return toReturn;	
+		
+	}
+	
+	public List<SelectItem> getMateriais() throws ClassNotFoundException, SQLException
+	{
+		List<SelectItem> toReturn = new LinkedList<SelectItem>();
+		for(MaterialExame material : materialExameDAO.listarMaterialExame())
+		{
+			toReturn.add(new SelectItem(material, material.getMATERIAL_EXAME_NOME()));
+			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
+		}
+		return toReturn;	
+	}
+	
+	public List<SelectItem> getTiposDeLaboratorio() throws ClassNotFoundException, SQLException
+	{
+		List<SelectItem> toReturn = new LinkedList<SelectItem>();
+		for(TipoLaboratorio tipoLab : tipoLaboratorioDAO.listarTipoLaboratorio())
+		{
+			toReturn.add(new SelectItem(tipoLab, tipoLab.getTIPO_LABORATORIO_NOME()));
+			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
+		}
+		return toReturn;	
+	}
+	
+	
 	public CadastroDeExame getCadastroDeExameSelecionado() {
 		return cadastroDeExameSelecionado;
 	}
