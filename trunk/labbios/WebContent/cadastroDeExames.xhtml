@@ -12,7 +12,7 @@
 <h:form>
 <h:messages></h:messages>
 <h1>Manutenção de cadastro de Exames</h1><br></br>
-Nome: <h:inputText value="#{cadastroDeExameBean.nome}"></h:inputText><br></br>
+  Nome: <h:inputText value="#{cadastroDeExameBean.nome}"></h:inputText><br></br>
 Abreviatura: <h:inputText value="#{cadastroDeExameBean.abreviatura}"></h:inputText><br></br>
 Grupo:
 <h:selectOneMenu id="grupo" value="#{cadastroDeExameBean.grupoExame}">
@@ -119,7 +119,8 @@ Tipo De entrada (G/T):
 		<f:facet name="header">
 			<h:outputText value="Ações"></h:outputText>
 		</f:facet>
-		<h:commandLink value="Entrar Dados do Exame"></h:commandLink><br></br>
+		<h:commandLink value="Entrar com Dados do Exame"></h:commandLink><br></br>
+		<h:commandLink  value="Associar Valor ao Exame"></h:commandLink><br></br>
 		<h:commandLink  value="Editar Exame"></h:commandLink>
 	</h:column>
 </h:dataTable>
