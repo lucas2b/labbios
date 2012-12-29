@@ -31,7 +31,13 @@ Valor:
 	<f:facet name="header">
 		<h:outputText value="Convenio"></h:outputText>
 	</f:facet>
-	<h:column ></h:column>
+	<h:outputText value="#{item.CONVENIO.CONVENIO_NOME}"></h:outputText>
+</h:column>
+<h:column>
+	<f:facet name="header">
+		<h:outputText value="Valor"></h:outputText>
+	</f:facet>
+		<h:outputText value="#{item.TAB_PRECOS_VALOR }"></h:outputText>
 </h:column>
 </h:dataTable>
 
