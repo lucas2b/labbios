@@ -41,11 +41,6 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>tabelaDePrecosBean</managed-bean-name>
-		<managed-bean-class>labbios.beans.tabelaDePrecosBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>entradaDoSistemaBean</managed-bean-name>
 		<managed-bean-class>labbios.beans.entradaDoSistemaBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -61,6 +56,10 @@
 	<converter>
 		<converter-id>ConversorTipoLaboratorio</converter-id>
 		<converter-class>labbios.conversores.ConversorTipoLaboratorio</converter-class>
+	</converter>
+	<converter>
+		<converter-id>ConversorConvenio</converter-id>
+		<converter-class>labbios.conversores.ConversorConvenio</converter-class>
 	</converter>
 	
 	<navigation-rule>
@@ -141,6 +140,14 @@
 		<navigation-case>
 			<from-outcome>listarTiposDeExames</from-outcome>
 			<to-view-id>/cadastroDeExames.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>cadastroDeExames.xhtml</display-name>
+		<from-view-id>/cadastroDeExames.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>associarValorAoExame</from-outcome>
+			<to-view-id>/valorExamePorConvenio.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

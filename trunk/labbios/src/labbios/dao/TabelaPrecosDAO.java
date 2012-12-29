@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import labbios.db.DatabaseUtil;
+import labbios.dto.CadastroDeExame;
 import labbios.dto.TabelaPrecos;
 
 public class TabelaPrecosDAO extends DatabaseUtil{
@@ -19,13 +20,11 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		boolean retorno = false;
 		PreparedStatement ps = getPreparedStatement("Insert into TABELA_PRECOS set  TAB_PRECOS_VALOR=?," +
 																					" CONVENIO_ID=?," +
-																					" CAD_EXAME_ID=?," +
-																					" TAB_PRECOS_CAT_IPE=?");
+																					" CAD_EXAME_ID=?");
 		
 		ps.setDouble(1, tabelaPrecos.getTAB_PRECOS_VALOR());
 		ps.setInt(2, tabelaPrecos.getCONVENIO().getCONVENIO_ID());
 		ps.setInt(3, tabelaPrecos.getEXAME().getCAD_EXAME_ID());
-		ps.setString(4, String.valueOf(tabelaPrecos.getTAB_PRECOS_CAT_IPE()));
 		
 		retorno = ps.execute();
 		ps.close();
@@ -38,15 +37,13 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		boolean retorno = false;
 		PreparedStatement ps = getPreparedStatement("Update TABELA_PRECOS set  TAB_PRECOS_VALOR=?," +
 																				" CONVENIO_ID=?," +
-																				" CAD_EXAME_ID=?," +
-																				" TAB_PRECOS_CAT_IPE=?" +
+																				" CAD_EXAME_ID=? " +
 																				"where TAB_PRECOS_ID=?");
 
 		ps.setDouble(1, tabelaPrecos.getTAB_PRECOS_VALOR());
 		ps.setInt(2, tabelaPrecos.getCONVENIO().getCONVENIO_ID());
 		ps.setInt(3, tabelaPrecos.getEXAME().getCAD_EXAME_ID());
-		ps.setString(4, String.valueOf(tabelaPrecos.getTAB_PRECOS_CAT_IPE()));
-		ps.setInt(5, tabelaPrecos.getTAB_PRECOS_ID());
+		ps.setInt(4, tabelaPrecos.getTAB_PRECOS_ID());
 		
 		retorno = ps.execute();
 		ps.close();
@@ -55,9 +52,11 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		
 	}
 	
-	public List<TabelaPrecos> listarTabelaDePrecos() throws SQLException, ClassNotFoundException
+	public List<TabelaPrecos> listarTabelaDePrecosPorExame(CadastroDeExame cadastroDeExame) throws SQLException, ClassNotFoundException
 	{
-		PreparedStatement ps = getPreparedStatement("Select * from TABELA_PRECOS");
+		PreparedStatement ps = getPreparedStatement("Select * from TABELA_PRECOS where CAD_EXAME_ID=?");
+		ps.setInt(1, cadastroDeExame.getCAD_EXAME_ID());
+		
 		List<TabelaPrecos> listaTabelaDePrecos = new LinkedList<TabelaPrecos>();
 		ResultSet rs = ps.executeQuery();
 		
@@ -67,7 +66,6 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 			tabelaPrecos.setTAB_PRECOS_VALOR(rs.getDouble("TAB_PRECOS_VALOR"));
 			tabelaPrecos.setCONVENIO(convenioDAO.buscarConvenioPorID(rs.getInt("CONVENIO_ID")));
 			tabelaPrecos.setEXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs.getInt("CAD_EXAME_ID")));
-			tabelaPrecos.setTAB_PRECOS_CAT_IPE(rs.getString("TAB_PRECOS_CAT_IPE").charAt(0));
 			
 			listaTabelaDePrecos.add(tabelaPrecos);
 		}

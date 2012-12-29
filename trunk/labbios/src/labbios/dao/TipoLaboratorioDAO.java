@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import labbios.db.DatabaseUtil;
-import labbios.dto.GrupoExame;
 import labbios.dto.TipoLaboratorio;
 
 public class TipoLaboratorioDAO extends DatabaseUtil{

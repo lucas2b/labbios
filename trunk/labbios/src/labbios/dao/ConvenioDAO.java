@@ -8,6 +8,7 @@ import java.util.List;
 
 import labbios.db.DatabaseUtil;
 import labbios.dto.Convenio;
+import labbios.dto.GrupoExame;
 
 public class ConvenioDAO extends DatabaseUtil{
 	
@@ -22,12 +23,13 @@ public class ConvenioDAO extends DatabaseUtil{
 	}
 	
 	public Convenio buscarConvenioPorID(int convenioID) throws ClassNotFoundException, SQLException
-	{
-		PreparedStatement ps = getPreparedStatement("Select * from CONVENIO where CONVENIO_ID=?");
-		ps.setInt(1, convenioID);
-		
-		ResultSet rs = ps.executeQuery();
-		Convenio convenioRetorno = popularConvenio(rs);
+	{	
+		ResultSet rs = getStatement().executeQuery("Select * from CONVENIO where CONVENIO_ID="+convenioID);
+		Convenio convenioRetorno = null;
+		if(rs.next())
+		{
+			convenioRetorno = popularConvenio(rs);			
+		}
 		return convenioRetorno;
 	}
 	

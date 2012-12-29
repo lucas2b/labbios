@@ -10,11 +10,13 @@ import labbios.dao.CadastroDeExameDAO;
 import labbios.dao.ConvenioDAO;
 import labbios.dao.GrupoExameDAO;
 import labbios.dao.MaterialExameDAO;
+import labbios.dao.TabelaPrecosDAO;
 import labbios.dao.TipoLaboratorioDAO;
 import labbios.dto.CadastroDeExame;
 import labbios.dto.Convenio;
 import labbios.dto.GrupoExame;
 import labbios.dto.MaterialExame;
+import labbios.dto.TabelaPrecos;
 import labbios.dto.TipoLaboratorio;
 
 public class CadastroDeExameBean {
@@ -23,19 +25,39 @@ public class CadastroDeExameBean {
 	GrupoExameDAO grupoExameDAO = new GrupoExameDAO();
 	MaterialExameDAO materialExameDAO = new MaterialExameDAO();
 	TipoLaboratorioDAO tipoLaboratorioDAO = new TipoLaboratorioDAO();
-	
-	CadastroDeExame cadastroDeExameSelecionado = new CadastroDeExame();
+	TabelaPrecosDAO tabelaDePrecosDAO = new TabelaPrecosDAO();
 	
 	private String abreviatura;
 	private String nome;
-	private GrupoExame grupoExame;
-	private TipoLaboratorio tipoLaboratorio;
-	private MaterialExame materialExame;
 	private String diasDeEntrega;
 	private String codigoSUS;
 	private int grupoEtiqueta;
 	private char tipoDeEntrada;
+	private double valorDoExame;
 	
+	private GrupoExame grupoExame;
+	private TipoLaboratorio tipoLaboratorio;
+	private MaterialExame materialExame;
+	private CadastroDeExame cadastroDeExameSelecionado;
+	private TabelaPrecos tabelaDePrecosSelecionada;
+	private Convenio convenio;
+	
+	public double getValorDoExame() {
+		return valorDoExame;
+	}
+
+	public void setValorDoExame(double valorDoExame) {
+		this.valorDoExame = valorDoExame;
+	}
+
+	public TabelaPrecos getTabelaDePrecosSelecionado() {
+		return tabelaDePrecosSelecionada;
+	}
+
+	public void setTabelaDePrecosSelecionado(TabelaPrecos tabelaDePrecosSelecionado) {
+		this.tabelaDePrecosSelecionada = tabelaDePrecosSelecionado;
+	}
+
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
 	{	
 		CadastroDeExame cadastroDeExame = new CadastroDeExame();
@@ -109,7 +131,34 @@ public class CadastroDeExameBean {
 		return toReturn;	
 	}
 	
+	public List<SelectItem> getConvenios() throws ClassNotFoundException, SQLException
+	{
+		List<SelectItem> toReturn = new LinkedList<SelectItem>();
+		for(Convenio convenio : convenioDAO.listarConvenios())
+		{
+			toReturn.add(new SelectItem(convenio, convenio.getCONVENIO_NOME()));
+			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
+		}
+		return toReturn;	
+	}
 	
+	
+	public TabelaPrecos getTabelaDePrecosSelecionada() {
+		return tabelaDePrecosSelecionada;
+	}
+
+	public void setTabelaDePrecosSelecionada(TabelaPrecos tabelaDePrecosSelecionada) {
+		this.tabelaDePrecosSelecionada = tabelaDePrecosSelecionada;
+	}
+
+	public Convenio getConvenio() {
+		return convenio;
+	}
+
+	public void setConvenio(Convenio convenio) {
+		this.convenio = convenio;
+	}
+
 	public CadastroDeExame getCadastroDeExameSelecionado() {
 		return cadastroDeExameSelecionado;
 	}
@@ -191,6 +240,41 @@ public class CadastroDeExameBean {
 		this.tipoDeEntrada = tipoDeEntrada;
 	}
 	
+	public String associarValorAoExame()
+	{
+		return "associarValorAoExame";
+	}
+	
+	public String adicionarValorDeExame() throws ClassNotFoundException, SQLException
+	{
+		TabelaPrecos tabelaPrecos = new TabelaPrecos();	
+		tabelaPrecos.setTAB_PRECOS_VALOR(valorDoExame);
+		tabelaPrecos.setCONVENIO(convenio);
+		tabelaPrecos.setEXAME(cadastroDeExameSelecionado);
+		
+		tabelaDePrecosDAO.adicionarValor(tabelaPrecos);
+		
+		return "refresh";
+		
+	}
+	
+	public String startEditarValorDeExame()
+	{
+		return "editarValorDeExame";
+	}
+	
+	
+	public String finishEditarValorDeExame() throws ClassNotFoundException, SQLException
+	{
+		tabelaDePrecosDAO.editarValor(tabelaDePrecosSelecionada);
+		return "listarValoresDeExames";
+		
+	}
+	
+	public List<TabelaPrecos> getValoresDeExameSelecionado() throws ClassNotFoundException, SQLException
+	{
+		return tabelaDePrecosDAO.listarTabelaDePrecosPorExame(cadastroDeExameSelecionado);
+	}
 	
 
 }

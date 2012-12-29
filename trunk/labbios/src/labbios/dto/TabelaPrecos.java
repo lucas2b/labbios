@@ -6,7 +6,6 @@ public class TabelaPrecos {
 	private double TAB_PRECOS_VALOR;
 	private Convenio CONVENIO;
 	private CadastroDeExame EXAME;
-	private char TAB_PRECOS_CAT_IPE;
 	
 	
 	public int getTAB_PRECOS_ID() {
@@ -32,12 +31,6 @@ public class TabelaPrecos {
 	}
 	public void setEXAME(CadastroDeExame eXAME) {
 		EXAME = eXAME;
-	}
-	public char getTAB_PRECOS_CAT_IPE() {
-		return TAB_PRECOS_CAT_IPE;
-	}
-	public void setTAB_PRECOS_CAT_IPE(char tAB_PRECOS_CAT_IPE) {
-		TAB_PRECOS_CAT_IPE = tAB_PRECOS_CAT_IPE;
 	}
 	
 	
