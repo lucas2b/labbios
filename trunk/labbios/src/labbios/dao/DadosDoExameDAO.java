@@ -73,13 +73,9 @@ public class DadosDoExameDAO extends DatabaseUtil{
 		boolean retorno = false;
 		for(DadosDoExameSuporte dado : listaSuporte)
 		{
-			PreparedStatement psInsert = getPreparedStatement("Update ? set PARAMETRO=?, REFERENCIA=?, UNIDADE=?");
-			psInsert.setString(1, exameNome);
-			psInsert.setString(2, dado.getParametro());
-			psInsert.setInt(3, dado.getReferencia());
-			psInsert.setString(4, dado.getUnidade());
-			
-			retorno =psInsert.execute();
+			int i=1;
+			getStatement().executeUpdate("Update " +exameNome+ " set PARAMETRO='" +dado.getParametro()+ "', REFERENCIA='" +dado.getReferencia()+"', UNIDADE='"+dado.getUnidade()+"' where ID="+i);
+			i++;
 		}
 		
 		return retorno;
