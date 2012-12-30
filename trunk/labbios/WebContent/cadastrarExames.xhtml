@@ -120,8 +120,8 @@ Tipo De entrada (G/T):
 		<f:facet name="header">
 			<h:outputText value="Ações"></h:outputText>
 		</f:facet>
-		<h:commandLink value="Entrar com Dados do Exame" action="#{cadastroDeExameBean.setarDadosSessao}">
-			<f:setPropertyActionListener target="#{cadastroDeExameBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>
+		<h:commandLink value="Entrar com Dados do Exame" action="#{cadastroDeExameBean.entrarDadosDoExame}">
+			<f:setPropertyActionListener target="#{cadastroDeExameBean.nomeDoExameSelecionado}" value="#{item.CAD_EXAME_NOME}"></f:setPropertyActionListener>
 		</h:commandLink><br></br>
 		<h:commandLink  value="Associar Valor ao Exame" action="#{cadastroDeExameBean.associarValorAoExame}">
 			<f:setPropertyActionListener target="#{valoresDeExamesBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>

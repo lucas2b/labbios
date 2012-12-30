@@ -55,11 +55,6 @@
 		<managed-bean-class>labbios.beans.ValoresDeExamesBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>dadosDoExameBean</managed-bean-name>
-		<managed-bean-class>labbios.beans.DadosDoExameBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 	<converter>
 		<converter-id>ConversorGrupoExame</converter-id>
 		<converter-class>labbios.conversores.ConversorGrupoExame</converter-class>
@@ -146,6 +141,14 @@
 		<navigation-case>
 			<from-outcome>acessoPermitido</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>dadosDeExame.xhtml</display-name>
+		<from-view-id>/dadosDeExame.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listarExames</from-outcome>
+			<to-view-id>/cadastrarExames.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

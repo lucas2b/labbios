@@ -16,7 +16,7 @@
 	<ui:define name="content">
 	    <p:panel>
 <h:form id="form">
-    <p:dataTable var="item" value="#{dadosDoExameBean.listaSuporte}" id="dadosExame" editable="true">
+    <p:dataTable var="item" value="#{cadastroDeExameBean.listaSuporte}" id="dadosExame" editable="true">
 
         <f:facet name="header">
             Dados Do Exame
@@ -61,7 +61,8 @@
         </p:column>
 
     </p:dataTable>
-   <h:commandButton value="Gravar" action="#{dadosDoExameBean.gravarDadosDoExame}"></h:commandButton>
+   <h:commandButton value="Gravar" action="#{cadastroDeExameBean.gravarDadosDoExame}"></h:commandButton>
+   <h:commandButton value="Voltar" action="#{cadastroDeExameBean.listarExames}"></h:commandButton>
 </h:form>
 </p:panel>
 	</ui:define>

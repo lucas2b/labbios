@@ -9,15 +9,14 @@ import javax.faces.model.SelectItem;
 
 import labbios.dao.CadastroDeExameDAO;
 import labbios.dao.ConvenioDAO;
+import labbios.dao.DadosDoExameDAO;
 import labbios.dao.GrupoExameDAO;
 import labbios.dao.MaterialExameDAO;
-import labbios.dao.TabelaPrecosDAO;
 import labbios.dao.TipoLaboratorioDAO;
 import labbios.dto.CadastroDeExame;
-import labbios.dto.Convenio;
+import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.GrupoExame;
 import labbios.dto.MaterialExame;
-import labbios.dto.TabelaPrecos;
 import labbios.dto.TipoLaboratorio;
 
 public class CadastroDeExameBean {
@@ -26,6 +25,7 @@ public class CadastroDeExameBean {
 	GrupoExameDAO grupoExameDAO = new GrupoExameDAO();
 	MaterialExameDAO materialExameDAO = new MaterialExameDAO();
 	TipoLaboratorioDAO tipoLaboratorioDAO = new TipoLaboratorioDAO();
+	DadosDoExameDAO dadosDoExameDAO = new DadosDoExameDAO();
 	
 	private String abreviatura;
 	private String nome;
@@ -33,11 +33,14 @@ public class CadastroDeExameBean {
 	private String codigoSUS;
 	private int grupoEtiqueta;
 	private char tipoDeEntrada;
+	private boolean flagGravar = false; 
 	
+	private List<DadosDoExameSuporte> listaSuporte;
 	private GrupoExame grupoExame;
 	private TipoLaboratorio tipoLaboratorio;
 	private MaterialExame materialExame;
 	private CadastroDeExame cadastroDeExameSelecionado;
+	private String nomeDoExameSelecionado;
 
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
 	{	
@@ -115,6 +118,69 @@ public class CadastroDeExameBean {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("exameNome", cadastroDeExameSelecionado.getCAD_EXAME_NOME());
 		return "entrarDadosDoExame"; 
 	}
+	
+	public String entrarDadosDoExame()
+	{
+		try{
+		boolean flagRetorno = dadosDoExameDAO.verificarExistenciaDeTabela(nomeDoExameSelecionado);
+		
+		if(flagRetorno)
+		{	
+			//Se existe a listagem deste exame
+			System.out.println("Existe Listagem");
+			listaSuporte = dadosDoExameDAO.recuperarTabela(nomeDoExameSelecionado);
+		}
+		else
+		{
+			//Caso não exista, apresenta 35 linhas em branco
+			System.out.println("Nao Existe Listagem");
+			flagGravar = true;
+			listaSuporte = new LinkedList<DadosDoExameSuporte>();
+			
+			for(int i=0; i<35; i++)
+			{
+				listaSuporte.add(new DadosDoExameSuporte());			
+			}
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return "entrarDadosDoExame";
+
+	}
+	
+	public List<DadosDoExameSuporte> getListaSuporte() {
+		return listaSuporte;
+	}
+	
+	public void setListaSuporte(List<DadosDoExameSuporte> listaSuporte) {
+		this.listaSuporte = listaSuporte;
+	}
+	
+	public String gravarDadosDoExame() throws ClassNotFoundException, SQLException
+	{
+		if(flagGravar== true)
+		{
+			//nova tabela
+			dadosDoExameDAO.adicionarDadosDoExame(listaSuporte, nomeDoExameSelecionado);
+		}
+		else
+		{
+			dadosDoExameDAO.atualizarDadosDoExame(listaSuporte, nomeDoExameSelecionado);
+			//update
+		}
+		
+		return "refresh";
+	}
+	
+	public String listarExames()
+	{
+		return "listarExames";
+	}
+
 
 	//GETTERS AND SETTERS
 	
@@ -202,5 +268,13 @@ public class CadastroDeExameBean {
 	public String associarValorAoExame()
 	{
 		return "associarValorAoExame";
+	}
+
+	public String getNomeDoExameSelecionado() {
+		return nomeDoExameSelecionado;
+	}
+
+	public void setNomeDoExameSelecionado(String nomeDoExameSelecionado) {
+		this.nomeDoExameSelecionado = nomeDoExameSelecionado;
 	}
 }
