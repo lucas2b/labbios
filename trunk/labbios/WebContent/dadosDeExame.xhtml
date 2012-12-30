@@ -16,25 +16,19 @@
 	<ui:define name="content">
 	    <p:panel>
 <h:form id="form">
-
-    <p:growl id="messages" showDetail="true"/>
-
-    <p:dataTable var="item" value="#{dadosDoExameBean.listaSuporte}" id="carList" editable="true">
+    <p:dataTable var="item" value="#{dadosDoExameBean.listaSuporte}" id="dadosExame" editable="true">
 
         <f:facet name="header">
-            In-Cell Editing
+            Dados Do Exame
         </f:facet>
-
-        <p:ajax event="rowEdit" listener="#{tableBean.onEdit}" update=":form:messages" />
-        <p:ajax event="rowEditCancel" listener="#{tableBean.onCancel}" update=":form:messages" />
 
         <p:column headerText="Parametros" style="width:125px">
             <p:cellEditor>
                 <f:facet name="output">
-                    <h:outputText value="#{}" />
+                    <h:outputText value="#{item.parametro}" />
                 </f:facet>
                 <f:facet name="input">
-                    <p:inputText value="#{}" style="width:100%"/>
+                    <p:inputText value="#{item.parametro}" style="width:100%"/>
                 </f:facet>
             </p:cellEditor>
         </p:column>
@@ -42,10 +36,10 @@
         <p:column headerText="Unidade" style="width:125px">
             <p:cellEditor>
                 <f:facet name="output">
-                    <h:outputText value="#{car.year}" />
+                    <h:outputText value="#{item.unidade}" />
                 </f:facet>
                 <f:facet name="input">
-                    <p:inputText value="#{car.year}" style="width:100%" label="Year"/>
+                    <p:inputText value="#{item.unidade}" style="width:100%" label="Year"/>
                 </f:facet>
             </p:cellEditor>
         </p:column>
@@ -53,23 +47,23 @@
         <p:column headerText="Valor de referência" style="width:125px">
             <p:cellEditor>
                 <f:facet name="output">
-                    <h:outputText value="#{car.year}" />
+                    <h:outputText value="#{item.referencia}" />
                 </f:facet>
                 <f:facet name="input">
-                    <p:inputText value="#{car.year}" style="width:100%" label="Year"/>
+                    <p:inputText value="#{item.referencia}" style="width:100%" label="Year"/>
                 </f:facet>
             </p:cellEditor>
         </p:column>
  
 
-        <p:column headerText="Options" style="width:50px">
+        <p:column headerText="Editar" style="width:50px">
             <p:rowEditor />
         </p:column>
 
     </p:dataTable>
-
+   <h:commandButton value="Gravar" action="#{dadosDoExameBean.atualizar}"></h:commandButton>
 </h:form>
-		</p:panel>
+</p:panel>
 	</ui:define>
 </ui:composition>
 </h:body>

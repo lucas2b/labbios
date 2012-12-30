@@ -141,5 +141,13 @@
 			<to-view-id>/valorExamePorConvenio.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>cadastrarExames.xhtml</display-name>
+		<from-view-id>/cadastrarExames.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>entrarDadosDoExame</from-outcome>
+			<to-view-id>/dadosDeExame.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import labbios.dao.CadastroDeExameDAO;
@@ -37,6 +38,7 @@ public class CadastroDeExameBean {
 	private TipoLaboratorio tipoLaboratorio;
 	private MaterialExame materialExame;
 	private CadastroDeExame cadastroDeExameSelecionado;
+	FacesContext context = FacesContext.getCurrentInstance();
 
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
 	{	
@@ -104,6 +106,12 @@ public class CadastroDeExameBean {
 			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
 		}
 		return toReturn;	
+	}
+	
+	public String setarDadosSessao()
+	{
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("nomeExame", cadastroDeExameSelecionado.getCAD_EXAME_NOME());
+		return "entrarDadosDoExame"; 
 	}
 
 	//GETTERS AND SETTERS

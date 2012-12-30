@@ -1,58 +1,63 @@
 package labbios.beans;
-
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
+import labbios.dao.DadosDoExameDAO;
 import labbios.dto.CadastroDeExame;
 import labbios.dto.DadosDoExameSuporte;
+import javax.servlet.http.HttpServletRequest;
+
 
 public class DadosDoExameBean {
 	
+	private boolean flagGravar=false;
 	private List<DadosDoExameSuporte> listaSuporte;
+	private CadastroDeExame exameSelecionado;
+	private DadosDoExameDAO dadosDoExameDAO = new DadosDoExameDAO();
+	FacesContext context = FacesContext.getCurrentInstance();
 	
 	public DadosDoExameBean()
 	{
-//		CadastroDeExame exame1 = new CadastroDeExame();
-//		CadastroDeExame exame2 = new CadastroDeExame();
-//		CadastroDeExame exame3 = new CadastroDeExame();
-//		CadastroDeExame exame4 = new CadastroDeExame();
-//		CadastroDeExame exame5 = new CadastroDeExame();
-//		
-//		DadosDoExameSuporte suporte1 = new DadosDoExameSuporte(exame1, "Plaquetas", "mg", 30);
-//		DadosDoExameSuporte suporte2 = new DadosDoExameSuporte(exame2, "Globulos Brancos", "mg", 35);
-//		DadosDoExameSuporte suporte3 = new DadosDoExameSuporte(exame3, "Globulos Vermelhos", "mg", 40);
-//		DadosDoExameSuporte suporte4 = new DadosDoExameSuporte(exame4, "Protrombina", "mg", 45);
-//		DadosDoExameSuporte suporte5 = new DadosDoExameSuporte(exame5, "Hemaceas", "mg", 50);
+		HttpServletRequest req = (HttpServletRequest) request;
+		String url = req.getRequestURL().toString();
+		
+		Object logged = req.getSession().getAttribute("userlogged");
+	
+		//try
+//		{
+//			boolean flagRetorno = dadosDoExameDAO.verificarExistenciaDeTabela(exameSelecionado.getCAD_EXAME_NOME());
+//			System.out.print("Chegou aqui 2");
+//			if(flagRetorno)
+//			{	
+//				
+//				listaSuporte = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME_NOME());
+//			}
+//			else
+//			{
+//				flagGravar = true;
+//				listaSuporte = new LinkedList<DadosDoExameSuporte>();
+//				
+//				for(int i=0; i<35; i++)
+//				{
+//					listaSuporte.add(new DadosDoExameSuporte());			
+//				}
+//			}
 //			
-//		listaSuporte = new ArrayList<DadosDoExameSuporte>();
-//		listaSuporte.add(suporte1);
-//		listaSuporte.add(suporte2);
-//		listaSuporte.add(suporte3);
-//		listaSuporte.add(suporte4);
-//		listaSuporte.add(suporte5);
+//		}
+//		catch(Exception e){}
+	}
+	
+	
+	public void mostrarAtributo()
+	{
+		System.out.println(exameSelecionado.getCAD_EXAME_NOME());
 	}
 
+
 	public List<DadosDoExameSuporte> getListaSuporte() {
-		CadastroDeExame exame1 = new CadastroDeExame();
-		CadastroDeExame exame2 = new CadastroDeExame();
-		CadastroDeExame exame3 = new CadastroDeExame();
-		CadastroDeExame exame4 = new CadastroDeExame();
-		CadastroDeExame exame5 = new CadastroDeExame();
-		
-		DadosDoExameSuporte suporte1 = new DadosDoExameSuporte(exame1, "Plaquetas", "mg", 30);
-		DadosDoExameSuporte suporte2 = new DadosDoExameSuporte(exame2, "Globulos Brancos", "mg", 35);
-		DadosDoExameSuporte suporte3 = new DadosDoExameSuporte(exame3, "Globulos Vermelhos", "mg", 40);
-		DadosDoExameSuporte suporte4 = new DadosDoExameSuporte(exame4, "Protrombina", "mg", 45);
-		DadosDoExameSuporte suporte5 = new DadosDoExameSuporte(exame5, "Hemaceas", "mg", 50);
-			
-		listaSuporte = new ArrayList<DadosDoExameSuporte>();
-		listaSuporte.add(suporte1);
-		listaSuporte.add(suporte2);
-		listaSuporte.add(suporte3);
-		listaSuporte.add(suporte4);
-		listaSuporte.add(suporte5);
-		
-		
 		return listaSuporte;
 	}
 
@@ -60,6 +65,28 @@ public class DadosDoExameBean {
 		this.listaSuporte = listaSuporte;
 	}
 	
-	
+	public String gravarDadosDoExame() throws ClassNotFoundException, SQLException
+	{
+		if(flagGravar== true)
+		{
+			//nova tabela
+			dadosDoExameDAO.adicionarDadosDoExame(listaSuporte, exameSelecionado.getCAD_EXAME_NOME());
+		}
+		else
+		{
+			dadosDoExameDAO.atualizarDadosDoExame(listaSuporte, exameSelecionado.getCAD_EXAME_NOME());
+			//update
+		}
+		
+		return "refresh";
+	}
+
+	public CadastroDeExame getExameSelecionado() {
+		return exameSelecionado;
+	}
+
+	public void setExameSelecionado(CadastroDeExame exameSelecionado) {
+		this.exameSelecionado = exameSelecionado;
+	}
 
 }
