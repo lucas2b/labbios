@@ -166,6 +166,7 @@ public class CadastroDeExameBean {
 		{
 			//nova tabela
 			dadosDoExameDAO.adicionarDadosDoExame(listaSuporte, nomeDoExameSelecionado);
+			
 		}
 		else
 		{
@@ -173,7 +174,7 @@ public class CadastroDeExameBean {
 			//update
 		}
 		
-		return "refresh";
+		return listarExames();
 	}
 	
 	public String listarExames()
