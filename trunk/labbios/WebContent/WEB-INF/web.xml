@@ -47,4 +47,8 @@
 		<filter-name>FilterLogin</filter-name>
 		<url-pattern>/faces/*</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+		<filter-name>FilterLogin</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
 </web-app>

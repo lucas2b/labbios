@@ -76,15 +76,6 @@
 		<converter-id>ConversorConvenio</converter-id>
 		<converter-class>labbios.conversores.ConversorConvenio</converter-class>
 	</converter>
-	
-	<navigation-rule>
-		<display-name>validarUsuario</display-name>
-		<from-view-id>/validarUsuario.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>acessoPermitido</from-outcome>
-			<to-view-id>/entradaPrincipal.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 	<navigation-rule>
 		<display-name>grupoDeExames</display-name>
 		<from-view-id>/grupoDeExames.jsp</from-view-id>
@@ -147,6 +138,14 @@
 		<navigation-case>
 			<from-outcome>entrarDadosDoExame</from-outcome>
 			<to-view-id>/dadosDeExame.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>validarUsuario</display-name>
+		<from-view-id>/validarUsuario.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>acessoPermitido</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class FilterLogin implements Filter {
-	private boolean logado;
+	
+	FilterConfig filter;
 
 	@Override
 	public void destroy() {
@@ -53,8 +54,8 @@ public class FilterLogin implements Filter {
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
+	public void init(FilterConfig filter) throws ServletException {
+		this.filter = filter;
 		
 	}
 
