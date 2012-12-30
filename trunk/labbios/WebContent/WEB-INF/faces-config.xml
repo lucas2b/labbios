@@ -50,6 +50,16 @@
 		<managed-bean-class>labbios.menu.MenuBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>valoresDeExamesBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.ValoresDeExamesBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dadosDoExameBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.DadosDoExameBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<converter>
 		<converter-id>ConversorGrupoExame</converter-id>
 		<converter-class>labbios.conversores.ConversorGrupoExame</converter-class>
@@ -124,35 +134,11 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>cadastroDeExames.xhtml</display-name>
-		<from-view-id>/cadastroDeExames.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>editarTipoDeExame</from-outcome>
-			<to-view-id>/editarCadastroDeExame.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>editarCadastroDeExame.xhtml</display-name>
-		<from-view-id>/editarCadastroDeExame.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>listarTiposDeExames</from-outcome>
-			<to-view-id>/cadastroDeExames.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>entradaPrincipal</display-name>
-		<from-view-id>/entradaPrincipal.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>listarTiposDeExames</from-outcome>
-			<to-view-id>/cadastroDeExames.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>cadastroDeExames.xhtml</display-name>
-		<from-view-id>/cadastroDeExames.xhtml</from-view-id>
+		<display-name>cadastrarExames.xhtml</display-name>
+		<from-view-id>/cadastrarExames.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>associarValorAoExame</from-outcome>
-			<to-view-id>/valorExamePorConvenio.jsp</to-view-id>
+			<to-view-id>/valorExamePorConvenio.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
@@ -9,6 +10,9 @@
 <title>Manutenção de cadastro de Exames</title>
 </h:head>
 <h:body>
+<ui:composition template="/WEB-INF/templates/templateMain.xhtml">
+	<ui:define name="content">
+	    <p:panel>
 <h:form>
 <h:messages></h:messages>
 <h1>Manutenção de cadastro de Exames</h1><br></br>
@@ -118,7 +122,7 @@ Tipo De entrada (G/T):
 		</f:facet>
 		<h:commandLink value="Entrar com Dados do Exame"></h:commandLink><br></br>
 		<h:commandLink  value="Associar Valor ao Exame" action="#{cadastroDeExameBean.associarValorAoExame}">
-			<f:setPropertyActionListener target="#{cadastroDeExameBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>
+			<f:setPropertyActionListener target="#{valoresDeExamesBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>
 		</h:commandLink><br></br>
 		<h:commandLink  value="Editar Exame" action="#{cadastroDeExameBean.startEditarTipoDeExame}">
 			<f:setPropertyActionListener target="#{cadastroDeExameBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>
@@ -126,6 +130,9 @@ Tipo De entrada (G/T):
 	</h:column>
 </h:dataTable>
 </h:form>
+</p:panel>
+	</ui:define>
+</ui:composition>
 
 </h:body>
 </html>
