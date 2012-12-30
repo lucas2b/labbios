@@ -21,10 +21,7 @@ public class DadosDoExameBean {
 	
 	public DadosDoExameBean()
 	{
-		HttpServletRequest req = (HttpServletRequest) request;
-		String url = req.getRequestURL().toString();
-		
-		Object logged = req.getSession().getAttribute("userlogged");
+	
 	
 		//try
 //		{
