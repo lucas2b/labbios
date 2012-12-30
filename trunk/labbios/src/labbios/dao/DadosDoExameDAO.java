@@ -13,9 +13,10 @@ public class DadosDoExameDAO extends DatabaseUtil{
 	
 	public boolean verificarExistenciaDeTabela(String exameNome) throws ClassNotFoundException, SQLException
 	{
-		PreparedStatement ps = getPreparedStatement("Select * from ?");
+		PreparedStatement ps = getPreparedStatement("Show tables like ?");
 		ps.setString(1, exameNome);
-		ResultSet rs = ps.executeQuery(); 
+		
+		ResultSet rs = ps.executeQuery();
 		
 		if(rs.next())
 			return true;
@@ -25,7 +26,7 @@ public class DadosDoExameDAO extends DatabaseUtil{
 	
 	public List<DadosDoExameSuporte> recuperarTabela(String exameNome) throws ClassNotFoundException, SQLException
 	{
-		ResultSet rs = getStatement().executeQuery("Select * from"+exameNome);
+		ResultSet rs = getStatement().executeQuery("Select * from "+exameNome);
 		List<DadosDoExameSuporte> listaDadosDoExame = new LinkedList<DadosDoExameSuporte>();
 		
 		while(rs.next())
@@ -45,18 +46,22 @@ public class DadosDoExameDAO extends DatabaseUtil{
 	{
 		boolean retorno = false;
 		
-		PreparedStatement ps = getPreparedStatement("CREATE TABLE ? (PARAMETRO VARCHAR(255), REFERENCIA VARCHAR(255), UNIDADE INT(11) )");
-		ps.setString(1, exameNome);
+		getStatement().executeUpdate("Create table " +exameNome+ " (ID int AUTO_INCREMENT PRIMARY KEY, PARAMETRO varchar(255), REFERENCIA int, UNIDADE varchar(255) ) ");
+		
+		
 		
 		for(DadosDoExameSuporte dado : listaSuporte)
 		{
-			PreparedStatement psInsert = getPreparedStatement("Insert into ? set PARAMETRO=?, REFERENCIA=?, UNIDADE=?");
-			psInsert.setString(1, exameNome);
-			psInsert.setString(2, dado.getParametro());
-			psInsert.setInt(3, dado.getReferencia());
-			psInsert.setString(4, dado.getUnidade());
 			
-			retorno =psInsert.execute();
+			
+			if(dado.getParametro() == null || dado.getReferencia() == 0 || dado.getUnidade() == null)
+			{
+				
+			}
+			else
+			{
+				getStatement().executeUpdate("Insert into " +exameNome+ " set PARAMETRO='" +dado.getParametro()+ "', REFERENCIA='" +dado.getReferencia()+"', UNIDADE='"+dado.getUnidade()+"'");				
+			}
 		}
 		
 		return retorno;

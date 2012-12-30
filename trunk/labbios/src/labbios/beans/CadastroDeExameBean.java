@@ -38,10 +38,10 @@ public class CadastroDeExameBean {
 	private TipoLaboratorio tipoLaboratorio;
 	private MaterialExame materialExame;
 	private CadastroDeExame cadastroDeExameSelecionado;
-	FacesContext context = FacesContext.getCurrentInstance();
 
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
 	{	
+		
 		CadastroDeExame cadastroDeExame = new CadastroDeExame();
 		cadastroDeExame.setCAD_EXAME_ABREVIATURA(abreviatura);
 		cadastroDeExame.setCAD_EXAME_NOME(nome);
@@ -53,7 +53,8 @@ public class CadastroDeExameBean {
 		cadastroDeExame.setTIPO_LABORATORIO(tipoLaboratorio);
 		cadastroDeExame.setMATERIAL_EXAME(materialExame);
 		
-		cadastroDeExameDAO.adicionarNovoExame(cadastroDeExame);
+		cadastroDeExameDAO.adicionarNovoExame(cadastroDeExame);	
+
 		return "refresh";
 	}
 	
@@ -110,18 +111,19 @@ public class CadastroDeExameBean {
 	
 	public String setarDadosSessao()
 	{
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("nomeExame", cadastroDeExameSelecionado.getCAD_EXAME_NOME());
+	
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("exameNome", cadastroDeExameSelecionado.getCAD_EXAME_NOME());
 		return "entrarDadosDoExame"; 
 	}
 
 	//GETTERS AND SETTERS
 	
+
 	public CadastroDeExame getCadastroDeExameSelecionado() {
 		return cadastroDeExameSelecionado;
 	}
 
-	public void setCadastroDeExameSelecionado(
-			CadastroDeExame cadastroDeExameSelecionado) {
+	public void setCadastroDeExameSelecionado(CadastroDeExame cadastroDeExameSelecionado) {
 		this.cadastroDeExameSelecionado = cadastroDeExameSelecionado;
 	}
 

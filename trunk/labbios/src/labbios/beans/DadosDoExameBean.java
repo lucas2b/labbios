@@ -1,14 +1,15 @@
 package labbios.beans;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import labbios.dao.DadosDoExameDAO;
 import labbios.dto.CadastroDeExame;
 import labbios.dto.DadosDoExameSuporte;
-import javax.servlet.http.HttpServletRequest;
+
 
 
 public class DadosDoExameBean {
@@ -17,42 +18,45 @@ public class DadosDoExameBean {
 	private List<DadosDoExameSuporte> listaSuporte;
 	private CadastroDeExame exameSelecionado;
 	private DadosDoExameDAO dadosDoExameDAO = new DadosDoExameDAO();
-	FacesContext context = FacesContext.getCurrentInstance();
+	String nomeDoExame;
 	
 	public DadosDoExameBean()
 	{
-	
-	
-		//try
-//		{
-//			boolean flagRetorno = dadosDoExameDAO.verificarExistenciaDeTabela(exameSelecionado.getCAD_EXAME_NOME());
-//			System.out.print("Chegou aqui 2");
-//			if(flagRetorno)
-//			{	
-//				
-//				listaSuporte = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME_NOME());
-//			}
-//			else
-//			{
-//				flagGravar = true;
-//				listaSuporte = new LinkedList<DadosDoExameSuporte>();
-//				
-//				for(int i=0; i<35; i++)
-//				{
-//					listaSuporte.add(new DadosDoExameSuporte());			
-//				}
-//			}
-//			
-//		}
-//		catch(Exception e){}
-	}
-	
-	
-	public void mostrarAtributo()
-	{
-		System.out.println(exameSelecionado.getCAD_EXAME_NOME());
-	}
+		
+		try
+		{
+			FacesContext facesContext = FacesContext.getCurrentInstance();    
+		    HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);    
+		    nomeDoExame = (String) session.getAttribute("exameNome");
+		       
+		    boolean flagRetorno = dadosDoExameDAO.verificarExistenciaDeTabela(nomeDoExame);
+				if(flagRetorno)
+				{	
+					//Se existe a listagem deste exame
+					System.out.println("Existe Listagem");
+					listaSuporte = dadosDoExameDAO.recuperarTabela(nomeDoExame);
+				}
+				else
+				{
+					//Caso não exista, apresenta 35 linhas em branco
+					System.out.println("Nao Existe Listagem");
+					flagGravar = true;
+					listaSuporte = new LinkedList<DadosDoExameSuporte>();
+					
+					for(int i=0; i<35; i++)
+					{
+						listaSuporte.add(new DadosDoExameSuporte());			
+					}
+				}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 
+	}
+	
 
 	public List<DadosDoExameSuporte> getListaSuporte() {
 		return listaSuporte;
@@ -67,11 +71,11 @@ public class DadosDoExameBean {
 		if(flagGravar== true)
 		{
 			//nova tabela
-			dadosDoExameDAO.adicionarDadosDoExame(listaSuporte, exameSelecionado.getCAD_EXAME_NOME());
+			dadosDoExameDAO.adicionarDadosDoExame(listaSuporte, nomeDoExame);
 		}
 		else
 		{
-			dadosDoExameDAO.atualizarDadosDoExame(listaSuporte, exameSelecionado.getCAD_EXAME_NOME());
+			dadosDoExameDAO.atualizarDadosDoExame(listaSuporte, nomeDoExame);
 			//update
 		}
 		
