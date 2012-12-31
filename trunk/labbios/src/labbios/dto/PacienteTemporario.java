@@ -1,6 +1,8 @@
 package labbios.dto;
 
-import java.util.Date;
+import java.sql.Date;
+
+
 
 public class PacienteTemporario {
 	private int PACIENTE_TEMPORARIO_ID;
