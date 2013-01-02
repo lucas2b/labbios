@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+  		<link href="../css/estilo.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+
+<h:body>
+<h:form> 
+	<p:panel>
+		<h:graphicImage id="image" url="/imagens/logo.jpg" onclick="inicio()" />
+
+		    <p:growl id="messages"/>
+		    
+		    <p:menubar>
+		    	<p:menuitem value="Página Inicial" url="/entradaPrincipal.xhtml"/>
+		    	
+		    	<p:submenu label="Cadastros De Pacientes" icon="ui-icon-document">  
+		  			<p:menuitem value="Pacientes" url="/AdministracaoDoSistema/CadastroDePacientes/cadastroPacientes.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Paciente Temporário" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Animais" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Cidade" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		        </p:submenu>
+		    	
+		    	<p:submenu label="Solicitações" icon="ui-icon-document">
+		    		<p:menuitem value="Nova Solicitação"/>
+		    		<p:separator/>
+		    		<p:menuitem value="Procurar Solicitações"/>
+		    	</p:submenu>
+		
+		    	
+		    	<p:submenu label="Resultados" icon="ui-icon-document">
+		    		<p:menuitem value="Entrar Resultado"/>
+		    		<p:separator/>
+		    		<p:menuitem value="Imprimir Resultados"/>
+		    	</p:submenu>
+		        
+		        <p:submenu label="Cadastros Administrativos" icon="ui-icon-document">  
+		  			<p:menuitem value="Convênios" url="/AdministracaoDoSistema/CadastroDePacientes/cadastroPacientes.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Laboratórios" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Cadastro De Exames" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Grupos Clínicos" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Materiais de Coleta" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		            <p:menuitem value="Médicos" url="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" />
+		            <p:separator />
+		        </p:submenu>
+		        
+		        <p:submenu label="Relatórios" icon="ui-icon-document">
+		    		<p:menuitem value="Controle SUS"/>
+		    		<p:separator/>
+		    		<p:menuitem value="Relatório de Pacientes"/>
+		    		<p:separator/>
+		    		<p:menuitem value="Relatório de Médicos"/>
+		    		<p:separator/>
+		    	</p:submenu>
+		          
+		        <p:menuitem value="Sair"/> 
+		   </p:menubar>
+
+	</p:panel>
+</h:form>  
+
+</h:body>
+</html>

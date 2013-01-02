@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 11px !important;
+}
+
+.centraliza{
+	text-align: center;
+}
+
+#content{
+	background-color: #cff;
+}

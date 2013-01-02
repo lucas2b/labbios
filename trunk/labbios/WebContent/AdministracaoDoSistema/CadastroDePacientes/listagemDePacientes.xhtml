@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+    </h:head> 
+	
+<h:body>
+<ui:composition template="/WEB-INF/templates/templateMain.xhtml">
+	<ui:define name="content">
+	    <p:panel>
+	    <h:form>
+	    <h1>Adicionar Paciente</h1>
+	    <h:commandButton value="Novo Paciente" action="#{pacienteBean.manutencaoDePacientes}"></h:commandButton>
+	    <br></br>
+	    <h1>Listagem de Pacientes</h1>
+	    <br></br>
+	    <h:dataTable border="1" value="#{pacienteBean.pacientes}" var="item">
+	    	<h:column>
+	    		<f:facet name="header">
+	    			<h:outputText value="Nome"></h:outputText>
+	    		</f:facet>
+	    			<h:outputText value="#{item.PACIENTE_NOME}"></h:outputText>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">
+	    			<h:outputText value="Ações"></h:outputText>
+	    		</f:facet>
+	    			<h:commandLink value="Editar" action="#{pacienteBean.manutencaoDePacientes}">
+	    				<f:setPropertyActionListener target="#{pacienteBean.pacienteSelecionado}" value="#{item}"></f:setPropertyActionListener>
+	    			</h:commandLink>
+	    	</h:column>
+	    </h:dataTable>
+		</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>
