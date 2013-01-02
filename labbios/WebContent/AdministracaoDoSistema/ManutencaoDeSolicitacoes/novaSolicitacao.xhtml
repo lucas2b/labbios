@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>  
+  		
+    </h:head> 
+	
+<h:body>
+<ui:composition template="/WEB-INF/templates/templateMain.xhtml">
+	<ui:define name="content">
+	    <p:panel toggleable="true">
+			<h:form>
+			<h:messages></h:messages>
+			
+			<h1>Cadastro de Solicitação</h1>
+			Paciente:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE}">
+				<f:converter converterId="ConversorPaciente"></f:converter>
+			</h:inputText><br></br>
+			Paciente temporario: 
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE_TEMPORARIO}">
+				<f:converter converterId="ConversorPacienteTemporario"></f:converter>
+			</h:inputText><br></br>
+			Médico:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.MEDICO}">
+			    <f:converter converterId="ConversorMedico"></f:converter>
+			</h:inputText><br></br>
+			Animal:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.ANIMAL}">
+				<f:converter converterId="ConversorAnimal"></f:converter>
+			</h:inputText><br></br>
+			Status:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.STATUS}">
+				<f:converter converterId="ConversorStatus"></f:converter>
+			</h:inputText><br></br>
+			Observações:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_OBS}"></h:inputText><br></br>
+			Valor:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR}">
+			</h:inputText><br></br>
+			Desconto Percentual:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_PERCENTUAL}">
+			</h:inputText><br></br>
+			Desconto em Dinheiro:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_DINHEIRO}">
+			</h:inputText><br></br>
+			Flag Urgente (1 ou 0):
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_FLAG_URGENTE}">
+			</h:inputText><br></br>
+			Valor Pago:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}">
+			</h:inputText><br></br>
+			<h:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.adicionarSolicitacao}"></h:commandButton>
+			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton>
+			<h1>Inclusão de Exames</h1>
+			Campos para adicionar exames na lista aqui
+			
+			<h1>Listagem de Exames</h1>
+			</h:form>
+			
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>
