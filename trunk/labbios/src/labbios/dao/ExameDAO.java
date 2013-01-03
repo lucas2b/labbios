@@ -10,49 +10,47 @@ import labbios.db.DatabaseUtil;
 import labbios.dto.Exame;
 import labbios.dto.Solicitacao;
 
-public class ExameDAO extends DatabaseUtil{
-	
+public class ExameDAO extends DatabaseUtil {
+
 	SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 	CadastroDeExameDAO cadastroDeExameDAO = new CadastroDeExameDAO();
 	TabelaPrecosDAO tabelaDePrecosDAO = new TabelaPrecosDAO();
 	StatusDAO statusDAO = new StatusDAO();
-	
-	public boolean adicionarExame(Exame exame) throws ClassNotFoundException, SQLException
-	{
+
+	public boolean adicionarExame(Exame exame) throws ClassNotFoundException,
+			SQLException {
 		boolean retorno = false;
-		
-			PreparedStatement ps = getPreparedStatement("Insert into EXAME set STATUS_ID=?," +
-																			" SOL_ID=?," +
-																			" CAD_EXAME_ID=?," +
-																			" EXAME_DT_REALIZACAO=?," +
-																			" EXAME_CATEGORIA_IPE=?, " +
-																			" TAB_PRECOS_ID=?");
-			
-			ps.setInt(1, exame.getSTATUS().getSTATUS_ID());
-			ps.setInt(2, exame.getSOLICITACAO().getSOL_ID());
-			ps.setInt(3, exame.getCAD_EXAME().getCAD_EXAME_ID());
-			ps.setDate(4, exame.getEXAME_DT_REALIZACAO());
-			ps.setString(5, String.valueOf(exame.getEXAME_CATEGORIA_IP()));
-			ps.setInt(6, exame.getEXAME_VALOR().getTAB_PRECOS_ID());
-			
-			retorno = ps.execute();
-			ps.close();
-			
-			return retorno;	
+
+		PreparedStatement ps = getPreparedStatement("Insert into EXAME set STATUS_ID=?,"
+				+ " SOL_ID=?,"
+				+ " CAD_EXAME_ID=?,"
+				+ " EXAME_DT_REALIZACAO=?,"
+				+ " EXAME_CATEGORIA_IPE=?, " + " TAB_PRECOS_ID=?");
+
+		ps.setInt(1, exame.getSTATUS().getSTATUS_ID());
+		ps.setInt(2, exame.getSOLICITACAO().getSOL_ID());
+		ps.setInt(3, exame.getCAD_EXAME().getCAD_EXAME_ID());
+		ps.setDate(4, exame.getEXAME_DT_REALIZACAO());
+		ps.setString(5, String.valueOf(exame.getEXAME_CATEGORIA_IP()));
+		ps.setInt(6, exame.getEXAME_VALOR().getTAB_PRECOS_ID());
+
+		retorno = ps.execute();
+		ps.close();
+
+		return retorno;
 	}
-	
-	public boolean editarExame(Exame exame) throws ClassNotFoundException, SQLException
-	{
+
+	public boolean editarExame(Exame exame) throws ClassNotFoundException,
+			SQLException {
 		boolean retorno = false;
-		
-		PreparedStatement ps = getPreparedStatement("Update EXAME set STATUS_ID=?," +
-																		" SOLICITACAO_ID=?," +
-																		" CAD_EXAME_ID=?," +
-																		" EXAME_DT_REALIZACAO=?," +
-																		" EXAME_CATEGORIA_IPE=?, " +
-																		" TAB_PRECOS_ID=? " +
-																		" where EXAME_ID=?");
-		
+
+		PreparedStatement ps = getPreparedStatement("Update EXAME set STATUS_ID=?,"
+				+ " SOLICITACAO_ID=?,"
+				+ " CAD_EXAME_ID=?,"
+				+ " EXAME_DT_REALIZACAO=?,"
+				+ " EXAME_CATEGORIA_IPE=?, "
+				+ " TAB_PRECOS_ID=? " + " where EXAME_ID=?");
+
 		ps.setInt(1, exame.getSTATUS().getSTATUS_ID());
 		ps.setInt(2, exame.getSOLICITACAO().getSOL_ID());
 		ps.setInt(3, exame.getCAD_EXAME().getCAD_EXAME_ID());
@@ -60,56 +58,104 @@ public class ExameDAO extends DatabaseUtil{
 		ps.setString(5, String.valueOf(exame.getEXAME_CATEGORIA_IP()));
 		ps.setInt(6, exame.getEXAME_VALOR().getTAB_PRECOS_ID());
 		ps.setInt(7, exame.getEXAME_ID());
-		
+
 		retorno = ps.execute();
 		ps.close();
-		
-		return retorno;	
+
+		return retorno;
 	}
-	
-	public List<Exame> listarExames() throws ClassNotFoundException, SQLException
-	{
+
+	public List<Exame> listarExames() throws ClassNotFoundException,
+			SQLException {
 		ResultSet rs = getStatement().executeQuery("Select * from EXAME");
 		List<Exame> listaDeExames = new LinkedList<Exame>();
-		
-		while(rs.next())
-		{
+
+		while (rs.next()) {
 			listaDeExames.add(popularExame(rs));
 		}
-		
+
 		return listaDeExames;
-		
+
 	}
-	
-	public Exame buscarExamePorID(int exameID) throws ClassNotFoundException, SQLException
-	{
+
+	public Exame buscarExamePorID(int exameID) throws ClassNotFoundException,
+			SQLException {
 		PreparedStatement ps = getPreparedStatement("Select * from EXAME where EXAME_ID=?");
 		ps.setInt(1, exameID);
 		ResultSet rs = ps.executeQuery();
-		
+
 		return popularExame(rs);
-		
+
 	}
-	
-	
-	public Exame recuperarExameViaSolicitacaoID(Solicitacao solicitacao) throws ClassNotFoundException, SQLException
-	{
-		ResultSet rs = getStatement().executeQuery("Select * from EXAME where SOLICITACAO_ID="+solicitacao.getSOL_ID());
+
+	public Exame recuperarExameViaSolicitacaoID(Solicitacao solicitacao)
+			throws ClassNotFoundException, SQLException {
+		ResultSet rs = getStatement().executeQuery(
+				"Select * from EXAME where SOLICITACAO_ID="
+						+ solicitacao.getSOL_ID());
 		rs.next();
 		return popularExame(rs);
 	}
-	
-	public Exame popularExame(ResultSet rs) throws SQLException, ClassNotFoundException
-	{
+
+	public List<Exame> recuperarExamesPendentes() throws SQLException,
+			ClassNotFoundException {
+		int IdExamePendente = statusDAO.recuperarStatusIdPorNome("PENDENTE");
+		ResultSet rs = getStatement().executeQuery(
+				"Select * from EXAME where STATUS_ID=" + IdExamePendente);
+
+		List<Exame> listaExames = new LinkedList<Exame>();
+		while (rs.next()) {
+			listaExames.add(popularExame(rs));
+		}
+
+		return listaExames;
+	}
+
+	public List<Exame> recuperarExamesEmAndamento() throws SQLException,
+			ClassNotFoundException {
+		int IdExameEmAndamento = statusDAO
+				.recuperarStatusIdPorNome("ANDAMENTO");
+		ResultSet rs = getStatement().executeQuery(
+				"Select * from EXAME where STATUS_ID=" + IdExameEmAndamento);
+
+		List<Exame> listaExames = new LinkedList<Exame>();
+		while (rs.next()) {
+			listaExames.add(popularExame(rs));
+		}
+
+		return listaExames;
+	}
+
+	public List<Exame> recuperarExamesFinalizados() throws SQLException,
+			ClassNotFoundException {
+		int IdExameFinalizado = statusDAO
+				.recuperarStatusIdPorNome("FINALIZADO");
+		ResultSet rs = getStatement().executeQuery(
+				"Select * from EXAME where STATUS_ID=" + IdExameFinalizado);
+
+		List<Exame> listaExames = new LinkedList<Exame>();
+		while (rs.next()) {
+			listaExames.add(popularExame(rs));
+		}
+
+		return listaExames;
+	}
+
+	public Exame popularExame(ResultSet rs) throws SQLException,
+			ClassNotFoundException {
 		Exame exame = new Exame();
 		exame.setEXAME_ID(rs.getInt("EXAME_ID"));
 		exame.setSTATUS(statusDAO.procurarStatusPorID(rs.getInt("STATUS_ID")));
-		exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(rs.getInt("SOL_ID")));
-		exame.setCAD_EXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs.getInt("CAD_EXAME_ID")));
+		exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(rs
+				.getInt("SOL_ID")));
+		exame.setCAD_EXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs
+				.getInt("CAD_EXAME_ID")));
 		exame.setEXAME_DT_REALIZACAO(rs.getDate("EXAME_DT_REALIZACAO"));
-		exame.setEXAME_CATEGORIA_IP(rs.getString("EXAME_CATEGORIA_IPE").charAt(0));
-		exame.setEXAME_VALOR(tabelaDePrecosDAO.procurarTabelaDePrecosPorID(rs.getInt("TAB_PRECOS_ID")));
-		
+		exame.setEXAME_CATEGORIA_IP(rs.getString("EXAME_CATEGORIA_IPE").charAt(
+				0));
+		exame.setEXAME_VALOR(tabelaDePrecosDAO.procurarTabelaDePrecosPorID(rs
+				.getInt("TAB_PRECOS_ID")));
+
 		return exame;
 	}
 

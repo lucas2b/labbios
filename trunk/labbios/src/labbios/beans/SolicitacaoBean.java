@@ -139,6 +139,41 @@ public class SolicitacaoBean {
 		return  conveniosDAO.getComboConvenios();
 	}
 	
+	public List<Exame> recuperarExamesPendentes() throws SQLException, ClassNotFoundException
+	{
+		return exameDAO.recuperarExamesPendentes();
+	}
+	
+	public List<Exame> recuperarExamesEmAndamento() throws SQLException, ClassNotFoundException
+	{
+		return exameDAO.recuperarExamesEmAndamento();
+	}
+	
+	public List<Exame> recuperarExamesFinalizados() throws SQLException, ClassNotFoundException
+	{
+		return exameDAO.recuperarExamesFinalizados();
+	}
+	
+	public List<Solicitacao> recuperarSolicitacoesCadastradas() throws SQLException, ClassNotFoundException
+	{
+		return solicitacaoDAO.recuperarSolicitacoesCadastradas();
+	}
+	
+	public List<Solicitacao> recuperarSolicitacoesEmAndamento() throws SQLException, ClassNotFoundException
+	{
+		return solicitacaoDAO.recuperarSolicitacoesEmAndamento();
+	}
+	
+	public List<Solicitacao> recuperarSolicitacoesFinalizadas() throws SQLException, ClassNotFoundException
+	{
+		return solicitacaoDAO.recuperarSolicitacoesFinalizadas();
+	}
+	
+	public List<Solicitacao> recuperarSolicitacoesEntregues() throws SQLException, ClassNotFoundException
+	{
+		return solicitacaoDAO.recuperarSolicitacoesEntregues();
+	}
+	
 	//GETTERS AND SETTERS
 	
 	public Solicitacao getSolicitacaoSelecionada() {
