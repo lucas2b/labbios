@@ -12,11 +12,13 @@ import labbios.dao.ExameDAO;
 import labbios.dao.MedicoDAO;
 import labbios.dao.PacienteDAO;
 import labbios.dao.SolicitacaoDAO;
+import labbios.dao.StatusDAO;
 import labbios.dao.TabelaPrecosDAO;
 import labbios.dto.CadastroDeExame;
 import labbios.dto.Convenio;
 import labbios.dto.Exame;
 import labbios.dto.Solicitacao;
+import labbios.dto.TabelaPrecos;
 
 
 public class SolicitacaoBean {
@@ -25,7 +27,6 @@ public class SolicitacaoBean {
 	private Solicitacao solicitacaoSelecionada;
 	
 	//Declarações de EXAME
-	private Exame exameSelecionado = new Exame();
 	private List<Exame> listaDeExames;
 	
 	//Declaração Compoenentes em Tela
@@ -50,18 +51,24 @@ public class SolicitacaoBean {
 	
 	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
 	{
+		Exame exameSelecionado = new Exame();
+		
 		exameSelecionado.setEXAME_DT_REALIZACAO(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 		exameSelecionado.setEXAME_CATEGORIA_IP('A');
 		
+		StatusDAO status = new StatusDAO();
+		exameSelecionado.setSTATUS(status.procurarStatusPorID(1));
 		int ultimaSolicitacao = solicitacaoDAO.recuperarUltimoID();
 		
-		System.out.println("Ultima solicitação: "+ultimaSolicitacao);
-		
+		exameSelecionado.setCAD_EXAME(exameEscolhido);
 		
 		Solicitacao solicitacao = solicitacaoDAO.procurarSolicitacaoPorID(ultimaSolicitacao);
 		
 		exameSelecionado.setSOLICITACAO(solicitacao);
-		exameSelecionado.setEXAME_VALOR(tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido));
+		
+		TabelaPrecos tabelaPrecos = tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido);
+		
+		exameSelecionado.setEXAME_VALOR(tabelaPrecos);
 		
 		exameDAO.adicionarExame(exameSelecionado);
 		
@@ -108,11 +115,6 @@ public class SolicitacaoBean {
 		}
 	}
 	
-	public String atualizarListaDeExames()
-	{
-		listaDeExames.add(exameSelecionado);
-		return "refresh";
-	}
 	
 	public List<SelectItem> getComboPacientes() throws ClassNotFoundException, SQLException
 	{
@@ -144,13 +146,6 @@ public class SolicitacaoBean {
 		this.solicitacaoSelecionada = solicitacaoSelecionada;
 	}
 
-	public Exame getExameSelecionado() {
-		return exameSelecionado;
-	}
-
-	public void setExameSelecionado(Exame exameSelecionado) {
-		this.exameSelecionado = exameSelecionado;
-	}
 
 	public String getPacienteNome() {
 		return pacienteNome;
