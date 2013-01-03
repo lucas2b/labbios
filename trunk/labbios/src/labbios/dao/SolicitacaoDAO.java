@@ -120,7 +120,7 @@ public class SolicitacaoDAO extends DatabaseUtil{
 			i= rs.getInt("SOL_ID");
 		}
 		
-		return i;
+		return i++;
 	}
 	
 	
