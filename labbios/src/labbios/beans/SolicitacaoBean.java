@@ -1,6 +1,7 @@
 package labbios.beans;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class SolicitacaoBean {
 	private Solicitacao solicitacaoSelecionada;
 	
 	//Declarações de EXAME
-	private List<Exame> listaDeExames;
+	private List<Exame> listaDeExames = new ArrayList<Exame>();
+	private Exame linhaSelecionada;
 	
 	//Declaração Compoenentes em Tela
 	private String pacienteNome;
@@ -46,11 +48,10 @@ public class SolicitacaoBean {
 	public String adicionarSolicitacao() throws ClassNotFoundException, SQLException
 	{
 		solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
-		return "refresh";
-	}
-	
-	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
-	{
+		int ultimaSolicitacao = solicitacaoDAO.recuperarUltimoID();
+			
+		TabelaPrecos tabelaPrecos = tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido);
+		
 		Exame exameSelecionado = new Exame();
 		
 		exameSelecionado.setEXAME_DT_REALIZACAO(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
@@ -58,7 +59,6 @@ public class SolicitacaoBean {
 		
 		StatusDAO status = new StatusDAO();
 		exameSelecionado.setSTATUS(status.procurarStatusPorID(1));
-		int ultimaSolicitacao = solicitacaoDAO.recuperarUltimoID();
 		
 		exameSelecionado.setCAD_EXAME(exameEscolhido);
 		
@@ -66,11 +66,16 @@ public class SolicitacaoBean {
 		
 		exameSelecionado.setSOLICITACAO(solicitacao);
 		
-		TabelaPrecos tabelaPrecos = tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido);
-		
 		exameSelecionado.setEXAME_VALOR(tabelaPrecos);
 		
-		exameDAO.adicionarExame(exameSelecionado);
+		listaDeExames.add(exameSelecionado);
+		
+		return "refresh";
+	}
+	
+	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
+	{
+		
 		
 		return "refresh";
 	}
@@ -169,6 +174,22 @@ public class SolicitacaoBean {
 
 	public void setExameEscolhido(CadastroDeExame exameEscolhido) {
 		this.exameEscolhido = exameEscolhido;
+	}
+
+	public List<Exame> getListaDeExames() {
+		return listaDeExames;
+	}
+
+	public void setListaDeExames(List<Exame> listaDeExames) {
+		this.listaDeExames = listaDeExames;
+	}
+
+	public Exame getLinhaSelecionada() {
+		return linhaSelecionada;
+	}
+
+	public void setLinhaSelecionada(Exame linhaSelecionada) {
+		this.linhaSelecionada = linhaSelecionada;
 	}
 	
 

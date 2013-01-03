@@ -56,6 +56,26 @@ public class Exame {
 	public void setEXAME_CATEGORIA_IP(char eXAME_CATEGORIA_IP) {
 		EXAME_CATEGORIA_IP = eXAME_CATEGORIA_IP;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + EXAME_ID;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Exame other = (Exame) obj;
+		if (EXAME_ID != other.EXAME_ID)
+			return false;
+		return true;
+	}
 	
 
 }

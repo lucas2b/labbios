@@ -61,6 +61,7 @@
 			<br></br>
 			<br></br>
 			<h1>Inclusão de Exames</h1>
+		
 			
 			Exame:
 			<h:selectOneMenu value="#{solicitacaoBean.exameEscolhido}">
@@ -74,11 +75,20 @@
 			</h:selectOneMenu>
 			
 			<br></br>
-			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton>
+			
 			
 			
 			<h1>Listagem de Exames</h1>
+			<h:dataTable value="#{solicitacaoBean.listaDeExames}" var="item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Exame adicionado"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{item.CAD_EXAME.CAD_EXAME_NOME}"></h:outputText>
+				</h:column>
+			</h:dataTable>
 			</h:form>
+			<br></br>
 			
 		</p:panel>
 	</ui:define>
