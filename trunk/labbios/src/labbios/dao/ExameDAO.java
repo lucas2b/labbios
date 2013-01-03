@@ -22,7 +22,7 @@ public class ExameDAO extends DatabaseUtil{
 		boolean retorno = false;
 		
 			PreparedStatement ps = getPreparedStatement("Insert into EXAME set STATUS_ID=?," +
-																			" SOLICITACAO_ID=?," +
+																			" SOL_ID=?," +
 																			" CAD_EXAME_ID=?," +
 																			" EXAME_DT_REALIZACAO=?," +
 																			" EXAME_CATEGORIA_IPE=?, " +
