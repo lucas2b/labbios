@@ -21,19 +21,19 @@ public class ExameDAO extends DatabaseUtil{
 	{
 		boolean retorno = false;
 		
-		PreparedStatement ps = getPreparedStatement("Insert into EXAME set STATUS_ID=?, " +
-																			"SOLICITACAO_ID=?, " +
-																			"CAD_EXAME_ID=?, " +
-																			"EXAME_DT_REALIZACAO=?, " +
-																			"EXAME_VALOR=?, " +
-																			"EXAME_CATEGORIA_IPE=?");
+			PreparedStatement ps = getPreparedStatement("Insert into EXAME set STATUS_ID=?," +
+																			" SOLICITACAO_ID=?," +
+																			" CAD_EXAME_ID=?," +
+																			" EXAME_DT_REALIZACAO=?," +
+																			" EXAME_CATEGORIA_IPE=?, " +
+																			" TAB_PRECOS_ID=?");
 			
-			ps.setInt(1, exame.getEXAME_ID());
+			ps.setInt(1, exame.getSTATUS().getSTATUS_ID());
 			ps.setInt(2, exame.getSOLICITACAO().getSOL_ID());
 			ps.setInt(3, exame.getCAD_EXAME().getCAD_EXAME_ID());
 			ps.setDate(4, exame.getEXAME_DT_REALIZACAO());
-			ps.setDouble(5, exame.getEXAME_VALOR().getTAB_PRECOS_VALOR());
-			ps.setString(6, String.valueOf(exame.getEXAME_CATEGORIA_IP()));
+			ps.setString(5, String.valueOf(exame.getEXAME_CATEGORIA_IP()));
+			ps.setInt(6, exame.getEXAME_VALOR().getTAB_PRECOS_ID());
 			
 			retorno = ps.execute();
 			ps.close();
@@ -45,26 +45,26 @@ public class ExameDAO extends DatabaseUtil{
 	{
 		boolean retorno = false;
 		
-		PreparedStatement ps = getPreparedStatement("Update EXAME set STATUS_ID=?, " +
-																			"SOLICITACAO_ID=?, " +
-																			"CAD_EXAME_ID=?, " +
-																			"EXAME_DT_REALIZACAO=?, " +
-																			"EXAME_VALOR=?, " +
-																			"EXAME_CATEGORIA_IPE=? " +
-																			"where EXAME_ID=?");
-			
-			ps.setInt(1, exame.getEXAME_ID());
-			ps.setInt(2, exame.getSOLICITACAO().getSOL_ID());
-			ps.setInt(3, exame.getCAD_EXAME().getCAD_EXAME_ID());
-			ps.setDate(4, exame.getEXAME_DT_REALIZACAO());
-			ps.setDouble(5, exame.getEXAME_VALOR().getTAB_PRECOS_VALOR());
-			ps.setString(6, String.valueOf(exame.getEXAME_CATEGORIA_IP()));
-			ps.setInt(7, exame.getEXAME_ID());
-			
-			retorno = ps.execute();
-			ps.close();
-			
-			return retorno;	
+		PreparedStatement ps = getPreparedStatement("Update EXAME set STATUS_ID=?," +
+																		" SOLICITACAO_ID=?," +
+																		" CAD_EXAME_ID=?," +
+																		" EXAME_DT_REALIZACAO=?," +
+																		" EXAME_CATEGORIA_IPE=?, " +
+																		" TAB_PRECOS_ID=? " +
+																		" where EXAME_ID=?");
+		
+		ps.setInt(1, exame.getSTATUS().getSTATUS_ID());
+		ps.setInt(2, exame.getSOLICITACAO().getSOL_ID());
+		ps.setInt(3, exame.getCAD_EXAME().getCAD_EXAME_ID());
+		ps.setDate(4, exame.getEXAME_DT_REALIZACAO());
+		ps.setString(5, String.valueOf(exame.getEXAME_CATEGORIA_IP()));
+		ps.setInt(6, exame.getEXAME_VALOR().getTAB_PRECOS_ID());
+		ps.setInt(7, exame.getEXAME_ID());
+		
+		retorno = ps.execute();
+		ps.close();
+		
+		return retorno;	
 	}
 	
 	public List<Exame> listarExames() throws ClassNotFoundException, SQLException
@@ -103,12 +103,12 @@ public class ExameDAO extends DatabaseUtil{
 	{
 		Exame exame = new Exame();
 		exame.setEXAME_ID(rs.getInt("EXAME_ID"));
-		exame.setCAD_EXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs.getInt("CAD_EXAME_ID")));
-		exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(rs.getInt("SOL_ID")));
 		exame.setSTATUS(statusDAO.procurarStatusPorID(rs.getInt("STATUS_ID")));
+		exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(rs.getInt("SOL_ID")));
+		exame.setCAD_EXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs.getInt("CAD_EXAME_ID")));
 		exame.setEXAME_DT_REALIZACAO(rs.getDate("EXAME_DT_REALIZACAO"));
-		exame.setEXAME_VALOR(tabelaDePrecosDAO.procurarTabelaDePrecosPorID(rs.getInt("TAB_PRECOS_ID")));
 		exame.setEXAME_CATEGORIA_IP(rs.getString("EXAME_CATEGORIA_IPE").charAt(0));
+		exame.setEXAME_VALOR(tabelaDePrecosDAO.procurarTabelaDePrecosPorID(rs.getInt("TAB_PRECOS_ID")));
 		
 		return exame;
 	}

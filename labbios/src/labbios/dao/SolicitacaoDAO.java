@@ -106,19 +106,18 @@ public class SolicitacaoDAO extends DatabaseUtil{
 	
 	public Solicitacao procurarSolicitacaoPorID(int solicitacaoID) throws ClassNotFoundException, SQLException
 	{
-		ResultSet rs = getStatement().executeQuery("Select * from SOLICITACAO where SOLICITACAO_ID="+solicitacaoID);
+		ResultSet rs = getStatement().executeQuery("Select * from SOLICITACAO where SOL_ID="+solicitacaoID);
 		rs.next();
 		return popularSolicitacao(rs);
 	}
 
 	public int recuperarUltimoID() throws ClassNotFoundException, SQLException
 	{
-		ResultSet rs = getStatement().executeQuery("Select * from SOLICITACAO");
-		int i =1;
-		
+		ResultSet rs = getStatement().executeQuery("Select SOL_ID from SOLICITACAO");
+		int i=0;
 		while(rs.next())
 		{
-			i++;
+			i= rs.getInt("SOL_ID");
 		}
 		
 		return i;

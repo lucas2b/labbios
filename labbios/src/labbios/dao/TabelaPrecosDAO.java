@@ -8,6 +8,7 @@ import java.util.List;
 
 import labbios.db.DatabaseUtil;
 import labbios.dto.CadastroDeExame;
+import labbios.dto.Convenio;
 import labbios.dto.TabelaPrecos;
 
 public class TabelaPrecosDAO extends DatabaseUtil{
@@ -61,16 +62,23 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next())
-		{
-			TabelaPrecos tabelaPrecos = new TabelaPrecos();
-			tabelaPrecos.setTAB_PRECOS_VALOR(rs.getDouble("TAB_PRECOS_VALOR"));
-			tabelaPrecos.setCONVENIO(convenioDAO.buscarConvenioPorID(rs.getInt("CONVENIO_ID")));
-			tabelaPrecos.setEXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs.getInt("CAD_EXAME_ID")));
-			
-			listaTabelaDePrecos.add(tabelaPrecos);
+		{	
+			listaTabelaDePrecos.add(popularTabelaDePrecos(rs));
 		}
 		
 		return listaTabelaDePrecos;
+	}
+	
+	public TabelaPrecos procurarIDPorConvenioEExame(Convenio convenio, CadastroDeExame exame) throws ClassNotFoundException, SQLException
+	{
+		PreparedStatement ps = getPreparedStatement("Select * from TABELA_PRECOS where CONVENIO_ID=? AND CAD_EXAME_ID=?");
+		ps.setInt(1, convenio.getCONVENIO_ID());
+		ps.setInt(2, exame.getCAD_EXAME_ID());
+		
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		return popularTabelaDePrecos(rs);
 	}
 	
 	public TabelaPrecos procurarTabelaDePrecosPorID(int tabelaPrecosID) throws ClassNotFoundException, SQLException
@@ -83,6 +91,17 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		tabelaPrecos.setCONVENIO(convenioDAO.buscarConvenioPorID(rs.getInt("CONVENIO_ID")));
 		tabelaPrecos.setEXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs.getInt("CAD_EXAME_ID")));
 		tabelaPrecos.setTAB_PRECOS_VALOR(rs.getDouble("TAB_PRECOS_VALOR"));
+		
+		return tabelaPrecos;
+	}
+	
+	public TabelaPrecos popularTabelaDePrecos(ResultSet rs) throws SQLException, ClassNotFoundException
+	{
+		TabelaPrecos tabelaPrecos = new TabelaPrecos();
+		tabelaPrecos.setTAB_PRECOS_ID(rs.getInt("TAB_PRECOS_ID"));
+		tabelaPrecos.setTAB_PRECOS_VALOR(rs.getDouble("TAB_PRECOS_VALOR"));
+		tabelaPrecos.setCONVENIO(convenioDAO.buscarConvenioPorID(rs.getInt("CONVENIO_ID")));
+		tabelaPrecos.setEXAME(cadastroDeExameDAO.buscarCadastroDeExamePorID(rs.getInt("CAD_EXAME_ID")));
 		
 		return tabelaPrecos;
 	}

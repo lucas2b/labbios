@@ -6,7 +6,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import labbios.db.DatabaseUtil;
+import labbios.dto.CadastroDeExame;
 import labbios.dto.Convenio;
 import labbios.dto.GrupoExame;
 
@@ -55,6 +58,17 @@ public class ConvenioDAO extends DatabaseUtil{
 		convenio.setCONVENIO_ID(rs.getInt("CONVENIO_ID"));
 		convenio.setCONVENIO_NOME(rs.getString("CONVENIO_NOME"));
 		return convenio;
+	}
+	
+	public List<SelectItem> getComboConvenios() throws ClassNotFoundException, SQLException 
+	{		
+		List<SelectItem> toReturn = new LinkedList<SelectItem>();
+		for(Convenio convenio : listarConvenios())
+		{
+			toReturn.add(new SelectItem(convenio, convenio.getCONVENIO_NOME()));
+			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
+		}
+		return toReturn;
 	}
 	
 	
