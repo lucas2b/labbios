@@ -56,15 +56,11 @@
 			Valor Pago:
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}">
 			</h:inputText><br></br>
-			<h:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.adicionarSolicitacao}"></h:commandButton>
-			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton>
-			<br></br>
-			<br></br>
-			</h:form>
-			<h1>Inclusão de Exames</h1>
-		
 			
-			<h:form>
+			<br></br>
+			<br></br>
+			<h1>Inclusão de Exames</h1><br></br>
+			
 			Exame:
 			<h:selectOneMenu value="#{solicitacaoBean.exameEscolhido}">
 				<f:selectItems value="#{solicitacaoBean.comboExames}"></f:selectItems>
@@ -74,10 +70,9 @@
 			<h:selectOneMenu value="#{solicitacaoBean.convenioEscolhido}">
 				<f:selectItems value="#{solicitacaoBean.comboConvenios}"></f:selectItems>
 				<f:converter converterId="ConversorConvenio"></f:converter>
-			</h:selectOneMenu>
-			
+			</h:selectOneMenu>			
 			<br></br>
-			
+			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton><br></br>
 			
 			<h1>Listagem de Exames</h1>
 			<h:dataTable value="#{solicitacaoBean.listaDeExames}" var="item" border="1">
@@ -87,11 +82,18 @@
 					</f:facet>
 					<h:outputText value="#{item.CAD_EXAME.CAD_EXAME_NOME}"></h:outputText>
 				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Convenio"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{item.EXAME_VALOR.CONVENIO.CONVENIO_NOME}"></h:outputText>
+				</h:column>
 			</h:dataTable>
-			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton>
+			<br></br>
+			<h:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.botaoGravar}"></h:commandButton><br></br>
+			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton><br></br>
 			</h:form>
 			<br></br>
-			
 		</p:panel>
 	</ui:define>
 </ui:composition>

@@ -1,8 +1,7 @@
 package labbios.beans;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -23,85 +22,94 @@ import labbios.dto.TabelaPrecos;
 
 
 public class SolicitacaoBean {
-	
-	//Declarações de SOLICITAÇÃO
 	private Solicitacao solicitacaoSelecionada;
 	
-	//Declarações de EXAME
-	private List<Exame> listaDeExames = new ArrayList<Exame>();
-	private Exame linhaSelecionada;
+	private boolean flagNovaSolicitacao;
 	
-	//Declaração Compoenentes em Tela
-	private String pacienteNome;
+	private List<Exame> listaDeExames;
+	
 	private Convenio convenioEscolhido;
 	private CadastroDeExame exameEscolhido;
 	
-	//DAOS
 	private SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
-	private ExameDAO exameDAO = new ExameDAO();
+	private ExameDAO examesDAO = new ExameDAO();
 	private PacienteDAO pacientesDAO = new PacienteDAO();
 	private MedicoDAO medicosDAO = new MedicoDAO();
 	private CadastroDeExameDAO cadastroDeExamesDAO = new CadastroDeExameDAO();
 	private ConvenioDAO conveniosDAO = new ConvenioDAO();
 	private TabelaPrecosDAO tabelaPrecosDAO = new TabelaPrecosDAO();
+	private StatusDAO statusDAO = new StatusDAO();
 		
-	public String adicionarSolicitacao() throws ClassNotFoundException, SQLException
-	{
-		solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
-		return "refresh";
-	}
-	
-	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
-	{
-		int ultimaSolicitacao = solicitacaoDAO.recuperarUltimoID();
-		
-		TabelaPrecos tabelaPrecos = tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido);
-		
-		Exame exameSelecionado = new Exame();
-		
-		exameSelecionado.setEXAME_DT_REALIZACAO(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
-		exameSelecionado.setEXAME_CATEGORIA_IP('A');
-		
-		StatusDAO status = new StatusDAO();
-		exameSelecionado.setSTATUS(status.procurarStatusPorID(1));
-		
-		exameSelecionado.setCAD_EXAME(exameEscolhido);
-		
-		Solicitacao solicitacao = solicitacaoDAO.procurarSolicitacaoPorID(ultimaSolicitacao);
-		
-		exameSelecionado.setSOLICITACAO(solicitacao);
-		
-		exameSelecionado.setEXAME_VALOR(tabelaPrecos);
-		
-		listaDeExames.add(exameSelecionado);
-		
-		return "refresh";
-	}
-	
-	public String atualizarSolicitacao() throws ClassNotFoundException, SQLException
-	{
-		solicitacaoDAO.editarSolicitacao(solicitacaoSelecionada);	
-		return "refresh";
-	}
 	
 	public String manutencaoDeSolicitacao() throws ClassNotFoundException, SQLException
 	{
 		if(solicitacaoSelecionada != null)
 		{
 			//Rotina de solicitação existente
+			flagNovaSolicitacao = false;
 			solicitacaoSelecionada = solicitacaoDAO.recuperarSolicitacao(solicitacaoSelecionada);
-			//exameSelecionado = exameDAO.recuperarExameViaSolicitacaoID(solicitacaoSelecionada);
+			listaDeExames = examesDAO.recuperarExamesPorSolicitacao(solicitacaoSelecionada);
 		}
 		else
 		{
+			flagNovaSolicitacao = true;
 			solicitacaoSelecionada = new Solicitacao();
+			listaDeExames = new LinkedList<Exame>();
 		}
 		return "editarSolicitacao";
+	}
+	
+	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
+	{
+		Exame inserirExame = new Exame();
+		
+		TabelaPrecos tabelaPrecos = tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido);
+		//Procura o ID correspondente ao convenio e ao exame escolhidos na Tabela De Precos
+		
+		inserirExame.setEXAME_VALOR(tabelaPrecos);
+		inserirExame.setEXAME_CATEGORIA_IP('A');
+		inserirExame.setSTATUS(statusDAO.procurarStatusPorID(2));
+		inserirExame.setCAD_EXAME(exameEscolhido);
+		inserirExame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoDAO.recuperarUltimoID()));		
+		
+		listaDeExames.add(inserirExame);	
+		return "refresh";
+	}
+	
+	public String editarListaDeExames()
+	{
+		return "refresh";
+	}
+	
+	
+	public String botaoGravar() throws ClassNotFoundException, SQLException
+	{
+		if(flagNovaSolicitacao)
+		{
+			//Rotina de nova solicitação
+			solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
+			
+			for(Exame exame : listaDeExames)
+				examesDAO.adicionarExame(exame);
+			
+			return retornarListagemSolicitacoes();
+		}
+		else
+		{
+			//Rotina de edição de solicitação
+			solicitacaoDAO.editarSolicitacao(solicitacaoSelecionada);
+			
+			for(Exame exame : listaDeExames)
+				examesDAO.editarExame(exame);
+			
+			return manutencaoDeSolicitacao();
+		}
 	}
 	
 	public String retornarListagemSolicitacoes()
 	{
 		solicitacaoSelecionada = null;
+		listaDeExames.clear();
 		return "retornarListagemSolicitacoes";
 	}
 	
@@ -109,16 +117,7 @@ public class SolicitacaoBean {
 	{
 		return solicitacaoDAO.listarSolicitacoes();
 	}
-	
-	public void adicionarListaDeExames() throws ClassNotFoundException, SQLException
-	{
-		for(Exame exame : listaDeExames)
-		{
-			exameDAO.adicionarExame(exame);
-		}
-	}
-	
-	
+		
 	public List<SelectItem> getComboPacientes() throws ClassNotFoundException, SQLException
 	{
 		return pacientesDAO.getComboPacientes();
@@ -141,17 +140,17 @@ public class SolicitacaoBean {
 	
 	public List<Exame> recuperarExamesPendentes() throws SQLException, ClassNotFoundException
 	{
-		return exameDAO.recuperarExamesPendentes();
+		return examesDAO.recuperarExamesPendentes();
 	}
 	
 	public List<Exame> recuperarExamesEmAndamento() throws SQLException, ClassNotFoundException
 	{
-		return exameDAO.recuperarExamesEmAndamento();
+		return examesDAO.recuperarExamesEmAndamento();
 	}
 	
 	public List<Exame> recuperarExamesFinalizados() throws SQLException, ClassNotFoundException
 	{
-		return exameDAO.recuperarExamesFinalizados();
+		return examesDAO.recuperarExamesFinalizados();
 	}
 	
 	public List<Solicitacao> recuperarSolicitacoesCadastradas() throws SQLException, ClassNotFoundException
@@ -184,15 +183,6 @@ public class SolicitacaoBean {
 		this.solicitacaoSelecionada = solicitacaoSelecionada;
 	}
 
-
-	public String getPacienteNome() {
-		return pacienteNome;
-	}
-
-	public void setPacienteNome(String pacienteNome) {
-		this.pacienteNome = pacienteNome;
-	}
-
 	public Convenio getConvenioEscolhido() {
 		return convenioEscolhido;
 	}
@@ -216,14 +206,4 @@ public class SolicitacaoBean {
 	public void setListaDeExames(List<Exame> listaDeExames) {
 		this.listaDeExames = listaDeExames;
 	}
-
-	public Exame getLinhaSelecionada() {
-		return linhaSelecionada;
-	}
-
-	public void setLinhaSelecionada(Exame linhaSelecionada) {
-		this.linhaSelecionada = linhaSelecionada;
-	}
-	
-
 }

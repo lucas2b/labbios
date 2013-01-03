@@ -27,7 +27,7 @@ public class StatusDAO extends DatabaseUtil {
 			throws SQLException, ClassNotFoundException {
 		ResultSet rs = getStatement().executeQuery(
 				"Select STATUS_ID from STATUS where STATUS_NOME="
-						+ nomeDoStatus);
+						+nomeDoStatus);
 		rs.next();
 		return rs.getInt("STATUS_ID");
 	}

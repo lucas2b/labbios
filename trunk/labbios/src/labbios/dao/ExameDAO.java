@@ -68,13 +68,7 @@ public class ExameDAO extends DatabaseUtil {
 	public List<Exame> listarExames() throws ClassNotFoundException,
 			SQLException {
 		ResultSet rs = getStatement().executeQuery("Select * from EXAME");
-		List<Exame> listaDeExames = new LinkedList<Exame>();
-
-		while (rs.next()) {
-			listaDeExames.add(popularExame(rs));
-		}
-
-		return listaDeExames;
+		return popularListaDeExames(rs);
 
 	}
 
@@ -88,13 +82,12 @@ public class ExameDAO extends DatabaseUtil {
 
 	}
 
-	public Exame recuperarExameViaSolicitacaoID(Solicitacao solicitacao)
+	public List<Exame> recuperarExamesPorSolicitacao(Solicitacao solicitacao)
 			throws ClassNotFoundException, SQLException {
 		ResultSet rs = getStatement().executeQuery(
-				"Select * from EXAME where SOLICITACAO_ID="
+				"Select * from EXAME where SOL_ID="
 						+ solicitacao.getSOL_ID());
-		rs.next();
-		return popularExame(rs);
+		return popularListaDeExames(rs);
 	}
 
 	public List<Exame> recuperarExamesPendentes() throws SQLException,
@@ -103,12 +96,7 @@ public class ExameDAO extends DatabaseUtil {
 		ResultSet rs = getStatement().executeQuery(
 				"Select * from EXAME where STATUS_ID=" + IdExamePendente);
 
-		List<Exame> listaExames = new LinkedList<Exame>();
-		while (rs.next()) {
-			listaExames.add(popularExame(rs));
-		}
-
-		return listaExames;
+		return popularListaDeExames(rs);
 	}
 
 	public List<Exame> recuperarExamesEmAndamento() throws SQLException,
@@ -118,12 +106,7 @@ public class ExameDAO extends DatabaseUtil {
 		ResultSet rs = getStatement().executeQuery(
 				"Select * from EXAME where STATUS_ID=" + IdExameEmAndamento);
 
-		List<Exame> listaExames = new LinkedList<Exame>();
-		while (rs.next()) {
-			listaExames.add(popularExame(rs));
-		}
-
-		return listaExames;
+		return popularListaDeExames(rs);
 	}
 
 	public List<Exame> recuperarExamesFinalizados() throws SQLException,
@@ -133,12 +116,7 @@ public class ExameDAO extends DatabaseUtil {
 		ResultSet rs = getStatement().executeQuery(
 				"Select * from EXAME where STATUS_ID=" + IdExameFinalizado);
 
-		List<Exame> listaExames = new LinkedList<Exame>();
-		while (rs.next()) {
-			listaExames.add(popularExame(rs));
-		}
-
-		return listaExames;
+		return popularListaDeExames(rs);
 	}
 
 	public Exame popularExame(ResultSet rs) throws SQLException,
@@ -157,6 +135,16 @@ public class ExameDAO extends DatabaseUtil {
 				.getInt("TAB_PRECOS_ID")));
 
 		return exame;
+	}
+
+	private List<Exame> popularListaDeExames(ResultSet rs) throws SQLException,
+			ClassNotFoundException {
+		List<Exame> listaExames = new LinkedList<Exame>();
+		while (rs.next()) {
+			listaExames.add(popularExame(rs));
+		}
+
+		return listaExames;
 	}
 
 }
