@@ -48,8 +48,13 @@ public class SolicitacaoBean {
 	public String adicionarSolicitacao() throws ClassNotFoundException, SQLException
 	{
 		solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
+		return "refresh";
+	}
+	
+	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
+	{
 		int ultimaSolicitacao = solicitacaoDAO.recuperarUltimoID();
-			
+		
 		TabelaPrecos tabelaPrecos = tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido);
 		
 		Exame exameSelecionado = new Exame();
@@ -69,13 +74,6 @@ public class SolicitacaoBean {
 		exameSelecionado.setEXAME_VALOR(tabelaPrecos);
 		
 		listaDeExames.add(exameSelecionado);
-		
-		return "refresh";
-	}
-	
-	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
-	{
-		
 		
 		return "refresh";
 	}
