@@ -63,7 +63,7 @@ public class CadastroDeExameBean {
 	
 	public String startEditarTipoDeExame()
 	{
-		return "editarTipoDeExame";
+		return "editarExameCadastrado";
 	}
 	
 	public String finishEditarTipoDeExame() throws ClassNotFoundException, SQLException

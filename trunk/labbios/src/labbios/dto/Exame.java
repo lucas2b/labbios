@@ -11,7 +11,7 @@ public class Exame {
 	private Solicitacao SOLICITACAO;
 	private CadastroDeExame CAD_EXAME;
 	private Date EXAME_DT_REALIZACAO;
-	private TabelaPrecos EXAME_VALOR;
+	private TabelaPrecos TAB_PRECOS_ID;
 	private char EXAME_CATEGORIA_IP;
 	
 	public int getEXAME_ID() {
@@ -45,10 +45,10 @@ public class Exame {
 		EXAME_DT_REALIZACAO = eXAME_DT_REALIZACAO;
 	}
 	public TabelaPrecos getEXAME_VALOR() {
-		return EXAME_VALOR;
+		return TAB_PRECOS_ID;
 	}
 	public void setEXAME_VALOR(TabelaPrecos eXAME_VALOR) {
-		EXAME_VALOR = eXAME_VALOR;
+		TAB_PRECOS_ID = eXAME_VALOR;
 	}
 	public char getEXAME_CATEGORIA_IP() {
 		return EXAME_CATEGORIA_IP;

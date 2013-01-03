@@ -6,8 +6,11 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import labbios.db.DatabaseUtil;
 import labbios.dto.CadastroDeExame;
+import labbios.dto.Medico;
 
 public class CadastroDeExameDAO extends DatabaseUtil{
 	
@@ -103,6 +106,18 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		}
 		
 		return listaCadastroDeExame;
+	}
+	
+	
+	public List<SelectItem> getComboExames() throws ClassNotFoundException, SQLException 
+	{		
+		List<SelectItem> toReturn = new LinkedList<SelectItem>();
+		for(CadastroDeExame listaExames : listarCadastroDeExames())
+		{
+			toReturn.add(new SelectItem(listaExames, listaExames.getCAD_EXAME_NOME()));
+			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
+		}
+		return toReturn;
 	}
 
 	private CadastroDeExame popularCadastroDeExame(ResultSet rs) throws SQLException, ClassNotFoundException {

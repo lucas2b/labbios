@@ -58,8 +58,24 @@
 			</h:inputText><br></br>
 			<h:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.adicionarSolicitacao}"></h:commandButton>
 			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton>
+			<br></br>
+			<br></br>
 			<h1>Inclusão de Exames</h1>
-			Campos para adicionar exames na lista aqui
+			
+			Exame:
+			<h:selectOneMenu value="#{solicitacaoBean.exameEscolhido}">
+				<f:selectItems value="#{solicitacaoBean.comboExames}"></f:selectItems>
+				<f:converter converterId="ConversorCadastroDeExames"></f:converter>
+			</h:selectOneMenu><br></br>
+			Convênio:
+			<h:selectOneMenu value="#{solicitacaoBean.convenioEscolhido}">
+				<f:selectItems value="#{solicitacaoBean.comboConvenios}"></f:selectItems>
+				<f:converter converterId="ConversorConvenio"></f:converter>
+			</h:selectOneMenu>
+			
+			<br></br>
+			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton>
+			
 			
 			<h1>Listagem de Exames</h1>
 			</h:form>
