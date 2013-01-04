@@ -87,7 +87,12 @@ public class ExameDAO extends DatabaseUtil {
 		ResultSet rs = getStatement().executeQuery(
 				"Select * from EXAME where SOL_ID="
 						+ solicitacao.getSOL_ID());
-		return popularListaDeExames(rs);
+		List<Exame> listaExames = new LinkedList<Exame>();
+		while (rs.next()) {
+			listaExames.add(popularExame(rs));
+		}
+
+		return listaExames;
 	}
 
 	public List<Exame> recuperarExamesPendentes() throws SQLException,

@@ -109,7 +109,7 @@ public class SolicitacaoDAO extends DatabaseUtil {
 	public Solicitacao procurarSolicitacaoPorID(int solicitacaoID)
 			throws ClassNotFoundException, SQLException {
 		ResultSet rs = getStatement().executeQuery(
-				"Select * from SOLICITACAO where SOL_ID=" + solicitacaoID);
+				"Select * from SOLICITACAO where SOL_ID=" +solicitacaoID);
 		rs.next();
 		return popularSolicitacao(rs);
 	}
@@ -121,8 +121,7 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		while (rs.next()) {
 			i = rs.getInt("SOL_ID");
 		}
-
-		return i++;
+		return i;
 		// Retorna o último ID acrescido de 1 para fechar com a solicitação que
 		// está sendo inserida no momento
 	}

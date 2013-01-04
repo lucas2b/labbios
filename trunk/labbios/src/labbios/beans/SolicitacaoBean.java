@@ -25,6 +25,7 @@ public class SolicitacaoBean {
 	private Solicitacao solicitacaoSelecionada;
 	
 	private boolean flagNovaSolicitacao;
+	private boolean flagSolicitacaoCriada;
 	
 	private List<Exame> listaDeExames;
 	
@@ -53,6 +54,7 @@ public class SolicitacaoBean {
 		else
 		{
 			flagNovaSolicitacao = true;
+			flagSolicitacaoCriada = true;
 			solicitacaoSelecionada = new Solicitacao();
 			listaDeExames = new LinkedList<Exame>();
 		}
@@ -61,6 +63,13 @@ public class SolicitacaoBean {
 	
 	public String adicionarExameASolicitacao() throws ClassNotFoundException, SQLException
 	{
+		if(flagSolicitacaoCriada)
+		{
+			solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
+			//Adicionando uma SOLICITAÇÃO para que POSSAM ser incluídos os EXAMES, por uma questão de ordem
+			flagSolicitacaoCriada = false;
+		}
+		
 		Exame inserirExame = new Exame();
 		
 		TabelaPrecos tabelaPrecos = tabelaPrecosDAO.procurarIDPorConvenioEExame(convenioEscolhido, exameEscolhido);
@@ -70,7 +79,7 @@ public class SolicitacaoBean {
 		inserirExame.setEXAME_CATEGORIA_IP('A');
 		inserirExame.setSTATUS(statusDAO.procurarStatusPorID(2));
 		inserirExame.setCAD_EXAME(exameEscolhido);
-		inserirExame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoDAO.recuperarUltimoID()));		
+		inserirExame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoDAO.recuperarUltimoID()));
 		
 		listaDeExames.add(inserirExame);	
 		return "refresh";
@@ -86,9 +95,7 @@ public class SolicitacaoBean {
 	{
 		if(flagNovaSolicitacao)
 		{
-			//Rotina de nova solicitação
-			solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
-			
+			//Rotina de inserção de exames na solicitação
 			for(Exame exame : listaDeExames)
 				examesDAO.adicionarExame(exame);
 			
