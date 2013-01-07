@@ -126,4 +126,26 @@ public class Paciente {
 	public void setPACIENTE_RESPONSAVEL(String pACIENTE_RESPONSAVEL) {
 		PACIENTE_RESPONSAVEL = pACIENTE_RESPONSAVEL;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + PACIENTE_ID;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		if (PACIENTE_ID != other.PACIENTE_ID)
+			return false;
+		return true;
+	}
+	
+	
 }

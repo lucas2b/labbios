@@ -20,9 +20,10 @@
 			
 			<h1>Cadastro de Solicitação</h1>
 			Paciente:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE}">
+			<h:selectOneMenu value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE}">
+				<f:selectItems value="#{solicitacaoBean.comboPacientes}"></f:selectItems>
 				<f:converter converterId="ConversorPaciente"></f:converter>
-			</h:inputText><br></br>
+			</h:selectOneMenu><br></br>
 			Paciente temporario: 
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE_TEMPORARIO}">
 				<f:converter converterId="ConversorPacienteTemporario"></f:converter>
@@ -66,6 +67,7 @@
 				<f:selectItems value="#{solicitacaoBean.comboExames}"></f:selectItems>
 				<f:converter converterId="ConversorCadastroDeExames"></f:converter>
 			</h:selectOneMenu><br></br>
+			<h:commandButton value="Atualizar Convênios" action="refresh"></h:commandButton><br></br>
 			Convênio:
 			<h:selectOneMenu value="#{solicitacaoBean.convenioEscolhido}">
 				<f:selectItems value="#{solicitacaoBean.comboConvenios}"></f:selectItems>
@@ -90,9 +92,9 @@
 				</h:column>
 			</h:dataTable>
 			<br></br>
-			<h:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.botaoGravar}"></h:commandButton><br></br>
+			<h:commandButton value="Gravar Solicitação" action="#{solicitacaoBean.botaoGravar}"></h:commandButton>
 			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton><br></br>
-			<h:commandButton value="Refresh" action="refresh"></h:commandButton>
+			
 			</h:form>
 			<br></br>
 		</p:panel>
