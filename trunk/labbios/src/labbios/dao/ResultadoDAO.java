@@ -70,5 +70,19 @@ public class ResultadoDAO extends DatabaseUtil{
 				else
 			return false;
 	}
+	
+	public List<Resultado> recuperarResultado(Exame exameSelecionado) throws SQLException, ClassNotFoundException
+	{
+		ResultSet rs = getStatement().executeQuery("Select * from RESULTADO where EXAME_ID="+exameSelecionado.getCAD_EXAME().getCAD_EXAME_ID());
+		List<Resultado> listaDeResultados = new LinkedList<Resultado>();
+		
+		while(rs.next())
+		{
+			listaDeResultados.add(populaResultado(rs));
+		}
+		
+		return listaDeResultados;
+		
+	}
 
 }
