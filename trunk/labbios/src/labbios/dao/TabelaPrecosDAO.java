@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import labbios.db.DatabaseUtil;
 import labbios.dto.CadastroDeExame;
 import labbios.dto.Convenio;
@@ -94,6 +96,34 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		
 		return tabelaPrecos;
 	}
+	
+	
+	public List<SelectItem> associaConvenioaoExame(CadastroDeExame exame) throws SQLException, ClassNotFoundException
+	{
+		ResultSet rs = getStatement().executeQuery("Select CONVENIO_ID from TABELA_PRECOS where CAD_EXAME_ID="+exame.getCAD_EXAME_ID());
+		
+		List<Integer> listaDeConvenioID = new LinkedList<Integer>();
+		
+		while(rs.next())
+		{
+			listaDeConvenioID.add(rs.getInt("CONVENIO_ID"));
+			System.out.println(rs.getInt("CONVENIO_ID"));
+		}
+		
+		List<SelectItem> listaDeConvenios = new LinkedList<SelectItem>();
+		
+		for(int Id : listaDeConvenioID)
+		{
+			
+			listaDeConvenios.add(new SelectItem(convenioDAO.buscarConvenioPorID(Id), convenioDAO.buscarConvenioPorID(Id).getCONVENIO_NOME()));
+			
+		}
+		
+		
+		return listaDeConvenios;
+	}
+	
+	
 	
 	public TabelaPrecos popularTabelaDePrecos(ResultSet rs) throws SQLException, ClassNotFoundException
 	{

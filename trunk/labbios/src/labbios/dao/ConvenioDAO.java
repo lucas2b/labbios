@@ -11,7 +11,6 @@ import javax.faces.model.SelectItem;
 import labbios.db.DatabaseUtil;
 import labbios.dto.CadastroDeExame;
 import labbios.dto.Convenio;
-import labbios.dto.GrupoExame;
 
 public class ConvenioDAO extends DatabaseUtil{
 	
@@ -70,7 +69,5 @@ public class ConvenioDAO extends DatabaseUtil{
 		}
 		return toReturn;
 	}
-	
-	
 
 }

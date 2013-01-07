@@ -116,6 +116,7 @@ public class SolicitacaoBean {
 		return "retornarListagemSolicitacoes";
 	}
 	
+	
 	public List<Solicitacao> getSolicitacoes() throws ClassNotFoundException, SQLException
 	{
 		return solicitacaoDAO.listarSolicitacoes();
@@ -138,7 +139,16 @@ public class SolicitacaoBean {
 	
 	public List<SelectItem> getComboConvenios() throws ClassNotFoundException, SQLException
 	{
-		return  conveniosDAO.getComboConvenios();
+		
+		if(exameEscolhido != null)
+		{
+			return  tabelaPrecosDAO.associaConvenioaoExame(exameEscolhido);
+		}
+		else
+		{
+			return conveniosDAO.getComboConvenios();
+		}
+		
 	}
 	
 	public List<Exame> recuperarExamesPendentes() throws SQLException, ClassNotFoundException
@@ -175,6 +185,9 @@ public class SolicitacaoBean {
 	{
 		return solicitacaoDAO.recuperarSolicitacoesEntregues();
 	}
+	
+	
+	
 	
 	//GETTERS AND SETTERS
 	
