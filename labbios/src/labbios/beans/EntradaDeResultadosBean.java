@@ -23,11 +23,17 @@ public class EntradaDeResultadosBean {
 		if(resultadoDAO.verificaEntradaExistente(exameSelecionado) != null)
 		{
 			
-			
+			listaResultado = resultadoDAO.recuperarResultado(exameSelecionado);
 			
 			if(resultadoDAO.verificaHemograma(exameSelecionado))
+			{
 				return "resultadoTipoHemograma";
-				//chama tela própria do hemograma
+				
+			}
+			else
+			{
+				return "entradaDeResultados";
+			}
 		}
 		else
 		{
