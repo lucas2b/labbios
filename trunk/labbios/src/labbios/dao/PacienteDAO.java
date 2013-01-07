@@ -167,7 +167,7 @@ public class PacienteDAO extends DatabaseUtil {
 		List<SelectItem> toReturn = new LinkedList<SelectItem>();
 		for(Paciente paciente : listarPacientes())
 		{
-			toReturn.add(new SelectItem(paciente, paciente.getPACIENTE_NOME()+" Nasc: "+paciente.getPACIENTE_DT_NASCIMENTO().toGMTString()));
+			toReturn.add(new SelectItem(paciente, paciente.getPACIENTE_NOME()));
 			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
 		}
 		return toReturn;
