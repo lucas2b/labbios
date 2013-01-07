@@ -1,9 +1,12 @@
 package labbios.beans;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import labbios.dao.ResultadoDAO;
 import labbios.dto.Exame;
+import labbios.dto.Resultado;
 
 public class EntradaDeResultadosBean {
 	
@@ -11,14 +14,15 @@ public class EntradaDeResultadosBean {
 	private boolean flagNovaEntrada;
 	
 	private ResultadoDAO resultadoDAO = new ResultadoDAO();
+	private List<Resultado> listaResultado;
 	
 	
-	//Determina insert ou update
+	//Função de início
 	public String inicioEntradaResultado(Exame exameSelecionado) throws SQLException, ClassNotFoundException
 	{
 		if(resultadoDAO.verificaEntradaExistente(exameSelecionado) != null)
 		{
-			//Caso de entrada de resultados já existente, prosseguir com um UPDATE
+			
 			
 			
 			if(resultadoDAO.verificaHemograma(exameSelecionado))
@@ -27,7 +31,6 @@ public class EntradaDeResultadosBean {
 		}
 		else
 		{
-			//Caso de entrada de resultados ainda não existente, prosseguir com um INSERT
 			
 			if(resultadoDAO.verificaHemograma(exameSelecionado))
 				return "resultadoTipoHemograma";
