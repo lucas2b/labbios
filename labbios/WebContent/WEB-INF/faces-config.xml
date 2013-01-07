@@ -65,6 +65,11 @@
 		<managed-bean-class>labbios.beans.PacienteBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>entradaDeResultadosBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.EntradaDeResultadosBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<converter>
 		<converter-id>ConversorGrupoExame</converter-id>
 		<converter-class>labbios.conversores.ConversorGrupoExame</converter-class>
