@@ -10,7 +10,6 @@ import javax.faces.model.SelectItem;
 
 import labbios.db.DatabaseUtil;
 import labbios.dto.Animal;
-import labbios.dto.Medico;
 
 public class AnimalDAO extends DatabaseUtil{
 	
@@ -44,6 +43,7 @@ public class AnimalDAO extends DatabaseUtil{
 																			"ANIMAL_PROPRIETARIO=?, " +
 																			"ANIMAL_FONE=? " +
 																			"where ANIMAL_ID=?");
+		
 		ps.setString(1, animal.getANIMAL_NOME());
 		ps.setString(2, animal.getANIMAL_ESPECIE());
 		ps.setDate(3, animal.getANIMAL_DT_NASCIMENTO());
