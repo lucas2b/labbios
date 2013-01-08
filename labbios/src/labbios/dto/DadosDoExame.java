@@ -4,7 +4,7 @@ public class DadosDoExame {
 	
 	private String PARAMETRO;
 	private String UNIDADE;
-	private int REFERENCIA;
+	private String REFERENCIA;
 	private CadastroDeExame EXAME;
 	
 	public CadastroDeExame getEXAME() {
@@ -25,12 +25,14 @@ public class DadosDoExame {
 	public void setUNIDADE(String uNIDADE) {
 		UNIDADE = uNIDADE;
 	}
-	public int getREFERENCIA() {
+	public String getREFERENCIA() {
 		return REFERENCIA;
 	}
-	public void setREFERENCIA(int rEFERENCIA) {
+	public void setREFERENCIA(String rEFERENCIA) {
 		REFERENCIA = rEFERENCIA;
 	}
+
+	
 	
 	
 

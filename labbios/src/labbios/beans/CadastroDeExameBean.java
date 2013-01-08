@@ -33,7 +33,7 @@ public class CadastroDeExameBean {
 	private String codigoSUS;
 	private int grupoEtiqueta;
 	private char tipoDeEntrada;
-	private boolean flagGravar = false; 
+	private boolean flagGravar; 
 	
 	private List<DadosDoExameSuporte> listaSuporte;
 	private GrupoExame grupoExame;
@@ -122,18 +122,17 @@ public class CadastroDeExameBean {
 	public String entrarDadosDoExame()
 	{
 		try{
-		boolean flagRetorno = dadosDoExameDAO.verificarExistenciaDeTabela(nomeDoExameSelecionado);
+		boolean tabelaExistente = dadosDoExameDAO.verificarExistenciaDeTabela(nomeDoExameSelecionado);
 		
-		if(flagRetorno)
+		if(tabelaExistente)
 		{	
 			//Se existe a listagem deste exame
-			System.out.println("Existe Listagem");
+			flagGravar = false;
 			listaSuporte = dadosDoExameDAO.recuperarTabela(nomeDoExameSelecionado);
 		}
 		else
 		{
 			//Caso não exista, apresenta 35 linhas em branco
-			System.out.println("Nao Existe Listagem");
 			flagGravar = true;
 			listaSuporte = new LinkedList<DadosDoExameSuporte>();
 			
@@ -150,14 +149,6 @@ public class CadastroDeExameBean {
 		
 		return "entrarDadosDoExame";
 
-	}
-	
-	public List<DadosDoExameSuporte> getListaSuporte() {
-		return listaSuporte;
-	}
-	
-	public void setListaSuporte(List<DadosDoExameSuporte> listaSuporte) {
-		this.listaSuporte = listaSuporte;
 	}
 	
 	public String gravarDadosDoExame() throws ClassNotFoundException, SQLException
@@ -277,5 +268,13 @@ public class CadastroDeExameBean {
 
 	public void setNomeDoExameSelecionado(String nomeDoExameSelecionado) {
 		this.nomeDoExameSelecionado = nomeDoExameSelecionado;
+	}
+	
+	public List<DadosDoExameSuporte> getListaSuporte() {
+		return listaSuporte;
+	}
+	
+	public void setListaSuporte(List<DadosDoExameSuporte> listaSuporte) {
+		this.listaSuporte = listaSuporte;
 	}
 }

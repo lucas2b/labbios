@@ -7,9 +7,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import labbios.db.DatabaseUtil;
+import labbios.dto.DadosDoExame;
 import labbios.dto.DadosDoExameSuporte;
+import labbios.dto.Exame;
+import labbios.dto.Resultado;
 
 public class DadosDoExameDAO extends DatabaseUtil{
+	
+	CadastroDeExameDAO cadExameDAO = new CadastroDeExameDAO();
 	
 	public boolean verificarExistenciaDeTabela(String exameNome) throws ClassNotFoundException, SQLException
 	{
@@ -33,7 +38,7 @@ public class DadosDoExameDAO extends DatabaseUtil{
 		{
 			DadosDoExameSuporte dadosDoExameSuporte = new DadosDoExameSuporte();
 			dadosDoExameSuporte.setParametro(rs.getString("PARAMETRO"));
-			dadosDoExameSuporte.setReferencia(rs.getInt("REFERENCIA"));
+			dadosDoExameSuporte.setReferencia(rs.getString("REFERENCIA"));
 			dadosDoExameSuporte.setUnidade(rs.getString("UNIDADE"));
 			listaDadosDoExame.add(dadosDoExameSuporte);
 		}
@@ -42,19 +47,15 @@ public class DadosDoExameDAO extends DatabaseUtil{
 	}
 	
 	
-	public boolean adicionarDadosDoExame(List<DadosDoExameSuporte> listaSuporte, String exameNome) throws SQLException, ClassNotFoundException
-	{
-		boolean retorno = false;
-		
-		getStatement().executeUpdate("Create table " +exameNome+ " (ID int AUTO_INCREMENT PRIMARY KEY, PARAMETRO varchar(255), REFERENCIA int, UNIDADE varchar(255) ) ");
-		
-		
+	public void adicionarDadosDoExame(List<DadosDoExameSuporte> listaSuporte, String exameNome) throws SQLException, ClassNotFoundException
+	{	
+		getStatement().executeUpdate("Create table " +exameNome+ " (ID int AUTO_INCREMENT PRIMARY KEY, PARAMETRO varchar(255), REFERENCIA varchar(255), UNIDADE varchar(255) ) ");
 		
 		for(DadosDoExameSuporte dado : listaSuporte)
 		{
 			
 			
-			if(dado.getParametro() == null || dado.getReferencia() == 0 || dado.getUnidade() == null)
+			if(dado.getParametro() == null || dado.getReferencia() == null || dado.getUnidade() == null)
 			{
 				
 			}
@@ -64,21 +65,23 @@ public class DadosDoExameDAO extends DatabaseUtil{
 			}
 		}
 		
-		return retorno;
 	
 	}
 	
-	public boolean atualizarDadosDoExame(List<DadosDoExameSuporte> listaSuporte, String exameNome) throws ClassNotFoundException, SQLException
+	public void atualizarDadosDoExame(List<DadosDoExameSuporte> listaSuporte, String exameNome) throws ClassNotFoundException, SQLException
 	{
-		boolean retorno = false;
+	
+		int i=1;
+		
 		for(DadosDoExameSuporte dado : listaSuporte)
 		{
-			int i=1;
 			getStatement().executeUpdate("Update " +exameNome+ " set PARAMETRO='" +dado.getParametro()+ "', REFERENCIA='" +dado.getReferencia()+"', UNIDADE='"+dado.getUnidade()+"' where ID="+i);
 			i++;
 		}
 		
-		return retorno;
 	}
+	
+	//PARTE DE ENTRADA DE RESULTADOS
+	
 
 }

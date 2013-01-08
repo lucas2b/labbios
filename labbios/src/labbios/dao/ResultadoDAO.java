@@ -1,5 +1,6 @@
 package labbios.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -14,7 +15,7 @@ public class ResultadoDAO extends DatabaseUtil{
 	ExameDAO exameDAO = new ExameDAO();
 	
 	
-	public List<Resultado> verificaEntradaExistente(Exame exameSelecionado) throws SQLException, ClassNotFoundException
+	public boolean verificaEntradaExistente(Exame exameSelecionado) throws SQLException, ClassNotFoundException
 	{
 		/*
 		 * executa QUERY em cima da tabela RESULTADO procurando pelo ID do exame selecionado
@@ -22,30 +23,32 @@ public class ResultadoDAO extends DatabaseUtil{
 		
 		ResultSet rs = getStatement().executeQuery("Select * from RESULTADO where EXAME_ID="+exameSelecionado.getEXAME_ID());
 		
-		if(rs != null)
-		{
-			List<Resultado> listaDeResultados = new LinkedList<Resultado>();
-			while(rs.next())
-			{
-				listaDeResultados.add(populaResultado(rs));
-			}
-			return listaDeResultados;
-		}
+		if(rs.next())
+			return true;
 		else
-		{
-			return null;
-		}
+			return false;
 	}
 	
-	public boolean inserirNovoResultado()
+	public boolean inserirNovoResultado(Resultado resultado) throws SQLException, ClassNotFoundException
 	{
+		PreparedStatement ps = getPreparedStatement("Insert into RESULTADO set RESULT_VALOR_ENCONTRADO=?," +
+																				" RESULT_PARAMETRO=?," +
+																				" RESULT_REFERENCIA=?," +
+																				" RESULT_UNIDADE=?," +
+																				" RESULT_OBSERVACOES=?," +
+																				" EXAME_ID=?");
 		
+		ps.setString(1, resultado.getRESULT_VALOR_ENCONTRADO());
+		ps.setString(2, resultado.getRESULT_PARAMETRO());
+		
+		
+		return false;
 	}
 	
 	
-	public boolean updateResultadoExistente()
+	public boolean updateResultadoExistente(List<Resultado> listaDeResultados)
 	{
-		
+		return false;
 	}
 	
 	public Resultado populaResultado(ResultSet rs) throws SQLException, ClassNotFoundException
@@ -61,15 +64,6 @@ public class ResultadoDAO extends DatabaseUtil{
 		return resultado;
 	}
 	
-	public boolean verificaHemograma(Exame exameSelecionado)
-	{
-		//Verificar se o exame é um hemograma
-		
-		if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
-			return true;
-				else
-			return false;
-	}
 	
 	public List<Resultado> recuperarResultado(Exame exameSelecionado) throws SQLException, ClassNotFoundException
 	{
