@@ -70,6 +70,11 @@
 		<managed-bean-class>labbios.beans.EntradaDeResultadosBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>medicoBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.MedicoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<converter>
 		<converter-id>ConversorGrupoExame</converter-id>
 		<converter-class>labbios.conversores.ConversorGrupoExame</converter-class>
@@ -241,6 +246,22 @@
 		<navigation-case>
 			<from-outcome>editarExameCadastrado</from-outcome>
 			<to-view-id>/ManutencaoDoSistema/CadastroDeExames/editarExameCadastrado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>manutencaoDeMedicos</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listarMedicos</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
