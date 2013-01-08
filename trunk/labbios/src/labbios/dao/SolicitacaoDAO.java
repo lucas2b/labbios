@@ -54,7 +54,7 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		return retorno;
 	}
 
-	public boolean editarSolicitacao(Solicitacao solicitacao)
+	public boolean atualizarSolicitacao(Solicitacao solicitacao)
 			throws SQLException, ClassNotFoundException {
 		boolean retorno = false;
 		PreparedStatement ps = getPreparedStatement("Update SOLICITACAO set PACIENTE_ID=?,"
@@ -81,7 +81,7 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		ps.setInt(7, solicitacao.getPACIENTE_TEMPORARIO()
 				.getPACIENTE_TEMPORARIO_ID());
 		ps.setString(8, solicitacao.getSOL_OBS());
-		ps.setDouble(8, solicitacao.getSOL_DESC_PERCENTUAL());
+		ps.setDouble(9, solicitacao.getSOL_DESC_PERCENTUAL());
 		ps.setDouble(10, solicitacao.getSOL_DESC_DINHEIRO());
 		ps.setInt(11, solicitacao.getSOL_FLAG_URGENTE());
 		ps.setDouble(12, solicitacao.getSOL_VALOR_PAGO());
