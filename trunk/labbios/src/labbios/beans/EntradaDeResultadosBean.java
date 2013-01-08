@@ -2,9 +2,11 @@ package labbios.beans;
 
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import labbios.dao.DadosDoExameDAO;
+import labbios.dao.ExameDAO;
 import labbios.dao.ResultadoDAO;
 import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.Exame;
@@ -41,10 +43,12 @@ public class EntradaDeResultadosBean {
 	//DAOS usados
 	private DadosDoExameDAO dadosDoExameDAO = new DadosDoExameDAO();
 	private ResultadoDAO resultadoDAO = new ResultadoDAO();
+	private ExameDAO exameDAO = new ExameDAO();
 	
 	
 	//Listas de auxílio
 	private List<Resultado> listaDeResultado; //Lista de inserção recuperada à partir do molde + entradas do resultado
+	private List<Resultado> listaSuporte;
 	private List<DadosDoExameSuporte> tabelaMolde; //Molde da tabela de exames recuperado
 	
 	
@@ -68,7 +72,21 @@ public class EntradaDeResultadosBean {
 		{
 			//INSERT
 			flagNovaEntrada = true;
+			
 			tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME());
+			listaSuporte = new LinkedList<Resultado>();
+			for(DadosDoExameSuporte molde: tabelaMolde)
+			{
+				Resultado resultado = new Resultado();
+				//resultado.setEXAME(exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID()));
+				resultado.setRESULT_PARAMETRO(molde.getParametro());
+				resultado.setRESULT_UNIDADE(molde.getUnidade());
+				resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
+				resultado.setRESULT_VALOR_ENCONTRADO("");
+				resultado.setRESULT_OBSERVACOES("");
+				listaSuporte.add(resultado);
+			}
+			
 			
 			if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
 				return "resultadoTipoHemograma";
@@ -140,6 +158,14 @@ public class EntradaDeResultadosBean {
 
 	public void setTabelaMolde(List<DadosDoExameSuporte> tabelaMolde) {
 		this.tabelaMolde = tabelaMolde;
+	}
+
+	public List<Resultado> getListaSuporte() {
+		return listaSuporte;
+	}
+
+	public void setListaSuporte(List<Resultado> listaSuporte) {
+		this.listaSuporte = listaSuporte;
 	}
 
 }
