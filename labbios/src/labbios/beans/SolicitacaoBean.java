@@ -75,8 +75,9 @@ public class SolicitacaoBean {
 		return "refresh";
 	}
 	
-	public String editarListaDeExames()
+	public String atualizarConvenios()
 	{
+		convenioEscolhido = null;
 		return "refresh";
 	}
 	
@@ -102,7 +103,21 @@ public class SolicitacaoBean {
 			solicitacaoDAO.atualizarSolicitacao(solicitacaoSelecionada);
 			
 			for(Exame exame : listaDeExames)
-				examesDAO.atualizarExame(exame);
+			{
+				
+				if(exame.getEXAME_ID() == 0)
+				{
+					exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoSelecionada.getSOL_ID()));
+					examesDAO.adicionarExame(exame);
+				}
+				else
+				{
+					
+					exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoSelecionada.getSOL_ID()));
+					examesDAO.atualizarExame(exame);
+				}
+				
+			}
 			
 			return retornarListagemSolicitacoes();
 		}

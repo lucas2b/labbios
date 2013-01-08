@@ -10,7 +10,6 @@ import javax.faces.model.SelectItem;
 
 import labbios.db.DatabaseUtil;
 import labbios.dto.CadastroDeExame;
-import labbios.dto.Medico;
 
 public class CadastroDeExameDAO extends DatabaseUtil{
 	
