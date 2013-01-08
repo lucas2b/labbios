@@ -177,14 +177,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>index.xhtml</display-name>
-		<from-view-id>/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>acessoPermitido</from-outcome>
-			<to-view-id>/entradaPrincipal.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</display-name>
 		<from-view-id>/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</from-view-id>
 		<navigation-case>
@@ -249,19 +241,27 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</display-name>
-		<from-view-id>/AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</from-view-id>
+		<display-name>loginBios.xhtml</display-name>
+		<from-view-id>/loginBios.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>manutencaoDeMedicos</from-outcome>
-			<to-view-id>/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</to-view-id>
+			<from-outcome>acessoPermitido</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</display-name>
-		<from-view-id>/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</from-view-id>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>listarMedicos</from-outcome>
-			<to-view-id>/AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</to-view-id>
+			<from-outcome>acessoNegado</from-outcome>
+			<to-view-id>/acessoNegado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>acessoNegado.xhtml</display-name>
+		<from-view-id>/acessoNegado.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>returnLogin</from-outcome>
+			<to-view-id>/loginBios.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

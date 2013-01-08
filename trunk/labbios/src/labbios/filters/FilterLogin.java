@@ -20,19 +20,38 @@ public class FilterLogin implements Filter {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public String retornaPagina(){
+		return "";
+	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
+		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
 		String url = req.getRequestURL().toString();
+		System.out.println("##URL = "+url);
 		
 		Object logged = req.getSession().getAttribute("userlogged");
+		System.out.println("## logged = "+logged);
 		
+		if(logged == null  || ((Boolean)logged).booleanValue() == false){
+			//Permite Login
+			if(!url.contains("login")){
+				resp.sendRedirect("loginBios.xhtml");
+			}
+		}
 		
-		if(url.contains("index"))
+		try {
+			chain.doFilter(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/*if(url.contains("index"))
 		{	
 			chain.doFilter(request, response);
 		}
@@ -41,15 +60,13 @@ public class FilterLogin implements Filter {
 			
 			if(logged == null)
 			{
-				resp.sendRedirect("/labbios/index.xhtml");				
+				System.out.println("##Login Nulo");
+				resp.sendRedirect("/labbios/loginBios.xhtml");				
 			}
 			else
 			{
 				chain.doFilter(request, response);
-			}
-		}
-
-		
+			}*/
 		
 	}
 
