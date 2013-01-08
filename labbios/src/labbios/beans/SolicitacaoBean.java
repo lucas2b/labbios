@@ -92,7 +92,6 @@ public class SolicitacaoBean {
 			{
 				exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoDAO.recuperarUltimoID()));
 				examesDAO.adicionarExame(exame);
-				
 			}
 			
 			return retornarListagemSolicitacoes();
@@ -100,12 +99,12 @@ public class SolicitacaoBean {
 		else
 		{
 			//Rotina de edição de solicitação
-			solicitacaoDAO.editarSolicitacao(solicitacaoSelecionada);
+			solicitacaoDAO.atualizarSolicitacao(solicitacaoSelecionada);
 			
 			for(Exame exame : listaDeExames)
-				examesDAO.editarExame(exame);
+				examesDAO.atualizarExame(exame);
 			
-			return manutencaoDeSolicitacao();
+			return retornarListagemSolicitacoes();
 		}
 	}
 	
@@ -139,16 +138,10 @@ public class SolicitacaoBean {
 	
 	public List<SelectItem> getComboConvenios() throws ClassNotFoundException, SQLException
 	{
-		
 		if(exameEscolhido != null)
-		{
 			return  tabelaPrecosDAO.associaConvenioaoExame(exameEscolhido);
-		}
 		else
-		{
-			return conveniosDAO.getComboConvenios();
-		}
-		
+			return conveniosDAO.getComboConvenios();	
 	}
 	
 	public List<Exame> recuperarExamesPendentes() throws SQLException, ClassNotFoundException

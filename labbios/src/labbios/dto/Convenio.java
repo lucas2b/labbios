@@ -2,6 +2,22 @@ package labbios.dto;
 
 public class Convenio {
 	
+	private int CONVENIO_ID;
+	private String CONVENIO_NOME;
+	
+	public int getCONVENIO_ID() {
+		return CONVENIO_ID;
+	}
+	public void setCONVENIO_ID(int cONVENIO_ID) {
+		CONVENIO_ID = cONVENIO_ID;
+	}
+	public String getCONVENIO_NOME() {
+		return CONVENIO_NOME;
+	}
+	public void setCONVENIO_NOME(String cONVENIO_NOME) {
+		CONVENIO_NOME = cONVENIO_NOME;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -21,21 +37,6 @@ public class Convenio {
 		if (CONVENIO_ID != other.CONVENIO_ID)
 			return false;
 		return true;
-	}
-	private int CONVENIO_ID;
-	private String CONVENIO_NOME;
-	
-	public int getCONVENIO_ID() {
-		return CONVENIO_ID;
-	}
-	public void setCONVENIO_ID(int cONVENIO_ID) {
-		CONVENIO_ID = cONVENIO_ID;
-	}
-	public String getCONVENIO_NOME() {
-		return CONVENIO_NOME;
-	}
-	public void setCONVENIO_NOME(String cONVENIO_NOME) {
-		CONVENIO_NOME = cONVENIO_NOME;
 	}
 
 }

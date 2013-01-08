@@ -40,7 +40,7 @@ public class ExameDAO extends DatabaseUtil {
 		return retorno;
 	}
 
-	public boolean editarExame(Exame exame) throws ClassNotFoundException,
+	public boolean atualizarExame(Exame exame) throws ClassNotFoundException,
 			SQLException {
 		boolean retorno = false;
 
