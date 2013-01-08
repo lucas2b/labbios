@@ -15,6 +15,36 @@
 <ui:composition template="/WEB-INF/templates/templateMain.xhtml">
 	<ui:define name="content">
 	    <p:panel>
+	    <h:form>
+	    <h:outputText value="Manutenção de Médicos"></h:outputText><br></br>
+	    <h:outputText value="Nome: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_NOME}"></h:inputText><br></br>
+	    <h:outputText value="CRM: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_CRM}"></h:inputText><br></br>
+	    <h:outputText value="Especialidade"></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_ESPECIALIDADE}"></h:inputText><br></br>
+	    <h:outputText value="Cidade: "></h:outputText>
+	    <h:selectOneMenu value="#{medicoBean.medicoSelecionado.CIDADE}">
+	    	<f:selectItems value="#{medicoBean.comboCidades}"></f:selectItems>
+	    	<f:converter converterId="ConversorCidade"></f:converter>
+	    </h:selectOneMenu><br></br>
+	    <h:outputText value="Bairro: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_BAIRRO}"></h:inputText><br></br>
+	    <h:outputText value="Endereço: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_ENDERECO}"></h:inputText><br></br>
+	    <h:outputText value="Email: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_EMAIL}"></h:inputText><br></br>
+	    <h:outputText value="Telefone: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_FONE}"></h:inputText><br></br>
+	    <h:outputText value="Celular: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_CELULAR}"></h:inputText><br></br>
+	    <h:outputText value="CEP: "></h:outputText>
+	    <h:inputText value="#{medicoBean.medicoSelecionado.MEDICO_CEP}"></h:inputText><br></br>
+	    <h:commandButton value="Gravar" action="#{medicoBean.botaoGravar}"></h:commandButton>
+	    <h:commandButton value="Voltar Para listagem" action="#{medicoBean.voltarParaListagem}"></h:commandButton>
+	    </h:form>
+	    
+	    
 		
 		</p:panel>
 	</ui:define>

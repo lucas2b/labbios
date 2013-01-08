@@ -22,7 +22,7 @@ public class MedicoDAO extends DatabaseUtil{
 		boolean retorno = false;
 		
 		PreparedStatement ps = getPreparedStatement("Insert into MEDICO set MEDICO_NOME=?," +
-																			" MEDICO_ESPCECIALIDADE=?," +
+																			" MEDICO_ESPECIALIDADE=?," +
 																			" MEDICO_CRM=?," +
 																			" MEDICO_ENDERECO=?," +
 																			" MEDICO_BAIRRO=?," +
@@ -53,7 +53,7 @@ public class MedicoDAO extends DatabaseUtil{
 				boolean retorno = false;
 		
 				PreparedStatement ps = getPreparedStatement("Update MEDICO set MEDICO_NOME=?," +
-																			" MEDICO_ESPCECIALIDADE=?," +
+																			" MEDICO_ESPECIALIDADE=?," +
 																			" MEDICO_CRM=?," +
 																			" MEDICO_ENDERECO=?," +
 																			" MEDICO_BAIRRO=?," +

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>  
+  		
+    </h:head> 
+	
+<h:body>
+<ui:composition template="/WEB-INF/templates/templateMain.xhtml">
+	<ui:define name="content">
+	    <p:panel>
+	    <h:form>
+	    <h:outputText value="Adicionar Novo Médico"></h:outputText><br></br>
+	    <h:commandButton value="Adicionar" action="#{medicoBean.manutencaoDeMedicos}"></h:commandButton><br></br>
+	    
+	    <h1><h:outputText value="Listagem De Médicos"></h:outputText></h1><br></br>
+	    <h:dataTable border="1" value="#{medicoBean.medicos}" var="item">
+	    <h:column>
+	    	<f:facet name="header">
+	    		<h:outputText value="Nome"></h:outputText>
+	    	</f:facet>
+	    	<h:outputText value="#{item.MEDICO_NOME}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	    	<f:facet name="header">
+	    		<h:outputText value="Especialidade"></h:outputText>
+	    	</f:facet>
+	    	<h:outputText value="#{item.MEDICO_ESPECIALIDADE}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	    	<f:facet name="header">
+	    		<h:outputText value="CRM"></h:outputText>
+	    	</f:facet>
+	    	<h:outputText value="#{item.MEDICO_CRM}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	    	<f:facet name="header">
+	    		<h:outputText value="Celular"></h:outputText>
+	    	</f:facet>
+	    	<h:outputText value="#{item.MEDICO_CELULAR}"></h:outputText>
+	    </h:column>
+	    <h:column>
+	    	<f:facet name="header">
+	    		<h:outputText value="Ações"></h:outputText>
+	    	</f:facet>
+	    	<h:commandLink value="Editar" action="#{medicoBean.manutencaoDeMedicos}">
+	    	<f:setPropertyActionListener target="#{medicoBean.medicoSelecionado}" value="#{item}"></f:setPropertyActionListener>
+	    	</h:commandLink>
+	    </h:column>
+	    
+	    </h:dataTable>
+		</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>

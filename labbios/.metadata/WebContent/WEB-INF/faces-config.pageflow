@@ -16,6 +16,8 @@
   <nodes xsi:type="pageflow:PFPage" name="ManutencaoDoSistema/CadastroDeExames/editarExameCadastrado.xhtml" x="852" y="2148" id="pf13571750955775" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" inlinks="pf13571750955773" path="/ManutencaoDoSistema/CadastroDeExames/editarExameCadastrado.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="ManutencaoDoSistema/CadastroDeExames/entrarDadosDeExame.xhtml" x="780" y="2556" id="pf13571750955776" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf13571750955774" inlinks="pf13571750955771" path="/ManutencaoDoSistema/CadastroDeExames/entrarDadosDeExame.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="ManutencaoDoSistema/CadastroDeExames/valorDeExamePorConvenio.xhtml" x="852" y="2304" id="pf13571750955777" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf13571750955772" path="/ManutencaoDoSistema/CadastroDeExames/valorDeExamePorConvenio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml" x="948" y="71" id="pf13576504610190" outlinks="pf13576504610191" inlinks="pf13576504610192" path="/AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml" x="948" y="240" id="pf13576504610193" outlinks="pf13576504610192" inlinks="pf13576504610191" path="/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml"/>
   <links id="pf13562369890922" target="pf13562367930331" source="pf13562367930330" outcome="editarGrupoDeExames"/>
   <links id="pf13562369890923" target="pf13562367930330" source="pf13562367930331" outcome="grupoDeExames">
     <bendPoints d1Height="-64" d2Width="291" d2Height="-64"/>
@@ -49,5 +51,10 @@
   <links id="pf13571750955772" target="pf13571750955777" source="pf13571750955760" outcome="associarValorAoExame"/>
   <links id="pf13571750955773" target="pf13571750955775" source="pf13571750955760" outcome="editarExameCadastrado">
     <bendPoints d1Width="-2" d1Height="-155" d2Width="-439" d2Height="1"/>
+  </links>
+  <links id="pf13576504610191" target="pf13576504610193" source="pf13576504610190" outcome="manutencaoDeMedicos"/>
+  <links id="pf13576504610192" target="pf13576504610190" source="pf13576504610193" outcome="listarMedicos">
+    <bendPoints d1Width="190" d2Width="183" d2Height="169"/>
+    <bendPoints d1Width="190" d1Height="-170" d2Width="183" d2Height="-1"/>
   </links>
 </pageflow:Pageflow>
