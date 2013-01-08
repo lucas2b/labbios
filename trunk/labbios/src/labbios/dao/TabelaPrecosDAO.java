@@ -107,7 +107,6 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		while(rs.next())
 		{
 			listaDeConvenioID.add(rs.getInt("CONVENIO_ID"));
-			System.out.println(rs.getInt("CONVENIO_ID"));
 		}
 		
 		List<SelectItem> listaDeConvenios = new LinkedList<SelectItem>();

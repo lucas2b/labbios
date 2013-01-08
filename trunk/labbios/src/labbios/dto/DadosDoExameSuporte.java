@@ -3,7 +3,7 @@ package labbios.dto;
 public class DadosDoExameSuporte {
 	private String parametro;
 	private String unidade;
-	private int referencia;
+	private String referencia;
 	
 	public String getParametro() {
 		return parametro;
@@ -17,12 +17,14 @@ public class DadosDoExameSuporte {
 	public void setUnidade(String unidade) {
 		this.unidade = unidade;
 	}
-	public int getReferencia() {
+	public String getReferencia() {
 		return referencia;
 	}
-	public void setReferencia(int referencia) {
+	public void setReferencia(String referencia) {
 		this.referencia = referencia;
 	}
+
+	
 	
 	
 
