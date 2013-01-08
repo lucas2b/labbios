@@ -15,7 +15,73 @@
 <ui:composition template="/WEB-INF/templates/templateMain.xhtml">
 	<ui:define name="content">
 	    <p:panel>
-		Tipo Comum
+		<p:dataTable var="item" value="#{entradaDeResultadosBean.tabelaMolde}" id="dadosExame" editable="true">
+
+        <f:facet name="header">
+            Dados Do Exame
+        </f:facet>
+
+        <p:column headerText="Parametros" style="width:125px">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{item.}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{item.parametro}" style="width:100%"/>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+        <p:column headerText="Valor encontrado" style="width:125px">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{item.parametro}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{item.parametro}" style="width:100%"/>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+        <p:column headerText="Valor de referência" style="width:125px">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{item.referencia}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{item.referencia}" style="width:100%" label="Year"/>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+         <p:column headerText="Unidade" style="width:125px">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{item.unidade}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{item.unidade}" style="width:100%" label="Year"/>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+        
+         <p:column headerText="Observações" style="width:125px">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{item.unidade}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText value="#{item.unidade}" style="width:100%" label="Year"/>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+ 
+
+        <p:column headerText="Editar" style="width:50px">
+            <p:rowEditor />
+        </p:column>
+
+    </p:dataTable>
 		</p:panel>
 	</ui:define>
 </ui:composition>

@@ -126,4 +126,20 @@ public class EntradaDeResultadosBean {
 		this.exameSelecionado = exameSelecionado;
 	}
 
+	public List<Resultado> getListaDeResultado() {
+		return listaDeResultado;
+	}
+
+	public void setListaDeResultado(List<Resultado> listaDeResultado) {
+		this.listaDeResultado = listaDeResultado;
+	}
+
+	public List<DadosDoExameSuporte> getTabelaMolde() {
+		return tabelaMolde;
+	}
+
+	public void setTabelaMolde(List<DadosDoExameSuporte> tabelaMolde) {
+		this.tabelaMolde = tabelaMolde;
+	}
+
 }

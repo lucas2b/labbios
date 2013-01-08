@@ -67,7 +67,7 @@
 				<f:selectItems value="#{solicitacaoBean.comboExames}"></f:selectItems>
 				<f:converter converterId="ConversorCadastroDeExames"></f:converter>
 			</h:selectOneMenu>
-			<h:commandButton value="Atualizar Convênios" action="#{solicitacaoBean.editarListaDeExames}"></h:commandButton><br></br>
+			<h:commandButton value="Atualizar Convênios" action="#{solicitacaoBean.atualizarConvenios}"></h:commandButton><br></br>
 			Convênio:
 			<h:selectOneMenu value="#{solicitacaoBean.convenioEscolhido}" id="comboConvenios">
 				<f:selectItems value="#{solicitacaoBean.comboConvenios}"></f:selectItems>
@@ -89,6 +89,18 @@
 						<h:outputText value="Convenio"></h:outputText>
 					</f:facet>
 					<h:outputText value="#{item.EXAME_VALOR.CONVENIO.CONVENIO_NOME}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Solicitação ID"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{item.SOLICITACAO.SOL_ID}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Exame ID"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{item.EXAME_ID}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">

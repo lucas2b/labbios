@@ -42,9 +42,7 @@ public class GrupoExameDAO extends DatabaseUtil{
 		List<GrupoExame> listaGrupoExame = new LinkedList<GrupoExame>();
 		while(rs.next())
 		{
-			GrupoExame grupoExame = new GrupoExame();
-			grupoExame = popularGrupoExame(rs);
-			listaGrupoExame.add(grupoExame);
+			listaGrupoExame.add(popularGrupoExame(rs));
 		}
 		
 		return listaGrupoExame;
