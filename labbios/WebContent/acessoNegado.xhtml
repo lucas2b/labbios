@@ -12,10 +12,13 @@
     </h:head> 
 	
 <h:body>
-<ui:composition template="/WEB-INF/templates/templateMain.xhtml">
+<ui:composition template="/WEB-INF/templates/templateLogin.xhtml">
 	<ui:define name="content">
 	    <p:panel>
-		 Acesso Negado
+		 Acesso Negado Teste
+		 <h:form>
+		 <h:commandButton action="#{loginBean.redirecionaInicio}" value="Retorna"/>
+		 </h:form>
 		</p:panel>
 	</ui:define>
 </ui:composition>
