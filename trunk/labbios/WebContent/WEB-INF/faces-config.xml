@@ -272,5 +272,30 @@
 			<to-view-id>/AdministracaoDoSistema/EntradaDeResultados/resultadoTipoHemograma.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>loginBios.xhtml</display-name>
+		<from-view-id>/loginBios.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>acessoPermitido</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>index.xhtml</display-name>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>acessoNegado</from-outcome>
+			<to-view-id>/acessoNegado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>acessoNegado.xhtml</display-name>
+		<from-view-id>/acessoNegado.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>returnLogin</from-outcome>
+			<to-view-id>/loginBios.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>
