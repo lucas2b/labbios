@@ -241,27 +241,35 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>loginBios.xhtml</display-name>
-		<from-view-id>/loginBios.xhtml</from-view-id>
+		<display-name>AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>acessoPermitido</from-outcome>
-			<to-view-id>/index.xhtml</to-view-id>
+			<from-outcome>manutencaoDeMedicos</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>index.xhtml</display-name>
-		<from-view-id>/index.xhtml</from-view-id>
+		<display-name>AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/CadastroDeMedicos/cadastroMedicos.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>acessoNegado</from-outcome>
-			<to-view-id>/acessoNegado.xhtml</to-view-id>
+			<from-outcome>listarMedicos</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/CadastroDeMedicos/listagemDeMedicos.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>acessoNegado.xhtml</display-name>
-		<from-view-id>/acessoNegado.xhtml</from-view-id>
+		<display-name>AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>returnLogin</from-outcome>
-			<to-view-id>/loginBios.xhtml</to-view-id>
+			<from-outcome>entradaDeResultadosTipoComum</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/EntradaDeResultados/entradaDeResultadosTipoComum.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>resultadoTipoHemograma</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/EntradaDeResultados/resultadoTipoHemograma.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
