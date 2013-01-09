@@ -177,15 +177,15 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</display-name>
+		<display-name>listagemDePacientes</display-name>
 		<from-view-id>/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>manutencaoDePacientes</from-outcome>
+			<from-outcome>adicionaNovoPaciente</from-outcome>
 			<to-view-id>/AdministracaoDoSistema/CadastroDePacientes/manutencaoDePacientes.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>AdministracaoDoSistema/CadastroDePacientes/manutencaoDePacientes.xhtml</display-name>
+		<display-name>manutencaoDePacientes</display-name>
 		<from-view-id>/AdministracaoDoSistema/CadastroDePacientes/manutencaoDePacientes.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>listarPacientes</from-outcome>
@@ -295,6 +295,14 @@
 		<navigation-case>
 			<from-outcome>returnLogin</from-outcome>
 			<to-view-id>/loginBios.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>listagemDePacientes</display-name>
+		<from-view-id>/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listaPacientes</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
