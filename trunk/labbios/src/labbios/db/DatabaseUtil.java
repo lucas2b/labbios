@@ -9,13 +9,14 @@ import java.sql.Connection;
 
 public class DatabaseUtil {
 	
-	private Connection connection;
+	private static Connection connection;
 	
 	//Sempre retorna uma conexão, se não existe ativa cria uma
 	public Connection getConnection() throws SQLException, ClassNotFoundException
 	{
 		if(connection == null)
 		{
+			System.out.println("Nova conexão realizada");
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/labbiosV2", "root", "root");
 		}

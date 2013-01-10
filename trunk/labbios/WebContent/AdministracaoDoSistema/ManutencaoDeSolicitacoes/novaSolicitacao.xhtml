@@ -42,25 +42,11 @@
 			</h:inputText><br></br>
 			Observações:
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_OBS}" id="observacoes"></h:inputText><br></br>
-			Valor:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR}" id="valor">
-			</h:inputText><br></br>
-			Desconto Percentual:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_PERCENTUAL}" id="descontoPercentual">
-			</h:inputText><br></br>
-			Desconto em Dinheiro:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_DINHEIRO}" id="descontoEmDinheiro">
-			</h:inputText><br></br>
 			Flag Urgente (1 ou 0):
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_FLAG_URGENTE}" id="flagUrgente">
 			</h:inputText><br></br>
-			Valor Pago:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}" id="valorPago">
-			</h:inputText><br></br>
-			
 			<br></br>
-			<br></br>
-			<h1>Inclusão de Exames</h1><br></br>
+			<h1>Inclusão de Exames:</h1><br></br>
 			
 			Exame:
 			<h:selectOneMenu value="#{solicitacaoBean.exameEscolhido}" onchange="submit()" id="comboExames">
@@ -76,7 +62,7 @@
 			<br></br>
 			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton><br></br>
 			
-			<h1>Listagem de Exames</h1>
+			<h1>Listagem de Exames:</h1>
 			<h:dataTable value="#{solicitacaoBean.listaDeExames}" var="item" border="1" id="tabelaDeExames">
 				<h:column>
 					<f:facet name="header">
@@ -92,18 +78,6 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Solicitação ID"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{item.SOLICITACAO.SOL_ID}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Exame ID"></h:outputText>
-					</f:facet>
-					<h:outputText value="#{item.EXAME_ID}"></h:outputText>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
 						<h:outputText value="Ações"></h:outputText>
 					</f:facet>
 					<h:commandLink value="Resultado" action="#{entradaDeResultadosBean.inicioEntradaResultado}">
@@ -112,6 +86,20 @@
 				</h:column>
 			</h:dataTable>
 			<br></br>
+			<h1> <h:outputText value="Controle de Pagamento: "></h:outputText> </h1><br></br>
+			Desconto Percentual:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_PERCENTUAL}" id="descontoPercentual">
+			</h:inputText><br></br>
+			Desconto em Dinheiro:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_DINHEIRO}" id="descontoEmDinheiro">
+			</h:inputText><br></br>
+			Valor Total:
+			<h:outputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR}" id="valor">
+			</h:outputText><br></br>
+			Valor Pago:
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}" id="valorPago">
+			</h:inputText><br></br>
+			
 			<h:commandButton value="Gravar Solicitação" action="#{solicitacaoBean.botaoGravar}"></h:commandButton>
 			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton><br></br>
 			

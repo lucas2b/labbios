@@ -1,7 +1,6 @@
 package labbios.beans;
 
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,27 +11,6 @@ import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.Exame;
 import labbios.dto.Resultado;
 
-
-/*
- * Autor: Lucas Bonine
- * 
- * Descrição de funcionamento do mecanismo de gravação de resultados na tabela RESULTADOS:
- * 
- * Caso 1 - Gravação de novos resultados (INSERT):
- * Ao iniciar a grade de entrada de resultados, a mesma será populada com um molde
- * da tabela previamente criada com os dados característicos de cada exame. Nesta
- * grade conterão não apenas estes dados, mas também os dados inseridos pelo usuário,
- * ou seja os resultados do exame. As colunas de dados dos resultados serão armazenadas
- * em outra lista, que não seja a lista de molde (listaDeResultado). No momento de inserção
- * dos resultados a listaDeResultado adicionará um a um os parâmetros do molde e também
- * os dados de entrada do resultado, mixando em ordem dados do molde e de entrada do usuário.
- * 
- * Caso 1 - Update de resultados existentes:
- * Neste caso, o resultado e os dados de molde já estão compostos em uma lista previamente
- * criada e adicionada ao banco (INSERT), então basta fazer um update dos ID's do exame
- * com a lista alterada vinda da grade
- * 
- */
 
 public class EntradaDeResultadosBean {
 	
@@ -111,7 +89,7 @@ public class EntradaDeResultadosBean {
 			resultadoDAO.updateResultadoExistente(listaSuporte);
 		}
 		
-		return "refresh";
+		return retornarParaSolicitacao();
 	}
 	
 	public String retornarParaSolicitacao()
