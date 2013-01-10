@@ -40,7 +40,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		
 		ps.setString(1, resultado.getRESULT_VALOR_ENCONTRADO());
 		ps.setString(2, resultado.getRESULT_PARAMETRO());
-		
+		ps.execute();
 		
 		return false;
 	}

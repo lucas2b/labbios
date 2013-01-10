@@ -29,8 +29,6 @@ public class AnimalDAO extends DatabaseUtil{
 		
 		
 		retorno = ps.execute();
-		ps.close();
-		
 		return retorno;
 	}
 	
@@ -53,8 +51,6 @@ public class AnimalDAO extends DatabaseUtil{
 		
 		
 		retorno = ps.execute();
-		ps.close();
-		
 		return retorno;
 	}
 	

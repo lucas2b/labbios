@@ -54,7 +54,6 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		ps.setString(9, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 		
@@ -87,7 +86,6 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		ps.setInt(10, cadastroDeExame.getCAD_EXAME_ID());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}

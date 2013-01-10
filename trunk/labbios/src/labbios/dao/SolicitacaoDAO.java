@@ -49,7 +49,6 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		ps.setDouble(12, solicitacao.getSOL_VALOR_PAGO());
 
 		retorno = ps.execute();
-		ps.close();
 
 		return retorno;
 	}
@@ -88,7 +87,6 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		ps.setInt(13, solicitacao.getSOL_ID());
 
 		retorno = ps.execute();
-		ps.close();
 
 		return retorno;
 	}

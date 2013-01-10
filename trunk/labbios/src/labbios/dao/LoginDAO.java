@@ -19,7 +19,6 @@ public class LoginDAO extends DatabaseUtil{
 		ps.setString(2, login.getLOGIN_SENHA());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}
@@ -34,7 +33,6 @@ public class LoginDAO extends DatabaseUtil{
 		
 		ResultSet rs = ps.executeQuery();
 		retorno = rs.next();
-		rs.close();
 		
 		return retorno;
 	}
@@ -49,7 +47,6 @@ public class LoginDAO extends DatabaseUtil{
 			retornoLogin = popularLogin(rs);
 		}
 		
-		rs.close();
 		return retornoLogin;
 	}
 

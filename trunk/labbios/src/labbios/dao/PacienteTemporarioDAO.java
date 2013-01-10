@@ -24,7 +24,6 @@ public class PacienteTemporarioDAO extends DatabaseUtil{
 		ps.setString(4, pacienteTemporario.getPACIENTE_TEMPORARIO_OBS());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}
@@ -44,7 +43,6 @@ public class PacienteTemporarioDAO extends DatabaseUtil{
 		ps.setInt(5, pacienteTemporario.getPACIENTE_TEMPORARIO_ID());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}

@@ -43,7 +43,6 @@ public class MedicoDAO extends DatabaseUtil{
 		ps.setInt(10, medico.getCIDADE().getCIDADE_ID());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}
@@ -76,7 +75,6 @@ public class MedicoDAO extends DatabaseUtil{
 		ps.setInt(11, medico.getMEDICO_ID());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}

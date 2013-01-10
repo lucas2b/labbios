@@ -19,7 +19,6 @@ public class TipoLaboratorioDAO extends DatabaseUtil{
 		ps.setString(1, tipoLaboratorio.getTIPO_LABORATORIO_NOME());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}
@@ -29,7 +28,6 @@ public class TipoLaboratorioDAO extends DatabaseUtil{
 		PreparedStatement ps = getPreparedStatement("Update TIPO_LABORATORIO set TIPO_LABORATORIO_NOME=?");
 		ps.setString(1, tipoLaboratorio.getTIPO_LABORATORIO_NOME());
 		ps.execute();
-		ps.close();
 	}
 	
 	public List<TipoLaboratorio> listarTipoLaboratorio() throws ClassNotFoundException, SQLException

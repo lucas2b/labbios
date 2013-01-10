@@ -30,7 +30,6 @@ public class MaterialExameDAO extends DatabaseUtil{
 		ps.setString(1, materialExame.getMATERIAL_EXAME_ABREV());
 		ps.setString(2, materialExame.getMATERIAL_EXAME_NOME());
 		retorno = ps.execute();
-		ps.close();
 		return retorno;
 	}
 	
@@ -42,7 +41,6 @@ public class MaterialExameDAO extends DatabaseUtil{
 		ps.setString(2, materialExame.getMATERIAL_EXAME_NOME());
 		ps.setInt(3, materialExame.getMATERIAL_EXAME_ID());
 		retorno = ps.execute();
-		ps.close();
 		return retorno;
 	}
 	

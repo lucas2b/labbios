@@ -19,7 +19,10 @@ public class ConversorCadastroDeExames implements Converter{
 			cadastroDeExame = cadastroDeExameDAO.buscarCadastroDeExamePorID(Integer.parseInt(arg2));
 		}
 		
-		catch(Exception e){}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return cadastroDeExame;
 	}
 

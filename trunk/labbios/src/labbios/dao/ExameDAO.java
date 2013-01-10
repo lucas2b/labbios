@@ -35,7 +35,6 @@ public class ExameDAO extends DatabaseUtil {
 		ps.setInt(6, exame.getEXAME_VALOR().getTAB_PRECOS_ID());
 
 		retorno = ps.execute();
-		ps.close();
 
 		return retorno;
 	}
@@ -60,7 +59,6 @@ public class ExameDAO extends DatabaseUtil {
 		ps.setInt(7, exame.getEXAME_ID());
 
 		retorno = ps.execute();
-		ps.close();
 
 		return retorno;
 	}
