@@ -155,7 +155,7 @@ public class PacienteDAO extends DatabaseUtil {
 		paciente.setPACIENTE_ID(rs.getInt("PACIENTE_ID"));
 		paciente.setPACIENTE_NOME(rs.getString("PACIENTE_NOME"));
 		paciente.setPACIENTE_SEXO(rs.getString("PACIENTE_SEXO").charAt(0));
-		paciente.setPACIENTE_CEP(rs.getString("PACIENTE_CPF"));
+		paciente.setPACIENTE_CPF(rs.getString("PACIENTE_CPF"));
 		paciente.setPACIENTE_RG(rs.getString("PACIENTE_RG"));
 		paciente.setPACIENTE_DT_NASCIMENTO(rs.getDate("PACIENTE_DT_NASC"));
 		paciente.setPACIENTE_FONE(rs.getString("PACIENTE_FONE"));
