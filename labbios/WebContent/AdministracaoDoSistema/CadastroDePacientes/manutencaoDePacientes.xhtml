@@ -17,34 +17,40 @@
 	    <p:panel>
 			<h:form>
 			<h:messages></h:messages>
-			<h1>Cadastro de Pacientes</h1>
-			Nome: <h:inputText id="nome" value="#{pacienteBean.pacienteSelecionado.PACIENTE_NOME}"></h:inputText><br></br>
-			Sexo: <h:inputText id="sexo" value="#{pacienteBean.pacienteSelecionado.PACIENTE_SEXO}"></h:inputText><br></br>
-			CPF: <h:inputText id="cpf" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CPF}"></h:inputText><br></br>
-			Rg: <h:inputText id="rg" value="#{pacienteBean.pacienteSelecionado.PACIENTE_RG}"></h:inputText><br></br>
-			Fone: <h:inputText id="fone" value="#{pacienteBean.pacienteSelecionado.PACIENTE_FONE}"></h:inputText><br></br>
-			Celular: <h:inputText id="celular" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CELULAR}"></h:inputText><br></br>
-			Data de Nascimento:
-			<p:calendar id="dataalteracao" value="#{pacienteBean.dataNascimento}"   
-			 locale="pt_BR" pattern="dd/MM/yyyy" title="Campo obrigatorio. Informe a data"  
-    		 label="Data de nascimento">  
-		    	<f:convertDateTime pattern="dd/MM/yyyy" />  
-		    	<p:tooltip for="dataalteracao" showEvent="focus" hideEvent="blur"/>  
-			</p:calendar>   
-			<br></br>
-			Cidade:
+			<h1><h:outputText value="Cadastro de Pacientes"/></h1>
+			<h:outputText value="Nome: "/>
+			<h:inputText id="nome" value="#{pacienteBean.pacienteSelecionado.PACIENTE_NOME}"></h:inputText><br></br>
+			<h:outputText value="Sexo: "/>
+			<h:inputText id="sexo" value="#{pacienteBean.pacienteSelecionado.PACIENTE_SEXO}"></h:inputText><br></br>
+			<h:outputText value="CPF: "/>
+			<h:inputText id="cpf" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CPF}"></h:inputText><br></br>
+			<h:outputText value="RG: "/> 
+			<h:inputText id="rg" value="#{pacienteBean.pacienteSelecionado.PACIENTE_RG}"></h:inputText><br></br>
+			<h:outputText value="Fone: "/>
+			<h:inputText id="fone" value="#{pacienteBean.pacienteSelecionado.PACIENTE_FONE}"></h:inputText><br></br>
+			<h:outputText value="Celular: "/>
+			<h:inputText id="celular" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CELULAR}"></h:inputText><br></br>
+
+			<h:outputText value="Cidade: "/>
 			<h:selectOneMenu id="cidade" value="#{pacienteBean.pacienteSelecionado.CIDADE}">
 				<f:selectItems value="#{pacienteBean.comboCidades}"></f:selectItems>
 				<f:converter converterId="ConversorCidade"></f:converter>
 			</h:selectOneMenu><br></br>
-			Endereço: <h:inputText id="endereço" value="#{pacienteBean.pacienteSelecionado.PACIENTE_ENDERECO}"></h:inputText><br></br>
-			Bairro: <h:inputText id="bairro" value="#{pacienteBean.pacienteSelecionado.PACIENTE_BAIRRO}"></h:inputText><br></br>
-			CEP: <h:inputText id="cep" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CEP}"></h:inputText><br></br>
-			E-mail: <h:inputText id="email" value="#{pacienteBean.pacienteSelecionado.PACIENTE_EMAIL}"></h:inputText><br></br>
-			Medicações: <h:inputText id="medicações" value="#{pacienteBean.pacienteSelecionado.PACIENTE_OBS_MEDICACOES}"></h:inputText><br></br>
-			Convenios: <h:inputText id="convenios" value="#{pacienteBean.pacienteSelecionado.PACIENTE_OBS_CONVENIOS}"></h:inputText><br></br>
-			Responsável: <h:inputText id="responsavel" value="#{pacienteBean.pacienteSelecionado.PACIENTE_RESPONSAVEL}"></h:inputText><br></br>
-			<h:commandButton value="Gravar" action="#{pacienteBean.adicionarPaciente}"></h:commandButton><br></br>
+			<h:outputText value="Endereço: "/>
+			<h:inputText id="endereço" value="#{pacienteBean.pacienteSelecionado.PACIENTE_ENDERECO}"></h:inputText><br></br>
+			<h:outputText value="Bairro: "/>
+			<h:inputText id="bairro" value="#{pacienteBean.pacienteSelecionado.PACIENTE_BAIRRO}"></h:inputText><br></br>
+			<h:outputText value="CEP: "/>
+			<h:inputText id="cep" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CEP}"></h:inputText><br></br>
+			<h:outputText value="E-mail: "/>
+			<h:inputText id="email" value="#{pacienteBean.pacienteSelecionado.PACIENTE_EMAIL}"></h:inputText><br></br>
+			<h:outputText value="Medicações: "/>
+			<h:inputText id="medicações" value="#{pacienteBean.pacienteSelecionado.PACIENTE_OBS_MEDICACOES}"></h:inputText><br></br>
+			<h:outputText value="Convênios: "/>
+			<h:inputText id="convenios" value="#{pacienteBean.pacienteSelecionado.PACIENTE_OBS_CONVENIOS}"></h:inputText><br></br>
+			<h:outputText value="Responsável: "/>
+			<h:inputText id="responsavel" value="#{pacienteBean.pacienteSelecionado.PACIENTE_RESPONSAVEL}"></h:inputText><br></br>
+			<h:commandButton value="Gravar" action="#{pacienteBean.botaoGravar}"></h:commandButton><br></br>
 			<h:commandButton value="Voltar a Listagem" action="#{pacienteBean.voltarListagem}"></h:commandButton>
 			</h:form>
 		</p:panel>

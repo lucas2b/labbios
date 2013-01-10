@@ -296,5 +296,13 @@
 			<to-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>manutencaoDePacientes</display-name>
+		<from-view-id>/AdministracaoDoSistema/CadastroDePacientes/manutencaoDePacientes.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>editarSolicitacao</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

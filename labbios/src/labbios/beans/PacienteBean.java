@@ -11,38 +11,46 @@ import labbios.dao.PacienteDAO;
 import labbios.dto.Paciente;
 
 public class PacienteBean {
-	PacienteDAO pacienteDAO = new PacienteDAO();
-	CidadeDAO cidadesDAO = new CidadeDAO();
-	Paciente pacienteSelecionado;
+	private PacienteDAO pacienteDAO = new PacienteDAO();
+	private CidadeDAO cidadesDAO = new CidadeDAO();
+	private boolean flagNovoPaciente = false;
+	private Paciente pacienteSelecionado;
 	private Date dataNascimento;
 
 	//Função que dá início ao tratamento de pacientes
 	public String manutencaoDePacientes()
 	{
 		if(pacienteSelecionado == null)
+		{
+			flagNovoPaciente = true;
 			pacienteSelecionado = new Paciente();
+			
+		}
 		
 		return "manutencaoDePacientes";
 	}
 	
 	public String voltarListagem()
 	{
-		pacienteSelecionado = null;;
+		pacienteSelecionado = null;
+		flagNovoPaciente = false;
 		return "listarPacientes";
 	}
 	
-	public String adicionarPaciente() throws ClassNotFoundException, SQLException
+	public String botaoGravar() throws ClassNotFoundException, SQLException
 	{
-
-		pacienteSelecionado.setPACIENTE_DT_NASCIMENTO(new java.sql.Date(dataNascimento.getTime()));
-		pacienteDAO.adicionarPaciente(pacienteSelecionado);
-		return "refresh";
-	}
-	
-	public String editarPaciente() throws ClassNotFoundException, SQLException
-	{
-		pacienteDAO.editarPaciente(pacienteSelecionado);
-		return "refresh";
+		if(flagNovoPaciente)
+		{
+			System.out.println("Novo paciente");
+			pacienteDAO.adicionarPaciente(pacienteSelecionado);
+		}
+		else
+		{
+			System.out.println("Update de paciente");
+			pacienteDAO.editarPaciente(pacienteSelecionado);
+		}
+		
+		return voltarListagem();
 	}
 	
 	public List<Paciente> getPacientes() throws ClassNotFoundException, SQLException

@@ -18,8 +18,12 @@ public class PacienteDAO extends DatabaseUtil {
 	
 	CidadeDAO cidadeDAO = new CidadeDAO();
 	
-	public boolean adicionarPaciente(Paciente paciente) throws ClassNotFoundException, SQLException
+	public boolean adicionarPaciente(Paciente paciente)
 	{
+		try
+		{
+			
+		
 		PreparedStatement ps = getPreparedStatement("Insert into PACIENTE set PACIENTE_NOME=?," +
 																			" PACIENTE_SEXO=?," +
 																			" PACIENTE_CPF=?," +
@@ -35,12 +39,14 @@ public class PacienteDAO extends DatabaseUtil {
 																			" PACIENTE_OBS_CONVENIOS=?," +
 																			" PACIENTE_DT_CRIACAO=?," +
 																			" CIDADE_ID=?," +
-																			" PACIENTE_RESPONSAVEL=?");
+																			" PACIENTE_RESPONSAVEL=? ");
+		System.out.println(paciente.getPACIENTE_NOME());
+		
 		ps.setString(1, paciente.getPACIENTE_NOME());
 		ps.setString(2, String.valueOf(paciente.getPACIENTE_SEXO()) );
 		ps.setString(3, paciente.getPACIENTE_CPF());
 		ps.setString(4, paciente.getPACIENTE_RG());
-		ps.setDate(5, paciente.getPACIENTE_DT_NASCIMENTO());
+		ps.setDate(5, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 		ps.setString(6, paciente.getPACIENTE_FONE());
 		ps.setString(7, paciente.getPACIENTE_CELULAR());
 		ps.setString(8, paciente.getPACIENTE_ENDERECO());
@@ -49,17 +55,23 @@ public class PacienteDAO extends DatabaseUtil {
 		ps.setString(11, paciente.getPACIENTE_EMAIL());
 		ps.setString(12, paciente.getPACIENTE_OBS_MEDICACOES());
 		ps.setString(13, paciente.getPACIENTE_OBS_CONVENIOS());
-		ps.setDate(14, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+		ps.setDate(14,  new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 		ps.setInt(15, paciente.getCIDADE().getCIDADE_ID());
 		ps.setString(16, paciente.getPACIENTE_RESPONSAVEL());
 		
-		boolean retorno = ps.execute();
-		return retorno;
+		ps.execute();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
 	public boolean editarPaciente(Paciente paciente) throws ClassNotFoundException, SQLException
 	{
-			PreparedStatement ps = getPreparedStatement("Update PACIENTE set PACIENTE_NOME=?," +
+		
+		PreparedStatement ps = getPreparedStatement("Update PACIENTE set PACIENTE_NOME=?," +
 																			" PACIENTE_SEXO=?," +
 																			" PACIENTE_CPF=?," +
 																			" PACIENTE_RG=?," +
@@ -80,7 +92,7 @@ public class PacienteDAO extends DatabaseUtil {
 		ps.setString(2, String.valueOf(paciente.getPACIENTE_SEXO()) );
 		ps.setString(3, paciente.getPACIENTE_CPF());
 		ps.setString(4, paciente.getPACIENTE_RG());
-		ps.setDate(5, paciente.getPACIENTE_DT_NASCIMENTO());
+		ps.setDate(5, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 		ps.setString(6, paciente.getPACIENTE_FONE());
 		ps.setString(7, paciente.getPACIENTE_CELULAR());
 		ps.setString(8, paciente.getPACIENTE_ENDERECO());
@@ -97,6 +109,7 @@ public class PacienteDAO extends DatabaseUtil {
 		boolean retorno = ps.execute();
 		return retorno;
 	}
+	
 	
 	
 	public Paciente procurarPacientePorID(int pacienteID) throws ClassNotFoundException, SQLException

@@ -6,10 +6,10 @@
   <nodes xsi:type="pageflow:PFPage" name="materiaisDeExames/editarMaterialExame" x="122" y="946" id="pf13565520759349" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13565520759348" inlinks="pf13565520759347" path="/materiaisDeExames/editarMaterialExame.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="554" y="2300" id="pf13568862992792" referenceLink="//@navigationRule.17/@fromViewId|" outlinks="pf13578338460660" inlinks="pf13578338460661" path="/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="entradaPrincipal.xhtml" x="122" y="1330" id="pf13571421540472" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" path="/entradaPrincipal.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="listagemDePacientes" x="338" y="2684" id="pf13571480051583" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" outlinks="pf13571480051594 pf13578338460662" inlinks="pf13571480051595 pf13578338460662" path="/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="manutencaoDePacientes" x="122" y="2684" id="pf13571480051596" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf13571480051595" inlinks="pf13571480051594" path="/AdministracaoDoSistema/CadastroDePacientes/manutencaoDePacientes.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listagemDePacientes" x="122" y="2760" id="pf13571480051583" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" outlinks="pf13571480051594 pf13578338460662" inlinks="pf13571480051595 pf13578338460662" path="/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="manutencaoDePacientes" x="111" y="2952" id="pf13571480051596" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf13571480051595 pf13578535087500" inlinks="pf13571480051594" path="/AdministracaoDoSistema/CadastroDePacientes/manutencaoDePacientes.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="AdministracaoDoSistema/ManutencaoDeSolicitacoes/listagemDeSolicitacoes.xhtml" x="338" y="3068" id="pf13571572913917" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf13571572913918" inlinks="pf135715872567310" path="/AdministracaoDoSistema/ManutencaoDeSolicitacoes/listagemDeSolicitacoes.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml" x="122" y="3356" id="pf13571572913919" referenceLink="//@navigationRule.20/@navigationCase.0/@toViewId|" outlinks="pf135715872567310 pf13576694983344 pf13576740597318" inlinks="pf13571572913918 pf13578338460673" path="/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml" x="122" y="3356" id="pf13571572913919" referenceLink="//@navigationRule.20/@navigationCase.0/@toViewId|" outlinks="pf135715872567310 pf13576694983344 pf13576740597318" inlinks="pf13571572913918 pf13578338460673 pf13578535087500" path="/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="ManutencaoDoSistema/CadastroDeExames/cadastrarNovoExame.xhtml" x="338" y="1714" id="pf13571750955760" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf13571750955771 pf13571750955772 pf13571750955773" inlinks="pf13571750955774" path="/ManutencaoDoSistema/CadastroDeExames/cadastrarNovoExame.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="ManutencaoDoSistema/CadastroDeExames/editarExameCadastrado.xhtml" x="554" y="1522" id="pf13571750955775" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf13571750955773" path="/ManutencaoDoSistema/CadastroDeExames/editarExameCadastrado.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="ManutencaoDoSistema/CadastroDeExames/entrarDadosDeExame.xhtml" x="122" y="1714" id="pf13571750955776" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf13571750955774" inlinks="pf13571750955771" path="/ManutencaoDoSistema/CadastroDeExames/entrarDadosDeExame.xhtml"/>
@@ -60,10 +60,11 @@
   <links id="pf13578338460695" target="pf13578338460684" source="pf13578338460696" outcome="returnLogin"/>
   <links id="pf13578338460662" target="pf13571480051583" source="pf13571480051583" outcome="listaPacientes">
     <bendPoints d1Height="-36" d2Height="-36"/>
-    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
-    <bendPoints d1Width="-64" d2Width="-64"/>
+    <bendPoints d1Width="-114" d1Height="-36" d2Width="-114" d2Height="-36"/>
+    <bendPoints d1Width="-114" d1Height="-2" d2Width="-114" d2Height="-2"/>
   </links>
   <links id="pf13578338460673" target="pf13571572913919" source="pf13576694983396" outcome="editarSolicitacao">
     <bendPoints d1Width="2" d1Height="-126" d2Width="488" d2Height="-2"/>
   </links>
+  <links id="pf13578535087500" target="pf13571572913919" source="pf13571480051596" outcome="editarSolicitacao"/>
 </pageflow:Pageflow>
