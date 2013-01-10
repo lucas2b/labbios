@@ -60,7 +60,7 @@ public class EntradaDeResultadosBean {
 		{
 			//UPDATE
 			flagNovaEntrada = false;
-			listaDeResultado = resultadoDAO.recuperarResultado(exameSelecionado);
+			listaSuporte = resultadoDAO.recuperarResultado(exameSelecionado);
 			
 			if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
 				return "resultadoTipoHemograma";
@@ -78,7 +78,7 @@ public class EntradaDeResultadosBean {
 			for(DadosDoExameSuporte molde: tabelaMolde)
 			{
 				Resultado resultado = new Resultado();
-				//resultado.setEXAME(exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID()));
+				resultado.setEXAME(exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID()));
 				resultado.setRESULT_PARAMETRO(molde.getParametro());
 				resultado.setRESULT_UNIDADE(molde.getUnidade());
 				resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
@@ -102,34 +102,21 @@ public class EntradaDeResultadosBean {
 		{
 			//Chamar INSERT
 			
-			Iterator<Resultado> iteradorResultados = listaDeResultado.iterator();
-			Iterator<DadosDoExameSuporte> iteradorMolde = tabelaMolde.iterator();
-			
-			Resultado resultadoComposto = new Resultado();
-			
-			while(iteradorResultados.hasNext() && iteradorMolde.hasNext())
-			{
-				resultadoComposto.setEXAME(exameSelecionado);
-				
-				resultadoComposto.setRESULT_OBSERVACOES(((Resultado)iteradorResultados.next()).getRESULT_OBSERVACOES()); //virá da tela
-				resultadoComposto.setRESULT_VALOR_ENCONTRADO(((Resultado)iteradorResultados.next()).getRESULT_VALOR_ENCONTRADO()); //virá da tela
-				
-				
-				//Estes virão do iteradorMolde
-				resultadoComposto.setRESULT_PARAMETRO( ((DadosDoExameSuporte)iteradorMolde.next()).getParametro() );
-				resultadoComposto.setRESULT_UNIDADE( ((DadosDoExameSuporte)iteradorMolde.next()).getUnidade() );
-				resultadoComposto.setRESULT_VALOR_REFERENCIA( String.valueOf(((DadosDoExameSuporte)iteradorMolde.next()).getReferencia()) );
-				
-				resultadoDAO.inserirNovoResultado(resultadoComposto);
-				
-			}
+			resultadoDAO.inserirNovoResultado(listaSuporte);
 		}
 		else
 		{
 			//Chamar UPDATE
+			
+			resultadoDAO.updateResultadoExistente(listaSuporte);
 		}
 		
 		return "refresh";
+	}
+	
+	public String retornarParaSolicitacao()
+	{
+		return "editarSolicitacao";
 	}
 	
 	

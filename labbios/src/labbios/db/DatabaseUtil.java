@@ -9,7 +9,7 @@ import java.sql.Connection;
 
 public class DatabaseUtil {
 	
-	private Connection connection = null;
+	private Connection connection;
 	
 	//Sempre retorna uma conexão, se não existe ativa cria uma
 	public Connection getConnection() throws SQLException, ClassNotFoundException
@@ -19,8 +19,7 @@ public class DatabaseUtil {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/labbiosV2", "root", "root");
 		}
-		
-		return connection;
+		return connection;		
 	}
 	
 	
