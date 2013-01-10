@@ -29,8 +29,9 @@ public class ResultadoDAO extends DatabaseUtil{
 			return false;
 	}
 	
-	public boolean inserirNovoResultado(Resultado resultado) throws SQLException, ClassNotFoundException
+	public boolean inserirNovoResultado(List<Resultado> listaResultadosParam) throws SQLException, ClassNotFoundException
 	{
+		boolean retorno = false;
 		PreparedStatement ps = getPreparedStatement("Insert into RESULTADO set RESULT_VALOR_ENCONTRADO=?," +
 																				" RESULT_PARAMETRO=?," +
 																				" RESULT_REFERENCIA=?," +
@@ -38,17 +39,46 @@ public class ResultadoDAO extends DatabaseUtil{
 																				" RESULT_OBSERVACOES=?," +
 																				" EXAME_ID=?");
 		
-		ps.setString(1, resultado.getRESULT_VALOR_ENCONTRADO());
-		ps.setString(2, resultado.getRESULT_PARAMETRO());
-		ps.execute();
+		for(Resultado listaResultados : listaResultadosParam)
+		{
+			ps.setString(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
+			ps.setString(2, listaResultados.getRESULT_PARAMETRO());
+			ps.setString(3, listaResultados.getRESULT_VALOR_REFERENCIA());
+			ps.setString(4, listaResultados.getRESULT_UNIDADE());
+			ps.setString(5, listaResultados.getRESULT_OBSERVACOES());
+			ps.setInt(6, listaResultados.getEXAME().getEXAME_ID());
+			
+			retorno = ps.execute();
+		}
 		
-		return false;
+		return retorno;
 	}
 	
 	
-	public boolean updateResultadoExistente(List<Resultado> listaDeResultados)
+	public boolean updateResultadoExistente(List<Resultado> listaResultadosParam) throws SQLException, ClassNotFoundException
 	{
-		return false;
+		boolean retorno = false;
+		PreparedStatement ps = getPreparedStatement("Update RESULTADO set RESULT_VALOR_ENCONTRADO=?," +
+																				" RESULT_PARAMETRO=?," +
+																				" RESULT_REFERENCIA=?," +
+																				" RESULT_UNIDADE=?," +
+																				" RESULT_OBSERVACOES=?," +
+																				" EXAME_ID=? where RESULT_ID=?");
+		
+		for(Resultado listaResultados : listaResultadosParam)
+		{
+			ps.setString(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
+			ps.setString(2, listaResultados.getRESULT_PARAMETRO());
+			ps.setString(3, listaResultados.getRESULT_VALOR_REFERENCIA());
+			ps.setString(4, listaResultados.getRESULT_UNIDADE());
+			ps.setString(5, listaResultados.getRESULT_OBSERVACOES());
+			ps.setInt(6, listaResultados.getEXAME().getEXAME_ID());
+			ps.setInt(7, listaResultados.getRESULT_ID());
+			
+			retorno = ps.execute();
+		}
+		
+		return retorno;
 	}
 	
 	public Resultado populaResultado(ResultSet rs) throws SQLException, ClassNotFoundException
@@ -67,7 +97,7 @@ public class ResultadoDAO extends DatabaseUtil{
 	
 	public List<Resultado> recuperarResultado(Exame exameSelecionado) throws SQLException, ClassNotFoundException
 	{
-		ResultSet rs = getStatement().executeQuery("Select * from RESULTADO where EXAME_ID="+exameSelecionado.getCAD_EXAME().getCAD_EXAME_ID());
+		ResultSet rs = getStatement().executeQuery("Select * from RESULTADO where EXAME_ID="+exameSelecionado.getEXAME_ID());
 		List<Resultado> listaDeResultados = new LinkedList<Resultado>();
 		
 		while(rs.next())

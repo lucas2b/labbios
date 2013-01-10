@@ -72,10 +72,9 @@ public class ExameDAO extends DatabaseUtil {
 
 	public Exame buscarExamePorID(int exameID) throws ClassNotFoundException,
 			SQLException {
-		PreparedStatement ps = getPreparedStatement("Select * from EXAME where EXAME_ID=?");
-		ps.setInt(1, exameID);
-		ResultSet rs = ps.executeQuery();
-
+		
+		ResultSet rs = getStatement().executeQuery("Select * from EXAME where EXAME_ID="+exameID);
+		rs.next();
 		return popularExame(rs);
 
 	}
