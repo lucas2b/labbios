@@ -54,7 +54,6 @@ public class PacienteDAO extends DatabaseUtil {
 		ps.setString(16, paciente.getPACIENTE_RESPONSAVEL());
 		
 		boolean retorno = ps.execute();
-		ps.close();
 		return retorno;
 	}
 	
@@ -96,7 +95,6 @@ public class PacienteDAO extends DatabaseUtil {
 		ps.setInt(17, paciente.getPACIENTE_ID());
 		
 		boolean retorno = ps.execute();
-		ps.close();
 		return retorno;
 	}
 	

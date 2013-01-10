@@ -24,8 +24,7 @@ public class CidadeDAO extends DatabaseUtil{
 		ps.setString(1, cidade.getCIDADE_NOME());
 		ps.setInt(2, cidade.getUF().getUF_ID());
 		retorno = ps.execute();
-		
-		ps.close();
+
 		return retorno;
 	}
 	
@@ -38,7 +37,6 @@ public class CidadeDAO extends DatabaseUtil{
 		ps.setInt(3, cidade.getCIDADE_ID());
 		retorno = ps.execute();
 		
-		ps.close();
 		return retorno;
 	}
 	

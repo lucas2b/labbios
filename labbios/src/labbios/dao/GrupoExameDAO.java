@@ -20,7 +20,6 @@ public class GrupoExameDAO extends DatabaseUtil{
 		ps.setString(2, grupoExame.getGRUPO_EXAME_NOME());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}
@@ -33,7 +32,6 @@ public class GrupoExameDAO extends DatabaseUtil{
 		ps.setInt(3, grupoExame.getGRUPO_EXAME_ID());
 	
 		ps.execute();
-		ps.close();
 	}
 	
 	public List<GrupoExame> listarGrupoExames() throws ClassNotFoundException, SQLException

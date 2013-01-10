@@ -30,7 +30,6 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		ps.setInt(3, tabelaPrecos.getEXAME().getCAD_EXAME_ID());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 	}
@@ -49,7 +48,6 @@ public class TabelaPrecosDAO extends DatabaseUtil{
 		ps.setInt(4, tabelaPrecos.getTAB_PRECOS_ID());
 		
 		retorno = ps.execute();
-		ps.close();
 		
 		return retorno;
 		

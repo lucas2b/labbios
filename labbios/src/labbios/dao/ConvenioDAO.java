@@ -20,7 +20,6 @@ public class ConvenioDAO extends DatabaseUtil{
 		PreparedStatement ps = getPreparedStatement("Insert into CONVENIO set CONVENIO_NOME=?");
 		ps.setString(1, convenio.getCONVENIO_NOME());
 		retorno = ps.execute();
-		ps.close();
 		return retorno;
 	}
 	

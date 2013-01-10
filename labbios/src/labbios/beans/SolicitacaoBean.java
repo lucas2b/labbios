@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import labbios.dao.CadastroDeExameDAO;
@@ -75,11 +76,11 @@ public class SolicitacaoBean {
 		return "refresh";
 	}
 	
-	public String atualizarConvenios()
-	{
-		convenioEscolhido = null;
-		return "refresh";
-	}
+//	public String atualizarConvenios()
+//	{
+//		
+//		return "refresh";
+//	}
 	
 	
 	public String botaoGravar() throws ClassNotFoundException, SQLException
