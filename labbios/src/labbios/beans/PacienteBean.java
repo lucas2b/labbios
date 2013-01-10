@@ -26,7 +26,6 @@ public class PacienteBean {
 			pacienteSelecionado = new Paciente();
 			
 		}
-		
 		return "manutencaoDePacientes";
 	}
 	
