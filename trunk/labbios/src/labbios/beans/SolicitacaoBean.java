@@ -22,23 +22,33 @@ import labbios.dto.TabelaPrecos;
 
 
 public class SolicitacaoBean {
+
+	//DAOS
+	
+	private CadastroDeExameDAO cadastroDeExamesDAO = new CadastroDeExameDAO();
+	private SolicitacaoDAO     solicitacaoDAO      = new SolicitacaoDAO();
+	private TabelaPrecosDAO    tabelaPrecosDAO     = new TabelaPrecosDAO();
+	private ConvenioDAO        conveniosDAO        = new ConvenioDAO();
+	private PacienteDAO        pacientesDAO        = new PacienteDAO();
+	private MedicoDAO          medicosDAO          = new MedicoDAO();
+	private StatusDAO          statusDAO           = new StatusDAO();
+	private ExameDAO           examesDAO           = new ExameDAO();
 	private Solicitacao solicitacaoSelecionada;
 	
-	private boolean flagNovaSolicitacao;
+	//------------------------------------------------------------------------
 	
+	//Componentes de TELA
+	
+	private Convenio 		 convenioEscolhido;
+	private CadastroDeExame  exameEscolhido;
+	private boolean			 flagUrgente;
+	
+	//------------------------------------------------------------------------
+	
+	private boolean flagNovaSolicitacao;
 	private List<Exame> listaDeExames;
 	
-	private Convenio convenioEscolhido;
-	private CadastroDeExame exameEscolhido;
 	
-	private SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
-	private ExameDAO examesDAO = new ExameDAO();
-	private PacienteDAO pacientesDAO = new PacienteDAO();
-	private MedicoDAO medicosDAO = new MedicoDAO();
-	private CadastroDeExameDAO cadastroDeExamesDAO = new CadastroDeExameDAO();
-	private ConvenioDAO conveniosDAO = new ConvenioDAO();
-	private TabelaPrecosDAO tabelaPrecosDAO = new TabelaPrecosDAO();
-	private StatusDAO statusDAO = new StatusDAO();
 		
 	
 	public String manutencaoDeSolicitacao() throws ClassNotFoundException, SQLException
@@ -48,10 +58,17 @@ public class SolicitacaoBean {
 			//Rotina de solicitação existente
 			flagNovaSolicitacao = false;
 			solicitacaoSelecionada = solicitacaoDAO.recuperarSolicitacao(solicitacaoSelecionada);
+			
+			if( solicitacaoSelecionada.getSOL_FLAG_URGENTE() == 1)
+				flagUrgente= true;
+			else
+				flagUrgente = false;
+			
 			listaDeExames = examesDAO.recuperarExamesPorSolicitacao(solicitacaoSelecionada);
 		}
 		else
 		{
+			//Rotina de nova solicitação
 			flagNovaSolicitacao = true;
 			solicitacaoSelecionada = new Solicitacao();
 			listaDeExames = new LinkedList<Exame>();
@@ -75,12 +92,6 @@ public class SolicitacaoBean {
 		return "refresh";
 	}
 	
-//	public String atualizarConvenios()
-//	{
-//		
-//		return "refresh";
-//	}
-	
 	
 	public String botaoGravar() throws ClassNotFoundException, SQLException
 	{
@@ -88,7 +99,13 @@ public class SolicitacaoBean {
 		{
 			//Rotina de inserção de exames na solicitação
 			
+			if(flagUrgente == true)
+				solicitacaoSelecionada.setSOL_FLAG_URGENTE(1);
+			else
+				solicitacaoSelecionada.setSOL_FLAG_URGENTE(0);
+			
 			solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
+			
 			for(Exame exame : listaDeExames)
 			{
 				exame.setSOLICITACAO(solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoDAO.recuperarUltimoID()));
@@ -100,6 +117,12 @@ public class SolicitacaoBean {
 		else
 		{
 			//Rotina de edição de solicitação
+			
+			if(flagUrgente == true)
+				solicitacaoSelecionada.setSOL_FLAG_URGENTE(1);
+			else
+				solicitacaoSelecionada.setSOL_FLAG_URGENTE(0);
+			
 			solicitacaoDAO.atualizarSolicitacao(solicitacaoSelecionada);
 			
 			for(Exame exame : listaDeExames)
@@ -130,6 +153,15 @@ public class SolicitacaoBean {
 		return "retornarListagemSolicitacoes";
 	}
 	
+	
+	public List<SelectItem> getComboUrgente()
+	{
+		List<SelectItem> flagUrgente = new LinkedList<SelectItem>();
+		flagUrgente.add(new SelectItem(true, "Sim"));
+		flagUrgente.add(new SelectItem(false, "Não"));
+		
+		return flagUrgente;
+	}
 	
 	public List<Solicitacao> getSolicitacoes() throws ClassNotFoundException, SQLException
 	{
@@ -229,5 +261,13 @@ public class SolicitacaoBean {
 
 	public void setListaDeExames(List<Exame> listaDeExames) {
 		this.listaDeExames = listaDeExames;
+	}
+
+	public boolean isFlagUrgente() {
+		return flagUrgente;
+	}
+
+	public void setFlagUrgente(boolean flagUrgente) {
+		this.flagUrgente = flagUrgente;
 	}
 }
