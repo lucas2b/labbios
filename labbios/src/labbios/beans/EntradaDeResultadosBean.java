@@ -34,42 +34,62 @@ public class EntradaDeResultadosBean {
 	public String inicioEntradaResultado() throws SQLException, ClassNotFoundException
 	{
 		
-		if(resultadoDAO.verificaEntradaExistente(exameSelecionado))
+		
+		if( Integer.valueOf(exameSelecionado.getEXAME_ID()) == 0 )
 		{
-			//UPDATE
-			flagNovaEntrada = false;
-			listaSuporte = resultadoDAO.recuperarResultado(exameSelecionado);
-			
-			if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
-				return "resultadoTipoHemograma";
-			 else
-				return "entradaDeResultadosTipoComum";
-			
+			//Caso em que o usuário adicionou o exame e tentou entrar resultado sem salvar solicitação antes, retorna para listagem de solicitações
+			return retornarParaSolicitacao();
 		}
 		else
 		{
-			//INSERT
-			flagNovaEntrada = true;
-			
-			tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME());
-			listaSuporte = new LinkedList<Resultado>();
-			for(DadosDoExameSuporte molde: tabelaMolde)
-			{
-				Resultado resultado = new Resultado();
-				resultado.setEXAME(exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID()));
-				resultado.setRESULT_PARAMETRO(molde.getParametro());
-				resultado.setRESULT_UNIDADE(molde.getUnidade());
-				resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
-				resultado.setRESULT_VALOR_ENCONTRADO("");
-				resultado.setRESULT_OBSERVACOES("");
-				listaSuporte.add(resultado);
-			}
-			
-			
-			if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
-				return "resultadoTipoHemograma";
-			 else
-				 return "entradaDeResultadosTipoComum";
+			//Caso tudo OK, prossegue com a rotina de inicialização
+		
+					if(resultadoDAO.verificaEntradaExistente(exameSelecionado))
+					{
+							//Resultado já existente, procede com um Update
+							flagNovaEntrada = false;
+							listaSuporte = resultadoDAO.recuperarResultado(exameSelecionado);
+							
+							if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
+								return "resultadoTipoHemograma";
+							 else
+								return "entradaDeResultadosTipoComum";
+						
+					}
+					else
+					{
+							//Resultado não existente, procede com um Insert
+							flagNovaEntrada = true;
+							
+							tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME());
+							listaSuporte = new LinkedList<Resultado>();
+							
+							for(DadosDoExameSuporte molde: tabelaMolde)
+							{
+								Resultado resultado = new Resultado();
+								resultado.setEXAME(exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID()));
+								resultado.setRESULT_PARAMETRO(molde.getParametro());
+								resultado.setRESULT_UNIDADE(molde.getUnidade());
+								resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
+								resultado.setRESULT_VALOR_ENCONTRADO("");
+								resultado.setRESULT_OBSERVACOES("");
+								listaSuporte.add(resultado);
+							}
+							
+							/*
+							 * Descrição do for acima:
+							 * Popula uma lista de resultados que será jogada no grid, adiciona os campos vindos do molde de Resultado
+							 * como o Parametro, Unidade e o valor de referência e dois valores em brancos para Valor Encontrado
+							 * e Observações, para que os espaços em branco no grid possam ser editados corretamente
+ 							 */
+							
+							
+							if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
+								return "resultadoTipoHemograma";
+							 else
+								 return "entradaDeResultadosTipoComum";
+					}
+					
 		}
 		
 	}
@@ -77,15 +97,11 @@ public class EntradaDeResultadosBean {
 	public String botaoGravarResultados() throws SQLException, ClassNotFoundException
 	{
 		if(flagNovaEntrada)
-		{
-			//Chamar INSERT
-			
+		{	
 			resultadoDAO.inserirNovoResultado(listaSuporte);
 		}
 		else
-		{
-			//Chamar UPDATE
-			
+		{	
 			resultadoDAO.updateResultadoExistente(listaSuporte);
 		}
 		
@@ -96,8 +112,6 @@ public class EntradaDeResultadosBean {
 	{
 		return "editarSolicitacao";
 	}
-	
-	
 	
 	//GETTERS AND SETTERS
 

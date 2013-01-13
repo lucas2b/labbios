@@ -20,12 +20,21 @@ import labbios.dto.MaterialExame;
 import labbios.dto.TipoLaboratorio;
 
 public class CadastroDeExameBean {
+	
+	//DAOS-----------------------------------------------------------
+	
 	CadastroDeExameDAO cadastroDeExameDAO = new CadastroDeExameDAO();
-	ConvenioDAO convenioDAO = new ConvenioDAO();
-	GrupoExameDAO grupoExameDAO = new GrupoExameDAO();
-	MaterialExameDAO materialExameDAO = new MaterialExameDAO();
 	TipoLaboratorioDAO tipoLaboratorioDAO = new TipoLaboratorioDAO();
-	DadosDoExameDAO dadosDoExameDAO = new DadosDoExameDAO();
+	MaterialExameDAO   materialExameDAO   = new MaterialExameDAO();
+	DadosDoExameDAO    dadosDoExameDAO    = new DadosDoExameDAO();
+	GrupoExameDAO      grupoExameDAO      = new GrupoExameDAO();
+	ConvenioDAO        convenioDAO        = new ConvenioDAO();
+	
+	//----------------------------------------------------------------
+	
+	private String gradeOuExame;
+	
+	//Componentes de Tela---------------------------------------------
 	
 	private String abreviatura;
 	private String nome;
@@ -171,6 +180,14 @@ public class CadastroDeExameBean {
 	public String listarExames()
 	{
 		return "listarExames";
+	}
+	
+	public List<SelectItem> getGradeOuExame()
+	{
+		List<SelectItem> listaGradeOuExame = new LinkedList<SelectItem>();
+		listaGradeOuExame.add(new SelectItem("G","G"));
+		listaGradeOuExame.add(new SelectItem("T","T"));
+		return listaGradeOuExame;
 	}
 
 
