@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import labbios.dao.CidadeDAO;
@@ -40,8 +42,16 @@ public class PacienteBean {
 	{
 		if(flagNovoPaciente)
 		{
+			
 			System.out.println("Novo paciente");
-			pacienteDAO.adicionarPaciente(pacienteSelecionado);
+			
+			boolean retorno = pacienteDAO.adicionarPaciente(pacienteSelecionado);
+			if(retorno){
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "Registro gravado com sucesso!"));  
+
+			}
+			
+			
 		}
 		else
 		{
