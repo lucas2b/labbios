@@ -12,7 +12,6 @@
 	<h:form>
 	<h1>Edição de Material de Exames</h1>
 	Nome: <h:inputText value="#{materialExameBean.materialExameSelecionado.MATERIAL_EXAME_NOME}"></h:inputText><br>
-	Abreviatura: <h:inputText value="#{materialExameBean.materialExameSelecionado.MATERIAL_EXAME_ABREV}"></h:inputText><br>
 	<br>
 	<br>
 	<h:commandButton action="#{materialExameBean.finishEditarMaterialExame}" value="Atualizar"></h:commandButton>
