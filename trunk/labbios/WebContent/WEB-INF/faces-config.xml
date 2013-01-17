@@ -145,22 +145,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>materiaisDeExames/materialExame</display-name>
-		<from-view-id>/materiaisDeExames/materialExame.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>editarMaterialDeExame</from-outcome>
-			<to-view-id>/materiaisDeExames/editarMaterialExame.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>materiaisDeExames/editarMaterialExame</display-name>
-		<from-view-id>/materiaisDeExames/editarMaterialExame.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>listarMateriaisDeExame</from-outcome>
-			<to-view-id>/materiaisDeExames/materialExame.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>listagemDePacientes</display-name>
 		<from-view-id>/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</from-view-id>
 		<navigation-case>
@@ -302,6 +286,22 @@
 		<navigation-case>
 			<from-outcome>editarSolicitacao</from-outcome>
 			<to-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ManutencaoDoSistema/MateriaisDeExames/materialExame</display-name>
+		<from-view-id>/ManutencaoDoSistema/MateriaisDeExames/materialExame.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>editarMaterialDeExame</from-outcome>
+			<to-view-id>/ManutencaoDoSistema/MateriaisDeExames/editarMaterialExame.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ManutencaoDoSistema/MateriaisDeExames/editarMaterialExame</display-name>
+		<from-view-id>/ManutencaoDoSistema/MateriaisDeExames/editarMaterialExame.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>listarMateriaisDeExame</from-outcome>
+			<to-view-id>/ManutencaoDoSistema/MateriaisDeExames/materialExame.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

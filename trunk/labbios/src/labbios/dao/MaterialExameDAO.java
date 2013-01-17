@@ -26,9 +26,8 @@ public class MaterialExameDAO extends DatabaseUtil{
 	public boolean adicionarMaterialExame(MaterialExame materialExame) throws ClassNotFoundException, SQLException
 	{
 		boolean retorno = false;
-		PreparedStatement ps = getPreparedStatement("Insert into MATERIAL_EXAME set MATERIAL_EXAME_ABREV=?, MATERIAL_EXAME_NOME=?");
-		ps.setString(1, materialExame.getMATERIAL_EXAME_ABREV());
-		ps.setString(2, materialExame.getMATERIAL_EXAME_NOME());
+		PreparedStatement ps = getPreparedStatement("Insert into MATERIAL_EXAME set MATERIAL_EXAME_ABREV=?");
+		ps.setString(1, materialExame.getMATERIAL_EXAME_NOME());
 		retorno = ps.execute();
 		return retorno;
 	}
@@ -36,10 +35,9 @@ public class MaterialExameDAO extends DatabaseUtil{
 	public boolean editarMaterialExame(MaterialExame materialExame) throws ClassNotFoundException, SQLException
 	{
 		boolean retorno = false;
-		PreparedStatement ps = getPreparedStatement("Update MATERIAL_EXAME set MATERIAL_EXAME_ABREV=?, MATERIAL_EXAME_NOME=? where MATERIAL_EXAME_ID=?");
-		ps.setString(1, materialExame.getMATERIAL_EXAME_ABREV());
-		ps.setString(2, materialExame.getMATERIAL_EXAME_NOME());
-		ps.setInt(3, materialExame.getMATERIAL_EXAME_ID());
+		PreparedStatement ps = getPreparedStatement("Update MATERIAL_EXAME set MATERIAL_EXAME_NOME=? where MATERIAL_EXAME_ID=?");
+		ps.setString(1, materialExame.getMATERIAL_EXAME_NOME());
+		ps.setInt(2, materialExame.getMATERIAL_EXAME_ID());
 		retorno = ps.execute();
 		return retorno;
 	}
@@ -63,7 +61,6 @@ public class MaterialExameDAO extends DatabaseUtil{
 	private MaterialExame popularMaterialExame(ResultSet rs) throws SQLException {
 		MaterialExame materialExameRetorno = new MaterialExame();
 		materialExameRetorno.setMATERIAL_EXAME_ID(rs.getInt("MATERIAL_EXAME_ID"));
-		materialExameRetorno.setMATERIAL_EXAME_ABREV(rs.getString("MATERIAL_EXAME_ABREV"));
 		materialExameRetorno.setMATERIAL_EXAME_NOME(rs.getString("MATERIAL_EXAME_NOME"));
 		return materialExameRetorno;
 		

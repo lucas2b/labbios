@@ -8,17 +8,14 @@ import labbios.dto.MaterialExame;
 
 public class MaterialExameBean {
 	MaterialExameDAO materialExameDAO = new MaterialExameDAO();
-	MaterialExame materialExameSelecionado;
-	private String nome;
-	private String abreviatura;
+	MaterialExame materialExameSelecionado = new MaterialExame();
+	
+
 	
 	
 	public String adicionarMaterialExame() throws ClassNotFoundException, SQLException
 	{
-		MaterialExame materialExame = new MaterialExame();
-		materialExame.setMATERIAL_EXAME_ABREV(abreviatura);
-		materialExame.setMATERIAL_EXAME_NOME(nome);
-		materialExameDAO.adicionarMaterialExame(materialExame);
+		materialExameDAO.adicionarMaterialExame(materialExameSelecionado);
 		return "refresh";
 	}
 	
@@ -44,22 +41,6 @@ public class MaterialExameBean {
 
 	public void setMaterialExameSelecionado(MaterialExame materialExameSelecionado) {
 		this.materialExameSelecionado = materialExameSelecionado;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
 	}
 
 }

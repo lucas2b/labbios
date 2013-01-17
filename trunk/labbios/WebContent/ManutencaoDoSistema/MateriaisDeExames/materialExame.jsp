@@ -11,8 +11,7 @@
 <f:view>
 	<h:form>
 	<h1>Cadastro de Novo Material de Exame</h1><br>
-	Nome: <h:inputText value="#{materialExameBean.nome}"></h:inputText><br>
-	Abreviatura: <h:inputText value="#{materialExameBean.abreviatura}"> </h:inputText>
+	Nome: <h:inputText value="#{materialExameBean.materialExameSelecionado.MATERIAL_EXAME_NOME}"></h:inputText><br>
 	<br>
 	<h:commandButton action="#{materialExameBean.adicionarMaterialExame}" value="Adicionar Material"></h:commandButton>
 	<br>
@@ -23,12 +22,6 @@
 				<h:outputText value="Nome"></h:outputText>
 			</f:facet>
 			<h:outputText value="#{item.MATERIAL_EXAME_NOME}"></h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Abreviatura"></h:outputText>
-			</f:facet>
-			<h:outputText value="#{item.MATERIAL_EXAME_ABREV}"></h:outputText>
 		</h:column>
 		<h:column>
 			<f:facet name="header">
