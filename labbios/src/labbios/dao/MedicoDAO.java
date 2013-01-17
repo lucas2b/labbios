@@ -30,6 +30,7 @@ public class MedicoDAO extends DatabaseUtil{
 																			" MEDICO_EMAIL=?," +
 																			" MEDICO_FONE=?," +
 																			" MEDICO_CELULAR=?," +
+																			" MEDICO_OBS=?," +
 																			" CIDADE_ID=?");
 		ps.setString(1, medico.getMEDICO_NOME());
 		ps.setString(2, medico.getMEDICO_ESPECIALIDADE());
@@ -40,7 +41,8 @@ public class MedicoDAO extends DatabaseUtil{
 		ps.setString(7, medico.getMEDICO_EMAIL());
 		ps.setString(8, medico.getMEDICO_FONE());
 		ps.setString(9, medico.getMEDICO_CELULAR());
-		ps.setInt(10, medico.getCIDADE().getCIDADE_ID());
+		ps.setString(10, medico.getMEDICO_OBS());
+		ps.setInt(11, medico.getCIDADE().getCIDADE_ID());
 		
 		retorno = ps.execute();
 		
@@ -60,6 +62,7 @@ public class MedicoDAO extends DatabaseUtil{
 																			" MEDICO_EMAIL=?," +
 																			" MEDICO_FONE=?," +
 																			" MEDICO_CELULAR=?," +
+																			" MEDICO_OBS=?," +
 																			" CIDADE_ID=? " +
 																			" where MEDICO_ID=?");
 		ps.setString(1, medico.getMEDICO_NOME());
@@ -71,8 +74,9 @@ public class MedicoDAO extends DatabaseUtil{
 		ps.setString(7, medico.getMEDICO_EMAIL());
 		ps.setString(8, medico.getMEDICO_FONE());
 		ps.setString(9, medico.getMEDICO_CELULAR());
-		ps.setInt(10, medico.getCIDADE().getCIDADE_ID());
-		ps.setInt(11, medico.getMEDICO_ID());
+		ps.setString(10, medico.getMEDICO_OBS());
+		ps.setInt(11, medico.getCIDADE().getCIDADE_ID());
+		ps.setInt(12, medico.getMEDICO_ID());
 		
 		retorno = ps.execute();
 		
@@ -113,6 +117,7 @@ public class MedicoDAO extends DatabaseUtil{
 		medico.setMEDICO_EMAIL(rs.getString("MEDICO_EMAIL"));
 		medico.setMEDICO_FONE(rs.getString("MEDICO_FONE"));
 		medico.setMEDICO_CELULAR(rs.getString("MEDICO_CELULAR"));
+		medico.setMEDICO_OBS(rs.getString("MEDICO_OBS"));
 		medico.setCIDADE(cidadeDAO.procurarCidadePorID(rs.getInt("CIDADE_ID")));
 		
 		return medico;

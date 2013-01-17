@@ -13,6 +13,7 @@ public class Medico {
 	private String MEDICO_FONE;
 	private String MEDICO_CELULAR;
 	private Cidade CIDADE;
+	private String MEDICO_OBS;
 	
 	public int getMEDICO_ID() {
 		return MEDICO_ID;
@@ -79,6 +80,12 @@ public class Medico {
 	}
 	public void setCIDADE(Cidade cIDADE) {
 		CIDADE = cIDADE;
+	}
+	public String getMEDICO_OBS() {
+		return MEDICO_OBS;
+	}
+	public void setMEDICO_OBS(String mEDICO_OBS) {
+		MEDICO_OBS = mEDICO_OBS;
 	}
 
 }

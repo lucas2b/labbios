@@ -52,6 +52,9 @@
 	    <h:outputText value="CEP: "></h:outputText>
 	    <p:inputMask mask="99999-999" id="cep" value="#{medicoBean.medicoSelecionado.MEDICO_CEP}" />
 	    
+	    <h:outputText value="Observações: "/> 
+		<p:inputTextarea id="obs" value="#{medicoBean.medicoSelecionado.MEDICO_OBS}" autoResize="on" cols="100" rows="5"/>
+	    
 	    </h:panelGrid>
 	    <br></br>
 	    <h:commandButton value="Gravar" action="#{medicoBean.botaoGravar}"></h:commandButton>
