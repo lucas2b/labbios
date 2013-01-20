@@ -32,41 +32,17 @@ public class CadastroDeExameBean {
 	
 	//----------------------------------------------------------------
 	
-	private String gradeOuExame;
 	
 	//Componentes de Tela---------------------------------------------
 	
-	private String abreviatura;
-	private String nome;
-	private String diasDeEntrega;
-	private String codigoSUS;
-	private int grupoEtiqueta;
-	private char tipoDeEntrada;
+	private String dadosDeExameEmTexto;
 	private boolean flagGravar; 
-	
 	private List<DadosDoExameSuporte> listaSuporte;
-	private GrupoExame grupoExame;
-	private TipoLaboratorio tipoLaboratorio;
-	private MaterialExame materialExame;
-	private CadastroDeExame cadastroDeExameSelecionado;
-	private String nomeDoExameSelecionado;
+	private CadastroDeExame cadastroDeExameSelecionado = new CadastroDeExame();
 
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
 	{	
-		
-		CadastroDeExame cadastroDeExame = new CadastroDeExame();
-		cadastroDeExame.setCAD_EXAME_ABREVIATURA(abreviatura);
-		cadastroDeExame.setCAD_EXAME_NOME(nome);
-		cadastroDeExame.setCAD_EXAME_DIAS_ENTREGA(diasDeEntrega);
-		cadastroDeExame.setCAD_EXAME_COD_SUS(codigoSUS);
-		cadastroDeExame.setCAD_EXAME_GRUPO_ETIQUETA(grupoEtiqueta);
-		cadastroDeExame.setCAD_EXAME_TIPO_ENTRADA(tipoDeEntrada);
-		cadastroDeExame.setGRUPO_EXAME(grupoExame);
-		cadastroDeExame.setTIPO_LABORATORIO(tipoLaboratorio);
-		cadastroDeExame.setMATERIAL_EXAME(materialExame);
-		
-		cadastroDeExameDAO.adicionarNovoExame(cadastroDeExame);	
-
+		cadastroDeExameDAO.adicionarNovoExame(cadastroDeExameSelecionado);	
 		return "refresh";
 	}
 	
@@ -128,35 +104,41 @@ public class CadastroDeExameBean {
 		return "entrarDadosDoExame"; 
 	}
 	
-	public String entrarDadosDoExame()
+	public String entrarDadosDoExame() throws ClassNotFoundException, SQLException
 	{
-		try{
-		boolean tabelaExistente = dadosDoExameDAO.verificarExistenciaDeTabela(nomeDoExameSelecionado);
+		boolean tabelaExistente = dadosDoExameDAO.verificarExistenciaDeTabela(cadastroDeExameSelecionado);
 		
 		if(tabelaExistente)
 		{	
-			//Se existe a listagem deste exame
 			flagGravar = false;
-			listaSuporte = dadosDoExameDAO.recuperarTabela(nomeDoExameSelecionado);
+			//Se existe a listagem deste exame
+			
+			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
+			listaSuporte = dadosDoExameDAO.recuperarTabela(cadastroDeExameSelecionado);
+			else
+			dadosDeExameEmTexto= dadosDoExameDAO.recuperarTexto(cadastroDeExameSelecionado);
 		}
 		else
 		{
 			//Caso não exista, apresenta 35 linhas em branco
 			flagGravar = true;
-			listaSuporte = new LinkedList<DadosDoExameSuporte>();
 			
-			for(int i=0; i<35; i++)
+			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'T')
 			{
-				listaSuporte.add(new DadosDoExameSuporte());			
+				listaSuporte = new LinkedList<DadosDoExameSuporte>();
+				for(int i=0; i<35; i++)
+				{
+					listaSuporte.add(new DadosDoExameSuporte());			
+				}
 			}
-		}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+			else
+				dadosDeExameEmTexto = new String();
 		}
 		
+		if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
 		return "entrarDadosDoExame";
+			else
+		return "entrarDadosDoExameTexto";
 
 	}
 	
@@ -165,13 +147,18 @@ public class CadastroDeExameBean {
 		if(flagGravar== true)
 		{
 			//nova tabela
-			dadosDoExameDAO.adicionarDadosDoExame(listaSuporte, nomeDoExameSelecionado);
+			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
+			dadosDoExameDAO.adicionarDadosDoExameEmGrade(listaSuporte, cadastroDeExameSelecionado);
+			else
+			dadosDoExameDAO.adicionarDadosDoExameEmTexto(dadosDeExameEmTexto, cadastroDeExameSelecionado);
 			
 		}
 		else
 		{
-			dadosDoExameDAO.atualizarDadosDoExame(listaSuporte, nomeDoExameSelecionado);
-			//update
+			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
+			dadosDoExameDAO.atualizarDadosDoExameEmGrade(listaSuporte, cadastroDeExameSelecionado);
+			else
+			dadosDoExameDAO.editarDadosDoExameEmTexto(dadosDeExameEmTexto, cadastroDeExameSelecionado);
 		}
 		
 		return listarExames();
@@ -182,7 +169,7 @@ public class CadastroDeExameBean {
 		return "listarExames";
 	}
 	
-	public List<SelectItem> getGradeOuExame()
+	public List<SelectItem> getComboGradeOuExame()
 	{
 		List<SelectItem> listaGradeOuExame = new LinkedList<SelectItem>();
 		listaGradeOuExame.add(new SelectItem("G","G"));
@@ -202,89 +189,11 @@ public class CadastroDeExameBean {
 		this.cadastroDeExameSelecionado = cadastroDeExameSelecionado;
 	}
 
-	public String getAbreviatura() {
-		return abreviatura;
-	}
-
-	public void setAbreviatura(String abreviatura) {
-		this.abreviatura = abreviatura;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public GrupoExame getGrupoExame() {
-		return grupoExame;
-	}
-
-	public void setGrupoExame(GrupoExame grupoExame) {
-		this.grupoExame = grupoExame;
-	}
-
-	public TipoLaboratorio getTipoLaboratorio() {
-		return tipoLaboratorio;
-	}
-
-	public void setTipoLaboratorio(TipoLaboratorio tipoLaboratorio) {
-		this.tipoLaboratorio = tipoLaboratorio;
-	}
-
-	public MaterialExame getMaterialExame() {
-		return materialExame;
-	}
-
-	public void setMaterialExame(MaterialExame materialExame) {
-		this.materialExame = materialExame;
-	}
-
-	public String getDiasDeEntrega() {
-		return diasDeEntrega;
-	}
-
-	public void setDiasDeEntrega(String diasDeEntrega) {
-		this.diasDeEntrega = diasDeEntrega;
-	}
-
-	public String getCodigoSUS() {
-		return codigoSUS;
-	}
-
-	public void setCodigoSUS(String codigoSUS) {
-		this.codigoSUS = codigoSUS;
-	}
-
-	public int getGrupoEtiqueta() {
-		return grupoEtiqueta;
-	}
-
-	public void setGrupoEtiqueta(int grupoEtiqueta) {
-		this.grupoEtiqueta = grupoEtiqueta;
-	}
-
-	public char getTipoDeEntrada() {
-		return tipoDeEntrada;
-	}
-
-	public void setTipoDeEntrada(char tipoDeEntrada) {
-		this.tipoDeEntrada = tipoDeEntrada;
-	}
+	
 	
 	public String associarValorAoExame()
 	{
 		return "associarValorAoExame";
-	}
-
-	public String getNomeDoExameSelecionado() {
-		return nomeDoExameSelecionado;
-	}
-
-	public void setNomeDoExameSelecionado(String nomeDoExameSelecionado) {
-		this.nomeDoExameSelecionado = nomeDoExameSelecionado;
 	}
 	
 	public List<DadosDoExameSuporte> getListaSuporte() {
@@ -294,4 +203,13 @@ public class CadastroDeExameBean {
 	public void setListaSuporte(List<DadosDoExameSuporte> listaSuporte) {
 		this.listaSuporte = listaSuporte;
 	}
+
+	public String getDadosDeExameEmTexto() {
+		return dadosDeExameEmTexto;
+	}
+
+	public void setDadosDeExameEmTexto(String dadosDeExameEmTexto) {
+		this.dadosDeExameEmTexto = dadosDeExameEmTexto;
+	}
+
 }

@@ -35,11 +35,9 @@ Grupo De Etiquetas:
 <h:inputText value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_GRUPO_ETIQUETA}">
 <f:convertNumber type="number"></f:convertNumber>
 </h:inputText><br></br>
-Tipo De entrada (G/T): 
-<h:inputText value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_TIPO_ENTRADA}">
-</h:inputText>
 <br></br>
-<h:commandButton value="Atualizar" action="#{cadastroDeExameBean.finishEditarTipoDeExame}"></h:commandButton>
+<h:commandButton value="Atualizar" action="#{cadastroDeExameBean.finishEditarTipoDeExame}"></h:commandButton><br></br>
+<h:commandButton value="Voltar" action="#{cadastroDeExameBean.listarExames}"></h:commandButton>
 </h:form>
 
 </h:body>

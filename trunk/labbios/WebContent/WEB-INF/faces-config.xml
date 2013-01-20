@@ -304,5 +304,29 @@
 			<to-view-id>/ManutencaoDoSistema/MateriaisDeExames/materialExame.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>ManutencaoDoSistema/CadastroDeExames/cadastrarNovoExame.xhtml</display-name>
+		<from-view-id>/ManutencaoDoSistema/CadastroDeExames/cadastrarNovoExame.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>entrarDadosDoExameTexto</from-outcome>
+			<to-view-id>/ManutencaoDoSistema/CadastroDeExames/entrarDadosDeExameTexto.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ManutencaoDoSistema/CadastroDeExames/entrarDadosDeExameTexto.xhtml</display-name>
+		<from-view-id>/ManutencaoDoSistema/CadastroDeExames/entrarDadosDeExameTexto.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listarExames</from-outcome>
+			<to-view-id>/ManutencaoDoSistema/CadastroDeExames/cadastrarNovoExame.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ManutencaoDoSistema/CadastroDeExames/editarExameCadastrado.xhtml</display-name>
+		<from-view-id>/ManutencaoDoSistema/CadastroDeExames/editarExameCadastrado.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>listarExames</from-outcome>
+			<to-view-id>/ManutencaoDoSistema/CadastroDeExames/cadastrarNovoExame.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>
