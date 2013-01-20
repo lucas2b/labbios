@@ -42,7 +42,8 @@ public class CadastroDeExameBean {
 
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
 	{	
-		cadastroDeExameDAO.adicionarNovoExame(cadastroDeExameSelecionado);	
+		cadastroDeExameDAO.adicionarNovoExame(cadastroDeExameSelecionado);
+		cadastroDeExameSelecionado = new CadastroDeExame();
 		return "refresh";
 	}
 	

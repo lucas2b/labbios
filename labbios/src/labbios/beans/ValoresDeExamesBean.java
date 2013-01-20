@@ -62,6 +62,12 @@ public class ValoresDeExamesBean {
 		tabelaDePrecosDAO.editarValor(tabelaDePrecosSelecionada);
 		return "listarValoresDeExames";
 	}
+	
+	public String listarExames()
+	{
+		
+		return "listarExames";
+	}
 
 	
 	//GETTERS AND SETTERS
