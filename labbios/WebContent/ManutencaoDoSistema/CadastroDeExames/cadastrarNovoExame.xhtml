@@ -16,32 +16,33 @@
 <h:form>
 <h:messages></h:messages>
 <h1>Manutenção de cadastro de Exames</h1><br></br>
-  Nome: <h:inputText value="#{cadastroDeExameBean.nome}"></h:inputText><br></br>
-Abreviatura: <h:inputText value="#{cadastroDeExameBean.abreviatura}"></h:inputText><br></br>
+  Nome: <h:inputText value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_NOME}"></h:inputText><br></br>
+Abreviatura: <h:inputText value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_ABREVIATURA}"></h:inputText><br></br>
 Grupo:
-<h:selectOneMenu id="grupo" value="#{cadastroDeExameBean.grupoExame}">
+<h:selectOneMenu id="grupo" value="#{cadastroDeExameBean.cadastroDeExameSelecionado.GRUPO_EXAME}">
 	<f:selectItems value="#{cadastroDeExameBean.grupos}"></f:selectItems>
 	<f:converter converterId="ConversorGrupoExame"></f:converter>
 </h:selectOneMenu><br></br>
 Material:
-<h:selectOneMenu id="materiais" value="#{cadastroDeExameBean.materialExame}">
+<h:selectOneMenu id="materiais" value="#{cadastroDeExameBean.cadastroDeExameSelecionado.MATERIAL_EXAME}">
 	<f:selectItems value="#{cadastroDeExameBean.materiais}"></f:selectItems>
 	<f:converter converterId="ConversorMaterialExame"></f:converter>
 </h:selectOneMenu><br></br>
 Tipo Laboratório:
-<h:selectOneMenu id="laboratorios" value="#{cadastroDeExameBean.tipoLaboratorio}">
+<h:selectOneMenu id="laboratorios" value="#{cadastroDeExameBean.cadastroDeExameSelecionado.TIPO_LABORATORIO}">
 	<f:selectItems value="#{cadastroDeExameBean.tiposDeLaboratorio}"></f:selectItems>
 	<f:converter converterId="ConversorTipoLaboratorio"></f:converter>
 </h:selectOneMenu><br></br>
-Dias Para entrega: <h:inputText value="#{cadastroDeExameBean.diasDeEntrega}"></h:inputText><br></br>
-Código SUS: <h:inputText value="#{cadastroDeExameBean.codigoSUS}"></h:inputText><br></br>
+Dias Para entrega: <h:inputText value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_DIAS_ENTREGA}"></h:inputText><br></br>
+Código SUS: <h:inputText value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_COD_SUS}"></h:inputText><br></br>
 Grupo De Etiquetas: 
-<h:inputText value="#{cadastroDeExameBean.grupoEtiqueta}">
+<h:inputText value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_GRUPO_ETIQUETA}">
 <f:convertNumber type="number"></f:convertNumber>
 </h:inputText><br></br>
 Tipo De entrada (G/T): 
-<h:inputText value="#{cadastroDeExameBean.tipoDeEntrada}">
-</h:inputText>
+<h:selectOneMenu value="#{cadastroDeExameBean.cadastroDeExameSelecionado.CAD_EXAME_TIPO_ENTRADA}">
+	<f:selectItems value="#{cadastroDeExameBean.comboGradeOuExame}"></f:selectItems>
+</h:selectOneMenu>
 <br></br>
 <h:commandButton value="Adicionar" action="#{cadastroDeExameBean.adicionarNovoTipoDeExame}"></h:commandButton>
 <br></br>
@@ -121,7 +122,7 @@ Tipo De entrada (G/T):
 			<h:outputText value="Ações"></h:outputText>
 		</f:facet>
 		<h:commandLink value="Entrar com Dados do Exame" action="#{cadastroDeExameBean.entrarDadosDoExame}">
-			<f:setPropertyActionListener target="#{cadastroDeExameBean.nomeDoExameSelecionado}" value="#{item.CAD_EXAME_NOME}"></f:setPropertyActionListener>
+			<f:setPropertyActionListener target="#{cadastroDeExameBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>
 		</h:commandLink><br></br>
 		<h:commandLink  value="Associar Valor ao Exame" action="#{cadastroDeExameBean.associarValorAoExame}">
 			<f:setPropertyActionListener target="#{valoresDeExamesBean.cadastroDeExameSelecionado}" value="#{item}"></f:setPropertyActionListener>

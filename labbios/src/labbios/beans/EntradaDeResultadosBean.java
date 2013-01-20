@@ -61,7 +61,7 @@ public class EntradaDeResultadosBean {
 							//Resultado não existente, procede com um Insert
 							flagNovaEntrada = true;
 							
-							tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME());
+							tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME());
 							listaSuporte = new LinkedList<Resultado>();
 							
 							for(DadosDoExameSuporte molde: tabelaMolde)

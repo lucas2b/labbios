@@ -5,21 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
 import labbios.db.DatabaseUtil;
-import labbios.dto.DadosDoExame;
+import labbios.dto.CadastroDeExame;
 import labbios.dto.DadosDoExameSuporte;
-import labbios.dto.Exame;
-import labbios.dto.Resultado;
 
 public class DadosDoExameDAO extends DatabaseUtil{
 	
 	CadastroDeExameDAO cadExameDAO = new CadastroDeExameDAO();
 	
-	public boolean verificarExistenciaDeTabela(String exameNome) throws ClassNotFoundException, SQLException
+	public boolean verificarExistenciaDeTabela(CadastroDeExame exameselecionado) throws ClassNotFoundException, SQLException
 	{
 		PreparedStatement ps = getPreparedStatement("Show tables like ?");
-		ps.setString(1, exameNome);
+		ps.setString(1, exameselecionado.getCAD_EXAME_NOME());
 		
 		ResultSet rs = ps.executeQuery();
 		
@@ -29,9 +26,9 @@ public class DadosDoExameDAO extends DatabaseUtil{
 			return false;
 	}
 	
-	public List<DadosDoExameSuporte> recuperarTabela(String exameNome) throws ClassNotFoundException, SQLException
+	public List<DadosDoExameSuporte> recuperarTabela(CadastroDeExame exameselecionado) throws ClassNotFoundException, SQLException
 	{
-		ResultSet rs = getStatement().executeQuery("Select * from "+exameNome);
+		ResultSet rs = getStatement().executeQuery("Select * from "+exameselecionado.getCAD_EXAME_NOME());
 		List<DadosDoExameSuporte> listaDadosDoExame = new LinkedList<DadosDoExameSuporte>();
 		
 		while(rs.next())
@@ -46,10 +43,17 @@ public class DadosDoExameDAO extends DatabaseUtil{
 		return listaDadosDoExame;
 	}
 	
+	public String recuperarTexto(CadastroDeExame exameSelecionado) throws SQLException, ClassNotFoundException
+	{
+		ResultSet rs = getStatement().executeQuery("Select TEXTO from "+exameSelecionado.getCAD_EXAME_NOME());
+		rs.next();
+		return rs.getString("TEXTO");
+	}
 	
-	public void adicionarDadosDoExame(List<DadosDoExameSuporte> listaSuporte, String exameNome) throws SQLException, ClassNotFoundException
+	
+	public void adicionarDadosDoExameEmGrade(List<DadosDoExameSuporte> listaSuporte, CadastroDeExame exameSelecionado) throws SQLException, ClassNotFoundException
 	{	
-		getStatement().executeUpdate("Create table " +exameNome+ " (ID int AUTO_INCREMENT PRIMARY KEY, PARAMETRO varchar(255), REFERENCIA varchar(255), UNIDADE varchar(255) ) ");
+		getStatement().executeUpdate("Create table " +exameSelecionado.getCAD_EXAME_NOME()+ " (ID int AUTO_INCREMENT PRIMARY KEY, PARAMETRO varchar(255), REFERENCIA varchar(255), UNIDADE varchar(255) ) ");
 		
 		for(DadosDoExameSuporte dado : listaSuporte)
 		{
@@ -61,24 +65,35 @@ public class DadosDoExameDAO extends DatabaseUtil{
 			}
 			else
 			{
-				getStatement().executeUpdate("Insert into " +exameNome+ " set PARAMETRO='" +dado.getParametro()+ "', REFERENCIA='" +dado.getReferencia()+"', UNIDADE='"+dado.getUnidade()+"'");				
+				getStatement().executeUpdate("Insert into " +exameSelecionado.getCAD_EXAME_NOME()+ " set PARAMETRO='" +dado.getParametro()+ "', REFERENCIA='" +dado.getReferencia()+"', UNIDADE='"+dado.getUnidade()+"'");				
 			}
 		}
 		
 	
 	}
 	
-	public void atualizarDadosDoExame(List<DadosDoExameSuporte> listaSuporte, String exameNome) throws ClassNotFoundException, SQLException
+	public void atualizarDadosDoExameEmGrade(List<DadosDoExameSuporte> listaSuporte, CadastroDeExame exameSelecionado) throws ClassNotFoundException, SQLException
 	{
 	
 		int i=1;
 		
 		for(DadosDoExameSuporte dado : listaSuporte)
 		{
-			getStatement().executeUpdate("Update " +exameNome+ " set PARAMETRO='" +dado.getParametro()+ "', REFERENCIA='" +dado.getReferencia()+"', UNIDADE='"+dado.getUnidade()+"' where ID="+i);
+			getStatement().executeUpdate("Update " +exameSelecionado.getCAD_EXAME_NOME()+ " set PARAMETRO='" +dado.getParametro()+ "', REFERENCIA='" +dado.getReferencia()+"', UNIDADE='"+dado.getUnidade()+"' where ID="+i);
 			i++;
 		}
 		
+	}
+	
+	public void adicionarDadosDoExameEmTexto(String texto, CadastroDeExame exameSelecionado) throws SQLException, ClassNotFoundException
+	{
+		getStatement().executeUpdate("Create table " +exameSelecionado.getCAD_EXAME_NOME()+ "(ID int AUTO_INCREMENT PRIMARY KEY, TEXTO text)");
+		getStatement().executeUpdate("Insert into " +exameSelecionado.getCAD_EXAME_NOME()+ " set TEXTO='" +texto+ "'"); 
+	}
+	
+	public void editarDadosDoExameEmTexto(String texto, CadastroDeExame exameSelecionado) throws SQLException, ClassNotFoundException
+	{
+		getStatement().executeUpdate("Insert into " +exameSelecionado.getCAD_EXAME_NOME()+ " set TEXTO='" +texto+ "' where ID=1"); 
 	}
 	
 	//PARTE DE ENTRADA DE RESULTADOS
