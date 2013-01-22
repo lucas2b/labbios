@@ -336,5 +336,21 @@
 			<to-view-id>/ManutencaoDoSistema/CadastroDeExames/cadastrarNovoExame.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>AdministracaoDoSistema/EntradaDeResultados/entradaDeResultadosTipoComum.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/EntradaDeResultados/entradaDeResultadosTipoComum.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>visualizarRelatorio</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/EntradaDeResultados/visualizarRelatorio.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>AdministracaoDoSistema/EntradaDeResultados/visualizarRelatorio.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/EntradaDeResultados/visualizarRelatorio.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>editarSolicitacao</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

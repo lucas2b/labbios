@@ -108,13 +108,29 @@ public class EntradaDeResultadosBean {
 		return retornarParaSolicitacao();
 	}
 	
-	public String printarCabecalhoDeExame() throws NumberFormatException, SQLException, ClassNotFoundException
+	
+	//ATENÇÃO, atributos TEMPORÁRIOS para demonstração de cabeçalho de relatório
+	String nomePaciente;
+	String codigoPaciente;
+	String dataDeNasicmento;
+	String dataDeRealizacao;
+	String medico;
+	String crm;
+	String convenio;
+	
+	
+	public String extrairRelatorioDeExame() throws NumberFormatException, SQLException, ClassNotFoundException
 	{
-		for(String itemDecabecalho: resultadoDAO.cabecalhoDeExame(exameSelecionado))
-		{
-			System.out.println(itemDecabecalho);
-		}
-		return null;
+		List<String> cabecalho = resultadoDAO.cabecalhoDeExame(exameSelecionado);
+		setNomePaciente(cabecalho.get(0));
+		setCodigoPaciente(cabecalho.get(1));
+		setDataDeNasicmento(cabecalho.get(2));
+		setDataDeRealizacao(cabecalho.get(3));
+		setMedico(cabecalho.get(4));
+		setCrm(cabecalho.get(5));
+		setConvenio(cabecalho.get(6));
+		
+		return "visualizarRelatorio";
 	}
 	
 	
@@ -155,6 +171,65 @@ public class EntradaDeResultadosBean {
 
 	public void setListaSuporte(List<Resultado> listaSuporte) {
 		this.listaSuporte = listaSuporte;
+	}
+
+	
+	//GETTERS E SETTERS TEMPORARIOS
+	
+	public String getNomePaciente() {
+		return nomePaciente;
+	}
+
+	public void setNomePaciente(String nomePaciente) {
+		this.nomePaciente = nomePaciente;
+	}
+
+	public String getCodigoPaciente() {
+		return codigoPaciente;
+	}
+
+	public void setCodigoPaciente(String codigoPaciente) {
+		this.codigoPaciente = codigoPaciente;
+	}
+
+	public String getDataDeNasicmento() {
+		return dataDeNasicmento;
+	}
+
+	public void setDataDeNasicmento(String dataDeNasicmento) {
+		this.dataDeNasicmento = dataDeNasicmento;
+	}
+
+	public String getDataDeRealizacao() {
+		return dataDeRealizacao;
+	}
+
+	public void setDataDeRealizacao(String dataDeRealizacao) {
+		this.dataDeRealizacao = dataDeRealizacao;
+	}
+
+	public String getMedico() {
+		return medico;
+	}
+
+	public void setMedico(String medico) {
+		this.medico = medico;
+	}
+
+	public String getCrm() {
+		return crm;
+	}
+
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
+
+	public String getConvenio() {
+		return convenio;
+	}
+
+	public void setConvenio(String convenio) {
+		this.convenio = convenio;
 	}
 
 }
