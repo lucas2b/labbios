@@ -46,19 +46,13 @@ public class EntradaDeResultadosBean {
 		
 					if(resultadoDAO.verificaEntradaExistente(exameSelecionado))
 					{
-							//Resultado já existente, procede com um Update
+							//Update
 							flagNovaEntrada = false;
 							listaSuporte = resultadoDAO.recuperarResultado(exameSelecionado);
-							
-							if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
-								return "resultadoTipoHemograma";
-							 else
-								return "entradaDeResultadosTipoComum";
-						
 					}
 					else
 					{
-							//Resultado não existente, procede com um Insert
+							//Insert
 							flagNovaEntrada = true;
 							
 							tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME());
@@ -82,14 +76,12 @@ public class EntradaDeResultadosBean {
 							 * como o Parametro, Unidade e o valor de referência e dois valores em brancos para Valor Encontrado
 							 * e Observações, para que os espaços em branco no grid possam ser editados corretamente
  							 */
-							
-							
-							if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
-								return "resultadoTipoHemograma";
-							 else
-								 return "entradaDeResultadosTipoComum";
 					}
 					
+					if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
+						return "resultadoTipoHemograma";
+					 else
+						 return "entradaDeResultadosTipoComum";
 		}
 		
 	}
@@ -97,13 +89,9 @@ public class EntradaDeResultadosBean {
 	public String botaoGravarResultados() throws SQLException, ClassNotFoundException
 	{
 		if(flagNovaEntrada)
-		{	
 			resultadoDAO.inserirNovoResultado(listaSuporte);
-		}
 		else
-		{	
 			resultadoDAO.updateResultadoExistente(listaSuporte);
-		}
 		
 		return retornarParaSolicitacao();
 	}
@@ -111,6 +99,7 @@ public class EntradaDeResultadosBean {
 	
 	//ATENÇÃO, atributos TEMPORÁRIOS para demonstração de cabeçalho de relatório
 	String nomePaciente;
+	String nomeDoExame;
 	String codigoPaciente;
 	String dataDeNasicmento;
 	String dataDeRealizacao;
@@ -122,13 +111,20 @@ public class EntradaDeResultadosBean {
 	public String extrairRelatorioDeExame() throws NumberFormatException, SQLException, ClassNotFoundException
 	{
 		List<String> cabecalho = resultadoDAO.cabecalhoDeExame(exameSelecionado);
-		setNomePaciente(cabecalho.get(0));
-		setCodigoPaciente(cabecalho.get(1));
-		setDataDeNasicmento(cabecalho.get(2));
-		setDataDeRealizacao(cabecalho.get(3));
-		setMedico(cabecalho.get(4));
-		setCrm(cabecalho.get(5));
-		setConvenio(cabecalho.get(6));
+		setNomeDoExame(cabecalho.get(0));
+		setNomePaciente(cabecalho.get(1));
+		setCodigoPaciente(cabecalho.get(2));
+		setDataDeNasicmento(cabecalho.get(3));
+		setDataDeRealizacao(cabecalho.get(4));
+		setMedico(cabecalho.get(5));
+		setCrm(cabecalho.get(6));
+		setConvenio(cabecalho.get(7));
+		
+		
+		for(String teste: resultadoDAO.cabecalhoDeExame(exameSelecionado))
+		{
+			System.out.println(teste);
+		}
 		
 		return "visualizarRelatorio";
 	}
@@ -230,6 +226,14 @@ public class EntradaDeResultadosBean {
 
 	public void setConvenio(String convenio) {
 		this.convenio = convenio;
+	}
+
+	public String getNomeDoExame() {
+		return nomeDoExame;
+	}
+
+	public void setNomeDoExame(String nomeDoExame) {
+		this.nomeDoExame = nomeDoExame;
 	}
 
 }
