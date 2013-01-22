@@ -1,6 +1,7 @@
 package labbios.beans;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -86,6 +87,7 @@ public class SolicitacaoBean {
 		inserirExame.setEXAME_VALOR(tabelaPrecos);
 		inserirExame.setEXAME_CATEGORIA_IP('A');
 		inserirExame.setSTATUS(statusDAO.procurarStatusPorID(2));
+		inserirExame.setEXAME_DT_REALIZACAO(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 		inserirExame.setCAD_EXAME(exameEscolhido);
 		
 		listaDeExames.add(inserirExame);	
