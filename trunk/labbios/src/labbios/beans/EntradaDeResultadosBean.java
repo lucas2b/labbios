@@ -108,6 +108,16 @@ public class EntradaDeResultadosBean {
 		return retornarParaSolicitacao();
 	}
 	
+	public String printarCabecalhoDeExame() throws NumberFormatException, SQLException, ClassNotFoundException
+	{
+		for(String itemDecabecalho: resultadoDAO.cabecalhoDeExame(exameSelecionado))
+		{
+			System.out.println(itemDecabecalho);
+		}
+		return null;
+	}
+	
+	
 	public String retornarParaSolicitacao()
 	{
 		return "editarSolicitacao";

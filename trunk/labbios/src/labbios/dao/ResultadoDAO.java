@@ -1,19 +1,28 @@
 package labbios.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
 import labbios.db.DatabaseUtil;
 import labbios.dto.Exame;
+import labbios.dto.Paciente;
 import labbios.dto.Resultado;
+import labbios.dto.Solicitacao;
+import labbios.dto.TabelaPrecos;
 
 public class ResultadoDAO extends DatabaseUtil{
 	
 	ExameDAO exameDAO = new ExameDAO();
-	
+	TabelaPrecosDAO tabelaDePrecosDAO = new TabelaPrecosDAO();
+	SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
+	PacienteDAO pacienteDAO = new PacienteDAO();
+	MedicoDAO medicoDAO = new MedicoDAO();
 	
 	public boolean verificaEntradaExistente(Exame exameSelecionado) throws SQLException, ClassNotFoundException
 	{
@@ -106,6 +115,56 @@ public class ResultadoDAO extends DatabaseUtil{
 		}
 		
 		return listaDeResultados;
+	}
+	
+	public List<String> cabecalhoDeExame(Exame exameSelecionado) throws NumberFormatException, SQLException, ClassNotFoundException
+	{
+		ResultSet rs = getStatement().executeQuery("Select * from EXAME where EXAME_ID="+exameSelecionado.getEXAME_ID());
+		
+		if(rs.next())
+		{
+		
+			//Trazendo o objeto Solicitacao à partir de seu ID
+			int solicitacaoID = rs.getInt("SOL_ID");
+			Solicitacao solicitacao = solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoID);	
+			
+			//Atributos de MEDICO
+			String medico = solicitacao.getMEDICO().getMEDICO_NOME();
+			String crm = solicitacao.getMEDICO().getMEDICO_CRM();
+			
+			//Atributos de PACIENTE
+			Paciente paciente = solicitacao.getPACIENTE(); //Trazendo objeto Paciente
+			String nomePaciente = paciente.getPACIENTE_NOME();
+			int codigoDePaciente = paciente.getPACIENTE_ID();
+			Date dataDeNascimento = paciente.getPACIENTE_DT_NASCIMENTO();
+			
+			//Data de realização
+			Exame exame = exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID());
+			Date dataDeRealizacao = exame.getEXAME_DT_REALIZACAO();
+			
+			//CONVENIO
+			String convenio = exame.getEXAME_VALOR().getCONVENIO().getCONVENIO_NOME();
+			
+			//Montando a lista de retorno
+			List<String> retornoDeCabecalho = new LinkedList<String>();
+			retornoDeCabecalho.add(nomePaciente); //Nome do Paciente
+			retornoDeCabecalho.add(String.valueOf(codigoDePaciente)); //Código do Paciente
+			
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); //Formatador de datas
+			retornoDeCabecalho.add(df.format(dataDeNascimento)); //Data de nascimento
+			retornoDeCabecalho.add(df.format(dataDeRealizacao)); //Data de realização do exame
+			retornoDeCabecalho.add(medico); //Medico
+			retornoDeCabecalho.add(crm); //CRM
+			retornoDeCabecalho.add(convenio); //Convenio
+			
+			return retornoDeCabecalho;
+		
+		}
+		else
+		{
+			return null;
+		}
+		
 		
 	}
 
