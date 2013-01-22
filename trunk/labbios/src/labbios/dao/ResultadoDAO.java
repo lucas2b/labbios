@@ -126,7 +126,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		
 			//Trazendo o objeto Solicitacao à partir de seu ID
 			int solicitacaoID = rs.getInt("SOL_ID");
-			Solicitacao solicitacao = solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoID);	
+			Solicitacao solicitacao = solicitacaoDAO.procurarSolicitacaoPorID(solicitacaoID);
 			
 			//Atributos de MEDICO
 			String medico = solicitacao.getMEDICO().getMEDICO_NOME();
@@ -138,8 +138,9 @@ public class ResultadoDAO extends DatabaseUtil{
 			int codigoDePaciente = paciente.getPACIENTE_ID();
 			Date dataDeNascimento = paciente.getPACIENTE_DT_NASCIMENTO();
 			
-			//Data de realização
+			//Atributos de EXAME
 			Exame exame = exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID());
+			String nomeDoExame = exame.getCAD_EXAME().getCAD_EXAME_NOME();
 			Date dataDeRealizacao = exame.getEXAME_DT_REALIZACAO();
 			
 			//CONVENIO
@@ -147,6 +148,7 @@ public class ResultadoDAO extends DatabaseUtil{
 			
 			//Montando a lista de retorno
 			List<String> retornoDeCabecalho = new LinkedList<String>();
+			retornoDeCabecalho.add(nomeDoExame);//Nome do exame
 			retornoDeCabecalho.add(nomePaciente); //Nome do Paciente
 			retornoDeCabecalho.add(String.valueOf(codigoDePaciente)); //Código do Paciente
 			
