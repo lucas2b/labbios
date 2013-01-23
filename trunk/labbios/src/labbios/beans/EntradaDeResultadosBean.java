@@ -13,6 +13,7 @@ import labbios.dao.ResultadoDAO;
 import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.Exame;
 import labbios.dto.Resultado;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -142,7 +143,7 @@ public class EntradaDeResultadosBean {
 	{
 		Map<String, Object> map = new HashMap<String, Object>(); 
 		JasperReport report = JasperCompileManager.compileReport("C:/teste.jrxml");
-		JasperPrint print = JasperFillManager.fillReport(report, map);
+		JasperPrint print = JasperFillManager.fillReport(report, map, new JREmptyDataSource());
 		JasperExportManager.exportReportToPdfFile(print, "C:/ArquivoPdf.pdf");
 		return "refresh";
 	}
