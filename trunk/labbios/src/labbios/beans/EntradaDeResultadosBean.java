@@ -1,8 +1,10 @@
 package labbios.beans;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import labbios.dao.DadosDoExameDAO;
 import labbios.dao.ExameDAO;
@@ -10,6 +12,12 @@ import labbios.dao.ResultadoDAO;
 import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.Exame;
 import labbios.dto.Resultado;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 
 public class EntradaDeResultadosBean {
@@ -127,6 +135,16 @@ public class EntradaDeResultadosBean {
 		}
 		
 		return "visualizarRelatorio";
+	}
+	
+	public String extrairRelatorioDeExame2() throws JRException
+	{
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("teste.jrxml"));
+		JasperPrint print = JasperFillManager.fillReport(report, map);
+		JasperExportManager.exportReportToPdfFile(print, "C:/ArquivoPdf.pdf");
+		System.out.print("chegou aqui");
+		return "refresh";
 	}
 	
 	
