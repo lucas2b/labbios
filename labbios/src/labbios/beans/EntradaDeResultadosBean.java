@@ -1,5 +1,6 @@
 package labbios.beans;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -140,10 +141,9 @@ public class EntradaDeResultadosBean {
 	public String extrairRelatorioDeExame2() throws JRException
 	{
 		Map<String, Object> map = new HashMap<String, Object>(); 
-		JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("teste.jrxml"));
+		JasperReport report = JasperCompileManager.compileReport("C:/teste.jrxml");
 		JasperPrint print = JasperFillManager.fillReport(report, map);
 		JasperExportManager.exportReportToPdfFile(print, "C:/ArquivoPdf.pdf");
-		System.out.print("chegou aqui");
 		return "refresh";
 	}
 	
