@@ -163,7 +163,7 @@ public class EntradaDeResultadosBean {
 		map.put("medico", cabecalho.get(5));
 		map.put("crm", cabecalho.get(6));
 		map.put("convenio", cabecalho.get(7));
-		map.put("resultado", listaSuporte);
+		map.put("listaSuporte", listaSuporte);
 		
 		 List<Map<String,?>> maps = new ArrayList<Map<String, ?>> (); 
 		 maps.add(map);
