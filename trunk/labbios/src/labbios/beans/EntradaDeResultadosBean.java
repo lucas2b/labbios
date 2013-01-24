@@ -1,5 +1,6 @@
 package labbios.beans;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,6 +10,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import labbios.dao.DadosDoExameDAO;
 import labbios.dao.ExameDAO;
@@ -140,7 +145,7 @@ public class EntradaDeResultadosBean {
 		return "visualizarRelatorio";
 	}
 	
-	public String extrairRelatorioDeExame2() throws JRException, MalformedURLException, NumberFormatException, SQLException, ClassNotFoundException
+	public String extrairRelatorioDeExame2() throws JRException, NumberFormatException, SQLException, ClassNotFoundException, IOException
 	{
 		List<String> listaRelatorio = new ArrayList<String>();
 		for(Resultado resultado : listaSuporte)
@@ -170,10 +175,16 @@ public class EntradaDeResultadosBean {
 		
 		JRMapCollectionDataSource simpleDS = new JRMapCollectionDataSource(maps);
 		
-		JasperReport report = JasperCompileManager.compileReport("C:/relatorioExame3.jrxml");
+		String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/relatorios/relatorioExame3.jrxml");
+		JasperReport report = JasperCompileManager.compileReport(reportPath);
 		JasperPrint print = JasperFillManager.fillReport(report, new HashMap(), simpleDS);
-		JasperExportManager.exportReportToPdfFile(print, "C:/relatorio.pdf");
-		JasperViewer.viewReport(print, false, Locale.getDefault());
+		
+		
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.addHeader("Content-disposition", "attachment; filename=Exame.pdf");
+		ServletOutputStream servletOutputStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(print, servletOutputStream);
+		FacesContext.getCurrentInstance().responseComplete();
 		return "refresh";
 	}
 	
