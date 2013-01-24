@@ -1,10 +1,13 @@
 package labbios.beans;
 
-import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import labbios.dao.DadosDoExameDAO;
@@ -13,6 +16,7 @@ import labbios.dao.ResultadoDAO;
 import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.Exame;
 import labbios.dto.Resultado;
+import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -20,6 +24,9 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class EntradaDeResultadosBean {
@@ -130,21 +137,34 @@ public class EntradaDeResultadosBean {
 		setCrm(cabecalho.get(6));
 		setConvenio(cabecalho.get(7));
 		
-		
-		for(String teste: resultadoDAO.cabecalhoDeExame(exameSelecionado))
-		{
-			System.out.println(teste);
-		}
-		
 		return "visualizarRelatorio";
 	}
 	
-	public String extrairRelatorioDeExame2() throws JRException
+	public String extrairRelatorioDeExame2() throws JRException, MalformedURLException, NumberFormatException, SQLException, ClassNotFoundException
 	{
-		Map<String, Object> map = new HashMap<String, Object>(); 
-		JasperReport report = JasperCompileManager.compileReport("C:/teste.jrxml");
-		JasperPrint print = JasperFillManager.fillReport(report, map, new JREmptyDataSource());
-		JasperExportManager.exportReportToPdfFile(print, "C:/ArquivoPdf.pdf");
+		List<String> cabecalho = resultadoDAO.cabecalhoDeExame(exameSelecionado);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("nomeDoExame", cabecalho.get(0));
+		map.put("nomePaciente", cabecalho.get(1));
+		map.put("codigoDePaciente", cabecalho.get(2));
+		map.put("dataDeNascimento", cabecalho.get(3));
+		map.put("dataDeExame", cabecalho.get(4));
+		map.put("medico", cabecalho.get(5));
+		map.put("crm", cabecalho.get(6));
+		map.put("convenio", cabecalho.get(7));
+		map.put("resultado", listaSuporte);
+		
+		 List<Map<String,?>> maps = new ArrayList<Map<String, ?>> (); 
+		 maps.add(map);
+		
+		JRMapCollectionDataSource simpleDS = new JRMapCollectionDataSource(maps);
+		
+
+		
+		JasperReport report = JasperCompileManager.compileReport("C:/relatorioExame3.jrxml");
+		JasperPrint print = JasperFillManager.fillReport(report, new HashMap(), simpleDS);
+		JasperExportManager.exportReportToPdfFile(print, "C:/relatorio.pdf");
+		JasperViewer.viewReport(print, false, Locale.getDefault());
 		return "refresh";
 	}
 	
