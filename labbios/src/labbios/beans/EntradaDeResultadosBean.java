@@ -142,6 +142,17 @@ public class EntradaDeResultadosBean {
 	
 	public String extrairRelatorioDeExame2() throws JRException, MalformedURLException, NumberFormatException, SQLException, ClassNotFoundException
 	{
+		List<String> listaRelatorio = new ArrayList<String>();
+		for(Resultado resultado : listaSuporte)
+		{
+			listaRelatorio.add(resultado.getRESULT_PARAMETRO());
+			listaRelatorio.add(resultado.getRESULT_VALOR_ENCONTRADO());
+			listaRelatorio.add(resultado.getRESULT_UNIDADE());
+			listaRelatorio.add(resultado.getRESULT_VALOR_REFERENCIA());
+			listaRelatorio.add(resultado.getRESULT_OBSERVACOES());
+		}
+		
+		
 		List<String> cabecalho = resultadoDAO.cabecalhoDeExame(exameSelecionado);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("nomeDoExame", cabecalho.get(0));
@@ -158,8 +169,6 @@ public class EntradaDeResultadosBean {
 		 maps.add(map);
 		
 		JRMapCollectionDataSource simpleDS = new JRMapCollectionDataSource(maps);
-		
-
 		
 		JasperReport report = JasperCompileManager.compileReport("C:/relatorioExame3.jrxml");
 		JasperPrint print = JasperFillManager.fillReport(report, new HashMap(), simpleDS);
