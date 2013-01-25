@@ -184,6 +184,11 @@ public class SolicitacaoBean {
 		return pacientesDAO.getComboPacientes();
 	}
 	
+	public List<SelectItem> getComboStatus() throws ClassNotFoundException, SQLException
+	{
+		return statusDAO.getComboStatus();
+	}
+	
 	public List<SelectItem> getComboMedicos() throws ClassNotFoundException, SQLException
 	{
 		return medicosDAO.getComboMedicos();
