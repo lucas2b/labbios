@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioExame" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb9a077d-3f25-4a2a-b9af-2cb36d3725b3">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="fb40a739-c753-44b7-95d9-4b35d019be0a"/>
+	<parameter name="Resultado" class="java.util.Collection"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Lucas Corp\\workspace\\labbios\\WebContent\\relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="nomePaciente" class="java.lang.String"/>
+	<field name="codigoDePaciente" class="java.lang.String"/>
+	<field name="dataDeNascimento" class="java.lang.String"/>
+	<field name="dataDeExame" class="java.lang.String"/>
+	<field name="medico" class="java.lang.String"/>
+	<field name="crm" class="java.lang.String"/>
+	<field name="convenio" class="java.lang.String"/>
+	<field name="nomeDoExame" class="java.lang.String"/>
+	<field name="listaSuporte" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4bb37f28-3c95-4915-a174-bd80d64bc928" style="SubTitle" x="326" y="108" width="226" height="29"/>
+				<textElement>
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Laudo De Exame Laboratorial]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="63f6972e-8259-4da2-8172-ced0ddf2a470" x="2" y="2" width="308" height="109"/>
+				<imageExpression><![CDATA["C:\\Users\\Lucas Corp\\Desktop\\bios.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="97f66fdb-f04b-415a-b52c-21f8363938a1" positionType="FixRelativeToBottom" x="2" y="136" width="553" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="369" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="2a260491-0adf-4a01-9f48-bf1090cad024" x="0" y="209" width="552" height="160"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaSuporte})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subrelatorio.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="52" y="180" width="435" height="18"/>
+				<textElement>
+					<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeDoExame}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="0" y="180" width="48" height="18" forecolor="#000000"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exame:]]></text>
+			</staticText>
+			<frame>
+				<reportElement uuid="bef51686-44f1-4057-b1e3-ed46a1525790" x="38" y="22" width="480" height="140" backcolor="#FFCCCC"/>
+				<elementGroup>
+					<staticText>
+						<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="4" y="0" width="132" height="20" forecolor="#000000"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Nome do Paciente:]]></text>
+					</staticText>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="142" y="2" width="338" height="18"/>
+						<textElement>
+							<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nomePaciente}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="142" y="23" width="338" height="18"/>
+						<textElement>
+							<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{codigoDePaciente}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="4" y="20" width="132" height="20" forecolor="#000000"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Código de Paciente:]]></text>
+					</staticText>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="142" y="42" width="338" height="18"/>
+						<textElement>
+							<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dataDeNascimento}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="3" y="40" width="132" height="20" forecolor="#000000"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Data de Nascimento:]]></text>
+					</staticText>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="142" y="102" width="338" height="18"/>
+						<textElement>
+							<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{crm}]]></textFieldExpression>
+					</textField>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="142" y="60" width="338" height="18"/>
+						<textElement>
+							<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dataDeExame}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="0" y="100" width="132" height="20" forecolor="#000000"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[CRM:]]></text>
+					</staticText>
+					<staticText>
+						<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="2" y="60" width="132" height="20" forecolor="#000000"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Data do Exame:]]></text>
+					</staticText>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="142" y="80" width="338" height="18"/>
+						<textElement>
+							<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="2" y="80" width="132" height="20" forecolor="#000000"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Médico:]]></text>
+					</staticText>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="33da79b6-8985-4846-ac6b-fd441a012634" style="Detail" positionType="Float" x="142" y="122" width="338" height="18"/>
+						<textElement>
+							<font size="14" isBold="false" pdfFontName="Times-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{convenio}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="445c86cb-af72-454f-8bc4-81aae05a6958" style="Column header" positionType="Float" x="0" y="120" width="132" height="20" forecolor="#000000"/>
+						<textElement textAlignment="Right">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[Convênio:]]></text>
+					</staticText>
+				</elementGroup>
+			</frame>
+			<line>
+				<reportElement uuid="97f66fdb-f04b-415a-b52c-21f8363938a1" positionType="FixRelativeToBottom" x="2" y="170" width="553" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="70" splitType="Stretch">
+			<line>
+				<reportElement uuid="ebe48b61-ae87-41c7-8138-1be55e174e4b" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="b144ac7c-c1cb-4ad9-82af-70521f40d2f8" x="2" y="14" width="256" height="51"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABORATORIO DE ANALISES CLINICAS BIOS LTDA
+Rua Cel Falkembach, 882 Sala 301 - Centro
+Soledade - RS
+Telefone: (54)3811-411]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="e921ef10-cc00-4e25-9f78-93850b8f176a" mode="Opaque" x="3" y="7" width="547" height="13" forecolor="#D0B48E" backcolor="#9DB1B8"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="d1644eac-596b-417c-a260-3ec1c358c253" style="Column header" x="499" y="0" width="34" height="13" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="10ab4066-4fc0-4d52-91d1-7813ee311846" style="Column header" x="419" y="0" width="80" height="13" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="aa218b0b-048f-4bb3-a91e-965f63e97193" style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
