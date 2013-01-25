@@ -12,7 +12,6 @@ public class Solicitacao {
 	private Animal ANIMAL;
 	private double SOL_VALOR;
 	private String SOL_OBS;
-	private PacienteTemporario PACIENTE_TEMPORARIO;
 	private double SOL_DESC_PERCENTUAL;
 	private double SOL_DESC_DINHEIRO;
 	private int SOL_FLAG_URGENTE;
@@ -60,12 +59,6 @@ public class Solicitacao {
 	}
 	public void setSOL_VALOR(double sOL_VALOR) {
 		SOL_VALOR = sOL_VALOR;
-	}
-	public PacienteTemporario getPACIENTE_TEMPORARIO() {
-		return PACIENTE_TEMPORARIO;
-	}
-	public void setPACIENTE_TEMPORARIO(PacienteTemporario pACIENTE_TEMPORARIO) {
-		PACIENTE_TEMPORARIO = pACIENTE_TEMPORARIO;
 	}
 	
 	public double getSOL_DESC_PERCENTUAL() {

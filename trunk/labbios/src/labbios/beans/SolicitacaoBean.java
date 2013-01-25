@@ -86,7 +86,7 @@ public class SolicitacaoBean {
 		
 		inserirExame.setEXAME_VALOR(tabelaPrecos);
 		inserirExame.setEXAME_CATEGORIA_IP('A');
-		inserirExame.setSTATUS(statusDAO.procurarStatusPorID(2));
+		inserirExame.setSTATUS(statusDAO.procurarStatusPorID(1));
 		inserirExame.setEXAME_DT_REALIZACAO(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 		inserirExame.setCAD_EXAME(exameEscolhido);
 		
@@ -106,6 +106,7 @@ public class SolicitacaoBean {
 			else
 				solicitacaoSelecionada.setSOL_FLAG_URGENTE(0);
 			
+			solicitacaoSelecionada.setSTATUS(statusDAO.procurarStatusPorID(1));
 			solicitacaoDAO.adicionarSolicitacao(solicitacaoSelecionada);
 			
 			for(Exame exame : listaDeExames)

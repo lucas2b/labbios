@@ -24,21 +24,14 @@
 				<f:selectItems value="#{solicitacaoBean.comboPacientes}"></f:selectItems>
 				<f:converter converterId="ConversorPaciente"></f:converter>
 			</h:selectOneMenu><br></br>
-			Paciente temporario: 
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE_TEMPORARIO}" id="pacienteTemporario">
-				<f:converter converterId="ConversorPacienteTemporario"></f:converter>
-			</h:inputText><br></br>
 			Médico:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.MEDICO}" id="medico">
-			    <f:converter converterId="ConversorMedico"></f:converter>
-			</h:inputText><br></br>
+			<h:selectOneMenu value="#{solicitacaoBean.solicitacaoSelecionada.MEDICO}" id="comboMedico" >
+				<f:selectItems value="#{solicitacaoBean.comboMedicos}"></f:selectItems>
+				<f:converter converterId="ConversorMedico"></f:converter>
+			</h:selectOneMenu><br></br>
 			Animal:
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.ANIMAL}" id="animal">
 				<f:converter converterId="ConversorAnimal"></f:converter>
-			</h:inputText><br></br>
-			Status:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.STATUS}" id="status">
-				<f:converter converterId="ConversorStatus"></f:converter>
 			</h:inputText><br></br>
 			Observações:
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_OBS}" id="observacoes"></h:inputText><br></br>
