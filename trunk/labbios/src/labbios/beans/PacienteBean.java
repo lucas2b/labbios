@@ -17,7 +17,7 @@ public class PacienteBean {
 	private CidadeDAO cidadesDAO = new CidadeDAO();
 	private boolean flagNovoPaciente = false;
 	private Paciente pacienteSelecionado;
-	private Date dataNascimento;
+	private java.util.Date dataNascimento;
 
 	//Função que dá início ao tratamento de pacientes
 	public String manutencaoDePacientes()
@@ -26,7 +26,10 @@ public class PacienteBean {
 		{
 			flagNovoPaciente = true;
 			pacienteSelecionado = new Paciente();
-			
+		}
+		else
+		{
+			dataNascimento = pacienteSelecionado.getPACIENTE_DT_NASCIMENTO();
 		}
 		return "manutencaoDePacientes";
 	}
@@ -43,8 +46,8 @@ public class PacienteBean {
 		if(flagNovoPaciente)
 		{
 			
-			System.out.println("Novo paciente");
 			
+			pacienteSelecionado.setPACIENTE_DT_NASCIMENTO(new java.sql.Date(dataNascimento.getTime()));
 			boolean retorno = pacienteDAO.adicionarPaciente(pacienteSelecionado);
 			if(retorno){
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "Registro gravado com sucesso!"));  
@@ -55,7 +58,8 @@ public class PacienteBean {
 		}
 		else
 		{
-			System.out.println("Update de paciente");
+			
+			pacienteSelecionado.setPACIENTE_DT_NASCIMENTO(new java.sql.Date(dataNascimento.getTime()));
 			pacienteDAO.editarPaciente(pacienteSelecionado);
 		}
 		
