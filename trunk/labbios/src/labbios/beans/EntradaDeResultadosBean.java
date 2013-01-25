@@ -146,18 +146,7 @@ public class EntradaDeResultadosBean {
 	}
 	
 	public String extrairRelatorioDeExame2() throws JRException, NumberFormatException, SQLException, ClassNotFoundException, IOException
-	{
-		List<String> listaRelatorio = new ArrayList<String>();
-		for(Resultado resultado : listaSuporte)
-		{
-			listaRelatorio.add(resultado.getRESULT_PARAMETRO());
-			listaRelatorio.add(resultado.getRESULT_VALOR_ENCONTRADO());
-			listaRelatorio.add(resultado.getRESULT_UNIDADE());
-			listaRelatorio.add(resultado.getRESULT_VALOR_REFERENCIA());
-			listaRelatorio.add(resultado.getRESULT_OBSERVACOES());
-		}
-		
-		
+	{	
 		List<String> cabecalho = resultadoDAO.cabecalhoDeExame(exameSelecionado);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("nomeDoExame", cabecalho.get(0));
@@ -173,15 +162,13 @@ public class EntradaDeResultadosBean {
 		 List<Map<String,?>> maps = new ArrayList<Map<String, ?>> (); 
 		 maps.add(map);
 		
-		JRMapCollectionDataSource simpleDS = new JRMapCollectionDataSource(maps);
+		JRMapCollectionDataSource parametros = new JRMapCollectionDataSource(maps);
 		
-		String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/relatorios/relatorioExame3.jrxml");
-		JasperReport report = JasperCompileManager.compileReport(reportPath);
-		JasperPrint print = JasperFillManager.fillReport(report, new HashMap(), simpleDS);
-		
+		String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/relatorios/relatorioExame.jasper");
+		JasperPrint print = JasperFillManager.fillReport(reportPath, new HashMap(), parametros);
 		
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		response.addHeader("Content-disposition", "attachment; filename=Exame.pdf");
+		response.addHeader("Content-disposition", "attachment; filename=Paciente: "+cabecalho.get(1)+" Exame: "+cabecalho.get(0)+".pdf"); //Montando nome do arquivo
 		ServletOutputStream servletOutputStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(print, servletOutputStream);
 		FacesContext.getCurrentInstance().responseComplete();
