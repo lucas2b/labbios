@@ -25,7 +25,7 @@
 						<p:inputText id="sexo" value="#{pacienteBean.pacienteSelecionado.PACIENTE_SEXO}"/>
 						
 						<h:outputText value="Data de Nascimento: " />
-						<p:calendar value="#{pacienteBean.pacienteSelecionado.PACIENTE_DT_NASCIMENTO}" />
+						<p:calendar value="#{pacienteBean.dataNascimento}" />
 						
 						<h:outputText value="CPF: "/>
 						<p:inputMask mask="999.999.999-99" id="cpf" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CPF}"/>
