@@ -48,6 +48,26 @@ public class Animal {
 	public void setANIMAL_NOME(String aNIMAL_NOME) {
 		ANIMAL_NOME = aNIMAL_NOME;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ANIMAL_ID;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Animal other = (Animal) obj;
+		if (ANIMAL_ID != other.ANIMAL_ID)
+			return false;
+		return true;
+	}
 	
 	
 
