@@ -87,5 +87,25 @@ public class Medico {
 	public void setMEDICO_OBS(String mEDICO_OBS) {
 		MEDICO_OBS = mEDICO_OBS;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + MEDICO_ID;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Medico other = (Medico) obj;
+		if (MEDICO_ID != other.MEDICO_ID)
+			return false;
+		return true;
+	}
 
 }

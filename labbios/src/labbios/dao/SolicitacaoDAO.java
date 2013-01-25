@@ -16,7 +16,6 @@ public class SolicitacaoDAO extends DatabaseUtil {
 	MedicoDAO medicoDAO = new MedicoDAO();
 	AnimalDAO animalDAO = new AnimalDAO();
 	StatusDAO statusDAO = new StatusDAO();
-	PacienteTemporarioDAO pacienteTemporarioDAO = new PacienteTemporarioDAO();
 
 	public boolean adicionarSolicitacao(Solicitacao solicitacao)
 			throws ClassNotFoundException, SQLException {
@@ -27,7 +26,6 @@ public class SolicitacaoDAO extends DatabaseUtil {
 				+ " MEDICO_ID=?,"
 				+ " ANIMAL_ID=?,"
 				+ " SOL_VALOR=?,"
-				+ " PACIENTE_TEMPORARIO_ID=?,"
 				+ " SOL_OBS=?,"
 				+ " SOL_DESC_PERCENTUAL=?,"
 				+ " SOL_DESC_DINHEIRO=?,"
@@ -40,13 +38,11 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		ps.setInt(4, solicitacao.getMEDICO().getMEDICO_ID());
 		ps.setInt(5, solicitacao.getANIMAL().getANIMAL_ID());
 		ps.setDouble(6, solicitacao.getSOL_VALOR());
-		ps.setInt(7, solicitacao.getPACIENTE_TEMPORARIO()
-				.getPACIENTE_TEMPORARIO_ID());
-		ps.setString(8, solicitacao.getSOL_OBS());
-		ps.setDouble(9, solicitacao.getSOL_DESC_PERCENTUAL());
-		ps.setDouble(10, solicitacao.getSOL_DESC_DINHEIRO());
-		ps.setInt(11, solicitacao.getSOL_FLAG_URGENTE());
-		ps.setDouble(12, solicitacao.getSOL_VALOR_PAGO());
+		ps.setString(7, solicitacao.getSOL_OBS());
+		ps.setDouble(8, solicitacao.getSOL_DESC_PERCENTUAL());
+		ps.setDouble(9, solicitacao.getSOL_DESC_DINHEIRO());
+		ps.setInt(10, solicitacao.getSOL_FLAG_URGENTE());
+		ps.setDouble(11, solicitacao.getSOL_VALOR_PAGO());
 
 		retorno = ps.execute();
 
@@ -62,7 +58,6 @@ public class SolicitacaoDAO extends DatabaseUtil {
 				+ " MEDICO_ID=?,"
 				+ " ANIMAL_ID=?,"
 				+ " SOL_VALOR=?,"
-				+ " PACIENTE_TEMPORARIO_ID=?,"
 				+ " SOL_OBS=?,"
 				+ " SOL_DESC_PERCENTUAL=?,"
 				+ " SOL_DESC_DINHEIRO=?,"
@@ -77,14 +72,12 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		ps.setInt(4, solicitacao.getMEDICO().getMEDICO_ID());
 		ps.setInt(5, solicitacao.getANIMAL().getANIMAL_ID());
 		ps.setDouble(6, solicitacao.getSOL_VALOR());
-		ps.setInt(7, solicitacao.getPACIENTE_TEMPORARIO()
-				.getPACIENTE_TEMPORARIO_ID());
-		ps.setString(8, solicitacao.getSOL_OBS());
-		ps.setDouble(9, solicitacao.getSOL_DESC_PERCENTUAL());
-		ps.setDouble(10, solicitacao.getSOL_DESC_DINHEIRO());
-		ps.setInt(11, solicitacao.getSOL_FLAG_URGENTE());
-		ps.setDouble(12, solicitacao.getSOL_VALOR_PAGO());
-		ps.setInt(13, solicitacao.getSOL_ID());
+		ps.setString(7, solicitacao.getSOL_OBS());
+		ps.setDouble(8, solicitacao.getSOL_DESC_PERCENTUAL());
+		ps.setDouble(9, solicitacao.getSOL_DESC_DINHEIRO());
+		ps.setInt(10, solicitacao.getSOL_FLAG_URGENTE());
+		ps.setDouble(11, solicitacao.getSOL_VALOR_PAGO());
+		ps.setInt(12, solicitacao.getSOL_ID());
 
 		retorno = ps.execute();
 
@@ -211,9 +204,6 @@ public class SolicitacaoDAO extends DatabaseUtil {
 		solicitacao.setANIMAL(animalDAO.procurarAnimalPorID(rs
 				.getInt("ANIMAL_ID")));
 		solicitacao.setSOL_VALOR(rs.getDouble("SOL_VALOR"));
-		solicitacao.setPACIENTE_TEMPORARIO(pacienteTemporarioDAO
-				.procurarPacienteTemporarioPorID(rs
-						.getInt("PACIENTE_TEMPORARIO_ID")));
 		solicitacao.setSOL_OBS(rs.getString("SOL_OBS"));
 		solicitacao.setSOL_DESC_PERCENTUAL(rs.getDouble("SOL_DESC_PERCENTUAL"));
 		solicitacao.setSOL_DESC_DINHEIRO(rs.getDouble("SOL_DESC_DINHEIRO"));

@@ -115,31 +115,38 @@ public class CadastroDeExameBean {
 			//Se existe a listagem deste exame
 			
 			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
-			listaSuporte = dadosDoExameDAO.recuperarTabela(cadastroDeExameSelecionado);
+			{
+				
+				listaSuporte = dadosDoExameDAO.recuperarTabela(cadastroDeExameSelecionado);
+				return "entrarDadosDoExame";
+			}
 			else
-			dadosDeExameEmTexto= dadosDoExameDAO.recuperarTexto(cadastroDeExameSelecionado);
+			{
+				dadosDeExameEmTexto= dadosDoExameDAO.recuperarTexto(cadastroDeExameSelecionado);
+				return "entrarDadosDoExameTexto";
+				
+			}
 		}
 		else
 		{
 			//Caso não exista, apresenta 35 linhas em branco
 			flagGravar = true;
 			
-			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'T')
+			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
 			{
 				listaSuporte = new LinkedList<DadosDoExameSuporte>();
 				for(int i=0; i<35; i++)
 				{
 					listaSuporte.add(new DadosDoExameSuporte());			
 				}
+				return "entrarDadosDoExame";
 			}
 			else
+			{
 				dadosDeExameEmTexto = new String();
+				return "entrarDadosDoExameTexto";
+			}
 		}
-		
-		if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
-		return "entrarDadosDoExame";
-			else
-		return "entrarDadosDoExameTexto";
 
 	}
 	
