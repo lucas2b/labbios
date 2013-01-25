@@ -92,7 +92,7 @@ public class AnimalDAO extends DatabaseUtil{
 		List<SelectItem> toReturn = new LinkedList<SelectItem>();
 		for(Animal animal : listarAnimais())
 		{
-			toReturn.add(new SelectItem(animal, animal.getANIMAL_NOME()+" Nasc: "+animal.getANIMAL_DT_NASCIMENTO().toGMTString()));
+			toReturn.add(new SelectItem(animal, animal.getANIMAL_NOME()));
 			//Passa para a lista de SelectItem o objeto e o atributo nome do produto
 		}
 		return toReturn;

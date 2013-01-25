@@ -18,44 +18,59 @@
 			<h:form>
 			<h:messages></h:messages>
 			
-			<h1>Cadastro de Solicitação</h1>
-			Paciente:
+			<p:fieldset legend="Cadastro de Solicitação" toggleable="false">
+				<h:panelGrid columns="2">
+				
+			<h:outputText value="Paciente:" />
 			<h:selectOneMenu value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE}" id="comboPaciente" >
 				<f:selectItems value="#{solicitacaoBean.comboPacientes}"></f:selectItems>
 				<f:converter converterId="ConversorPaciente"></f:converter>
-			</h:selectOneMenu><br></br>
-			Médico:
+			</h:selectOneMenu>
+			
+			<h:outputText value="Médico:" />
 			<h:selectOneMenu value="#{solicitacaoBean.solicitacaoSelecionada.MEDICO}" id="comboMedico" >
 				<f:selectItems value="#{solicitacaoBean.comboMedicos}"></f:selectItems>
 				<f:converter converterId="ConversorMedico"></f:converter>
-			</h:selectOneMenu><br></br>
-			Animal:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.ANIMAL}" id="animal">
+			</h:selectOneMenu>
+			
+			<h:outputText value="Animal:" />
+			<h:selectOneMenu value="#{solicitacaoBean.solicitacaoSelecionada.ANIMAL}" id="comboAnimal" >
+				<f:selectItems value="#{solicitacaoBean.comboAnimais}"></f:selectItems>
 				<f:converter converterId="ConversorAnimal"></f:converter>
-			</h:inputText><br></br>
-			Observações:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_OBS}" id="observacoes"></h:inputText><br></br>
-			Solicitação urgente:
+			</h:selectOneMenu>
+			
+			<h:outputText value="Observações:" />
+			<p:inputTextarea id="observações" value="#{solicitacaoBean.solicitacaoSelecionada.SOL_OBS}" autoResize="off" cols="50" rows="4"/>
+			
+			<h:outputText value="Solicitação Urgente:" />
 			<h:selectOneMenu value="#{solicitacaoBean.flagUrgente}">
 				<f:selectItems value="#{solicitacaoBean.comboUrgente}"></f:selectItems>
-			</h:selectOneMenu><br></br>
-			<h1>Inclusão de Exames:</h1><br></br>
+			</h:selectOneMenu>
 			
-			Exame:
+			</h:panelGrid>
+			</p:fieldset>
+			
+			
+			
+			<p:fieldset legend="Inclusão de Exames" toggleable="false">
+				<h:panelGrid columns="2">
+			
+			<h:outputText value="Exame:" />
 			<h:selectOneMenu value="#{solicitacaoBean.exameEscolhido}" onchange="submit()" id="comboExames">
 				<f:selectItems value="#{solicitacaoBean.comboExames}"></f:selectItems>
 				<f:converter converterId="ConversorCadastroDeExames"></f:converter>
-			</h:selectOneMenu><br></br>
+			</h:selectOneMenu>
 			
-			Convênio:
+			<h:outputText value="Convênio:" />
 			<h:selectOneMenu value="#{solicitacaoBean.convenioEscolhido}" id="comboConvenios">
 				<f:selectItems value="#{solicitacaoBean.comboConvenios}"></f:selectItems>
 				<f:converter converterId="ConversorConvenio"></f:converter>
-			</h:selectOneMenu>			
-			<br></br>
-			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton><br></br>
+			</h:selectOneMenu>
 			
-			<h1>Listagem de Exames:</h1>
+			<h:outputText value="" />
+			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton>
+			
+			<h:outputText value="Listagem De Exames:" />
 			<h:dataTable value="#{solicitacaoBean.listaDeExames}" var="item" border="1" id="tabelaDeExames">
 				<h:column>
 					<f:facet name="header">
@@ -81,26 +96,33 @@
 					</h:commandLink>
 				</h:column>
 			</h:dataTable>
-			<br></br>
-			<h1> <h:outputText value="Controle de Pagamento: "></h:outputText> </h1><br></br>
-			Desconto Percentual:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_PERCENTUAL}" id="descontoPercentual">
-			</h:inputText><br></br>
-			Desconto em Dinheiro:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_DINHEIRO}" id="descontoEmDinheiro">
-			</h:inputText><br></br>
-			Valor Total:
-			<h:outputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR}" id="valor">
-			</h:outputText><br></br>
-			Valor Pago:
-			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}" id="valorPago">
-			</h:inputText><br></br>
+		</h:panelGrid>
+		</p:fieldset>
+		
+		<p:fieldset legend="Controle de Pagamento" toggleable="false">
+				<h:panelGrid columns="2">
 			
+			<h:outputText value="Desconto Percentual:" />
+			<p:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_PERCENTUAL}" id="descontoPercentual"/>
+	
+			<h:outputText value="Desconto em Dinheiro:" />
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_DESC_DINHEIRO}" id="descontoEmDinheiro"/>
+			
+			<h:outputText value="Valor Total:" />
+			<h:outputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR}" id="valor"/>
+			
+			<h:outputText value="Valor Pago:" />
+			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}" id="valorPago"/>
+		
 			<h:commandButton value="Gravar Solicitação" action="#{solicitacaoBean.botaoGravar}"></h:commandButton>
-			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton><br></br>
+			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton>
 			
+			<h:commandButton value="Limpar Tela" action="#{solicitacaoBean.limparTela}"></h:commandButton>
+			
+			</h:panelGrid>
+		</p:fieldset>
+		
 			</h:form>
-			<br></br>
 		</p:panel>
 	</ui:define>
 </ui:composition>

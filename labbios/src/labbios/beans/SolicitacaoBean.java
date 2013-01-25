@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import labbios.dao.AnimalDAO;
 import labbios.dao.CadastroDeExameDAO;
 import labbios.dao.ConvenioDAO;
 import labbios.dao.ExameDAO;
@@ -34,7 +35,8 @@ public class SolicitacaoBean {
 	private MedicoDAO          medicosDAO          = new MedicoDAO();
 	private StatusDAO          statusDAO           = new StatusDAO();
 	private ExameDAO           examesDAO           = new ExameDAO();
-	private Solicitacao solicitacaoSelecionada;
+	private AnimalDAO		   animalDAO		   = new AnimalDAO();
+	private Solicitacao 	   solicitacaoSelecionada;
 	
 	//------------------------------------------------------------------------
 	
@@ -156,6 +158,12 @@ public class SolicitacaoBean {
 		return "retornarListagemSolicitacoes";
 	}
 	
+	public String limparTela() throws ClassNotFoundException, SQLException
+	{
+		solicitacaoSelecionada = null;
+		return manutencaoDeSolicitacao();
+	}
+	
 	
 	public List<SelectItem> getComboUrgente()
 	{
@@ -184,6 +192,11 @@ public class SolicitacaoBean {
 	public List<SelectItem> getComboExames() throws ClassNotFoundException, SQLException
 	{
 		return  cadastroDeExamesDAO.getComboExames();
+	}
+	
+	public List<SelectItem> getComboAnimais() throws ClassNotFoundException, SQLException
+	{
+		return  animalDAO.getComboAnimais();
 	}
 	
 	public List<SelectItem> getComboConvenios() throws ClassNotFoundException, SQLException
