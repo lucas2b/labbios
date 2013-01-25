@@ -3,7 +3,7 @@
 	<property name="template.type" value="columnar"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="149"/>
+	<property name="ireport.y" value="162"/>
 	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -188,10 +188,6 @@
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
-		</band>
-	</columnFooter>
-	<pageFooter>
-		<band height="30" splitType="Stretch">
 			<frame>
 				<reportElement uuid="e921ef10-cc00-4e25-9f78-93850b8f176a" mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8"/>
 				<textField evaluationTime="Report">
@@ -216,6 +212,15 @@
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="15c7bafc-f6c2-4baf-a948-8fc987c47b13" x="201" y="11" width="132" height="19"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "relatorioExame3_subreport1.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</pageFooter>
 	<summary>
