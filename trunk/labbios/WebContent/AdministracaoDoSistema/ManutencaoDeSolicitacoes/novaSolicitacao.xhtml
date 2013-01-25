@@ -21,6 +21,12 @@
 			<p:fieldset legend="Cadastro de Solicitação" toggleable="false">
 				<h:panelGrid columns="2">
 				
+			<h:outputText value="Status da Solicitação:" />
+			<h:selectOneMenu value="#{solicitacaoBean.solicitacaoSelecionada.STATUS}" id="comboStatus" >
+				<f:selectItems value="#{solicitacaoBean.comboStatus}"></f:selectItems>
+				<f:converter converterId="ConversorStatus"></f:converter>
+			</h:selectOneMenu>
+			
 			<h:outputText value="Paciente:" />
 			<h:selectOneMenu value="#{solicitacaoBean.solicitacaoSelecionada.PACIENTE}" id="comboPaciente" >
 				<f:selectItems value="#{solicitacaoBean.comboPacientes}"></f:selectItems>
@@ -83,6 +89,12 @@
 						<h:outputText value="Convenio"></h:outputText>
 					</f:facet>
 					<h:outputText value="#{item.EXAME_VALOR.CONVENIO.CONVENIO_NOME}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Status do Exame"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{item.STATUS.STATUS_NOME}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">
