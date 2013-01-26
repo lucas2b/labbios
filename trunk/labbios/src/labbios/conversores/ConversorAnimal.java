@@ -20,7 +20,9 @@ public class ConversorAnimal implements Converter{
 			animal =  animalDAO.procurarAnimalPorID(Integer.parseInt(arg2));
 		}
 		
-		catch(Exception e){}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		return animal;
 	}
 
