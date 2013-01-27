@@ -16,38 +16,38 @@
 	<ui:define name="content">
 	    <p:panel>
 	    <h:form>
-	    <h:outputText value="Adicionar Novo Médico"></h:outputText><br></br>
-	    <h:commandButton value="Adicionar" action="#{medicoBean.manutencaoDeMedicos}"></h:commandButton><br></br>
+	    <h1><h:outputText value="Adicionar Novo Médico"/></h1><br></br>
+	    <h:commandButton value="Adicionar" action="#{medicoBean.manutencaoDeMedicos}"/><br></br>
 	    
-	    <h1><h:outputText value="Listagem De Médicos"></h:outputText></h1><br></br>
+	    <h1><h:outputText value="Listagem De Médicos"/></h1><br></br>
 	    <h:dataTable border="1" value="#{medicoBean.medicos}" var="item">
 	    <h:column>
 	    	<f:facet name="header">
 	    		<h:outputText value="Nome"></h:outputText>
 	    	</f:facet>
-	    	<h:outputText value="#{item.MEDICO_NOME}"></h:outputText>
+	    	<h:outputText value="#{item.MEDICO_NOME}"/>
 	    </h:column>
 	    <h:column>
 	    	<f:facet name="header">
-	    		<h:outputText value="Especialidade"></h:outputText>
+	    		<h:outputText value="Especialidade"/>
 	    	</f:facet>
-	    	<h:outputText value="#{item.MEDICO_ESPECIALIDADE}"></h:outputText>
+	    	<h:outputText value="#{item.MEDICO_ESPECIALIDADE}"/>
 	    </h:column>
 	    <h:column>
 	    	<f:facet name="header">
-	    		<h:outputText value="CRM"></h:outputText>
+	    		<h:outputText value="CRM"/>
 	    	</f:facet>
-	    	<h:outputText value="#{item.MEDICO_CRM}"></h:outputText>
+	    	<h:outputText value="#{item.MEDICO_CRM}"/>
 	    </h:column>
 	    <h:column>
 	    	<f:facet name="header">
-	    		<h:outputText value="Celular"></h:outputText>
+	    		<h:outputText value="Celular"/>
 	    	</f:facet>
-	    	<h:outputText value="#{item.MEDICO_CELULAR}"></h:outputText>
+	    	<h:outputText value="#{item.MEDICO_CELULAR}"/>
 	    </h:column>
 	    <h:column>
 	    	<f:facet name="header">
-	    		<h:outputText value="Ações"></h:outputText>
+	    		<h:outputText value="Ações"/>
 	    	</f:facet>
 	    	<h:commandLink value="Editar" action="#{medicoBean.manutencaoDeMedicos}">
 	    	<f:setPropertyActionListener target="#{medicoBean.medicoSelecionado}" value="#{item}"></f:setPropertyActionListener>

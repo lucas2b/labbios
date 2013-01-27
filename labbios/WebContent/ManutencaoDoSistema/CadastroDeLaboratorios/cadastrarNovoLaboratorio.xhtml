@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>  
+  		
+    </h:head> 
+	
+<h:body>
+<ui:composition template="/WEB-INF/templates/templateMain.xhtml">
+	<ui:define name="content">
+	    <p:panel>
+   <h:form>
+	<h1>Adicionar Tipo De Laboratorio</h1>
+	Nome: <h:inputText value="#{tipoLaboratorioBean.nome}"/><br/>
+	
+	<h:commandButton value="Adicionar Laboratorio" action="#{tipoLaboratorioBean.addTipoDeLaboratorio}"></h:commandButton>
+	<br/>
+	</h:form>
+	
+	<h:form>
+	
+	<h1>Listagem de Grupo De Exames</h1>
+	<h:dataTable border="1" value="#{tipoLaboratorioBean.tiposDeLaboratorio}" var="item">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Nome"></h:outputText>
+			</f:facet>
+				<h:outputText value="#{item.TIPO_LABORATORIO_NOME}"></h:outputText>
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Ação"></h:outputText>
+			</f:facet>
+				<h:commandLink value="Editar" action="#{tipoLaboratorioBean.startEditarTipoLaboratorio}">
+					<f:setPropertyActionListener value="#{item}" target="#{tipoLaboratorioBean.tipoLaboratorioSelecionado}"/>
+				</h:commandLink>	
+		</h:column>		
+	</h:dataTable>
+	
+	</h:form>
+</p:panel>
+	</ui:define>
+</ui:composition>
+</h:body>
+</html>
