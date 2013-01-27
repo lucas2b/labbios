@@ -18,17 +18,20 @@ public class PacienteBean {
 	private boolean flagNovoPaciente = false;
 	private Paciente pacienteSelecionado;
 	private java.util.Date dataNascimento;
+	private Paciente paciente = new Paciente();
 
 	//Função que dá início ao tratamento de pacientes
 	public String manutencaoDePacientes()
 	{
 		if(pacienteSelecionado == null)
 		{
+			System.out.println("Paciente Novo");
 			flagNovoPaciente = true;
 			pacienteSelecionado = new Paciente();
 		}
 		else
 		{
+			System.out.println("Paciente Editado");
 			dataNascimento = pacienteSelecionado.getPACIENTE_DT_NASCIMENTO();
 		}
 		return "manutencaoDePacientes";
@@ -36,29 +39,22 @@ public class PacienteBean {
 	
 	public String voltarListagem()
 	{
-		pacienteSelecionado = null;
+		//pacienteSelecionado = null;
+		//pacienteDAO = new PacienteDAO();
+		pacienteSelecionado = new Paciente();
 		flagNovoPaciente = false;
-		return "listarPacientes";
+		return "listagemDePacientes"; //"listarPacientes";
 	}
 	
 	public String botaoGravar() throws ClassNotFoundException, SQLException
 	{
-		if(flagNovoPaciente)
-		{
-			
-			
+		if(flagNovoPaciente){
 			pacienteSelecionado.setPACIENTE_DT_NASCIMENTO(new java.sql.Date(dataNascimento.getTime()));
 			boolean retorno = pacienteDAO.adicionarPaciente(pacienteSelecionado);
 			if(retorno){
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "Registro gravado com sucesso!"));  
-
-			}
-			
-			
-		}
-		else
-		{
-			
+			}	
+		}else{
 			pacienteSelecionado.setPACIENTE_DT_NASCIMENTO(new java.sql.Date(dataNascimento.getTime()));
 			pacienteDAO.editarPaciente(pacienteSelecionado);
 		}

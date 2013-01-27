@@ -57,8 +57,8 @@
 	    
 	    </h:panelGrid>
 	    <br></br>
-	    <h:commandButton value="Gravar" action="#{medicoBean.botaoGravar}"></h:commandButton>
-	    <h:commandButton value="Voltar Para listagem" action="#{medicoBean.voltarParaListagem}"></h:commandButton>
+	    <p:commandButton value="Gravar" action="#{medicoBean.botaoGravar}" ajax="false"/>
+	    <p:commandButton value="Voltar Para listagem" action="#{medicoBean.voltarParaListagem}" immediate="true" ajax="false"/>
 	    </h:form>		
 		</p:fieldset>
 	</ui:define>

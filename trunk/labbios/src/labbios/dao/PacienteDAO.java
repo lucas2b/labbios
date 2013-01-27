@@ -17,6 +17,11 @@ import labbios.dto.Paciente;
 public class PacienteDAO extends DatabaseUtil {
 	
 	CidadeDAO cidadeDAO = new CidadeDAO();
+	Paciente paciente;
+	
+	public PacienteDAO() {
+		paciente = new Paciente();
+	}
 	
 	public boolean adicionarPaciente(Paciente paciente)
 	{
@@ -46,7 +51,7 @@ public class PacienteDAO extends DatabaseUtil {
 		ps.setString(2, String.valueOf(paciente.getPACIENTE_SEXO()) );
 		ps.setString(3, paciente.getPACIENTE_CPF());
 		ps.setString(4, paciente.getPACIENTE_RG());
-		ps.setDate(5, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+		ps.setDate(5, paciente.getPACIENTE_DT_NASCIMENTO());
 		ps.setString(6, paciente.getPACIENTE_FONE());
 		ps.setString(7, paciente.getPACIENTE_CELULAR());
 		ps.setString(8, paciente.getPACIENTE_ENDERECO());
