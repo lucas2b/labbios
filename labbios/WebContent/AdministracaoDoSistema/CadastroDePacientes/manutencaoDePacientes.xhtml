@@ -67,8 +67,8 @@
 						<p:inputTextarea id="convenios" value="#{pacienteBean.pacienteSelecionado.PACIENTE_OBS_CONVENIOS}" autoResize="on" cols="100" rows="5"/>
 		    		</h:panelGrid>
 		    		<br/>
-						<p:commandButton value="Gravar" action="#{pacienteBean.botaoGravar}"/>
-						<p:commandButton value="Voltar a Listagem" action="#{pacienteBean.voltarListagem}"/>
+						<p:commandButton value="Gravar" action="#{pacienteBean.botaoGravar}" ajax="false"/>
+						<p:commandButton value="Voltar a Listagem" action="#{pacienteBean.voltarListagem}" ajax="false" immediate="true"/>
 		
 				</h:form>
 			</p:fieldset>
