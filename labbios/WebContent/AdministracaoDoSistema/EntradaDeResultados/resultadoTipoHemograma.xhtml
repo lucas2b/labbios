@@ -14,9 +14,57 @@
 <h:body>
 <ui:composition template="/WEB-INF/templates/templateMain.xhtml">
 	<ui:define name="content">
-	    <p:panel>
-		Tipo Hemograma
-		</p:panel>
+	    <p:fieldset legend="Entrada de Resultados para Hemograma" toggleable="false">
+		    	
+		 <h:form id="formEmograma">
+		 <h:panelGrid columns="2">
+		 
+		 <p:outputLabel value="Leucócitos: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Leucometria: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Bastonetes: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Segmentados: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Eosinofilos: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Monocitos: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Linfocitos: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Eritróticos: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Hemoglobina: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="Hematócrito: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="MCV: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="MCH: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="MCHC: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 <p:outputLabel value="RDW: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 
+		 </h:panelGrid>
+		 
+		 </h:form>
+		 </p:fieldset>
 	</ui:define>
 </ui:composition>
 </h:body>
