@@ -27,7 +27,7 @@ public class EntradaDeResultadosBean {
 	
 	//Listas de auxílio
 	private List<Resultado> listaDeResultado; //Lista de inserção recuperada à partir do molde + entradas do resultado
-	private List<Resultado> listaSuporte;
+	private List<Resultado> listaDeExibicao;
 	private List<DadosDoExameSuporte> tabelaMolde; //Molde da tabela de exames recuperado
 	
 	
@@ -38,18 +38,16 @@ public class EntradaDeResultadosBean {
 		
 		if( Integer.valueOf(exameSelecionado.getEXAME_ID()) == 0 )
 		{
-			//Caso em que o usuário adicionou o exame e tentou entrar resultado sem salvar solicitação antes, retorna para listagem de solicitações
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"A solicitação ainda não foi salva! Clique em salvar e retorne para entrar resultados!", ""));
 		}
 		else
 		{
-			//Caso tudo OK, prossegue com a rotina de inicialização
 		
 					if(resultadoDAO.verificaEntradaExistente(exameSelecionado))
 					{
 							//Update
 							flagNovaEntrada = false;
-							listaSuporte = resultadoDAO.recuperarResultado(exameSelecionado);
+							listaDeExibicao = resultadoDAO.recuperarResultado(exameSelecionado);
 					}
 					else
 					{
@@ -57,7 +55,7 @@ public class EntradaDeResultadosBean {
 							flagNovaEntrada = true;
 							
 							tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME());
-							listaSuporte = new LinkedList<Resultado>();
+							listaDeExibicao = new LinkedList<Resultado>();
 							
 							for(DadosDoExameSuporte molde: tabelaMolde)
 							{
@@ -68,19 +66,22 @@ public class EntradaDeResultadosBean {
 								resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
 								resultado.setRESULT_VALOR_ENCONTRADO("");
 								resultado.setRESULT_OBSERVACOES("");
-								listaSuporte.add(resultado);
+								listaDeExibicao.add(resultado);
 							}
 							
-							/*
-							 * Descrição do for acima:
-							 * Popula uma lista de resultados que será jogada no grid, adiciona os campos vindos do molde de Resultado
-							 * como o Parametro, Unidade e o valor de referência e dois valores em brancos para Valor Encontrado
-							 * e Observações, para que os espaços em branco no grid possam ser editados corretamente
- 							 */
 					}
 					
+					
+					
 					if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
+					{
+						if(flagNovaEntrada)
+							new EntradaDeHemograma(exameSelecionado, listaDeExibicao);
+						else
+							new EntradaDeHemograma(exameSelecionado);
+						
 						return "resultadoTipoHemograma";
+					}
 					 else
 						 return "entradaDeResultadosTipoComum";
 		 }
@@ -93,9 +94,9 @@ public class EntradaDeResultadosBean {
 	public String botaoGravarResultados() throws SQLException, ClassNotFoundException
 	{
 		if(flagNovaEntrada)
-			resultadoDAO.inserirNovoResultado(listaSuporte);
+			resultadoDAO.inserirNovoResultado(listaDeExibicao);
 		else
-			resultadoDAO.updateResultadoExistente(listaSuporte);
+			resultadoDAO.updateResultadoExistente(listaDeExibicao);
 		
 		return retornarParaSolicitacao();
 	}
@@ -104,6 +105,7 @@ public class EntradaDeResultadosBean {
 	{
 		return "editarSolicitacao";
 	}
+		
 	
 	//GETTERS AND SETTERS
 
@@ -132,10 +134,10 @@ public class EntradaDeResultadosBean {
 	}
 
 	public List<Resultado> getListaSuporte() {
-		return listaSuporte;
+		return listaDeExibicao;
 	}
 
 	public void setListaSuporte(List<Resultado> listaSuporte) {
-		this.listaSuporte = listaSuporte;
+		this.listaDeExibicao = listaSuporte;
 	}
 }
