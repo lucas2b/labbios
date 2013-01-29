@@ -80,6 +80,11 @@
 		<managed-bean-class>labbios.beans.RelatoriosBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>entradaDeHemogramaBean</managed-bean-name>
+		<managed-bean-class>EntradaDeHemogramaBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<converter>
 		<converter-id>ConversorGrupoExame</converter-id>
 		<converter-class>labbios.conversores.ConversorGrupoExame</converter-class>

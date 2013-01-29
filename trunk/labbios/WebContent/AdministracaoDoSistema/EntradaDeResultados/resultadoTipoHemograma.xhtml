@@ -16,54 +16,116 @@
 	<ui:define name="content">
 	    <p:fieldset legend="Entrada de Resultados para Hemograma" toggleable="false">
 		    	
-		 <h:form id="formEmograma">
-		 <h:panelGrid columns="2">
+		 <h1><h:outputLabel value="Leucograma"></h:outputLabel></h1>
+		 <h:form id="formHemograma">
+		 <h:panelGrid columns="6" id="leucograma" border="1">
+		 
+		 <p:outputLabel value="Parâmetro"></p:outputLabel>
+		 <p:outputLabel value="Valor Percentual"></p:outputLabel>
+		 <p:outputLabel value="Valor Absolsuto"></p:outputLabel>
+		 <p:outputLabel value="Unidade"></p:outputLabel>
+		 <p:outputLabel value="Valor De Referência"></p:outputLabel>
+		 <p:outputLabel value="Observações"></p:outputLabel>
 		 
 		 <p:outputLabel value="Leucócitos: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="Leucometria: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
+		 <p:outputLabel value="-"></p:outputLabel>
+		 <p:inputText value="#{entradaDeResultadosBean.leucocitosValorAbsoluto}"></p:inputText>
+		 <p:outputLabel value="#{entradaDeResultadosBean.leucocitosUnidade}"></p:outputLabel> 
+		 <p:outputLabel value="#{entradaDeResultadosBean.leucocitosValorDeReferencia}"></p:outputLabel>
+		 <p:inputText value="#{entradaDeResultadosBean.leucocitosObservacoes}"></p:inputText>
 		 
 		 <p:outputLabel value="Bastonetes: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
+		 <p:inputText value="#{entradaDeResultadosBean.bastonetesPercentual}"></p:inputText>
+		 <p:outputLabel value="#{entradaDeResultadosBean.bastonetesValorAbsoluto}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.bastonetesUnidade}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.bastonetesValorDeReferencia}"></p:outputLabel>
+		 <p:inputText value="#{entradaDeResultadosBean.bastonetesObservacoes}"></p:inputText>
 		 
 		 <p:outputLabel value="Segmentados: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
+		 <p:inputText value="#{entradaDeResultadosBean.segmentadosPercentual}"></p:inputText>
+		 <p:outputLabel value="#{entradaDeResultadosBean.segmentadosValorAbsoluto}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.segmentadosUnidade}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.segmentadosValorDeReferencia}"></p:outputLabel>
+		 <p:inputText value="#{entradaDeResultadosBean.segmentadosObservacoes}"></p:inputText>
 		 
 		 <p:outputLabel value="Eosinofilos: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
+		 <p:inputText value="#{entradaDeResultadosBean.eosinofilosPercentual}"></p:inputText>
+		 <p:outputLabel value="#{entradaDeResultadosBean.eosinofilosValorAbsoluto}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.eosinofilosUnidade}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.eosinofilosValorDeReferencia}"></p:outputLabel>
+		 <p:inputText value="#{entradaDeResultadosBean.eosinofilosObservacoes}"></p:inputText>
 		 
 		 <p:outputLabel value="Monocitos: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
+		 <p:inputText value="#{entradaDeResultadosBean.monocitosPercentual}"></p:inputText>
+		 <p:outputLabel value="#{entradaDeResultadosBean.monocitosValorAbsoluto}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.monocitosUnidade}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.monocitosValorDeReferencia}"></p:outputLabel>
+		 <p:inputText value="#{entradaDeResultadosBean.monocitosObservacoes}"></p:inputText>
 		 
 		 <p:outputLabel value="Linfocitos: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="Eritróticos: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="Hemoglobina: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="Hematócrito: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="MCV: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="MCH: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="MCHC: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
-		 
-		 <p:outputLabel value="RDW: "></p:outputLabel>
-		 <p:inputText ></p:inputText>
+		 <p:inputText value="#{entradaDeResultadosBean.linfocitosPercentual}"></p:inputText>
+		 <p:outputLabel value="#{entradaDeResultadosBean.linfocitosValorAbsoluto}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.linfocitosUnidade}"></p:outputLabel>
+		 <p:outputLabel value="#{entradaDeResultadosBean.linfocitosValorDeReferencia}"></p:outputLabel>
+		 <p:inputText value="#{entradaDeResultadosBean.linfocitosObservacoes}"></p:inputText>
 		 
 		 </h:panelGrid>
 		 
+		 <br></br>
+		 <h1><h:outputLabel value="Eritrograma"></h:outputLabel></h1>
+		 <h:panelGrid columns="5" id="eritrograma" border="2">
+		 
+		 <p:outputLabel value="Parâmetro"></p:outputLabel>
+		 <p:outputLabel value="Valor Encontrado"></p:outputLabel>
+		 <p:outputLabel value="Unidade"></p:outputLabel>
+		 <p:outputLabel value="Valor De Referência"></p:outputLabel>
+		 <p:outputLabel value="Observações"></p:outputLabel>
+		 
+		 <p:outputLabel value="Eritróticos: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 <p:outputLabel></p:outputLabel>
+		 <p:outputLabel></p:outputLabel>
+		 <p:inputText></p:inputText>
+		 
+		 <p:outputLabel value="Hemoglobina: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 <p:outputLabel></p:outputLabel>
+		 <p:outputLabel></p:outputLabel>
+		 <p:inputText></p:inputText>
+		 
+		 <p:outputLabel value="Hematócrito: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 <p:outputLabel></p:outputLabel>
+		 <p:outputLabel></p:outputLabel>
+		 <p:inputText></p:inputText>
+		 
+		 <p:outputLabel value="MCV: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 <p:outputLabel></p:outputLabel>
+		 <p:outputLabel></p:outputLabel>
+		 <p:inputText></p:inputText>
+		 
+		 <p:outputLabel value="MCH: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 <p:outputLabel></p:outputLabel>
+		 <p:outputLabel></p:outputLabel>
+		 <p:inputText></p:inputText>
+		 
+		 <p:outputLabel value="MCHC: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 <p:outputLabel></p:outputLabel>
+		 <p:outputLabel></p:outputLabel>
+		 <p:inputText></p:inputText>
+		 
+		 <p:outputLabel value="RDW: "></p:outputLabel>
+		 <p:inputText ></p:inputText>
+		 <p:outputLabel></p:outputLabel>
+		 <p:outputLabel></p:outputLabel>
+		 <p:inputText></p:inputText>
+		 
+		 </h:panelGrid>
 		 </h:form>
+		 
 		 </p:fieldset>
 	</ui:define>
 </ui:composition>
