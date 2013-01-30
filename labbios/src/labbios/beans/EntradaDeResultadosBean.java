@@ -104,37 +104,37 @@ public class EntradaDeResultadosBean {
 	
 	//CAMPOS DO LEUCOGRAMA
 	
-	private int leucocitosValorAbsoluto;
+	private double leucocitosValorAbsoluto;
 	private String leucocitosUnidade;
 	private String leucocitosValorDeReferencia;
 	private String leucocitosObservacoes;
 	
-	private int bastonetesPercentual; //percentual sobre leucocitos
-	private int bastonetesValorAbsoluto;
+	private double bastonetesPercentual; //percentual sobre leucocitos
+	private double bastonetesValorAbsoluto;
 	private String bastonetesUnidade;
 	private String bastonetesValorDeReferencia;
 	private String bastonetesObservacoes;
 	
-	private int segmentadosPercentual; //percentual sobre leucocitos
-	private int segmentadosValorAbsoluto;
+	private double segmentadosPercentual; //percentual sobre leucocitos
+	private double segmentadosValorAbsoluto;
 	private String segmentadosUnidade;
 	private String segmentadosValorDeReferencia;
 	private String segmentadosObservacoes;
 	
-	private int eosinofilosPercentual; //percentual sobre leucocitos
-	private int eosinofilosValorAbsoluto;
+	private double eosinofilosPercentual; //percentual sobre leucocitos
+	private double eosinofilosValorAbsoluto;
 	private String eosinofilosUnidade;
 	private String eosinofilosValorDeReferencia;
 	private String eosinofilosObservacoes;
 	
-	private int monocitosPercentual; //percentual sobre leucocitos
-	private int monocitosValorAbsoluto;
+	private double monocitosPercentual; //percentual sobre leucocitos
+	private double monocitosValorAbsoluto;
 	private String monocitosUnidade;
 	private String monocitosValorDeReferencia;
 	private String monocitosObservacoes;
 	
-	private int linfocitosPercentual; //percentual sobre leucocitos
-	private int linfocitosValorAbsoluto;
+	private double linfocitosPercentual; //percentual sobre leucocitos
+	private double linfocitosValorAbsoluto;
 	private String linfocitosUnidade;
 	private String linfocitosValorDeReferencia;
 	private String linfocitosObservacoes;
@@ -171,7 +171,7 @@ public class EntradaDeResultadosBean {
 	private String mchcValorDeReferencia;
 	private String mchcObservacoes;
 	
-	private int rdwValorEncontrado;
+	private double rdwValorEncontrado;
 	private String rdwUnidade;
 	private String rdwValorDeReferencia;
 	private String rdwObservacoes;
@@ -181,54 +181,98 @@ public class EntradaDeResultadosBean {
 	public void rotinaDeRecuperacaoDeHemograma()
 	{
 		
+		//LEUCOGRAMA
+		
+		leucocitosValorAbsoluto = Double.parseDouble(listaDeResultado.get(0).getRESULT_VALOR_ENCONTRADO());
+		leucocitosUnidade = listaDeResultado.get(0).getRESULT_UNIDADE();
+		leucocitosValorDeReferencia = listaDeResultado.get(0).getRESULT_VALOR_REFERENCIA();
+		leucocitosObservacoes = listaDeResultado.get(0).getRESULT_OBSERVACOES();
+		
+		bastonetesPercentual = Double.parseDouble(listaDeResultado.get(1).getRESULT_VALOR_ENCONTRADO());
+		bastonetesValorAbsoluto = (bastonetesPercentual/100)*leucocitosValorAbsoluto; 
+		bastonetesUnidade = listaDeResultado.get(1).getRESULT_UNIDADE();
+		bastonetesValorDeReferencia = listaDeResultado.get(1).getRESULT_VALOR_REFERENCIA();
+		bastonetesObservacoes = listaDeResultado.get(1).getRESULT_OBSERVACOES();
+		
+		segmentadosPercentual = Double.parseDouble(listaDeResultado.get(1).getRESULT_VALOR_ENCONTRADO());
+		segmentadosValorAbsoluto = (segmentadosPercentual/100)*leucocitosValorAbsoluto; 
+		segmentadosUnidade = listaDeResultado.get(1).getRESULT_UNIDADE();
+		segmentadosValorDeReferencia = listaDeResultado.get(1).getRESULT_VALOR_REFERENCIA();
+		segmentadosObservacoes = listaDeResultado.get(1).getRESULT_OBSERVACOES();
+		
+		eosinofilosPercentual = Double.parseDouble(listaDeResultado.get(2).getRESULT_VALOR_ENCONTRADO());
+		eosinofilosValorAbsoluto = (eosinofilosPercentual/100)*leucocitosValorAbsoluto; 
+		eosinofilosUnidade = listaDeResultado.get(2).getRESULT_UNIDADE();
+		eosinofilosValorDeReferencia = listaDeResultado.get(2).getRESULT_VALOR_REFERENCIA();
+		eosinofilosObservacoes = listaDeResultado.get(2).getRESULT_OBSERVACOES();
+		
+		monocitosPercentual = Double.parseDouble(listaDeResultado.get(3).getRESULT_VALOR_ENCONTRADO());
+		monocitosValorAbsoluto = (monocitosPercentual/100)*leucocitosValorAbsoluto; 
+		monocitosUnidade = listaDeResultado.get(3).getRESULT_UNIDADE();
+		monocitosValorDeReferencia = listaDeResultado.get(3).getRESULT_VALOR_REFERENCIA();
+		monocitosObservacoes = listaDeResultado.get(3).getRESULT_OBSERVACOES();
+		
+		linfocitosPercentual = Double.parseDouble(listaDeResultado.get(4).getRESULT_VALOR_ENCONTRADO());
+		linfocitosValorAbsoluto = (linfocitosPercentual/100)*leucocitosValorAbsoluto; 
+		linfocitosUnidade = listaDeResultado.get(4).getRESULT_UNIDADE();
+		linfocitosValorDeReferencia = listaDeResultado.get(4).getRESULT_VALOR_REFERENCIA();
+		linfocitosObservacoes = listaDeResultado.get(4).getRESULT_OBSERVACOES();
+		
+		//ERITROGRAMA
+		
+		eritrocitosValorEncontrado = listaDeResultado.get(5).getRESULT_VALOR_ENCONTRADO();
+		eritrocitosUnidade = listaDeResultado.get(5).getRESULT_UNIDADE();
+		eritrocitosValorDeReferencia = listaDeResultado.get(5).getRESULT_VALOR_REFERENCIA();
+		eritrocitosObservacoes = listaDeResultado.get(5).getRESULT_OBSERVACOES();
+		
+		hemoglobinaValorEncontrado = listaDeResultado.get(6).getRESULT_VALOR_ENCONTRADO();
+		hemoglobinaUnidade = listaDeResultado.get(6).getRESULT_UNIDADE();
+		hemoglobinaValorDeReferencia = listaDeResultado.get(6).getRESULT_VALOR_REFERENCIA();
+		hemoglobinaObservacoes = listaDeResultado.get(6).getRESULT_OBSERVACOES();
+		
+		hematocritoValorEncontrado = listaDeResultado.get(7).getRESULT_VALOR_ENCONTRADO();
+		hematocritoUnidade = listaDeResultado.get(7).getRESULT_UNIDADE();
+		hematocritoValorDeReferencia = listaDeResultado.get(7).getRESULT_VALOR_REFERENCIA();
+		hematocritoObservacoes = listaDeResultado.get(7).getRESULT_OBSERVACOES();
+		
+		mcvValorEncontrado = listaDeResultado.get(7).getRESULT_VALOR_ENCONTRADO();
+		mcvUnidade = listaDeResultado.get(7).getRESULT_UNIDADE();
+		mcvValorDeReferencia = listaDeResultado.get(7).getRESULT_VALOR_REFERENCIA();
+		mcvObservacoes = listaDeResultado.get(7).getRESULT_OBSERVACOES();
+		
+		mchValorEncontrado = listaDeResultado.get(7).getRESULT_VALOR_ENCONTRADO();
+		mchUnidade = listaDeResultado.get(7).getRESULT_UNIDADE();
+		mchValorDeReferencia = listaDeResultado.get(7).getRESULT_VALOR_REFERENCIA();
+		mchObservacoes = listaDeResultado.get(7).getRESULT_OBSERVACOES();
+		
+		mchcValorEncontrado = listaDeResultado.get(7).getRESULT_VALOR_ENCONTRADO();
+		mchcUnidade = listaDeResultado.get(7).getRESULT_UNIDADE();
+		mchcValorDeReferencia = listaDeResultado.get(7).getRESULT_VALOR_REFERENCIA();
+		mchcObservacoes = listaDeResultado.get(7).getRESULT_OBSERVACOES();
+		
+		rdwValorEncontrado = Double.parseDouble(listaDeResultado.get(7).getRESULT_VALOR_ENCONTRADO());
+		rdwUnidade = listaDeResultado.get(7).getRESULT_UNIDADE();
+		rdwValorDeReferencia = listaDeResultado.get(7).getRESULT_VALOR_REFERENCIA();
+		rdwObservacoes = listaDeResultado.get(7).getRESULT_OBSERVACOES();
+		
+		
 	}
-	
-	
-	
 	
 	//GETTERS AND SETTERS
 
 	public Exame getExameSelecionado() {
 		return exameSelecionado;
 	}
+
 	public void setExameSelecionado(Exame exameSelecionado) {
 		this.exameSelecionado = exameSelecionado;
 	}
-	public List<Resultado> getListaDeResultado() {
-		return listaDeResultado;
-	}
-	public void setListaDeResultado(List<Resultado> listaDeResultado) {
-		this.listaDeResultado = listaDeResultado;
-	}
-	public List<DadosDoExameSuporte> getTabelaMolde() {
-		return tabelaMolde;
-	}
-	public void setTabelaMolde(List<DadosDoExameSuporte> tabelaMolde) {
-		this.tabelaMolde = tabelaMolde;
-	}
-	public List<Resultado> getListaSuporte() {
-		return listaDeExibicao;
-	}
-	public void setListaSuporte(List<Resultado> listaSuporte) {
-		this.listaDeExibicao = listaSuporte;
-	}
 
-	
-	//GETTERS AND SETTERS HEMOGRAMA
-	
-	public List<Resultado> getListaDeExibicao() {
-		return listaDeExibicao;
-	}
-
-	public void setListaDeExibicao(List<Resultado> listaDeExibicao) {
-		this.listaDeExibicao = listaDeExibicao;
-	}
-
-	public int getLeucocitosValorAbsoluto() {
+	public double getLeucocitosValorAbsoluto() {
 		return leucocitosValorAbsoluto;
 	}
 
-	public void setLeucocitosValorAbsoluto(int leucocitosValorAbsoluto) {
+	public void setLeucocitosValorAbsoluto(double leucocitosValorAbsoluto) {
 		this.leucocitosValorAbsoluto = leucocitosValorAbsoluto;
 	}
 
@@ -256,19 +300,19 @@ public class EntradaDeResultadosBean {
 		this.leucocitosObservacoes = leucocitosObservacoes;
 	}
 
-	public int getBastonetesPercentual() {
+	public double getBastonetesPercentual() {
 		return bastonetesPercentual;
 	}
 
-	public void setBastonetesPercentual(int bastonetesPercentual) {
+	public void setBastonetesPercentual(double bastonetesPercentual) {
 		this.bastonetesPercentual = bastonetesPercentual;
 	}
 
-	public int getBastonetesValorAbsoluto() {
+	public double getBastonetesValorAbsoluto() {
 		return bastonetesValorAbsoluto;
 	}
 
-	public void setBastonetesValorAbsoluto(int bastonetesValorAbsoluto) {
+	public void setBastonetesValorAbsoluto(double bastonetesValorAbsoluto) {
 		this.bastonetesValorAbsoluto = bastonetesValorAbsoluto;
 	}
 
@@ -296,19 +340,19 @@ public class EntradaDeResultadosBean {
 		this.bastonetesObservacoes = bastonetesObservacoes;
 	}
 
-	public int getSegmentadosPercentual() {
+	public double getSegmentadosPercentual() {
 		return segmentadosPercentual;
 	}
 
-	public void setSegmentadosPercentual(int segmentadosPercentual) {
+	public void setSegmentadosPercentual(double segmentadosPercentual) {
 		this.segmentadosPercentual = segmentadosPercentual;
 	}
 
-	public int getSegmentadosValorAbsoluto() {
+	public double getSegmentadosValorAbsoluto() {
 		return segmentadosValorAbsoluto;
 	}
 
-	public void setSegmentadosValorAbsoluto(int segmentadosValorAbsoluto) {
+	public void setSegmentadosValorAbsoluto(double segmentadosValorAbsoluto) {
 		this.segmentadosValorAbsoluto = segmentadosValorAbsoluto;
 	}
 
@@ -336,19 +380,19 @@ public class EntradaDeResultadosBean {
 		this.segmentadosObservacoes = segmentadosObservacoes;
 	}
 
-	public int getEosinofilosPercentual() {
+	public double getEosinofilosPercentual() {
 		return eosinofilosPercentual;
 	}
 
-	public void setEosinofilosPercentual(int eosinofilosPercentual) {
+	public void setEosinofilosPercentual(double eosinofilosPercentual) {
 		this.eosinofilosPercentual = eosinofilosPercentual;
 	}
 
-	public int getEosinofilosValorAbsoluto() {
+	public double getEosinofilosValorAbsoluto() {
 		return eosinofilosValorAbsoluto;
 	}
 
-	public void setEosinofilosValorAbsoluto(int eosinofilosValorAbsoluto) {
+	public void setEosinofilosValorAbsoluto(double eosinofilosValorAbsoluto) {
 		this.eosinofilosValorAbsoluto = eosinofilosValorAbsoluto;
 	}
 
@@ -376,19 +420,19 @@ public class EntradaDeResultadosBean {
 		this.eosinofilosObservacoes = eosinofilosObservacoes;
 	}
 
-	public int getMonocitosPercentual() {
+	public double getMonocitosPercentual() {
 		return monocitosPercentual;
 	}
 
-	public void setMonocitosPercentual(int monocitosPercentual) {
+	public void setMonocitosPercentual(double monocitosPercentual) {
 		this.monocitosPercentual = monocitosPercentual;
 	}
 
-	public int getMonocitosValorAbsoluto() {
+	public double getMonocitosValorAbsoluto() {
 		return monocitosValorAbsoluto;
 	}
 
-	public void setMonocitosValorAbsoluto(int monocitosValorAbsoluto) {
+	public void setMonocitosValorAbsoluto(double monocitosValorAbsoluto) {
 		this.monocitosValorAbsoluto = monocitosValorAbsoluto;
 	}
 
@@ -416,19 +460,19 @@ public class EntradaDeResultadosBean {
 		this.monocitosObservacoes = monocitosObservacoes;
 	}
 
-	public int getLinfocitosPercentual() {
+	public double getLinfocitosPercentual() {
 		return linfocitosPercentual;
 	}
 
-	public void setLinfocitosPercentual(int linfocitosPercentual) {
+	public void setLinfocitosPercentual(double linfocitosPercentual) {
 		this.linfocitosPercentual = linfocitosPercentual;
 	}
 
-	public int getLinfocitosValorAbsoluto() {
+	public double getLinfocitosValorAbsoluto() {
 		return linfocitosValorAbsoluto;
 	}
 
-	public void setLinfocitosValorAbsoluto(int linfocitosValorAbsoluto) {
+	public void setLinfocitosValorAbsoluto(double linfocitosValorAbsoluto) {
 		this.linfocitosValorAbsoluto = linfocitosValorAbsoluto;
 	}
 
@@ -648,11 +692,11 @@ public class EntradaDeResultadosBean {
 		this.mchcObservacoes = mchcObservacoes;
 	}
 
-	public int getRdwValorEncontrado() {
+	public double getRdwValorEncontrado() {
 		return rdwValorEncontrado;
 	}
 
-	public void setRdwValorEncontrado(int rdwValorEncontrado) {
+	public void setRdwValorEncontrado(double rdwValorEncontrado) {
 		this.rdwValorEncontrado = rdwValorEncontrado;
 	}
 
@@ -679,6 +723,10 @@ public class EntradaDeResultadosBean {
 	public void setRdwObservacoes(String rdwObservacoes) {
 		this.rdwObservacoes = rdwObservacoes;
 	}
-
 	
-}
+	
+	
+	
+
+
+	}
