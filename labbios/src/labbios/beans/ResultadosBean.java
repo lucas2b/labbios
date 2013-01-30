@@ -28,8 +28,9 @@ public class ResultadosBean {
 	
 	//Listas de auxílio
 	private List<Resultado> listaDeResultado; //Lista de inserção recuperada à partir do molde + entradas do resultado
-	private List<Resultado> listaDeExibicao;
+	private List<Resultado> listaDeExibicao = new LinkedList<Resultado>();
 	private List<DadosDoExameSuporte> tabelaMolde; //Molde da tabela de exames recuperado
+	List<Integer> indiceDoExame = new LinkedList<Integer>();
 	
 	
 	//Função de início
@@ -42,14 +43,19 @@ public class ResultadosBean {
 			return null;
 		}
 		
-		if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().contains("HEMO"))
+		if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().equals("HEMOGRAMA"))
 			tipoHemograma = true;
+		else
+			tipoHemograma = false;
 		
 		if(resultadoDAO.verificaEntradaExistente(exameSelecionado))
 		{
 				flagNovaEntrada = false;
 				
 				listaDeExibicao = resultadoDAO.recuperarResultado(exameSelecionado);
+				
+				for(Resultado resultado : listaDeExibicao)
+					indiceDoExame.add(resultado.getRESULT_ID());
 				
 				if(tipoHemograma)
 					rotinaDeRecuperacaoDeHemograma();
@@ -59,7 +65,6 @@ public class ResultadosBean {
 				flagNovaEntrada = true;
 				
 				tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME());
-				listaDeExibicao = new LinkedList<Resultado>();
 				
 				for(DadosDoExameSuporte molde: tabelaMolde)
 				{
@@ -86,14 +91,16 @@ public class ResultadosBean {
 	}
 	
 	public String botaoGravarResultados() throws SQLException, ClassNotFoundException
-	{
+	{	
 		if(tipoHemograma)
 			rotinaDeGravacaoDeHemograma();
 		
 		if(flagNovaEntrada)
+		
 			resultadoDAO.inserirNovoResultado(listaDeExibicao);
-		else
+		else	
 			resultadoDAO.updateResultadoExistente(listaDeExibicao);
+		
 		
 		tipoHemograma = false;
 		return retornarParaSolicitacao();
@@ -101,6 +108,8 @@ public class ResultadosBean {
 	
 	public String retornarParaSolicitacao()
 	{
+		tipoHemograma = false;
+		exameSelecionado = null;
 		return "editarSolicitacao";
 	}
 
@@ -307,11 +316,10 @@ public class ResultadosBean {
 	{
 		//preparar lista de exibição com campos da tela
 		
-		listaDeExibicao = new LinkedList<Resultado>();
-		
 		Resultado resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("LEUCOCITOS");
+		resultado.setRESULT_ID(indiceDoExame.get(0));
 		resultado.setRESULT_VALOR_ENCONTRADO(leucocitosValorAbsoluto); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(leucocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(leucocitosValorDeReferencia);
@@ -322,6 +330,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("BASTONETES");
+		resultado.setRESULT_ID(indiceDoExame.get(1));
 		resultado.setRESULT_VALOR_ENCONTRADO(bastonetesPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(bastonetesUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(bastonetesValorDeReferencia);
@@ -331,6 +340,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("SEGMENTADOS");
+		resultado.setRESULT_ID(indiceDoExame.get(2));
 		resultado.setRESULT_VALOR_ENCONTRADO(segmentadosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(segmentadosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(segmentadosValorDeReferencia);
@@ -340,6 +350,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("EOSINOFILOS");
+		resultado.setRESULT_ID(indiceDoExame.get(3));
 		resultado.setRESULT_VALOR_ENCONTRADO(eosinofilosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(eosinofilosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(eosinofilosValorDeReferencia);
@@ -349,6 +360,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MONOCITOS");
+		resultado.setRESULT_ID(indiceDoExame.get(4));
 		resultado.setRESULT_VALOR_ENCONTRADO(monocitosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(monocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(monocitosValorDeReferencia);
@@ -359,6 +371,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("LINFOCITOS");
+		resultado.setRESULT_ID(indiceDoExame.get(5));
 		resultado.setRESULT_VALOR_ENCONTRADO(linfocitosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(linfocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(linfocitosValorDeReferencia);
@@ -371,6 +384,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("ERITROCITOS");
+		resultado.setRESULT_ID(indiceDoExame.get(6));
 		resultado.setRESULT_VALOR_ENCONTRADO(eritrocitosValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(eritrocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(eritrocitosValorDeReferencia);
@@ -380,6 +394,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("HEMOGLOBINA");
+		resultado.setRESULT_ID(indiceDoExame.get(7));
 		resultado.setRESULT_VALOR_ENCONTRADO(hemoglobinaValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(hemoglobinaUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(hemoglobinaValorDeReferencia);
@@ -389,6 +404,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("HEMATOCRITO");
+		resultado.setRESULT_ID(indiceDoExame.get(8));
 		resultado.setRESULT_VALOR_ENCONTRADO(hematocritoValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(hematocritoUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(hematocritoValorDeReferencia);
@@ -398,6 +414,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MCV");
+		resultado.setRESULT_ID(indiceDoExame.get(9));
 		resultado.setRESULT_VALOR_ENCONTRADO(mcvValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(mcvUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mcvValorDeReferencia);
@@ -407,6 +424,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MCH");
+		resultado.setRESULT_ID(indiceDoExame.get(10));
 		resultado.setRESULT_VALOR_ENCONTRADO(mchValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(mchUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mchValorDeReferencia);
@@ -417,6 +435,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MCHC");
+		resultado.setRESULT_ID(indiceDoExame.get(11));
 		resultado.setRESULT_VALOR_ENCONTRADO(mchcValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(mchcUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mchcValorDeReferencia);
@@ -426,6 +445,7 @@ public class ResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("RDW");
+		resultado.setRESULT_ID(indiceDoExame.get(12));
 		resultado.setRESULT_VALOR_ENCONTRADO(rdwValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(rdwUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(rdwValorDeReferencia);
