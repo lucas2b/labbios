@@ -18,7 +18,7 @@ public class EntradaDeResultadosBean {
 	//Atributos de controle
 	private Exame exameSelecionado;
 	private boolean flagNovaEntrada = false;
-	private boolean tipoHemograma = false;
+	private boolean tipoHemograma;
 	
 	//DAOS usados
 	private DadosDoExameDAO dadosDoExameDAO = new DadosDoExameDAO();
@@ -68,7 +68,7 @@ public class EntradaDeResultadosBean {
 					resultado.setRESULT_PARAMETRO(molde.getParametro());
 					resultado.setRESULT_UNIDADE(molde.getUnidade());
 					resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
-					resultado.setRESULT_VALOR_ENCONTRADO("");
+					//resultado.setRESULT_VALOR_ENCONTRADO();
 					resultado.setRESULT_OBSERVACOES("");
 					listaDeExibicao.add(resultado);
 				}
@@ -95,6 +95,7 @@ public class EntradaDeResultadosBean {
 		else
 			resultadoDAO.updateResultadoExistente(listaDeExibicao);
 		
+		tipoHemograma = false;
 		return retornarParaSolicitacao();
 	}
 	
@@ -145,32 +146,32 @@ public class EntradaDeResultadosBean {
 		
 	//CAMPOS DO ERITROGRAMA
 		
-	private String eritrocitosValorEncontrado;
+	private double eritrocitosValorEncontrado;
 	private String eritrocitosUnidade;
 	private String eritrocitosValorDeReferencia;
 	private String eritrocitosObservacoes;
 	
-	private String hemoglobinaValorEncontrado;
+	private double hemoglobinaValorEncontrado;
 	private String hemoglobinaUnidade;
 	private String hemoglobinaValorDeReferencia;
 	private String hemoglobinaObservacoes;
 	
-	private String hematocritoValorEncontrado;
+	private double hematocritoValorEncontrado;
 	private String hematocritoUnidade;
 	private String hematocritoValorDeReferencia;
 	private String hematocritoObservacoes;
 	
-	private String mcvValorEncontrado;
+	private double mcvValorEncontrado;
 	private String mcvUnidade;
 	private String mcvValorDeReferencia;
 	private String mcvObservacoes;
 	
-	private String mchValorEncontrado;
+	private double mchValorEncontrado;
 	private String mchUnidade;
 	private String mchValorDeReferencia;
 	private String mchObservacoes;
 	
-	private String mchcValorEncontrado;
+	private double mchcValorEncontrado;
 	private String mchcUnidade;
 	private String mchcValorDeReferencia;
 	private String mchcObservacoes;
@@ -227,77 +228,77 @@ public class EntradaDeResultadosBean {
 		
 		//LEUCOGRAMA
 		
-		leucocitosValorAbsoluto = Double.parseDouble(listaDeExibicao.get(0).getRESULT_VALOR_ENCONTRADO());
+		leucocitosValorAbsoluto = listaDeExibicao.get(0).getRESULT_VALOR_ENCONTRADO();
 		leucocitosUnidade = listaDeExibicao.get(0).getRESULT_UNIDADE();
 		leucocitosValorDeReferencia = listaDeExibicao.get(0).getRESULT_VALOR_REFERENCIA();
 		leucocitosObservacoes = listaDeExibicao.get(0).getRESULT_OBSERVACOES();
 		
-		bastonetesPercentual = Double.parseDouble(listaDeExibicao.get(1).getRESULT_VALOR_ENCONTRADO());
+		bastonetesPercentual = listaDeExibicao.get(1).getRESULT_VALOR_ENCONTRADO();
 		bastonetesValorAbsoluto = (bastonetesPercentual/100)*leucocitosValorAbsoluto; 
 		bastonetesUnidade = listaDeExibicao.get(1).getRESULT_UNIDADE();
 		bastonetesValorDeReferencia = listaDeExibicao.get(1).getRESULT_VALOR_REFERENCIA();
 		bastonetesObservacoes = listaDeExibicao.get(1).getRESULT_OBSERVACOES();
 		
-		segmentadosPercentual = Double.parseDouble(listaDeExibicao.get(1).getRESULT_VALOR_ENCONTRADO());
+		segmentadosPercentual = listaDeExibicao.get(2).getRESULT_VALOR_ENCONTRADO();
 		segmentadosValorAbsoluto = (segmentadosPercentual/100)*leucocitosValorAbsoluto; 
-		segmentadosUnidade = listaDeExibicao.get(1).getRESULT_UNIDADE();
-		segmentadosValorDeReferencia = listaDeExibicao.get(1).getRESULT_VALOR_REFERENCIA();
-		segmentadosObservacoes = listaDeExibicao.get(1).getRESULT_OBSERVACOES();
+		segmentadosUnidade = listaDeExibicao.get(2).getRESULT_UNIDADE();
+		segmentadosValorDeReferencia = listaDeExibicao.get(2).getRESULT_VALOR_REFERENCIA();
+		segmentadosObservacoes = listaDeExibicao.get(2).getRESULT_OBSERVACOES();
 		
-		eosinofilosPercentual = Double.parseDouble(listaDeExibicao.get(2).getRESULT_VALOR_ENCONTRADO());
+		eosinofilosPercentual = listaDeExibicao.get(3).getRESULT_VALOR_ENCONTRADO();
 		eosinofilosValorAbsoluto = (eosinofilosPercentual/100)*leucocitosValorAbsoluto; 
-		eosinofilosUnidade = listaDeExibicao.get(2).getRESULT_UNIDADE();
-		eosinofilosValorDeReferencia = listaDeExibicao.get(2).getRESULT_VALOR_REFERENCIA();
-		eosinofilosObservacoes = listaDeExibicao.get(2).getRESULT_OBSERVACOES();
+		eosinofilosUnidade = listaDeExibicao.get(3).getRESULT_UNIDADE();
+		eosinofilosValorDeReferencia = listaDeExibicao.get(3).getRESULT_VALOR_REFERENCIA();
+		eosinofilosObservacoes = listaDeExibicao.get(3).getRESULT_OBSERVACOES();
 		
-		monocitosPercentual = Double.parseDouble(listaDeExibicao.get(3).getRESULT_VALOR_ENCONTRADO());
+		monocitosPercentual = listaDeExibicao.get(4).getRESULT_VALOR_ENCONTRADO();
 		monocitosValorAbsoluto = (monocitosPercentual/100)*leucocitosValorAbsoluto; 
-		monocitosUnidade = listaDeExibicao.get(3).getRESULT_UNIDADE();
-		monocitosValorDeReferencia = listaDeExibicao.get(3).getRESULT_VALOR_REFERENCIA();
-		monocitosObservacoes = listaDeExibicao.get(3).getRESULT_OBSERVACOES();
+		monocitosUnidade = listaDeExibicao.get(4).getRESULT_UNIDADE();
+		monocitosValorDeReferencia = listaDeExibicao.get(4).getRESULT_VALOR_REFERENCIA();
+		monocitosObservacoes = listaDeExibicao.get(4).getRESULT_OBSERVACOES();
 		
-		linfocitosPercentual = Double.parseDouble(listaDeExibicao.get(4).getRESULT_VALOR_ENCONTRADO());
+		linfocitosPercentual = listaDeExibicao.get(5).getRESULT_VALOR_ENCONTRADO();
 		linfocitosValorAbsoluto = (linfocitosPercentual/100)*leucocitosValorAbsoluto; 
-		linfocitosUnidade = listaDeExibicao.get(4).getRESULT_UNIDADE();
-		linfocitosValorDeReferencia = listaDeExibicao.get(4).getRESULT_VALOR_REFERENCIA();
-		linfocitosObservacoes = listaDeExibicao.get(4).getRESULT_OBSERVACOES();
+		linfocitosUnidade = listaDeExibicao.get(5).getRESULT_UNIDADE();
+		linfocitosValorDeReferencia = listaDeExibicao.get(5).getRESULT_VALOR_REFERENCIA();
+		linfocitosObservacoes = listaDeExibicao.get(5).getRESULT_OBSERVACOES();
 		
 		//ERITROGRAMA
 		
-		eritrocitosValorEncontrado = listaDeExibicao.get(5).getRESULT_VALOR_ENCONTRADO();
-		eritrocitosUnidade = listaDeExibicao.get(5).getRESULT_UNIDADE();
-		eritrocitosValorDeReferencia = listaDeExibicao.get(5).getRESULT_VALOR_REFERENCIA();
-		eritrocitosObservacoes = listaDeExibicao.get(5).getRESULT_OBSERVACOES();
+		eritrocitosValorEncontrado = listaDeExibicao.get(6).getRESULT_VALOR_ENCONTRADO();
+		eritrocitosUnidade = listaDeExibicao.get(6).getRESULT_UNIDADE();
+		eritrocitosValorDeReferencia = listaDeExibicao.get(6).getRESULT_VALOR_REFERENCIA();
+		eritrocitosObservacoes = listaDeExibicao.get(6).getRESULT_OBSERVACOES();
 		
-		hemoglobinaValorEncontrado = listaDeExibicao.get(6).getRESULT_VALOR_ENCONTRADO();
-		hemoglobinaUnidade = listaDeExibicao.get(6).getRESULT_UNIDADE();
-		hemoglobinaValorDeReferencia = listaDeExibicao.get(6).getRESULT_VALOR_REFERENCIA();
-		hemoglobinaObservacoes = listaDeExibicao.get(6).getRESULT_OBSERVACOES();
+		hemoglobinaValorEncontrado = listaDeExibicao.get(7).getRESULT_VALOR_ENCONTRADO();
+		hemoglobinaUnidade = listaDeExibicao.get(7).getRESULT_UNIDADE();
+		hemoglobinaValorDeReferencia = listaDeExibicao.get(7).getRESULT_VALOR_REFERENCIA();
+		hemoglobinaObservacoes = listaDeExibicao.get(7).getRESULT_OBSERVACOES();
 		
-		hematocritoValorEncontrado = listaDeExibicao.get(7).getRESULT_VALOR_ENCONTRADO();
-		hematocritoUnidade = listaDeExibicao.get(7).getRESULT_UNIDADE();
-		hematocritoValorDeReferencia = listaDeExibicao.get(7).getRESULT_VALOR_REFERENCIA();
-		hematocritoObservacoes = listaDeExibicao.get(7).getRESULT_OBSERVACOES();
+		hematocritoValorEncontrado = listaDeExibicao.get(8).getRESULT_VALOR_ENCONTRADO();
+		hematocritoUnidade = listaDeExibicao.get(8).getRESULT_UNIDADE();
+		hematocritoValorDeReferencia = listaDeExibicao.get(8).getRESULT_VALOR_REFERENCIA();
+		hematocritoObservacoes = listaDeExibicao.get(8).getRESULT_OBSERVACOES();
 		
-		mcvValorEncontrado = listaDeExibicao.get(8).getRESULT_VALOR_ENCONTRADO();
-		mcvUnidade = listaDeExibicao.get(8).getRESULT_UNIDADE();
-		mcvValorDeReferencia = listaDeExibicao.get(8).getRESULT_VALOR_REFERENCIA();
-		mcvObservacoes = listaDeExibicao.get(8).getRESULT_OBSERVACOES();
+		mcvValorEncontrado = listaDeExibicao.get(9).getRESULT_VALOR_ENCONTRADO();
+		mcvUnidade = listaDeExibicao.get(9).getRESULT_UNIDADE();
+		mcvValorDeReferencia = listaDeExibicao.get(9).getRESULT_VALOR_REFERENCIA();
+		mcvObservacoes = listaDeExibicao.get(9).getRESULT_OBSERVACOES();
 		
-		mchValorEncontrado = listaDeExibicao.get(9).getRESULT_VALOR_ENCONTRADO();
-		mchUnidade = listaDeExibicao.get(9).getRESULT_UNIDADE();
-		mchValorDeReferencia = listaDeExibicao.get(9).getRESULT_VALOR_REFERENCIA();
-		mchObservacoes = listaDeExibicao.get(9).getRESULT_OBSERVACOES();
+		mchValorEncontrado = listaDeExibicao.get(10).getRESULT_VALOR_ENCONTRADO();
+		mchUnidade = listaDeExibicao.get(10).getRESULT_UNIDADE();
+		mchValorDeReferencia = listaDeExibicao.get(10).getRESULT_VALOR_REFERENCIA();
+		mchObservacoes = listaDeExibicao.get(10).getRESULT_OBSERVACOES();
 		
-		mchcValorEncontrado = listaDeExibicao.get(10).getRESULT_VALOR_ENCONTRADO();
-		mchcUnidade = listaDeExibicao.get(10).getRESULT_UNIDADE();
-		mchcValorDeReferencia = listaDeExibicao.get(10).getRESULT_VALOR_REFERENCIA();
-		mchcObservacoes = listaDeExibicao.get(10).getRESULT_OBSERVACOES();
+		mchcValorEncontrado = listaDeExibicao.get(11).getRESULT_VALOR_ENCONTRADO();
+		mchcUnidade = listaDeExibicao.get(11).getRESULT_UNIDADE();
+		mchcValorDeReferencia = listaDeExibicao.get(11).getRESULT_VALOR_REFERENCIA();
+		mchcObservacoes = listaDeExibicao.get(11).getRESULT_OBSERVACOES();
 		
-		rdwValorEncontrado = Double.parseDouble(listaDeExibicao.get(11).getRESULT_VALOR_ENCONTRADO());
-		rdwUnidade = listaDeExibicao.get(11).getRESULT_UNIDADE();
-		rdwValorDeReferencia = listaDeExibicao.get(11).getRESULT_VALOR_REFERENCIA();
-		rdwObservacoes = listaDeExibicao.get(11).getRESULT_OBSERVACOES();
+		rdwValorEncontrado = listaDeExibicao.get(12).getRESULT_VALOR_ENCONTRADO();
+		rdwUnidade = listaDeExibicao.get(12).getRESULT_UNIDADE();
+		rdwValorDeReferencia = listaDeExibicao.get(12).getRESULT_VALOR_REFERENCIA();
+		rdwObservacoes = listaDeExibicao.get(12).getRESULT_OBSERVACOES();
 		
 		
 	}
@@ -311,7 +312,7 @@ public class EntradaDeResultadosBean {
 		Resultado resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("LEUCOCITOS");
-		resultado.setRESULT_VALOR_ENCONTRADO(String.valueOf(leucocitosValorAbsoluto)); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(leucocitosValorAbsoluto); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(leucocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(leucocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(leucocitosObservacoes);
@@ -321,7 +322,7 @@ public class EntradaDeResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("BASTONETES");
-		resultado.setRESULT_VALOR_ENCONTRADO(String.valueOf(bastonetesPercentual)); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(bastonetesPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(bastonetesUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(bastonetesValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(bastonetesObservacoes);
@@ -330,34 +331,39 @@ public class EntradaDeResultadosBean {
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("SEGMENTADOS");
-		resultado.setRESULT_VALOR_ENCONTRADO(String.valueOf(segmentadosPercentual)); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(segmentadosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(segmentadosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(segmentadosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(segmentadosObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("EOSINOFILOS");
-		resultado.setRESULT_VALOR_ENCONTRADO(String.valueOf(eosinofilosPercentual)); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(eosinofilosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(eosinofilosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(eosinofilosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(eosinofilosObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MONOCITOS");
-		resultado.setRESULT_VALOR_ENCONTRADO(String.valueOf(monocitosPercentual)); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(monocitosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(monocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(monocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(monocitosObservacoes);
+		listaDeExibicao.add(resultado);
+		
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("LINFOCITOS");
-		resultado.setRESULT_VALOR_ENCONTRADO(String.valueOf(linfocitosPercentual)); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(linfocitosPercentual); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(linfocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(linfocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(linfocitosObservacoes);
+		listaDeExibicao.add(resultado);
 		
 			
 		//CAMPOS DO ERITROGRAMA
@@ -369,6 +375,7 @@ public class EntradaDeResultadosBean {
 		resultado.setRESULT_UNIDADE(eritrocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(eritrocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(eritrocitosObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
@@ -377,6 +384,7 @@ public class EntradaDeResultadosBean {
 		resultado.setRESULT_UNIDADE(hemoglobinaUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(hemoglobinaValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(hemoglobinaObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
@@ -385,6 +393,7 @@ public class EntradaDeResultadosBean {
 		resultado.setRESULT_UNIDADE(hematocritoUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(hematocritoValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(hematocritoObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
@@ -393,6 +402,7 @@ public class EntradaDeResultadosBean {
 		resultado.setRESULT_UNIDADE(mcvUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mcvValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(mcvObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
@@ -401,6 +411,7 @@ public class EntradaDeResultadosBean {
 		resultado.setRESULT_UNIDADE(mchUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mchValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(mchObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		
 		resultado = new Resultado();
@@ -410,14 +421,16 @@ public class EntradaDeResultadosBean {
 		resultado.setRESULT_UNIDADE(mchcUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mchcValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(mchcObservacoes);
+		listaDeExibicao.add(resultado);
 		
 		resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("RDW");
-		resultado.setRESULT_VALOR_ENCONTRADO(String.valueOf(rdwValorEncontrado)); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(rdwValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
 		resultado.setRESULT_UNIDADE(rdwUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(rdwValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(rdwObservacoes);
+		listaDeExibicao.add(resultado);
 		
 	}
 	
@@ -663,11 +676,11 @@ public class EntradaDeResultadosBean {
 		this.linfocitosObservacoes = linfocitosObservacoes;
 	}
 
-	public String getEritrocitosValorEncontrado() {
+	public double getEritrocitosValorEncontrado() {
 		return eritrocitosValorEncontrado;
 	}
 
-	public void setEritrocitosValorEncontrado(String eritrocitosValorEncontrado) {
+	public void setEritrocitosValorEncontrado(double eritrocitosValorEncontrado) {
 		this.eritrocitosValorEncontrado = eritrocitosValorEncontrado;
 	}
 
@@ -695,11 +708,11 @@ public class EntradaDeResultadosBean {
 		this.eritrocitosObservacoes = eritrocitosObservacoes;
 	}
 
-	public String getHemoglobinaValorEncontrado() {
+	public double getHemoglobinaValorEncontrado() {
 		return hemoglobinaValorEncontrado;
 	}
 
-	public void setHemoglobinaValorEncontrado(String hemoglobinaValorEncontrado) {
+	public void setHemoglobinaValorEncontrado(double hemoglobinaValorEncontrado) {
 		this.hemoglobinaValorEncontrado = hemoglobinaValorEncontrado;
 	}
 
@@ -727,11 +740,11 @@ public class EntradaDeResultadosBean {
 		this.hemoglobinaObservacoes = hemoglobinaObservacoes;
 	}
 
-	public String getHematocritoValorEncontrado() {
+	public double getHematocritoValorEncontrado() {
 		return hematocritoValorEncontrado;
 	}
 
-	public void setHematocritoValorEncontrado(String hematocritoValorEncontrado) {
+	public void setHematocritoValorEncontrado(double hematocritoValorEncontrado) {
 		this.hematocritoValorEncontrado = hematocritoValorEncontrado;
 	}
 
@@ -759,11 +772,11 @@ public class EntradaDeResultadosBean {
 		this.hematocritoObservacoes = hematocritoObservacoes;
 	}
 
-	public String getMcvValorEncontrado() {
+	public double getMcvValorEncontrado() {
 		return mcvValorEncontrado;
 	}
 
-	public void setMcvValorEncontrado(String mcvValorEncontrado) {
+	public void setMcvValorEncontrado(double mcvValorEncontrado) {
 		this.mcvValorEncontrado = mcvValorEncontrado;
 	}
 
@@ -791,11 +804,11 @@ public class EntradaDeResultadosBean {
 		this.mcvObservacoes = mcvObservacoes;
 	}
 
-	public String getMchValorEncontrado() {
+	public double getMchValorEncontrado() {
 		return mchValorEncontrado;
 	}
 
-	public void setMchValorEncontrado(String mchValorEncontrado) {
+	public void setMchValorEncontrado(double mchValorEncontrado) {
 		this.mchValorEncontrado = mchValorEncontrado;
 	}
 
@@ -823,11 +836,11 @@ public class EntradaDeResultadosBean {
 		this.mchObservacoes = mchObservacoes;
 	}
 
-	public String getMchcValorEncontrado() {
+	public double getMchcValorEncontrado() {
 		return mchcValorEncontrado;
 	}
 
-	public void setMchcValorEncontrado(String mchcValorEncontrado) {
+	public void setMchcValorEncontrado(double mchcValorEncontrado) {
 		this.mchcValorEncontrado = mchcValorEncontrado;
 	}
 
@@ -886,10 +899,13 @@ public class EntradaDeResultadosBean {
 	public void setRdwObservacoes(String rdwObservacoes) {
 		this.rdwObservacoes = rdwObservacoes;
 	}
-	
-	
-	
-	
 
-
+	public List<Resultado> getListaDeExibicao() {
+		return listaDeExibicao;
 	}
+
+	public void setListaDeExibicao(List<Resultado> listaDeExibicao) {
+		this.listaDeExibicao = listaDeExibicao;
+	}
+	
+}

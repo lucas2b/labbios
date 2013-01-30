@@ -16,7 +16,7 @@
 	<ui:define name="content">
 	    <h:form>
 	    <p:panel>
-		<p:dataTable var="item" value="#{entradaDeResultadosBean.listaSuporte}" id="dadosExame" editable="true">
+		<p:dataTable var="item" value="#{entradaDeResultadosBean.listaDeExibicao}" id="dadosExame" editable="true">
 
         <f:facet name="header">
             Dados Do Exame
@@ -76,8 +76,6 @@
                 </f:facet>
             </p:cellEditor>
         </p:column>
-
-
         <p:column headerText="Editar" style="width:50px">
             <p:rowEditor />
         </p:column>
@@ -85,8 +83,8 @@
     </p:dataTable>
     <h:commandButton value="Gravar Resultados" action="#{entradaDeResultadosBean.botaoGravarResultados}"></h:commandButton>
     <h:commandButton value="Cancelar" action="#{entradaDeResultadosBean.retornarParaSolicitacao}" ></h:commandButton>
-    	</h:form>
 		</p:panel>
+    	</h:form>
 	</ui:define>
 </ui:composition>
 </h:body>

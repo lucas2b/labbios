@@ -50,7 +50,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		
 		for(Resultado listaResultados : listaResultadosParam)
 		{
-			ps.setString(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
+			ps.setDouble(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
 			ps.setString(2, listaResultados.getRESULT_PARAMETRO());
 			ps.setString(3, listaResultados.getRESULT_VALOR_REFERENCIA());
 			ps.setString(4, listaResultados.getRESULT_UNIDADE());
@@ -76,7 +76,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		
 		for(Resultado listaResultados : listaResultadosParam)
 		{
-			ps.setString(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
+			ps.setDouble(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
 			ps.setString(2, listaResultados.getRESULT_PARAMETRO());
 			ps.setString(3, listaResultados.getRESULT_VALOR_REFERENCIA());
 			ps.setString(4, listaResultados.getRESULT_UNIDADE());
@@ -97,7 +97,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		resultado.setRESULT_OBSERVACOES(rs.getString("RESULT_OBSERVACOES"));
 		resultado.setRESULT_PARAMETRO(rs.getString("RESULT_PARAMETRO"));
 		resultado.setRESULT_UNIDADE(rs.getString("RESULT_UNIDADE"));
-		resultado.setRESULT_VALOR_ENCONTRADO(rs.getString("RESULT_VALOR_ENCONTRADO"));
+		resultado.setRESULT_VALOR_ENCONTRADO(rs.getDouble("RESULT_VALOR_ENCONTRADO"));
 		resultado.setRESULT_VALOR_REFERENCIA(rs.getString("RESULT_REFERENCIA"));
 		resultado.setEXAME(exameDAO.buscarExamePorID(rs.getInt("EXAME_ID")));
 		return resultado;
