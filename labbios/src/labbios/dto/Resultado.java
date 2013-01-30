@@ -3,7 +3,7 @@ package labbios.dto;
 public class Resultado {
 	
 	private int RESULT_ID;
-	private String RESULT_VALOR_ENCONTRADO;
+	private double RESULT_VALOR_ENCONTRADO;
 	private String RESULT_PARAMETRO;
 	private String RESULT_VALOR_REFERENCIA;
 	private String RESULT_UNIDADE;
@@ -16,10 +16,12 @@ public class Resultado {
 	public void setRESULT_ID(int rESULT_ID) {
 		RESULT_ID = rESULT_ID;
 	}
-	public String getRESULT_VALOR_ENCONTRADO() {
+	
+	
+	public double getRESULT_VALOR_ENCONTRADO() {
 		return RESULT_VALOR_ENCONTRADO;
 	}
-	public void setRESULT_VALOR_ENCONTRADO(String rESULT_VALOR_ENCONTRADO) {
+	public void setRESULT_VALOR_ENCONTRADO(double rESULT_VALOR_ENCONTRADO) {
 		RESULT_VALOR_ENCONTRADO = rESULT_VALOR_ENCONTRADO;
 	}
 	public String getRESULT_PARAMETRO() {
