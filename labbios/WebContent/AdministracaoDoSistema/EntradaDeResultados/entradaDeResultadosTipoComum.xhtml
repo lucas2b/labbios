@@ -16,7 +16,7 @@
 	<ui:define name="content">
 	    <h:form>
 	    <p:panel>
-		<p:dataTable var="item" value="#{entradaDeResultadosBean.listaDeExibicao}" id="dadosExame" editable="true">
+		<p:dataTable var="item" value="#{resultadosBean.listaDeExibicao}" id="dadosExame" editable="true">
 
         <f:facet name="header">
             Dados Do Exame
@@ -81,8 +81,8 @@
         </p:column>
 
     </p:dataTable>
-    <h:commandButton value="Gravar Resultados" action="#{entradaDeResultadosBean.botaoGravarResultados}"></h:commandButton>
-    <h:commandButton value="Cancelar" action="#{entradaDeResultadosBean.retornarParaSolicitacao}" ></h:commandButton>
+    <h:commandButton value="Gravar Resultados" action="#{resultadosBean.botaoGravarResultados}"></h:commandButton>
+    <h:commandButton value="Cancelar" action="#{resultadosBean.retornarParaSolicitacao}" ></h:commandButton>
 		</p:panel>
     	</h:form>
 	</ui:define>

@@ -13,7 +13,7 @@ import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.Exame;
 import labbios.dto.Resultado;
 
-public class EntradaDeResultadosBean {
+public class ResultadosBean {
 	
 	//Atributos de controle
 	private Exame exameSelecionado;
