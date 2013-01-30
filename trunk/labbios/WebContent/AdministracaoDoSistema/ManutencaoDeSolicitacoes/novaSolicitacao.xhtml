@@ -100,8 +100,8 @@
 					<f:facet name="header">
 						<h:outputText value="Ações"></h:outputText>
 					</f:facet>
-					<h:commandLink value="Entrar Resultado" action="#{entradaDeResultadosBean.inicioEntradaResultado}">
-						<f:setPropertyActionListener target="#{entradaDeResultadosBean.exameSelecionado}" value="#{item}"></f:setPropertyActionListener>
+					<h:commandLink value="Entrar Resultado" action="#{resultadosBean.inicioEntradaResultado}">
+						<f:setPropertyActionListener target="#{resultadosBean.exameSelecionado}" value="#{item}"></f:setPropertyActionListener>
 					</h:commandLink><br></br>
 					<h:commandLink value="Imprimir Resultado" action="#{relatoriosBean.inicioRelatorios}">
 						<f:setPropertyActionListener target="#{relatoriosBean.exameSelecionado}" value="#{item}"></f:setPropertyActionListener>

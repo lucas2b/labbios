@@ -66,8 +66,8 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>entradaDeResultadosBean</managed-bean-name>
-		<managed-bean-class>labbios.beans.EntradaDeResultadosBean</managed-bean-class>
+		<managed-bean-name>resultadosBean</managed-bean-name>
+		<managed-bean-class>labbios.beans.ResultadosBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
