@@ -50,10 +50,12 @@ public class PacienteBean {
 	{
 		if(flagNovoPaciente){
 			pacienteSelecionado.setPACIENTE_DT_NASCIMENTO(new java.sql.Date(dataNascimento.getTime()));
-			boolean retorno = pacienteDAO.adicionarPaciente(pacienteSelecionado);
-			if(retorno){
+			//boolean retorno = 
+			pacienteDAO.adicionarPaciente(pacienteSelecionado);
+			/*if(retorno){
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso", "Registro gravado com sucesso!"));  
-			}	
+			}	*/
+			
 		}else{
 			pacienteSelecionado.setPACIENTE_DT_NASCIMENTO(new java.sql.Date(dataNascimento.getTime()));
 			pacienteDAO.editarPaciente(pacienteSelecionado);
