@@ -22,16 +22,19 @@
 						<p:inputText id="nome" required="true" value="#{pacienteBean.pacienteSelecionado.PACIENTE_NOME}" size="80"/>
 						
 						<h:outputText value="Sexo: "/>
-						<p:inputText id="sexo" value="#{pacienteBean.pacienteSelecionado.PACIENTE_SEXO}"/>
+						<h:selectOneRadio id="sexo" value="#{pacienteBean.pacienteSelecionado.PACIENTE_SEXO}">
+							 <f:selectItem itemLabel="Masculino" itemValue="M" />  
+            				 <f:selectItem itemLabel="Feminino" itemValue="F" />  
+						</h:selectOneRadio>
 						
 						<h:outputText value="Data de Nascimento: " />
-						<p:calendar value="#{pacienteBean.dataNascimento}" />
+						<p:calendar required="true" value="#{pacienteBean.dataNascimento}" />
 						
 						<h:outputText value="CPF: "/>
 						<p:inputMask mask="999.999.999-99" id="cpf" value="#{pacienteBean.pacienteSelecionado.PACIENTE_CPF}"/>
 						
 						<h:outputText value="RG: "/> 
-						<p:inputText id="rg" value="#{pacienteBean.pacienteSelecionado.PACIENTE_RG}"/>
+						<p:inputText id="rg" maxlength="15" value="#{pacienteBean.pacienteSelecionado.PACIENTE_RG}"/>
 						
 						<h:outputText value="Fone: "/>
 						<p:inputMask mask="(99)9999-9999" id="fone" value="#{pacienteBean.pacienteSelecionado.PACIENTE_FONE}"/>
