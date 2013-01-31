@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class RelatoriosBean {
 	
 	public String inicioRelatorios() throws SQLException, ClassNotFoundException, JRException, IOException
 	{
-		
+
 		if( Integer.valueOf(exameSelecionado.getEXAME_ID()) == 0 || resultadoDAO.verificaEntradaExistente(exameSelecionado) == false )
 		{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"O Resultado ainda nao existe!", ""));
@@ -80,7 +79,6 @@ public class RelatoriosBean {
 							response.addHeader("Content-disposition", "attachment; filename=Paciente: "+cabecalho.get(1)+" Exame: "+cabecalho.get(0)+".pdf"); //Montando nome do arquivo
 							ServletOutputStream servletOutputStream = response.getOutputStream();
 							JasperExportManager.exportReportToPdfStream(print, servletOutputStream);
-							listaDeResultados = null;
 							FacesContext.getCurrentInstance().responseComplete();
 					
 		}

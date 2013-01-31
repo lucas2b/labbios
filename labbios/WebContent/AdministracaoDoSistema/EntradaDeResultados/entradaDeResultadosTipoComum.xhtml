@@ -19,18 +19,11 @@
 		<p:dataTable var="item" value="#{resultadosBean.listaDeExibicao}" id="dadosExame" editable="true">
 
         <f:facet name="header">
-            Dados Do Exame
+            Entrada de Resultados
         </f:facet>
 
         <p:column headerText="Parametros" style="width:125px">
-            <p:cellEditor>
-                <f:facet name="output">
                     <h:outputText value="#{item.RESULT_PARAMETRO}" />
-                </f:facet>
-                <f:facet name="input">
-                    <p:inputText value="#{item.RESULT_PARAMETRO}" style="width:100%"/>
-                </f:facet>
-            </p:cellEditor>
         </p:column>
         
          <p:column headerText="Valor encontrado" style="width:125px">

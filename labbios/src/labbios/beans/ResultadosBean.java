@@ -29,7 +29,7 @@ public class ResultadosBean {
 	//Listas de auxílio
 	private List<Resultado> listaDeExibicao = new LinkedList<Resultado>();
 	private List<DadosDoExameSuporte> tabelaMolde; //Molde da tabela de exames recuperado
-	List<Integer> indiceDoExame = new LinkedList<Integer>();
+	private List<Integer> indiceDoExame = new LinkedList<Integer>();
 	
 	
 	//Função de início
@@ -63,9 +63,8 @@ public class ResultadosBean {
 		else
 		{
 				flagNovaEntrada = true;
-				
 				tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME());
-				
+				listaDeExibicao.clear();
 				for(DadosDoExameSuporte molde: tabelaMolde)
 				{
 					Resultado resultado = new Resultado();
@@ -73,13 +72,15 @@ public class ResultadosBean {
 					resultado.setRESULT_PARAMETRO(molde.getParametro());
 					resultado.setRESULT_UNIDADE(molde.getUnidade());
 					resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
-					//resultado.setRESULT_VALOR_ENCONTRADO();
 					resultado.setRESULT_OBSERVACOES("");
 					listaDeExibicao.add(resultado);
 				}
 				
 				if(tipoHemograma)
+				{
+					rotinaDeLimpezaDoHemograma();
 					rotinaPovoamentoDeHemograma();
+				}
 				
 		}				
 		
@@ -120,16 +121,9 @@ public class ResultadosBean {
 				resultadoDAO.updateResultadoExistente(listaDeExibicao);
 			
 			return retornarParaSolicitacao();	
+			
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			exameSelecionado = null;
-			tipoHemograma = false;
-		}
+		catch(Exception e){}
 		
 		return null;
 	}
@@ -492,6 +486,41 @@ public class ResultadosBean {
 		resultado.setRESULT_OBSERVACOES(rdwObservacoes);
 		listaDeExibicao.add(resultado);
 		
+	}
+	
+	public void rotinaDeLimpezaDoHemograma()
+	{
+		leucocitosValorAbsoluto=0;
+		leucocitosObservacoes=null;
+		bastonetesPercentual=0;
+		bastonetesValorAbsoluto=0;
+		bastonetesObservacoes=null;
+		segmentadosPercentual=0; 
+		segmentadosValorAbsoluto=0;
+		segmentadosObservacoes=null;
+		eosinofilosPercentual=0; 
+		eosinofilosValorAbsoluto=0;
+		eosinofilosObservacoes=null;
+		monocitosPercentual=0; 
+		monocitosValorAbsoluto=0;
+		monocitosObservacoes=null;
+		linfocitosPercentual=0;
+		linfocitosValorAbsoluto=0;
+		linfocitosObservacoes=null;
+		eritrocitosValorEncontrado=0;
+		eritrocitosObservacoes=null;
+		hemoglobinaValorEncontrado=0;
+		hemoglobinaObservacoes=null;
+		hematocritoValorEncontrado=0;
+		hematocritoObservacoes=null;
+		mcvValorEncontrado=0;
+		mcvObservacoes=null;
+		mchValorEncontrado=0;
+		mchObservacoes=null;
+		mchcValorEncontrado=0;
+		mchcObservacoes=null;
+		rdwValorEncontrado=0;
+		rdwObservacoes=null;
 	}
 	
 	//GETTERS AND SETTERS
