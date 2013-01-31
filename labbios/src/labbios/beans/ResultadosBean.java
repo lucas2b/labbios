@@ -17,7 +17,7 @@ public class ResultadosBean {
 	
 	//Atributos de controle
 	private Exame exameSelecionado;
-	private boolean flagNovaEntrada = false;
+	private boolean flagNovaEntrada;
 	private boolean tipoHemograma;
 	
 	//DAOS usados
@@ -27,7 +27,6 @@ public class ResultadosBean {
 	
 	
 	//Listas de auxílio
-	private List<Resultado> listaDeResultado; //Lista de inserção recuperada à partir do molde + entradas do resultado
 	private List<Resultado> listaDeExibicao = new LinkedList<Resultado>();
 	private List<DadosDoExameSuporte> tabelaMolde; //Molde da tabela de exames recuperado
 	List<Integer> indiceDoExame = new LinkedList<Integer>();
@@ -47,6 +46,7 @@ public class ResultadosBean {
 			tipoHemograma = true;
 		else
 			tipoHemograma = false;
+		
 		
 		if(resultadoDAO.verificaEntradaExistente(exameSelecionado))
 		{
@@ -76,6 +76,7 @@ public class ResultadosBean {
 					//resultado.setRESULT_VALOR_ENCONTRADO();
 					resultado.setRESULT_OBSERVACOES("");
 					listaDeExibicao.add(resultado);
+					indiceDoExame.add(1);
 				}
 				
 				if(tipoHemograma)
@@ -92,24 +93,51 @@ public class ResultadosBean {
 	
 	public String botaoGravarResultados() throws SQLException, ClassNotFoundException
 	{	
-		if(tipoHemograma)
-			rotinaDeGravacaoDeHemograma();
+		try
+		{
+			if(tipoHemograma)
+			{
+				Double somatorioPercentual = bastonetesPercentual +
+											segmentadosPercentual +
+											eosinofilosPercentual + 
+											monocitosPercentual + 
+											linfocitosPercentual;
+				
+				if((somatorioPercentual != 100) || (rdwValorEncontrado < 15))
+				{
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Os valores percentuais de Leucócitos não totalizam 100%, ou RDW abaixo de 15!", ""));
+					throw new Exception();  
+				}
+				else
+				{				
+					rotinaDeGravacaoDeHemograma();
+				}
+			}
+			
+			
+			if(flagNovaEntrada)
+				resultadoDAO.inserirNovoResultado(listaDeExibicao);
+			else
+				resultadoDAO.updateResultadoExistente(listaDeExibicao);
+			
+			return retornarParaSolicitacao();	
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			exameSelecionado = null;
+			tipoHemograma = false;
+		}
 		
-		if(flagNovaEntrada)
-		
-			resultadoDAO.inserirNovoResultado(listaDeExibicao);
-		else	
-			resultadoDAO.updateResultadoExistente(listaDeExibicao);
-		
-		
-		tipoHemograma = false;
-		return retornarParaSolicitacao();
+		return null;
 	}
 	
 	public String retornarParaSolicitacao()
 	{
-		tipoHemograma = false;
-		exameSelecionado = null;
+		//exameSelecionado = null;
 		return "editarSolicitacao";
 	}
 
@@ -315,12 +343,12 @@ public class ResultadosBean {
 	public void rotinaDeGravacaoDeHemograma()
 	{
 		//preparar lista de exibição com campos da tela
-		
+			
 		Resultado resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("LEUCOCITOS");
 		resultado.setRESULT_ID(indiceDoExame.get(0));
-		resultado.setRESULT_VALOR_ENCONTRADO(leucocitosValorAbsoluto); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(leucocitosValorAbsoluto);
 		resultado.setRESULT_UNIDADE(leucocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(leucocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(leucocitosObservacoes);
@@ -331,7 +359,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("BASTONETES");
 		resultado.setRESULT_ID(indiceDoExame.get(1));
-		resultado.setRESULT_VALOR_ENCONTRADO(bastonetesPercentual); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(bastonetesPercentual);
 		resultado.setRESULT_UNIDADE(bastonetesUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(bastonetesValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(bastonetesObservacoes);
@@ -341,7 +369,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("SEGMENTADOS");
 		resultado.setRESULT_ID(indiceDoExame.get(2));
-		resultado.setRESULT_VALOR_ENCONTRADO(segmentadosPercentual); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(segmentadosPercentual);
 		resultado.setRESULT_UNIDADE(segmentadosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(segmentadosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(segmentadosObservacoes);
@@ -351,7 +379,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("EOSINOFILOS");
 		resultado.setRESULT_ID(indiceDoExame.get(3));
-		resultado.setRESULT_VALOR_ENCONTRADO(eosinofilosPercentual); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(eosinofilosPercentual);
 		resultado.setRESULT_UNIDADE(eosinofilosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(eosinofilosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(eosinofilosObservacoes);
@@ -361,7 +389,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MONOCITOS");
 		resultado.setRESULT_ID(indiceDoExame.get(4));
-		resultado.setRESULT_VALOR_ENCONTRADO(monocitosPercentual); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(monocitosPercentual);
 		resultado.setRESULT_UNIDADE(monocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(monocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(monocitosObservacoes);
@@ -372,7 +400,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("LINFOCITOS");
 		resultado.setRESULT_ID(indiceDoExame.get(5));
-		resultado.setRESULT_VALOR_ENCONTRADO(linfocitosPercentual); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(linfocitosPercentual);
 		resultado.setRESULT_UNIDADE(linfocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(linfocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(linfocitosObservacoes);
@@ -385,7 +413,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("ERITROCITOS");
 		resultado.setRESULT_ID(indiceDoExame.get(6));
-		resultado.setRESULT_VALOR_ENCONTRADO(eritrocitosValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(eritrocitosValorEncontrado);
 		resultado.setRESULT_UNIDADE(eritrocitosUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(eritrocitosValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(eritrocitosObservacoes);
@@ -395,7 +423,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("HEMOGLOBINA");
 		resultado.setRESULT_ID(indiceDoExame.get(7));
-		resultado.setRESULT_VALOR_ENCONTRADO(hemoglobinaValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(hemoglobinaValorEncontrado);
 		resultado.setRESULT_UNIDADE(hemoglobinaUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(hemoglobinaValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(hemoglobinaObservacoes);
@@ -405,7 +433,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("HEMATOCRITO");
 		resultado.setRESULT_ID(indiceDoExame.get(8));
-		resultado.setRESULT_VALOR_ENCONTRADO(hematocritoValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(hematocritoValorEncontrado);
 		resultado.setRESULT_UNIDADE(hematocritoUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(hematocritoValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(hematocritoObservacoes);
@@ -415,7 +443,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MCV");
 		resultado.setRESULT_ID(indiceDoExame.get(9));
-		resultado.setRESULT_VALOR_ENCONTRADO(mcvValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(mcvValorEncontrado);
 		resultado.setRESULT_UNIDADE(mcvUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mcvValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(mcvObservacoes);
@@ -425,7 +453,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MCH");
 		resultado.setRESULT_ID(indiceDoExame.get(10));
-		resultado.setRESULT_VALOR_ENCONTRADO(mchValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(mchValorEncontrado);
 		resultado.setRESULT_UNIDADE(mchUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mchValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(mchObservacoes);
@@ -436,7 +464,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("MCHC");
 		resultado.setRESULT_ID(indiceDoExame.get(11));
-		resultado.setRESULT_VALOR_ENCONTRADO(mchcValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(mchcValorEncontrado);
 		resultado.setRESULT_UNIDADE(mchcUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(mchcValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(mchcObservacoes);
@@ -446,7 +474,7 @@ public class ResultadosBean {
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("RDW");
 		resultado.setRESULT_ID(indiceDoExame.get(12));
-		resultado.setRESULT_VALOR_ENCONTRADO(rdwValorEncontrado); //tomar cuidado para chegar um Double nesse argumento
+		resultado.setRESULT_VALOR_ENCONTRADO(rdwValorEncontrado);
 		resultado.setRESULT_UNIDADE(rdwUnidade);
 		resultado.setRESULT_VALOR_REFERENCIA(rdwValorDeReferencia);
 		resultado.setRESULT_OBSERVACOES(rdwObservacoes);

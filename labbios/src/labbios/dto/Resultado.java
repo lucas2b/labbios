@@ -4,6 +4,7 @@ public class Resultado {
 	
 	private int RESULT_ID;
 	private double RESULT_VALOR_ENCONTRADO;
+	private double PARAMETRO_HEMOGRAMA_ABSOLUTO;
 	private String RESULT_PARAMETRO;
 	private String RESULT_VALOR_REFERENCIA;
 	private String RESULT_UNIDADE;
@@ -53,6 +54,12 @@ public class Resultado {
 	}
 	public void setEXAME(Exame eXAME) {
 		EXAME = eXAME;
+	}
+	public double getPARAMETRO_HEMOGRAMA_ABSOLUTO() {
+		return PARAMETRO_HEMOGRAMA_ABSOLUTO;
+	}
+	public void setPARAMETRO_HEMOGRAMA_ABSOLUTO(double pARAMETRO_HEMOGRAMA_ABSOLUTO) {
+		PARAMETRO_HEMOGRAMA_ABSOLUTO = pARAMETRO_HEMOGRAMA_ABSOLUTO;
 	}
 	
 
