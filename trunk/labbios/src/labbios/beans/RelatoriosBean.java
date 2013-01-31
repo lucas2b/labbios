@@ -113,6 +113,23 @@ public class RelatoriosBean {
 		listaDeResultados.get(4).setPARAMETRO_HEMOGRAMA_ABSOLUTO(monocitosAbsoluto);
 		listaDeResultados.get(5).setPARAMETRO_HEMOGRAMA_ABSOLUTO(linfocitosAbsoluto);
 		
+		listaDeResultados.get(6).setPARAMETRO_HEMOGRAMA_ABSOLUTO(listaDeResultados.get(6).getRESULT_VALOR_ENCONTRADO());
+		listaDeResultados.get(7).setPARAMETRO_HEMOGRAMA_ABSOLUTO(listaDeResultados.get(7).getRESULT_VALOR_ENCONTRADO());
+		listaDeResultados.get(8).setPARAMETRO_HEMOGRAMA_ABSOLUTO(listaDeResultados.get(8).getRESULT_VALOR_ENCONTRADO());
+		listaDeResultados.get(9).setPARAMETRO_HEMOGRAMA_ABSOLUTO(listaDeResultados.get(9).getRESULT_VALOR_ENCONTRADO());
+		listaDeResultados.get(10).setPARAMETRO_HEMOGRAMA_ABSOLUTO(listaDeResultados.get(10).getRESULT_VALOR_ENCONTRADO());
+		listaDeResultados.get(11).setPARAMETRO_HEMOGRAMA_ABSOLUTO(listaDeResultados.get(11).getRESULT_VALOR_ENCONTRADO());
+		listaDeResultados.get(12).setPARAMETRO_HEMOGRAMA_ABSOLUTO(listaDeResultados.get(12).getRESULT_VALOR_ENCONTRADO());
+		
+		listaDeResultados.get(6).setRESULT_VALOR_ENCONTRADO(0);
+		listaDeResultados.get(7).setRESULT_VALOR_ENCONTRADO(0);
+		listaDeResultados.get(8).setRESULT_VALOR_ENCONTRADO(0);
+		listaDeResultados.get(9).setRESULT_VALOR_ENCONTRADO(0);
+		listaDeResultados.get(10).setRESULT_VALOR_ENCONTRADO(0);
+		listaDeResultados.get(11).setRESULT_VALOR_ENCONTRADO(0);
+		listaDeResultados.get(12).setRESULT_VALOR_ENCONTRADO(0);
+		
+		
 	}
 
 
