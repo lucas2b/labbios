@@ -12,9 +12,10 @@
 
 
 <h:body>
-<h:form> 
+<h:form>
 	<p:panel>
-		<h:graphicImage id="image" url="/imagens/logo.jpg" onclick="inicio()" />
+		
+		<p:graphicImage image="image" url="/imagens/logo.jpg" onclick="inicio()" />
 
 		    <p:growl id="messages"/>
 		    
@@ -54,7 +55,7 @@
 		    		<p:separator/>
 		    	</p:submenu>
 		          
-		        <p:menuitem value="Sair" action="#{loginBean.deslogar}"/> 
+		        <p:menuitem value="Sair" action="#{loginBean.deslogar}" ajax="false"/> 
 		   </p:menubar>
 
 	</p:panel>
