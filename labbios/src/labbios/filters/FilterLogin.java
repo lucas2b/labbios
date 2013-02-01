@@ -33,10 +33,10 @@ public class FilterLogin implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
 		String url = req.getRequestURL().toString();
-		System.out.println("##URL = "+url);
+		//System.out.println("##URL = "+url);
 		
 		Object logged = req.getSession().getAttribute("userlogged");
-		System.out.println("## logged = "+logged);
+		//System.out.println("## logged = "+logged);
 		
 		if(logged == null  || ((Boolean)logged).booleanValue() == false){
 			//Permite Login

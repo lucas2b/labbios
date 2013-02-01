@@ -45,10 +45,14 @@
 	</filter>
  	<filter-mapping>
 		<filter-name>FilterLogin</filter-name>
-		<url-pattern>/faces/*</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>FilterLogin</filter-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</filter-mapping>
+ 	<filter-mapping>
+		<filter-name>FilterLogin</filter-name>
+		<url-pattern>/faces/*</url-pattern>
+	</filter-mapping>
+	<mime-mapping>
+        <extension>jpg</extension>
+        <mime-type>imagens/jpg</mime-type>
+    </mime-mapping>
 </web-app>
