@@ -39,6 +39,10 @@ public class CadastroDeExameBean {
 	private boolean flagGravar; 
 	private List<DadosDoExameSuporte> listaSuporte;
 	private CadastroDeExame cadastroDeExameSelecionado = new CadastroDeExame();
+	
+	public CadastroDeExameBean() {
+		new CadastroDeExame();
+	}
 
 	public String adicionarNovoTipoDeExame() throws ClassNotFoundException, SQLException
 	{	

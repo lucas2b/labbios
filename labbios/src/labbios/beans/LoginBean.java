@@ -90,16 +90,15 @@ public class LoginBean {
 	public String deslogar(){
 		System.out.println("DESLOGAR");
 		try {
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-		HttpSession session = (HttpSession) ec.getSession(false);
-		 if (session != null) {
-	            session.invalidate();
-	        }
-				ec.redirect("/labbios/loginBios.xhtml");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+			HttpSession session = (HttpSession) ec.getSession(false);
+		    session.invalidate();
+		     
+			ec.redirect("/labbios/loginBios.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 		/*
 		FacesContext context = FacesContext.getCurrentInstance();

@@ -23,6 +23,7 @@ public class PacienteBean {
 	//Função que dá início ao tratamento de pacientes
 	public String manutencaoDePacientes()
 	{
+		System.out.println("MAnu "+pacienteSelecionado);
 		if(pacienteSelecionado == null)
 		{
 			System.out.println("Paciente Novo");
@@ -41,6 +42,7 @@ public class PacienteBean {
 	{
 		//pacienteSelecionado = null;
 		//pacienteDAO = new PacienteDAO();
+		System.out.println("Voltar "+pacienteSelecionado);
 		pacienteSelecionado = new Paciente();
 		flagNovoPaciente = false;
 		return "listagemDePacientes"; //"listarPacientes";

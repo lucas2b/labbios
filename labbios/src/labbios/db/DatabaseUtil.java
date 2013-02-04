@@ -12,13 +12,15 @@ public class DatabaseUtil {
 	private static Connection connection;
 	
 	//Sempre retorna uma conexão, se não existe ativa cria uma
-	public Connection getConnection() throws SQLException, ClassNotFoundException
+	public static Connection getConnection() throws SQLException, ClassNotFoundException
 	{
 		if(connection == null)
 		{
 			System.out.println("Nova conexão realizada");
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/labbiosV2", "root", "root");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/labbiosv2", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://dbmy0023.whservidor.com/laboratori10_2", "laboratori10_2", "ghti3847");
+			//System.out.println("##Conexão = "+connection.toString());
 		}
 		return connection;		
 	}
@@ -47,7 +49,8 @@ public class DatabaseUtil {
 	
 	public void closeAll() throws SQLException
 	{
-		if(connection != null)
+		if(connection != null){
 			connection.close();
+		}
 	}
 }
