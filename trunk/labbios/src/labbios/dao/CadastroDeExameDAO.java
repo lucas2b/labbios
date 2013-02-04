@@ -17,6 +17,10 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 	MaterialExameDAO materialExameDAO = new MaterialExameDAO();
 	TipoLaboratorioDAO tipoLaboratorioDAO = new TipoLaboratorioDAO();
 	
+	public CadastroDeExameDAO() {
+		new CadastroDeExame();
+	}
+	
 	public CadastroDeExame buscarCadastroDeExamePorID(int cadastroDeExameID) throws ClassNotFoundException, SQLException
 	{
 		ResultSet rs = getStatement().executeQuery("Select * from CADASTRO_DE_EXAME where CAD_EXAME_ID="+cadastroDeExameID);
@@ -32,7 +36,6 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 	
 	public boolean adicionarNovoExame(CadastroDeExame cadastroDeExame) throws ClassNotFoundException, SQLException
 	{
-		boolean retorno = false;
 		
 		PreparedStatement ps = getPreparedStatement("Insert into CADASTRO_DE_EXAME set CAD_EXAME_ABREVIATURA=?," +
 																					" CAD_EXAME_NOME=?," +
@@ -53,15 +56,14 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		ps.setInt(8, cadastroDeExame.getCAD_EXAME_GRUPO_ETIQUETA());
 		ps.setString(9, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
 		
-		retorno = ps.execute();
-		
-		return retorno;
+		int retorno = ps.executeUpdate();
+		ps.close();
+		return retorno > 0;
 		
 	}
 	
 	public boolean editarCadastroDeExame(CadastroDeExame cadastroDeExame) throws ClassNotFoundException, SQLException
 	{
-		boolean retorno = false;
 		
 		PreparedStatement ps = getPreparedStatement("Update CADASTRO_DE_EXAME set CAD_EXAME_ABREVIATURA=?," +
 																					" CAD_EXAME_NOME=?," +
@@ -85,15 +87,15 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		ps.setString(9, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
 		ps.setInt(10, cadastroDeExame.getCAD_EXAME_ID());
 		
-		retorno = ps.execute();
-		
-		return retorno;
+		int retorno = ps.executeUpdate();
+		ps.close();
+		return retorno > 0;
 	}
 	
 	public List<CadastroDeExame> listarCadastroDeExames() throws ClassNotFoundException, SQLException
 	{
-		ResultSet rs = getStatement().executeQuery("Select * from CADASTRO_DE_EXAME");
 		List<CadastroDeExame> listaCadastroDeExame = new LinkedList<CadastroDeExame>();
+		ResultSet rs = getStatement().executeQuery("Select * from CADASTRO_DE_EXAME");
 		
 		while(rs.next())
 		{
@@ -101,6 +103,8 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 			cadastroExame = popularCadastroDeExame(rs);
 			listaCadastroDeExame.add(cadastroExame);
 		}
+		
+		rs.close();
 		
 		return listaCadastroDeExame;
 	}

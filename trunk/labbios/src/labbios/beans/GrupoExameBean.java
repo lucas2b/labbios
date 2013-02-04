@@ -17,7 +17,7 @@ public class GrupoExameBean {
 	public String addGrupoExame() throws ClassNotFoundException, SQLException
 	{
 		GrupoExame grupoExame = new GrupoExame();
-		grupoExame.setGRUPO_EXAME_ABREV(abreviatura);
+		//grupoExame.setGRUPO_EXAME_ABREV(abreviatura);
 		grupoExame.setGRUPO_EXAME_NOME(nome);
 		grupoExameDAO.adicionarGrupoExame(grupoExame);
 		return "refresh";

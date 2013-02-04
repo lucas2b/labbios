@@ -10,13 +10,23 @@ public class ConvenioBean {
 	
 	private ConvenioDAO convenioDAO = new ConvenioDAO(); 
 	private String nome;
+	private Convenio convenio = new Convenio();
+	
+	public ConvenioBean() {
+		inicio();
+	}
+	public String inicio(){
+		convenio = new Convenio();
+		convenio.setCONVENIO_NOME("asdfsdafsda");
+		return "refresh";
+	}
 	
 	public String adicionarConvenio() throws ClassNotFoundException, SQLException
 	{
-		Convenio convenio = new Convenio();
+		convenio = new Convenio();
 		convenio.setCONVENIO_NOME(nome);
 		convenioDAO.adicionarConvenio(convenio);
-		return "refresh";
+		return inicio();
 	}
 	
 	public List<Convenio> getConvenios() throws ClassNotFoundException, SQLException
