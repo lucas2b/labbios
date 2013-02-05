@@ -17,10 +17,7 @@ public class GrupoExameDAO extends DatabaseUtil{
 		//ps.setString(1, grupoExame.getGRUPO_EXAME_ABREV());
 		ps.setString(1, grupoExame.getGRUPO_EXAME_NOME());
 		
-		int retorno = ps.executeUpdate();
-		ps.close();
-		
-		return retorno > 0;
+		return ps.execute();
 	}
 	
 	public void editarGrupoExame(GrupoExame grupoExame) throws ClassNotFoundException, SQLException
@@ -44,8 +41,6 @@ public class GrupoExameDAO extends DatabaseUtil{
 			listaGrupoExame.add(grupoExame);
 			//listaGrupoExame.add(popularGrupoExame(rs));
 		}
-		
-		rs.close();
 		
 		return listaGrupoExame;
 	}

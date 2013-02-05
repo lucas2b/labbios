@@ -56,9 +56,7 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		ps.setInt(8, cadastroDeExame.getCAD_EXAME_GRUPO_ETIQUETA());
 		ps.setString(9, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
 		
-		int retorno = ps.executeUpdate();
-		ps.close();
-		return retorno > 0;
+		return ps.execute();
 		
 	}
 	
@@ -87,9 +85,7 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 		ps.setString(9, String.valueOf(cadastroDeExame.getCAD_EXAME_TIPO_ENTRADA()));
 		ps.setInt(10, cadastroDeExame.getCAD_EXAME_ID());
 		
-		int retorno = ps.executeUpdate();
-		ps.close();
-		return retorno > 0;
+		return ps.execute();
 	}
 	
 	public List<CadastroDeExame> listarCadastroDeExames() throws ClassNotFoundException, SQLException
@@ -103,8 +99,6 @@ public class CadastroDeExameDAO extends DatabaseUtil{
 			cadastroExame = popularCadastroDeExame(rs);
 			listaCadastroDeExame.add(cadastroExame);
 		}
-		
-		rs.close();
 		
 		return listaCadastroDeExame;
 	}
