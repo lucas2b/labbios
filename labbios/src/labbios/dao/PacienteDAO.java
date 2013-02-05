@@ -24,15 +24,10 @@ public class PacienteDAO extends DatabaseUtil {
 		//paciente = new Paciente();
 	}
 	
-	public boolean adicionarPaciente(Paciente paciente)	{
-		Connection conn = null;
-		PreparedStatement ps = null;
-		
-		try{
-			try{
-				
-				conn = getConnection();
-				ps = getPreparedStatement("Insert into PACIENTE set PACIENTE_NOME=?," +
+	public boolean adicionarPaciente(Paciente paciente) throws SQLException, ClassNotFoundException	
+	
+	{
+				PreparedStatement ps = getPreparedStatement("Insert into PACIENTE set PACIENTE_NOME=?," +
 																					" PACIENTE_SEXO=?," +
 																					" PACIENTE_CPF=?," +
 																					" PACIENTE_RG=?," +
@@ -48,7 +43,6 @@ public class PacienteDAO extends DatabaseUtil {
 																					" PACIENTE_DT_CRIACAO=?," +
 																					" CIDADE_ID=?," +
 																					" PACIENTE_RESPONSAVEL=? ");
-				System.out.println(paciente.getPACIENTE_NOME());
 				
 				ps.setString(1, paciente.getPACIENTE_NOME());
 				ps.setString(2, String.valueOf(paciente.getPACIENTE_SEXO()) );
@@ -67,24 +61,10 @@ public class PacienteDAO extends DatabaseUtil {
 				ps.setInt(15, paciente.getCIDADE().getCIDADE_ID());
 				ps.setString(16, paciente.getPACIENTE_RESPONSAVEL());
 				
-				ps.executeUpdate();
-				return true;
+				return ps.execute();
+				
+				
 			
-			
-			}finally{
-				if(ps != null){
-					ps.close();
-				}
-				if(conn != null){
-					conn.close();
-				}
-			}
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		return false;
 		
 	}
 	
@@ -126,8 +106,7 @@ public class PacienteDAO extends DatabaseUtil {
 		ps.setString(16, paciente.getPACIENTE_RESPONSAVEL());
 		ps.setInt(17, paciente.getPACIENTE_ID());
 		
-		boolean retorno = ps.execute();
-		return retorno;
+		return ps.execute();
 	}
 	
 	
@@ -166,8 +145,6 @@ public class PacienteDAO extends DatabaseUtil {
 			paciente = popularPaciente(rs);
 			listaPacientes.add(paciente);
 		}
-		
-		rs.close();
 		
 		return listaPacientes;
 	}

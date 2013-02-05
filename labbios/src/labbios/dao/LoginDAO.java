@@ -33,9 +33,6 @@ public class LoginDAO extends DatabaseUtil{
 		ResultSet rs = ps.executeQuery();
 		boolean retorno = rs.next();
 		
-		rs.close();
-		ps.close();
-		
 		return retorno;
 	}
 	
