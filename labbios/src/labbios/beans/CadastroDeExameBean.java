@@ -14,6 +14,7 @@ import labbios.dao.GrupoExameDAO;
 import labbios.dao.MaterialExameDAO;
 import labbios.dao.TipoLaboratorioDAO;
 import labbios.dto.CadastroDeExame;
+import labbios.dto.DadosDeExameGrade;
 import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.GrupoExame;
 import labbios.dto.MaterialExame;
@@ -37,7 +38,7 @@ public class CadastroDeExameBean {
 	
 	private String dadosDeExameEmTexto;
 	private boolean flagGravar; 
-	private List<DadosDoExameSuporte> listaSuporte;
+	private List<DadosDeExameGrade> dadosDeExameEmGrade;
 	private CadastroDeExame cadastroDeExameSelecionado = new CadastroDeExame();
 	
 	public CadastroDeExameBean() {
@@ -121,7 +122,7 @@ public class CadastroDeExameBean {
 			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
 			{
 				
-				listaSuporte = dadosDoExameDAO.recuperarTabela(cadastroDeExameSelecionado);
+				dadosDeExameEmGrade = dadosDoExameDAO.recuperarTabela(cadastroDeExameSelecionado);
 				return "entrarDadosDoExame";
 			}
 			else
@@ -138,10 +139,10 @@ public class CadastroDeExameBean {
 			
 			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
 			{
-				listaSuporte = new LinkedList<DadosDoExameSuporte>();
+				dadosDeExameEmGrade = new LinkedList<DadosDeExameGrade>();
 				for(int i=0; i<35; i++)
 				{
-					listaSuporte.add(new DadosDoExameSuporte());			
+					dadosDeExameEmGrade.add(new DadosDeExameGrade());			
 				}
 				return "entrarDadosDoExame";
 			}
@@ -160,7 +161,7 @@ public class CadastroDeExameBean {
 		{
 			//nova tabela
 			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
-			dadosDoExameDAO.adicionarDadosDoExameEmGrade(listaSuporte, cadastroDeExameSelecionado);
+			dadosDoExameDAO.adicionarDadosDoExameEmGrade(dadosDeExameEmGrade, cadastroDeExameSelecionado);
 			else
 			dadosDoExameDAO.adicionarDadosDoExameEmTexto(dadosDeExameEmTexto, cadastroDeExameSelecionado);
 			
@@ -168,7 +169,7 @@ public class CadastroDeExameBean {
 		else
 		{
 			if(cadastroDeExameSelecionado.getCAD_EXAME_TIPO_ENTRADA() == 'G')
-			dadosDoExameDAO.atualizarDadosDoExameEmGrade(listaSuporte, cadastroDeExameSelecionado);
+			dadosDoExameDAO.atualizarDadosDoExameEmGrade(dadosDeExameEmGrade, cadastroDeExameSelecionado);
 			else
 			dadosDoExameDAO.editarDadosDoExameEmTexto(dadosDeExameEmTexto, cadastroDeExameSelecionado);
 		}
@@ -208,13 +209,6 @@ public class CadastroDeExameBean {
 		return "associarValorAoExame";
 	}
 	
-	public List<DadosDoExameSuporte> getListaSuporte() {
-		return listaSuporte;
-	}
-	
-	public void setListaSuporte(List<DadosDoExameSuporte> listaSuporte) {
-		this.listaSuporte = listaSuporte;
-	}
 
 	public String getDadosDeExameEmTexto() {
 		return dadosDeExameEmTexto;
@@ -222,6 +216,14 @@ public class CadastroDeExameBean {
 
 	public void setDadosDeExameEmTexto(String dadosDeExameEmTexto) {
 		this.dadosDeExameEmTexto = dadosDeExameEmTexto;
+	}
+
+	public List<DadosDeExameGrade> getDadosDeExameEmGrade() {
+		return dadosDeExameEmGrade;
+	}
+
+	public void setDadosDeExameEmGrade(List<DadosDeExameGrade> dadosDeExameEmGrade) {
+		this.dadosDeExameEmGrade = dadosDeExameEmGrade;
 	}
 
 }

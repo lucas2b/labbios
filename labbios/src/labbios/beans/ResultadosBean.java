@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import labbios.dao.DadosDoExameDAO;
 import labbios.dao.ExameDAO;
 import labbios.dao.ResultadoDAO;
+import labbios.dto.DadosDeExameGrade;
 import labbios.dto.DadosDoExameSuporte;
 import labbios.dto.Exame;
 import labbios.dto.Resultado;
@@ -28,7 +29,7 @@ public class ResultadosBean {
 	
 	//Listas de auxílio
 	private List<Resultado> listaDeExibicao = new LinkedList<Resultado>();
-	private List<DadosDoExameSuporte> tabelaMolde; //Molde da tabela de exames recuperado
+	private List<DadosDeExameGrade> dadosDeExameGrade; //Molde da tabela de exames recuperado
 	private List<Integer> indiceDoExame = new LinkedList<Integer>();
 	
 	
@@ -63,15 +64,15 @@ public class ResultadosBean {
 		else
 		{
 				flagNovaEntrada = true;
-				tabelaMolde = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME());
+				dadosDeExameGrade = dadosDoExameDAO.recuperarTabela(exameSelecionado.getCAD_EXAME());
 				listaDeExibicao.clear();
-				for(DadosDoExameSuporte molde: tabelaMolde)
+				for(DadosDeExameGrade molde: dadosDeExameGrade)
 				{
 					Resultado resultado = new Resultado();
 					resultado.setEXAME(exameDAO.buscarExamePorID(exameSelecionado.getEXAME_ID()));
-					resultado.setRESULT_PARAMETRO(molde.getParametro());
-					resultado.setRESULT_UNIDADE(molde.getUnidade());
-					resultado.setRESULT_VALOR_REFERENCIA(molde.getReferencia());
+					resultado.setRESULT_PARAMETRO(molde.getDADOS_GRADE_PARAMETRO());
+					resultado.setRESULT_UNIDADE(molde.getDADOS_GRADE_UNIDADE());
+					resultado.setRESULT_VALOR_REFERENCIA(molde.getDADOS_GRADE_REFERENCIA());
 					resultado.setRESULT_OBSERVACOES("");
 					listaDeExibicao.add(resultado);
 				}
@@ -111,6 +112,7 @@ public class ResultadosBean {
 				else
 				{				
 					rotinaDeGravacaoDeHemograma();
+					
 				}
 			}
 			
@@ -120,7 +122,8 @@ public class ResultadosBean {
 			else
 				resultadoDAO.updateResultadoExistente(listaDeExibicao);
 			
-			return retornarParaSolicitacao();	
+
+			return retornarParaSolicitacao();
 			
 		}
 		catch(Exception e){}
@@ -130,7 +133,7 @@ public class ResultadosBean {
 	
 	public String retornarParaSolicitacao()
 	{
-		//exameSelecionado = null;
+		listaDeExibicao.clear();
 		return "editarSolicitacao";
 	}
 
@@ -141,74 +144,74 @@ public class ResultadosBean {
 	
 	private double leucocitosValorAbsoluto;
 	private String leucocitosUnidade;
-	private String leucocitosValorDeReferencia;
+	private double leucocitosValorDeReferencia;
 	private String leucocitosObservacoes;
 	
 	private double bastonetesPercentual; //percentual sobre leucocitos
 	private double bastonetesValorAbsoluto;
 	private String bastonetesUnidade;
-	private String bastonetesValorDeReferencia;
+	private double bastonetesValorDeReferencia;
 	private String bastonetesObservacoes;
 	
 	private double segmentadosPercentual; //percentual sobre leucocitos
 	private double segmentadosValorAbsoluto;
 	private String segmentadosUnidade;
-	private String segmentadosValorDeReferencia;
+	private double segmentadosValorDeReferencia;
 	private String segmentadosObservacoes;
 	
 	private double eosinofilosPercentual; //percentual sobre leucocitos
 	private double eosinofilosValorAbsoluto;
 	private String eosinofilosUnidade;
-	private String eosinofilosValorDeReferencia;
+	private double eosinofilosValorDeReferencia;
 	private String eosinofilosObservacoes;
 	
 	private double monocitosPercentual; //percentual sobre leucocitos
 	private double monocitosValorAbsoluto;
 	private String monocitosUnidade;
-	private String monocitosValorDeReferencia;
+	private double monocitosValorDeReferencia;
 	private String monocitosObservacoes;
 	
 	private double linfocitosPercentual; //percentual sobre leucocitos
 	private double linfocitosValorAbsoluto;
 	private String linfocitosUnidade;
-	private String linfocitosValorDeReferencia;
+	private double linfocitosValorDeReferencia;
 	private String linfocitosObservacoes;
 		
 	//CAMPOS DO ERITROGRAMA
 		
 	private double eritrocitosValorEncontrado;
 	private String eritrocitosUnidade;
-	private String eritrocitosValorDeReferencia;
+	private double eritrocitosValorDeReferencia;
 	private String eritrocitosObservacoes;
 	
 	private double hemoglobinaValorEncontrado;
 	private String hemoglobinaUnidade;
-	private String hemoglobinaValorDeReferencia;
+	private double hemoglobinaValorDeReferencia;
 	private String hemoglobinaObservacoes;
 	
 	private double hematocritoValorEncontrado;
 	private String hematocritoUnidade;
-	private String hematocritoValorDeReferencia;
+	private double hematocritoValorDeReferencia;
 	private String hematocritoObservacoes;
 	
 	private double mcvValorEncontrado;
 	private String mcvUnidade;
-	private String mcvValorDeReferencia;
+	private double mcvValorDeReferencia;
 	private String mcvObservacoes;
 	
 	private double mchValorEncontrado;
 	private String mchUnidade;
-	private String mchValorDeReferencia;
+	private double mchValorDeReferencia;
 	private String mchObservacoes;
 	
 	private double mchcValorEncontrado;
 	private String mchcUnidade;
-	private String mchcValorDeReferencia;
+	private double mchcValorDeReferencia;
 	private String mchcObservacoes;
 	
 	private double rdwValorEncontrado;
 	private String rdwUnidade;
-	private String rdwValorDeReferencia;
+	private double rdwValorDeReferencia;
 	private String rdwObservacoes;
 	
 	public void rotinaPovoamentoDeHemograma()
@@ -336,7 +339,6 @@ public class ResultadosBean {
 	public void rotinaDeGravacaoDeHemograma()
 	{
 		//preparar lista de exibição com campos da tela
-		listaDeExibicao.clear();
 		Resultado resultado = new Resultado();
 		resultado.setEXAME(exameSelecionado);
 		resultado.setRESULT_PARAMETRO("LEUCOCITOS");
@@ -549,13 +551,7 @@ public class ResultadosBean {
 		this.leucocitosUnidade = leucocitosUnidade;
 	}
 
-	public String getLeucocitosValorDeReferencia() {
-		return leucocitosValorDeReferencia;
-	}
 
-	public void setLeucocitosValorDeReferencia(String leucocitosValorDeReferencia) {
-		this.leucocitosValorDeReferencia = leucocitosValorDeReferencia;
-	}
 
 	public String getLeucocitosObservacoes() {
 		return leucocitosObservacoes;
@@ -589,13 +585,7 @@ public class ResultadosBean {
 		this.bastonetesUnidade = bastonetesUnidade;
 	}
 
-	public String getBastonetesValorDeReferencia() {
-		return bastonetesValorDeReferencia;
-	}
-
-	public void setBastonetesValorDeReferencia(String bastonetesValorDeReferencia) {
-		this.bastonetesValorDeReferencia = bastonetesValorDeReferencia;
-	}
+	
 
 	public String getBastonetesObservacoes() {
 		return bastonetesObservacoes;
@@ -629,13 +619,7 @@ public class ResultadosBean {
 		this.segmentadosUnidade = segmentadosUnidade;
 	}
 
-	public String getSegmentadosValorDeReferencia() {
-		return segmentadosValorDeReferencia;
-	}
-
-	public void setSegmentadosValorDeReferencia(String segmentadosValorDeReferencia) {
-		this.segmentadosValorDeReferencia = segmentadosValorDeReferencia;
-	}
+	
 
 	public String getSegmentadosObservacoes() {
 		return segmentadosObservacoes;
@@ -669,13 +653,7 @@ public class ResultadosBean {
 		this.eosinofilosUnidade = eosinofilosUnidade;
 	}
 
-	public String getEosinofilosValorDeReferencia() {
-		return eosinofilosValorDeReferencia;
-	}
-
-	public void setEosinofilosValorDeReferencia(String eosinofilosValorDeReferencia) {
-		this.eosinofilosValorDeReferencia = eosinofilosValorDeReferencia;
-	}
+	
 
 	public String getEosinofilosObservacoes() {
 		return eosinofilosObservacoes;
@@ -709,13 +687,7 @@ public class ResultadosBean {
 		this.monocitosUnidade = monocitosUnidade;
 	}
 
-	public String getMonocitosValorDeReferencia() {
-		return monocitosValorDeReferencia;
-	}
-
-	public void setMonocitosValorDeReferencia(String monocitosValorDeReferencia) {
-		this.monocitosValorDeReferencia = monocitosValorDeReferencia;
-	}
+	
 
 	public String getMonocitosObservacoes() {
 		return monocitosObservacoes;
@@ -749,13 +721,7 @@ public class ResultadosBean {
 		this.linfocitosUnidade = linfocitosUnidade;
 	}
 
-	public String getLinfocitosValorDeReferencia() {
-		return linfocitosValorDeReferencia;
-	}
-
-	public void setLinfocitosValorDeReferencia(String linfocitosValorDeReferencia) {
-		this.linfocitosValorDeReferencia = linfocitosValorDeReferencia;
-	}
+	
 
 	public String getLinfocitosObservacoes() {
 		return linfocitosObservacoes;
@@ -781,13 +747,7 @@ public class ResultadosBean {
 		this.eritrocitosUnidade = eritrocitosUnidade;
 	}
 
-	public String getEritrocitosValorDeReferencia() {
-		return eritrocitosValorDeReferencia;
-	}
-
-	public void setEritrocitosValorDeReferencia(String eritrocitosValorDeReferencia) {
-		this.eritrocitosValorDeReferencia = eritrocitosValorDeReferencia;
-	}
+	
 
 	public String getEritrocitosObservacoes() {
 		return eritrocitosObservacoes;
@@ -813,13 +773,7 @@ public class ResultadosBean {
 		this.hemoglobinaUnidade = hemoglobinaUnidade;
 	}
 
-	public String getHemoglobinaValorDeReferencia() {
-		return hemoglobinaValorDeReferencia;
-	}
-
-	public void setHemoglobinaValorDeReferencia(String hemoglobinaValorDeReferencia) {
-		this.hemoglobinaValorDeReferencia = hemoglobinaValorDeReferencia;
-	}
+	
 
 	public String getHemoglobinaObservacoes() {
 		return hemoglobinaObservacoes;
@@ -845,13 +799,7 @@ public class ResultadosBean {
 		this.hematocritoUnidade = hematocritoUnidade;
 	}
 
-	public String getHematocritoValorDeReferencia() {
-		return hematocritoValorDeReferencia;
-	}
-
-	public void setHematocritoValorDeReferencia(String hematocritoValorDeReferencia) {
-		this.hematocritoValorDeReferencia = hematocritoValorDeReferencia;
-	}
+	
 
 	public String getHematocritoObservacoes() {
 		return hematocritoObservacoes;
@@ -877,13 +825,7 @@ public class ResultadosBean {
 		this.mcvUnidade = mcvUnidade;
 	}
 
-	public String getMcvValorDeReferencia() {
-		return mcvValorDeReferencia;
-	}
-
-	public void setMcvValorDeReferencia(String mcvValorDeReferencia) {
-		this.mcvValorDeReferencia = mcvValorDeReferencia;
-	}
+	
 
 	public String getMcvObservacoes() {
 		return mcvObservacoes;
@@ -909,13 +851,7 @@ public class ResultadosBean {
 		this.mchUnidade = mchUnidade;
 	}
 
-	public String getMchValorDeReferencia() {
-		return mchValorDeReferencia;
-	}
-
-	public void setMchValorDeReferencia(String mchValorDeReferencia) {
-		this.mchValorDeReferencia = mchValorDeReferencia;
-	}
+	
 
 	public String getMchObservacoes() {
 		return mchObservacoes;
@@ -941,13 +877,7 @@ public class ResultadosBean {
 		this.mchcUnidade = mchcUnidade;
 	}
 
-	public String getMchcValorDeReferencia() {
-		return mchcValorDeReferencia;
-	}
-
-	public void setMchcValorDeReferencia(String mchcValorDeReferencia) {
-		this.mchcValorDeReferencia = mchcValorDeReferencia;
-	}
+	
 
 	public String getMchcObservacoes() {
 		return mchcObservacoes;
@@ -973,13 +903,7 @@ public class ResultadosBean {
 		this.rdwUnidade = rdwUnidade;
 	}
 
-	public String getRdwValorDeReferencia() {
-		return rdwValorDeReferencia;
-	}
-
-	public void setRdwValorDeReferencia(String rdwValorDeReferencia) {
-		this.rdwValorDeReferencia = rdwValorDeReferencia;
-	}
+	
 
 	public String getRdwObservacoes() {
 		return rdwObservacoes;
@@ -995,6 +919,110 @@ public class ResultadosBean {
 
 	public void setListaDeExibicao(List<Resultado> listaDeExibicao) {
 		this.listaDeExibicao = listaDeExibicao;
+	}
+
+	public double getLeucocitosValorDeReferencia() {
+		return leucocitosValorDeReferencia;
+	}
+
+	public void setLeucocitosValorDeReferencia(double leucocitosValorDeReferencia) {
+		this.leucocitosValorDeReferencia = leucocitosValorDeReferencia;
+	}
+
+	public double getBastonetesValorDeReferencia() {
+		return bastonetesValorDeReferencia;
+	}
+
+	public void setBastonetesValorDeReferencia(double bastonetesValorDeReferencia) {
+		this.bastonetesValorDeReferencia = bastonetesValorDeReferencia;
+	}
+
+	public double getSegmentadosValorDeReferencia() {
+		return segmentadosValorDeReferencia;
+	}
+
+	public void setSegmentadosValorDeReferencia(double segmentadosValorDeReferencia) {
+		this.segmentadosValorDeReferencia = segmentadosValorDeReferencia;
+	}
+
+	public double getEosinofilosValorDeReferencia() {
+		return eosinofilosValorDeReferencia;
+	}
+
+	public void setEosinofilosValorDeReferencia(double eosinofilosValorDeReferencia) {
+		this.eosinofilosValorDeReferencia = eosinofilosValorDeReferencia;
+	}
+
+	public double getMonocitosValorDeReferencia() {
+		return monocitosValorDeReferencia;
+	}
+
+	public void setMonocitosValorDeReferencia(double monocitosValorDeReferencia) {
+		this.monocitosValorDeReferencia = monocitosValorDeReferencia;
+	}
+
+	public double getLinfocitosValorDeReferencia() {
+		return linfocitosValorDeReferencia;
+	}
+
+	public void setLinfocitosValorDeReferencia(double linfocitosValorDeReferencia) {
+		this.linfocitosValorDeReferencia = linfocitosValorDeReferencia;
+	}
+
+	public double getEritrocitosValorDeReferencia() {
+		return eritrocitosValorDeReferencia;
+	}
+
+	public void setEritrocitosValorDeReferencia(double eritrocitosValorDeReferencia) {
+		this.eritrocitosValorDeReferencia = eritrocitosValorDeReferencia;
+	}
+
+	public double getHemoglobinaValorDeReferencia() {
+		return hemoglobinaValorDeReferencia;
+	}
+
+	public void setHemoglobinaValorDeReferencia(double hemoglobinaValorDeReferencia) {
+		this.hemoglobinaValorDeReferencia = hemoglobinaValorDeReferencia;
+	}
+
+	public double getHematocritoValorDeReferencia() {
+		return hematocritoValorDeReferencia;
+	}
+
+	public void setHematocritoValorDeReferencia(double hematocritoValorDeReferencia) {
+		this.hematocritoValorDeReferencia = hematocritoValorDeReferencia;
+	}
+
+	public double getMcvValorDeReferencia() {
+		return mcvValorDeReferencia;
+	}
+
+	public void setMcvValorDeReferencia(double mcvValorDeReferencia) {
+		this.mcvValorDeReferencia = mcvValorDeReferencia;
+	}
+
+	public double getMchValorDeReferencia() {
+		return mchValorDeReferencia;
+	}
+
+	public void setMchValorDeReferencia(double mchValorDeReferencia) {
+		this.mchValorDeReferencia = mchValorDeReferencia;
+	}
+
+	public double getMchcValorDeReferencia() {
+		return mchcValorDeReferencia;
+	}
+
+	public void setMchcValorDeReferencia(double mchcValorDeReferencia) {
+		this.mchcValorDeReferencia = mchcValorDeReferencia;
+	}
+
+	public double getRdwValorDeReferencia() {
+		return rdwValorDeReferencia;
+	}
+
+	public void setRdwValorDeReferencia(double rdwValorDeReferencia) {
+		this.rdwValorDeReferencia = rdwValorDeReferencia;
 	}
 	
 }

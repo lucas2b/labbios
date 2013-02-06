@@ -16,7 +16,7 @@
 	<ui:define name="content">
 	    <p:panel>
 <h:form id="form">
-    <p:dataTable var="item" value="#{cadastroDeExameBean.listaSuporte}" id="dadosExame" editable="true">
+    <p:dataTable var="item" value="#{cadastroDeExameBean.dadosDeExameEmGrade}" id="dadosExame" editable="true">
 
         <f:facet name="header">
             Dados Do Exame
@@ -25,10 +25,10 @@
         <p:column headerText="Parametros" style="width:125px">
             <p:cellEditor>
                 <f:facet name="output">
-                    <h:outputText value="#{item.parametro}" />
+                    <h:outputText value="#{item.DADOS_GRADE_PARAMETRO}" />
                 </f:facet>
                 <f:facet name="input">
-                    <p:inputText value="#{item.parametro}" style="width:100%"/>
+                    <p:inputText value="#{item.DADOS_GRADE_PARAMETRO}" style="width:100%"/>
                 </f:facet>
             </p:cellEditor>
         </p:column>
@@ -36,10 +36,10 @@
         <p:column headerText="Unidade" style="width:125px">
             <p:cellEditor>
                 <f:facet name="output">
-                    <h:outputText value="#{item.unidade}" />
+                    <h:outputText value="#{item.DADOS_GRADE_UNIDADE}" />
                 </f:facet>
                 <f:facet name="input">
-                    <p:inputText value="#{item.unidade}" style="width:100%" label="Year"/>
+                    <p:inputText value="#{item.DADOS_GRADE_UNIDADE}" style="width:100%" label="Year"/>
                 </f:facet>
             </p:cellEditor>
         </p:column>
@@ -47,10 +47,10 @@
         <p:column headerText="Valor de referência" style="width:125px">
             <p:cellEditor>
                 <f:facet name="output">
-                    <h:outputText value="#{item.referencia}" />
+                    <h:outputText value="#{item.DADOS_GRADE_REFERENCIA}" />
                 </f:facet>
                 <f:facet name="input">
-                    <p:inputText value="#{item.referencia}" style="width:100%" label="Year"/>
+                    <p:inputText value="#{item.DADOS_GRADE_REFERENCIA}" style="width:100%" label="Year"/>
                 </f:facet>
             </p:cellEditor>
         </p:column>

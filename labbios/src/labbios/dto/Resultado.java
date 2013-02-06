@@ -6,7 +6,7 @@ public class Resultado {
 	private double RESULT_VALOR_ENCONTRADO;
 	private double PARAMETRO_HEMOGRAMA_ABSOLUTO;
 	private String RESULT_PARAMETRO;
-	private String RESULT_VALOR_REFERENCIA;
+	private double RESULT_VALOR_REFERENCIA;
 	private String RESULT_UNIDADE;
 	private String RESULT_OBSERVACOES;
 	private Exame EXAME;
@@ -31,10 +31,11 @@ public class Resultado {
 	public void setRESULT_PARAMETRO(String rESULT_PARAMETRO) {
 		RESULT_PARAMETRO = rESULT_PARAMETRO;
 	}
-	public String getRESULT_VALOR_REFERENCIA() {
+
+	public double getRESULT_VALOR_REFERENCIA() {
 		return RESULT_VALOR_REFERENCIA;
 	}
-	public void setRESULT_VALOR_REFERENCIA(String rESULT_VALOR_REFERENCIA) {
+	public void setRESULT_VALOR_REFERENCIA(double rESULT_VALOR_REFERENCIA) {
 		RESULT_VALOR_REFERENCIA = rESULT_VALOR_REFERENCIA;
 	}
 	public String getRESULT_UNIDADE() {

@@ -52,7 +52,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		{
 			ps.setDouble(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
 			ps.setString(2, listaResultados.getRESULT_PARAMETRO());
-			ps.setString(3, listaResultados.getRESULT_VALOR_REFERENCIA());
+			ps.setDouble(3, listaResultados.getRESULT_VALOR_REFERENCIA());
 			ps.setString(4, listaResultados.getRESULT_UNIDADE());
 			ps.setString(5, listaResultados.getRESULT_OBSERVACOES());
 			ps.setInt(6, listaResultados.getEXAME().getEXAME_ID());
@@ -78,7 +78,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		{
 			ps.setDouble(1, listaResultados.getRESULT_VALOR_ENCONTRADO());
 			ps.setString(2, listaResultados.getRESULT_PARAMETRO());
-			ps.setString(3, listaResultados.getRESULT_VALOR_REFERENCIA());
+			ps.setDouble(3, listaResultados.getRESULT_VALOR_REFERENCIA());
 			ps.setString(4, listaResultados.getRESULT_UNIDADE());
 			ps.setString(5, listaResultados.getRESULT_OBSERVACOES());
 			ps.setInt(6, listaResultados.getEXAME().getEXAME_ID());
@@ -98,7 +98,7 @@ public class ResultadoDAO extends DatabaseUtil{
 		resultado.setRESULT_PARAMETRO(rs.getString("RESULT_PARAMETRO"));
 		resultado.setRESULT_UNIDADE(rs.getString("RESULT_UNIDADE"));
 		resultado.setRESULT_VALOR_ENCONTRADO(rs.getDouble("RESULT_VALOR_ENCONTRADO"));
-		resultado.setRESULT_VALOR_REFERENCIA(rs.getString("RESULT_REFERENCIA"));
+		resultado.setRESULT_VALOR_REFERENCIA(rs.getDouble("RESULT_REFERENCIA"));
 		resultado.setEXAME(exameDAO.buscarExamePorID(rs.getInt("EXAME_ID")));
 		return resultado;
 	}
