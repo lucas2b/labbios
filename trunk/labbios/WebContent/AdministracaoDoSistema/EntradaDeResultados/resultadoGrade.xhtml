@@ -14,7 +14,7 @@
 <h:body>
 <ui:composition template="/WEB-INF/templates/templateMain.xhtml">
 	<ui:define name="content">
-	    <p:fieldset legend="Entrada de Resultados para Hemograma" toggleable="false">
+	    <p:fieldset legend="Entrada de Resultados" toggleable="false">
 		    	
 		 <h:form id="formHemograma">
 		 
@@ -57,8 +57,8 @@
 		 
 		 </h:dataTable>
 		 	 
-		 <h:commandButton value="Gravar" action="#{resultadosBean.botaoGravarResultados}"></h:commandButton>
-		 <h:commandButton value="Retornar" action="#{resultadosBean.retornarParaSolicitacao}"></h:commandButton>
+		 <p:commandButton value="Gravar" action="#{resultadosBean.botaoGravarResultados}"></p:commandButton>
+		 <p:commandButton value="Retornar" action="#{resultadosBean.retornarParaSolicitacao}"></p:commandButton>
 		 </h:form>
 		 
 		 </p:fieldset>
