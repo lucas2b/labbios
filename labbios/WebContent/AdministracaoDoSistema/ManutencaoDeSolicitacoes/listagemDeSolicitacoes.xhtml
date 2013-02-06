@@ -16,31 +16,31 @@
 	    <p:panel>
 			<h:form>
 			<h1> Nova solicitação </h1>
-			<h:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.manutencaoDeSolicitacao}"></h:commandButton>
+			<p:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.manutencaoDeSolicitacao}"></p:commandButton>
 			<br></br>			
 			<h1>Listagem de solicitações</h1>
-			<h:dataTable border="1" value="#{solicitacaoBean.solicitacoes}" var="item">
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Solicitação ID"></h:outputText>
-				</f:facet>
-					<h:outputText value="#{item.SOL_ID}"></h:outputText>
-			</h:column>
-			<h:column>
+			<p:dataTable border="1" value="#{solicitacaoBean.solicitacoes}" var="item">
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Paciente"></h:outputText>
 				</f:facet>
 					<h:outputText value="#{item.PACIENTE.PACIENTE_NOME}"></h:outputText>
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Status"></h:outputText>
+				</f:facet>
+					<h:outputText value="#{item.STATUS.STATUS_NOME}"></h:outputText>
+			</p:column>
+			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Ações"></h:outputText>
 				</f:facet>
-					<h:commandLink value="Editar" action="#{solicitacaoBean.manutencaoDeSolicitacao}">
+					<p:commandLink value="Editar" action="#{solicitacaoBean.manutencaoDeSolicitacao}">
 						<f:setPropertyActionListener target="#{solicitacaoBean.solicitacaoSelecionada}" value="#{item}"></f:setPropertyActionListener>
-					</h:commandLink>
-			</h:column>
-			</h:dataTable>
+					</p:commandLink>
+			</p:column>
+			</p:dataTable>
 			</h:form>
 		</p:panel>
 	</ui:define>

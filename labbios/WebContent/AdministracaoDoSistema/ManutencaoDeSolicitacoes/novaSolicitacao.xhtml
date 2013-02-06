@@ -59,7 +59,7 @@
 			
 			
 			<p:fieldset legend="Inclusão de Exames" toggleable="false">
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="1">
 			
 			<h:outputText value="Exame:" />
 			<h:selectOneMenu value="#{solicitacaoBean.exameEscolhido}" onchange="submit()" id="comboExames">
@@ -73,41 +73,39 @@
 				<f:converter converterId="ConversorConvenio"></f:converter>
 			</h:selectOneMenu>
 			
-			<h:outputText value="" />
-			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"></h:commandButton>
-			
-			<h:outputText value="Listagem De Exames:" />
-			<h:dataTable value="#{solicitacaoBean.listaDeExames}" var="item" border="1" id="tabelaDeExames">
-				<h:column>
+			<br></br>
+			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"/>
+			<p:dataTable value="#{solicitacaoBean.listaDeExames}" var="item" border="1" id="tabelaDeExames">
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Exame adicionado"></h:outputText>
 					</f:facet>
 					<h:outputText value="#{item.CAD_EXAME.CAD_EXAME_NOME}"></h:outputText>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Convenio"></h:outputText>
 					</f:facet>
 					<h:outputText value="#{item.EXAME_VALOR.CONVENIO.CONVENIO_NOME}"></h:outputText>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Status do Exame"></h:outputText>
 					</f:facet>
 					<h:outputText value="#{item.STATUS.STATUS_NOME}"></h:outputText>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Ações"></h:outputText>
 					</f:facet>
-					<h:commandLink value="Entrar Resultado" action="#{resultadosBean.inicioEntradaResultado}">
+					<h:commandButton value="Entrar Resultado" action="#{resultadosBean.inicioEntradaResultado}">
 						<f:setPropertyActionListener target="#{resultadosBean.exameSelecionado}" value="#{item}"></f:setPropertyActionListener>
-					</h:commandLink><br></br>
-					<h:commandLink value="Imprimir Resultado" action="#{relatoriosBean.inicioRelatorios}">
+					</h:commandButton>
+					<h:commandButton value="Imprimir" action="#{relatoriosBean.inicioRelatorios}">
 						<f:setPropertyActionListener target="#{relatoriosBean.exameSelecionado}" value="#{item}"></f:setPropertyActionListener>
-					</h:commandLink>
-				</h:column>
-			</h:dataTable>
+					</h:commandButton>
+				</p:column>
+			</p:dataTable>
 		</h:panelGrid>
 		</p:fieldset>
 		
@@ -126,10 +124,10 @@
 			<h:outputText value="Valor Pago:" />
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}" id="valorPago"/>
 		
-			<h:commandButton value="Gravar Solicitação" action="#{solicitacaoBean.botaoGravar}"></h:commandButton>
-			<h:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></h:commandButton>
+			<p:commandButton value="Gravar Solicitação" action="#{solicitacaoBean.botaoGravar}"></p:commandButton>
+			<p:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></p:commandButton>
 			
-			<h:commandButton value="Limpar Tela" action="#{solicitacaoBean.limparTela}"></h:commandButton>
+			<p:commandButton value="Limpar Tela" action="#{solicitacaoBean.limparTela}"></p:commandButton>
 			
 			</h:panelGrid>
 		</p:fieldset>

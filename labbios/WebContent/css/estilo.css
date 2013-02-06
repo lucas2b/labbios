@@ -16,3 +16,5 @@
 .logo{
 	background-image: url('imagens/logo.jpeg'); 
 }
+
+#table{background:blue; border:1px solid olive;}
