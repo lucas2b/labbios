@@ -235,22 +235,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</display-name>
-		<from-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>entradaDeResultadosTipoComum</from-outcome>
-			<to-view-id>/AdministracaoDoSistema/EntradaDeResultados/entradaDeResultadosTipoComum.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</display-name>
-		<from-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>resultadoTipoHemograma</from-outcome>
-			<to-view-id>/AdministracaoDoSistema/EntradaDeResultados/resultadoTipoHemograma.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>loginBios.xhtml</display-name>
 		<from-view-id>/loginBios.xhtml</from-view-id>
 		<navigation-case>
@@ -280,14 +264,6 @@
 		<navigation-case>
 			<from-outcome>listaPacientes</from-outcome>
 			<to-view-id>/AdministracaoDoSistema/CadastroDePacientes/listagemDePacientes.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>AdministracaoDoSistema/EntradaDeResultados/entradaDeResultadosTipoComum.xhtml</display-name>
-		<from-view-id>/AdministracaoDoSistema/EntradaDeResultados/entradaDeResultadosTipoComum.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>editarSolicitacao</from-outcome>
-			<to-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -347,8 +323,16 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>AdministracaoDoSistema/EntradaDeResultados/resultadoTipoHemograma.xhtml</display-name>
-		<from-view-id>/AdministracaoDoSistema/EntradaDeResultados/resultadoTipoHemograma.xhtml</from-view-id>
+		<display-name>AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>resultadoGrade</from-outcome>
+			<to-view-id>/AdministracaoDoSistema/EntradaDeResultados/resultadoGrade.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>AdministracaoDoSistema/EntradaDeResultados/resultadoGrade.xhtml</display-name>
+		<from-view-id>/AdministracaoDoSistema/EntradaDeResultados/resultadoGrade.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>editarSolicitacao</from-outcome>
 			<to-view-id>/AdministracaoDoSistema/ManutencaoDeSolicitacoes/novaSolicitacao.xhtml</to-view-id>

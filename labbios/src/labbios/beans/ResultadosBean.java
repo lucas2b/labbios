@@ -18,7 +18,6 @@ public class ResultadosBean {
 	//Atributos de controle
 	private Exame exameSelecionado;
 	private boolean flagNovaEntrada;
-	private boolean tipoHemograma;
 	
 	//DAOS usados
 	private DadosDoExameDAO dadosDoExameDAO = new DadosDoExameDAO();
@@ -39,13 +38,7 @@ public class ResultadosBean {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"A solicitação ainda não foi salva! Clique em salvar e retorne para entrar resultados!", ""));
 			return null;
 		}
-		
-		if(exameSelecionado.getCAD_EXAME().getCAD_EXAME_NOME().equals("HEMOGRAMA"))
-			tipoHemograma = true;
-		else
-			tipoHemograma = false;
-		
-		
+			
 		if(resultadoDAO.verificaEntradaExistente(exameSelecionado))
 		{
 				flagNovaEntrada = false;
@@ -69,12 +62,8 @@ public class ResultadosBean {
 				}
 				
 				
-		}				
-		
-		if(tipoHemograma)
-			return "resultadoTipoHemograma";
-		 else
-			 return "entradaDeResultadosTipoComum";
+		}					
+			return "resultadoGrade";
 		
 	}
 	
@@ -114,6 +103,4 @@ public class ResultadosBean {
 	public void setListaDeExibicao(List<Resultado> listaDeExibicao) {
 		this.listaDeExibicao = listaDeExibicao;
 	}
-
-	
 }
