@@ -18,14 +18,12 @@ public class DatabaseUtil {
 		{
 			System.out.println("Nova conexão realizada");
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/labbiosv2", "root", "root");
-			//connection = DriverManager.getConnection("jdbc:mysql://dbmy0023.whservidor.com:3306/laboratori10_2", "laboratori10_2", "ghti3847");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/labbiosv2", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://dbmy0023.whservidor.com:3306/laboratori10_2", "laboratori10_2", "ghti3847");
 			//System.out.println("##Conexão = "+connection.toString());
 		}
 		return connection;
 	}
-	
-	
 	
 	
 	/*

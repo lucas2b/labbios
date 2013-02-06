@@ -73,8 +73,8 @@
 				<f:converter converterId="ConversorConvenio"></f:converter>
 			</h:selectOneMenu>
 			
-			<br></br>
 			<h:commandButton value="Adicionar Exame a solicitação" action="#{solicitacaoBean.adicionarExameASolicitacao}"/>
+			<br></br>
 			<p:dataTable value="#{solicitacaoBean.listaDeExames}" var="item" border="1" id="tabelaDeExames">
 				<p:column>
 					<f:facet name="header">
