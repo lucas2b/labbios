@@ -58,6 +58,15 @@ public class SolicitacaoBean {
 	{
 		if(solicitacaoSelecionada != null)
 		{
+			if(solicitacaoSelecionada.getSOL_ID() == 0)
+			{
+				flagNovaSolicitacao = true;
+				solicitacaoSelecionada = new Solicitacao();
+				listaDeExames = new LinkedList<Exame>();
+			}
+			else
+			{
+				
 			//Rotina de solicitação existente
 			flagNovaSolicitacao = false;
 			solicitacaoSelecionada = solicitacaoDAO.recuperarSolicitacao(solicitacaoSelecionada);
@@ -68,6 +77,8 @@ public class SolicitacaoBean {
 				flagUrgente = false;
 			
 			listaDeExames = examesDAO.recuperarExamesPorSolicitacao(solicitacaoSelecionada);
+			
+			}
 		}
 		else
 		{
