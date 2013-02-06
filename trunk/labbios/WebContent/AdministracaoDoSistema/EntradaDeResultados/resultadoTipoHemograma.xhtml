@@ -16,114 +16,40 @@
 	<ui:define name="content">
 	    <p:fieldset legend="Entrada de Resultados para Hemograma" toggleable="false">
 		    	
-		 <h1><h:outputLabel value="Leucograma"></h:outputLabel></h1>
 		 <h:form id="formHemograma">
-		 <h:panelGrid columns="6" id="leucograma" border="1">
 		 
-		 <p:outputLabel value="Parâmetro"></p:outputLabel>
-		 <p:outputLabel value="Valor Percentual"></p:outputLabel>
-		 <p:outputLabel value="Valor Absolsuto"></p:outputLabel>
-		 <p:outputLabel value="Unidade"></p:outputLabel>
-		 <p:outputLabel value="Valor De Referência"></p:outputLabel>
-		 <p:outputLabel value="Observações"></p:outputLabel>
+		 <h:dataTable value="#{resultadosBean.listaDeExibicao}" var="item">
 		 
-		 <p:outputLabel value="Leucócitos: "></p:outputLabel>
-		 <p:outputLabel value="-"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.leucocitosValorAbsoluto}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.leucocitosUnidade}"></p:outputLabel> 
-		 <p:outputLabel value="#{resultadosBean.leucocitosValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.leucocitosObservacoes}"></p:inputText>
+		 <h:column>
+		 	<f:facet name="header">
+		 		<h:outputText value="Parametro"></h:outputText>
+		 	</f:facet>
+		 	<h:outputText value="#{item.RESULT_PARAMETRO}"></h:outputText>
+		 </h:column>
 		 
-		 <p:outputLabel value="Bastonetes: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.bastonetesPercentual}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.bastonetesValorAbsoluto}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.bastonetesUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.bastonetesValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.bastonetesObservacoes}"></p:inputText>
+		 <h:column>
+		 	<f:facet name="header">
+		 		<h:outputText value="Valor encontrado"></h:outputText>
+		 	</f:facet>
+		 	<h:inputText value="#{item.RESULT_VALOR_ENCONTRADO}"></h:inputText>
+		 </h:column>
 		 
-		 <p:outputLabel value="Segmentados: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.segmentadosPercentual}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.segmentadosValorAbsoluto}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.segmentadosUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.segmentadosValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.segmentadosObservacoes}"></p:inputText>
+		 <h:column>
+		 	<f:facet name="header">
+		 		<h:outputText value="Unidade"></h:outputText>
+		 	</f:facet>
+		 	<h:outputText value="#{item.RESULT_UNIDADE}"></h:outputText>
+		 </h:column>
 		 
-		 <p:outputLabel value="Eosinofilos: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.eosinofilosPercentual}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.eosinofilosValorAbsoluto}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.eosinofilosUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.eosinofilosValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.eosinofilosObservacoes}"></p:inputText>
+		  <h:column>
+		 	<f:facet name="header">
+		 		<h:outputText value="Observações"></h:outputText>
+		 	</f:facet>
+		 	<h:inputText value="#{item.RESULT_OBSERVACOES}"></h:inputText>
+		 </h:column>
 		 
-		 <p:outputLabel value="Monocitos: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.monocitosPercentual}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.monocitosValorAbsoluto}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.monocitosUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{entradaDeResultadosBean.monocitosValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.monocitosObservacoes}"></p:inputText>
-		 
-		 <p:outputLabel value="Linfocitos: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.linfocitosPercentual}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.linfocitosValorAbsoluto}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.linfocitosUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.linfocitosValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.linfocitosObservacoes}"></p:inputText>
-		 
-		 </h:panelGrid>
-		 
-		 <br></br>
-		 <h1><h:outputLabel value="Eritrograma"></h:outputLabel></h1>
-		 <h:panelGrid columns="5" id="eritrograma" border="2">
-		 
-		 <p:outputLabel value="Parâmetro"></p:outputLabel>
-		 <p:outputLabel value="Valor Encontrado"></p:outputLabel>
-		 <p:outputLabel value="Unidade"></p:outputLabel>
-		 <p:outputLabel value="Valor De Referência"></p:outputLabel>
-		 <p:outputLabel value="Observações"></p:outputLabel>
-		 
-		 <p:outputLabel value="Eritróticos: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.eritrocitosValorEncontrado}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.eritrocitosUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.eritrocitosValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.eritrocitosObservacoes}"></p:inputText>
-		 
-		 <p:outputLabel value="Hemoglobina: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.hemoglobinaValorEncontrado}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.hemoglobinaUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.hemoglobinaValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.hemoglobinaObservacoes}"></p:inputText>
-		 
-		 <p:outputLabel value="Hematócrito: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.hematocritoValorEncontrado}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.hematocritoUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.hematocritoValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.hematocritoObservacoes}"></p:inputText>
-		 
-		 <p:outputLabel value="MCV: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.mcvValorEncontrado}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.mcvUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.mcvValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.mcvObservacoes}"></p:inputText>
-		 
-		 <p:outputLabel value="MCH: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.mchValorEncontrado}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.mchUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.mchValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.mchObservacoes}"></p:inputText>
-		 
-		 <p:outputLabel value="MCHC: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.mchcValorEncontrado}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.mchcUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.mchcValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.mchcObservacoes}"></p:inputText>
-		 
-		 <p:outputLabel value="RDW: "></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.rdwValorEncontrado}"></p:inputText>
-		 <p:outputLabel value="#{resultadosBean.rdwUnidade}"></p:outputLabel>
-		 <p:outputLabel value="#{resultadosBean.rdwValorDeReferencia}"></p:outputLabel>
-		 <p:inputText value="#{resultadosBean.rdwObservacoes}"></p:inputText>
-		 
-		 </h:panelGrid>
+		 </h:dataTable>
+		 	 
 		 <h:commandButton value="Gravar" action="#{resultadosBean.botaoGravarResultados}"></h:commandButton>
 		 <h:commandButton value="Retornar" action="#{resultadosBean.retornarParaSolicitacao}"></h:commandButton>
 		 </h:form>
