@@ -28,7 +28,7 @@
 			        </p:column>  
 			  
 			        <p:column headerText="Ações" style="width:100px;">  
-			            <h:commandLink value="Editar" action="#{pacienteBean.manutencaoDePacientes}">
+			            <h:commandLink value="Editar" action="#{pacienteBean.manutencaoDePacientes}" ajax="false">
 	    					<f:setPropertyActionListener target="#{pacienteBean.pacienteSelecionado}" value="#{item}"></f:setPropertyActionListener>
 	    				</h:commandLink> 
 			        </p:column>  

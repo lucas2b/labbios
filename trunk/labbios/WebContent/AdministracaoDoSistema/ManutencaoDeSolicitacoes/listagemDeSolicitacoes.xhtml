@@ -16,7 +16,7 @@
 	    <p:panel>
 			<h:form>
 			<h1> Nova solicitação </h1>
-			<p:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.manutencaoDeSolicitacao}"></p:commandButton>
+			<p:commandButton value="Adicionar Solicitação" action="#{solicitacaoBean.manutencaoDeSolicitacao}" ajax="false"/>
 			<br></br>			
 			<h1>Listagem de solicitações</h1>
 			<p:dataTable border="1" value="#{solicitacaoBean.solicitacoes}" var="item">
@@ -36,9 +36,9 @@
 				<f:facet name="header">
 					<h:outputText value="Ações"></h:outputText>
 				</f:facet>
-					<p:commandLink value="Editar" action="#{solicitacaoBean.manutencaoDeSolicitacao}">
+					<h:commandLink value="Editar" action="#{solicitacaoBean.manutencaoDeSolicitacao}" ajax="false">
 						<f:setPropertyActionListener target="#{solicitacaoBean.solicitacaoSelecionada}" value="#{item}"></f:setPropertyActionListener>
-					</p:commandLink>
+					</h:commandLink>
 			</p:column>
 			</p:dataTable>
 			</h:form>

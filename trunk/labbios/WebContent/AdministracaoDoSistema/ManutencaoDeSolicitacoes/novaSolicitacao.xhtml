@@ -124,10 +124,10 @@
 			<h:outputText value="Valor Pago:" />
 			<h:inputText value="#{solicitacaoBean.solicitacaoSelecionada.SOL_VALOR_PAGO}" id="valorPago"/>
 		
-			<p:commandButton value="Gravar Solicitação" action="#{solicitacaoBean.botaoGravar}"></p:commandButton>
-			<p:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}"></p:commandButton>
+			<p:commandButton value="Gravar Solicitação" action="#{solicitacaoBean.botaoGravar}" ajax="false"/>
+			<p:commandButton value="Voltar Para Listagem" action="#{solicitacaoBean.retornarListagemSolicitacoes}" ajax="false"/>
 			
-			<p:commandButton value="Limpar Tela" action="#{solicitacaoBean.limparTela}"></p:commandButton>
+			<p:commandButton value="Limpar Tela" action="#{solicitacaoBean.limparTela}" ajax="false"/>
 			
 			</h:panelGrid>
 		</p:fieldset>
